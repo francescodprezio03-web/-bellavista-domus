@@ -685,6 +685,47 @@ function Footer({ t, go }) {
   );
 }
 
+/* ------------------------------- COOKIE BANNER -------------------------------- */
+/* Mostra il banner solo se l'utente non ha già scelto. "Accetta" abilita la
+   raccolta dati di Google Analytics (Consent Mode); "Rifiuta" la lascia
+   disattivata. La scelta viene ricordata in questo browser. */
+
+function CookieBanner() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("bd-cookie-consent");
+    if (!saved) setVisible(true);
+    else if (saved === "accepted" && window.gtag) {
+      window.gtag("consent", "update", { analytics_storage: "granted" });
+    }
+  }, []);
+
+  const choose = (value) => {
+    localStorage.setItem("bd-cookie-consent", value);
+    if (value === "accepted" && window.gtag) {
+      window.gtag("consent", "update", { analytics_storage: "granted" });
+    }
+    setVisible(false);
+  };
+
+  if (!visible) return null;
+
+  return (
+    <div className="bd-cookiebanner" role="dialog" aria-label="Consenso cookie">
+      <p>
+        Usiamo Google Analytics solo se acconsenti, per capire come viene usato
+        il sito. Nessun cookie di profilazione. {" "}
+        <a href="/privacy.html" target="_blank" rel="noopener noreferrer">Maggiori informazioni</a>.
+      </p>
+      <div className="bd-cookiebanner__actions">
+        <button className="bd-btn bd-btn--ghost" onClick={() => choose("rejected")}>Rifiuta</button>
+        <button className="bd-btn bd-btn--primary bd-btn--sm" onClick={() => choose("accepted")}>Accetta</button>
+      </div>
+    </div>
+  );
+}
+
 /* ------------------------------- WHATSAPP -------------------------------- */
 
 function WhatsAppButton() {
@@ -1142,6 +1183,24 @@ const STYLES = `
 @media (max-width:860px){
   .bd-whatsapp{right:16px;bottom:calc(86px + env(safe-area-inset-bottom));width:50px;height:50px;}
 }
+
+/* Cookie banner */
+.bd-cookiebanner{
+  position:fixed;left:20px;right:20px;bottom:20px;z-index:200;
+  max-width:640px;margin:0 auto;
+  background:var(--ivory);border:1px solid var(--line);border-radius:2px;
+  box-shadow:0 20px 50px rgba(16,40,56,0.22);
+  padding:22px 24px;
+  display:flex;flex-direction:column;gap:16px;
+}
+.bd-cookiebanner p{margin:0;font-size:13.5px;line-height:1.6;color:var(--stone);font-weight:300;}
+.bd-cookiebanner a{text-decoration:underline;color:var(--sea-deep);}
+.bd-cookiebanner__actions{display:flex;gap:14px;justify-content:flex-end;flex-wrap:wrap;}
+.bd-cookiebanner .bd-btn--ghost{padding:10px 0;border-bottom:1px solid var(--sea-deep);}
+.bd-cookiebanner .bd-btn--ghost::after{content:none;}
+@media (max-width:860px){
+  .bd-cookiebanner{bottom:calc(150px + env(safe-area-inset-bottom));}
+}
 `;
 
 /* ------------------------------------ APP ------------------------------------------ */
@@ -1173,6 +1232,7 @@ export default function BellavistaDomus() {
       <Footer t={t} go={go} />
       <StickyCta t={t} go={go} />
       <WhatsAppButton />
+      <CookieBanner />
     </div>
   );
 }
