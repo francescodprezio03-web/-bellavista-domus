@@ -759,7 +759,7 @@ const STYLES = `
   font-weight:500;
   display:flex;align-items:center;gap:10px;
 }
-.bd-eyebrow::before{content:'';width:14px;height:1px;background:currentColor;opacity:0.55;}
+/* trattino decorativo rimosso su richiesta */
 .bd-eyebrow--light{color:rgba(255,255,255,0.86);}
 .bd-h2{
   font-family:'Fraunces',serif;
@@ -1139,3 +1139,4 @@ export default function BellavistaDomus() {
     </div>
   );
 }
+rimosso trattino eyebrown
