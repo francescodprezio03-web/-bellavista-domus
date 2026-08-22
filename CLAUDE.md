@@ -31,15 +31,18 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
   tipo `/images/nome.jpg`. `PhotoSlot` mostra un placeholder elegante
   (mai l'icona di immagine rotta) se il file manca o non carica.
 - **`public/privacy.html`** — pagina privacy statica, linkata dal footer.
-- **`torre-a-mare.html`** (root, stesso livello di `index.html`) — pagina
-  guida statica "cosa vedere a Torre a Mare", stessa identità visiva del
-  sito (Fraunces/Inter, palette blu Adriatico/avorio/sabbia), con proprio
-  SEO (title/description/OG) e JSON-LD `Article`. Linkata dalla card
-  Torre a Mare nella sezione "Scopri la Puglia" (`Location` in `App.jsx`).
-  A differenza di `public/privacy.html`, questa pagina vive in root perché
-  è registrata come entry point separato in `vite.config.js`
-  (`build.rollupOptions.input`) — se si aggiungono altre pagine statiche
-  in root, vanno dichiarate lì per finire nella build.
+- **`torre-a-mare.html`**, **`polignano-a-mare.html`** (root, stesso
+  livello di `index.html`) — pagine guida statiche "cosa vedere a...",
+  stessa identità visiva del sito (Fraunces/Inter, palette blu
+  Adriatico/avorio/sabbia) e stessa struttura tecnica (SEO
+  title/description/OG/Twitter, JSON-LD `Article`). Linkate dalle
+  rispettive card nella sezione "Scopri la Puglia" (`Location` in
+  `App.jsx`, tramite `link`/`linkLabel` su ogni voce di
+  `translations.<lang>.location.places`). A differenza di
+  `public/privacy.html`, queste pagine vivono in root perché sono
+  registrate come entry point separati in `vite.config.js`
+  (`build.rollupOptions.input`) — ogni nuova pagina guida in root va
+  dichiarata lì per finire nella build, seguendo lo stesso schema.
 - **`public/robots.txt`**, **`public/sitemap.xml`** — SEO tecnico.
 
 ## Dati chiave della struttura (da `CONFIG.property` in `App.jsx`)

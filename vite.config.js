@@ -12,11 +12,13 @@ export default defineConfig({
   build: {
     // Sito multi-pagina: index.html (app React) + pagine statiche come
     // torre-a-mare.html. Senza questo, "npm run build" includerebbe solo
-    // index.html in dist/.
+    // index.html in dist/. Ogni nuova pagina statica in root va aggiunta
+    // qui per finire nella build.
     rollupOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
         torreAMare: resolve(__dirname, "torre-a-mare.html"),
+        polignanoAMare: resolve(__dirname, "polignano-a-mare.html"),
       },
     },
   },

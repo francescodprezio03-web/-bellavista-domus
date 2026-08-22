@@ -161,11 +161,10 @@ const translations = {
       text: "A pochi passi dal Mare Adriatico, Bellavista Domus offre un soggiorno costiero autentico a Torre a Mare, restando vicina a Bari e al meglio della Puglia.",
       exploreEyebrow: "Nei dintorni",
       exploreTitle: "Scopri la Puglia",
-      discoverMore: "Cosa vedere a Torre a Mare",
       places: [
-        { key: "torreamare", name: "Torre a Mare", desc: "Il borgo marinaro dove si trova Bellavista Domus." },
+        { key: "torreamare", name: "Torre a Mare", desc: "Il borgo marinaro dove si trova Bellavista Domus.", link: "/torre-a-mare.html", linkLabel: "Cosa vedere a Torre a Mare" },
         { key: "bari", name: "Bari", desc: "Il capoluogo pugliese, tra centro storico e lungomare." },
-        { key: "polignano", name: "Polignano a Mare", desc: "Celebre per le sue scogliere a picco sul mare." },
+        { key: "polignano", name: "Polignano a Mare", desc: "Celebre per le sue scogliere a picco sul mare.", link: "/polignano-a-mare.html", linkLabel: "Cosa vedere a Polignano a Mare" },
         { key: "monopoli", name: "Monopoli", desc: "Porto storico e centro antico affacciato sull'Adriatico." },
         { key: "alberobello", name: "Alberobello", desc: "Patrimonio UNESCO, famosa per i trulli." },
       ],
@@ -233,11 +232,10 @@ const translations = {
       text: "Just a few steps from the Adriatic Sea, Bellavista Domus offers an authentic coastal stay in Torre a Mare, while remaining close to Bari and the best of Puglia.",
       exploreEyebrow: "Nearby",
       exploreTitle: "Explore Puglia",
-      discoverMore: "What to see in Torre a Mare",
       places: [
-        { key: "torreamare", name: "Torre a Mare", desc: "The seaside village where Bellavista Domus is located." },
+        { key: "torreamare", name: "Torre a Mare", desc: "The seaside village where Bellavista Domus is located.", link: "/torre-a-mare.html", linkLabel: "What to see in Torre a Mare" },
         { key: "bari", name: "Bari", desc: "The capital of Puglia, historic centre and seafront." },
-        { key: "polignano", name: "Polignano a Mare", desc: "Famous for its cliffs overlooking the sea." },
+        { key: "polignano", name: "Polignano a Mare", desc: "Famous for its cliffs overlooking the sea.", link: "/polignano-a-mare.html", linkLabel: "What to see in Polignano a Mare" },
         { key: "monopoli", name: "Monopoli", desc: "Historic port and old town facing the Adriatic." },
         { key: "alberobello", name: "Alberobello", desc: "UNESCO World Heritage site, famous for its trulli." },
       ],
@@ -620,9 +618,9 @@ function Location({ t }) {
               </div>
               <h4>{p.name}</h4>
               <p>{p.desc}</p>
-              {p.key === "torreamare" && (
-                <a href="/torre-a-mare.html" className="bd-explore__link">
-                  {t.location.discoverMore} →
+              {p.link && (
+                <a href={p.link} className="bd-explore__link">
+                  {p.linkLabel} →
                 </a>
               )}
             </Reveal>
