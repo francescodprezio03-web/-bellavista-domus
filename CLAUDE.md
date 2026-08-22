@@ -33,17 +33,26 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
 - **`public/privacy.html`** — pagina privacy statica, linkata dal footer.
 - **`torre-a-mare.html`**, **`polignano-a-mare.html`**, **`monopoli.html`**,
   **`bari.html`**, **`alberobello.html`** (root, stesso livello di
-  `index.html`) — pagine guida statiche "cosa vedere a...",
+  `index.html`) — pagine guida statiche "cosa vedere a...", in italiano,
   stessa identità visiva del sito (Fraunces/Inter, palette blu
   Adriatico/avorio/sabbia) e stessa struttura tecnica (SEO
-  title/description/OG/Twitter, JSON-LD `Article`). Linkate dalle
-  rispettive card nella sezione "Scopri la Puglia" (`Location` in
-  `App.jsx`, tramite `link`/`linkLabel` su ogni voce di
-  `translations.<lang>.location.places`). A differenza di
-  `public/privacy.html`, queste pagine vivono in root perché sono
-  registrate come entry point separati in `vite.config.js`
-  (`build.rollupOptions.input`) — ogni nuova pagina guida in root va
-  dichiarata lì per finire nella build, seguendo lo stesso schema.
+  title/description/OG/Twitter, JSON-LD `Article`).
+- **`torre-a-mare-en.html`**, **`polignano-a-mare-en.html`**,
+  **`monopoli-en.html`**, **`bari-en.html`**, **`alberobello-en.html`**
+  — versioni inglesi delle stesse pagine guida (`lang="en"`, testi e meta
+  tradotti, `og:locale` `en_US`). Ogni coppia IT/EN si linka a vicenda con
+  tag `<link rel="alternate" hreflang="...">` nell'head (anche in
+  `public/sitemap.xml` via `xhtml:link`), così i motori di ricerca sanno
+  che sono la stessa pagina in due lingue.
+  Tutte e dieci sono linkate dalle rispettive card nella sezione "Scopri
+  la Puglia" (`Location` in `App.jsx`, tramite `link`/`linkLabel` su ogni
+  voce di `translations.<lang>.location.places` — le voci in `it` puntano
+  alle pagine italiane, quelle in `en` alle pagine `-en.html`). A
+  differenza di `public/privacy.html`, queste pagine vivono in root
+  perché sono registrate come entry point separati in `vite.config.js`
+  (`build.rollupOptions.input`) — ogni nuova pagina guida (e la sua
+  eventuale versione in un'altra lingua) va dichiarata lì per finire
+  nella build, seguendo lo stesso schema.
 - **`public/robots.txt`**, **`public/sitemap.xml`** — SEO tecnico.
 
 ## Dati chiave della struttura (da `CONFIG.property` in `App.jsx`)

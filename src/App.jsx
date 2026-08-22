@@ -233,11 +233,11 @@ const translations = {
       exploreEyebrow: "Nearby",
       exploreTitle: "Explore Puglia",
       places: [
-        { key: "torreamare", name: "Torre a Mare", desc: "The seaside village where Bellavista Domus is located.", link: "/torre-a-mare.html", linkLabel: "What to see in Torre a Mare" },
-        { key: "bari", name: "Bari", desc: "The capital of Puglia, historic centre and seafront.", link: "/bari.html", linkLabel: "What to see in Bari" },
-        { key: "polignano", name: "Polignano a Mare", desc: "Famous for its cliffs overlooking the sea.", link: "/polignano-a-mare.html", linkLabel: "What to see in Polignano a Mare" },
-        { key: "monopoli", name: "Monopoli", desc: "Historic port and old town facing the Adriatic.", link: "/monopoli.html", linkLabel: "What to see in Monopoli" },
-        { key: "alberobello", name: "Alberobello", desc: "UNESCO World Heritage site, famous for its trulli.", link: "/alberobello.html", linkLabel: "What to see in Alberobello" },
+        { key: "torreamare", name: "Torre a Mare", desc: "The seaside village where Bellavista Domus is located.", link: "/torre-a-mare-en.html", linkLabel: "What to see in Torre a Mare" },
+        { key: "bari", name: "Bari", desc: "The capital of Puglia, historic centre and seafront.", link: "/bari-en.html", linkLabel: "What to see in Bari" },
+        { key: "polignano", name: "Polignano a Mare", desc: "Famous for its cliffs overlooking the sea.", link: "/polignano-a-mare-en.html", linkLabel: "What to see in Polignano a Mare" },
+        { key: "monopoli", name: "Monopoli", desc: "Historic port and old town facing the Adriatic.", link: "/monopoli-en.html", linkLabel: "What to see in Monopoli" },
+        { key: "alberobello", name: "Alberobello", desc: "UNESCO World Heritage site, famous for its trulli.", link: "/alberobello-en.html", linkLabel: "What to see in Alberobello" },
       ],
     },
     booking: {
