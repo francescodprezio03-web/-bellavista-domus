@@ -1176,6 +1176,13 @@ const STYLES = `
   .bd-footer{padding:80px 22px 30px;}
   .bd-footer__grid{grid-template-columns:1fr;gap:28px;}
 }
+/* Sotto gli 860px compare la sticky CTA mobile (posizionata fixed, bottom:0):
+   senza questo spazio extra copre l'ultima riga del footer (copyright/Privacy).
+   86px riprende lo stesso ingombro già usato per .bd-whatsapp qui sotto, che
+   posiziona il pulsante WhatsApp sopra la stessa barra. */
+@media (max-width:860px){
+  .bd-footer__bottom{padding-bottom:calc(86px + env(safe-area-inset-bottom));}
+}
 
 /* Sticky mobile CTA */
 .bd-stickycta{
