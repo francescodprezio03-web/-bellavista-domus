@@ -30,7 +30,13 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
   placeholder/Unsplash), referenziate da `CONFIG.images` con path assoluti
   tipo `/images/nome.jpg`. `PhotoSlot` mostra un placeholder elegante
   (mai l'icona di immagine rotta) se il file manca o non carica.
-- **`public/privacy.html`** — pagina privacy statica, linkata dal footer.
+- **`public/privacy.html`**, **`public/privacy-en.html`** — pagina privacy
+  statica IT/EN, con hreflang reciproci. Il footer (`Footer` in `App.jsx`)
+  sceglie l'URL giusto tramite `t.footer.privacyUrl` — non aggiungere mai
+  un `href="/privacy.html"` hardcoded, altrimenti l'utente EN finisce sulla
+  pagina italiana. Vivendo in `public/`, non servono entry in
+  `vite.config.js`: Vite copia tutto il contenuto di `public/` in `dist/`
+  automaticamente, a differenza delle pagine guida in root (vedi sotto).
 - **`torre-a-mare.html`**, **`polignano-a-mare.html`**, **`monopoli.html`**,
   **`bari.html`**, **`alberobello.html`** (root, stesso livello di
   `index.html`) — pagine guida statiche "cosa vedere a...", in italiano,

@@ -79,5 +79,14 @@
     <loc>https://bellavistadomus.netlify.app/privacy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://bellavistadomus.netlify.app/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bellavistadomus.netlify.app/privacy-en.html" />
+  </url>
+  <url>
+    <loc>https://bellavistadomus.netlify.app/privacy-en.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://bellavistadomus.netlify.app/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bellavistadomus.netlify.app/privacy-en.html" />
   </url>
 </urlset>

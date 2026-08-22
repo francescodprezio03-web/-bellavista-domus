@@ -184,6 +184,7 @@ const translations = {
       cin: "CIN",
       rights: "Tutti i diritti riservati.",
       top: "Torna su",
+      privacyUrl: "/privacy.html",
     },
     stickyCta: "Verifica disponibilità",
     photoPlaceholder: "Fotografia in arrivo",
@@ -255,6 +256,7 @@ const translations = {
       cin: "CIN",
       rights: "All rights reserved.",
       top: "Back to top",
+      privacyUrl: "/privacy-en.html",
     },
     stickyCta: "Check availability",
     photoPlaceholder: "Photo coming soon",
@@ -684,7 +686,7 @@ function Footer({ t, go }) {
 
       <div className="bd-footer__bottom">
         <span>© {new Date().getFullYear()} {CONFIG.property.name}. {t.footer.rights}</span>
-        <a href="/privacy.html" className="bd-footer__privacy">Privacy</a>
+        <a href={t.footer.privacyUrl} className="bd-footer__privacy">Privacy</a>
       </div>
     </footer>
   );
