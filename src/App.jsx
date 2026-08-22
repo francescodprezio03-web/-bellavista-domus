@@ -161,6 +161,7 @@ const translations = {
       text: "A pochi passi dal Mare Adriatico, Bellavista Domus offre un soggiorno costiero autentico a Torre a Mare, restando vicina a Bari e al meglio della Puglia.",
       exploreEyebrow: "Nei dintorni",
       exploreTitle: "Scopri la Puglia",
+      discoverMore: "Cosa vedere a Torre a Mare",
       places: [
         { key: "torreamare", name: "Torre a Mare", desc: "Il borgo marinaro dove si trova Bellavista Domus." },
         { key: "bari", name: "Bari", desc: "Il capoluogo pugliese, tra centro storico e lungomare." },
@@ -232,6 +233,7 @@ const translations = {
       text: "Just a few steps from the Adriatic Sea, Bellavista Domus offers an authentic coastal stay in Torre a Mare, while remaining close to Bari and the best of Puglia.",
       exploreEyebrow: "Nearby",
       exploreTitle: "Explore Puglia",
+      discoverMore: "What to see in Torre a Mare",
       places: [
         { key: "torreamare", name: "Torre a Mare", desc: "The seaside village where Bellavista Domus is located." },
         { key: "bari", name: "Bari", desc: "The capital of Puglia, historic centre and seafront." },
@@ -618,6 +620,11 @@ function Location({ t }) {
               </div>
               <h4>{p.name}</h4>
               <p>{p.desc}</p>
+              {p.key === "torreamare" && (
+                <a href="/torre-a-mare.html" className="bd-explore__link">
+                  {t.location.discoverMore} →
+                </a>
+              )}
             </Reveal>
           ))}
         </div>
@@ -1114,6 +1121,11 @@ const STYLES = `
 .bd-explore__card:hover .bd-explore__img img{transform:scale(1.06);}
 .bd-explore__card h4{font-family:'Fraunces',serif;font-size:17px;font-weight:500;margin:0 0 6px;}
 .bd-explore__card p{font-size:13.5px;color:var(--stone);line-height:1.6;margin:0;font-weight:300;}
+.bd-explore__link{
+  display:inline-block;margin-top:12px;font-size:12px;letter-spacing:0.04em;
+  color:var(--sea-deep);border-bottom:1px solid currentColor;padding-bottom:2px;font-weight:500;
+}
+.bd-explore__link:hover{opacity:0.7;}
 @media (max-width:900px){
   .bd-explore__grid{grid-template-columns:repeat(2,1fr);}
   .bd-explore{margin-top:76px;}

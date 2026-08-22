@@ -31,6 +31,15 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
   tipo `/images/nome.jpg`. `PhotoSlot` mostra un placeholder elegante
   (mai l'icona di immagine rotta) se il file manca o non carica.
 - **`public/privacy.html`** — pagina privacy statica, linkata dal footer.
+- **`torre-a-mare.html`** (root, stesso livello di `index.html`) — pagina
+  guida statica "cosa vedere a Torre a Mare", stessa identità visiva del
+  sito (Fraunces/Inter, palette blu Adriatico/avorio/sabbia), con proprio
+  SEO (title/description/OG) e JSON-LD `Article`. Linkata dalla card
+  Torre a Mare nella sezione "Scopri la Puglia" (`Location` in `App.jsx`).
+  A differenza di `public/privacy.html`, questa pagina vive in root perché
+  è registrata come entry point separato in `vite.config.js`
+  (`build.rollupOptions.input`) — se si aggiungono altre pagine statiche
+  in root, vanno dichiarate lì per finire nella build.
 - **`public/robots.txt`**, **`public/sitemap.xml`** — SEO tecnico.
 
 ## Dati chiave della struttura (da `CONFIG.property` in `App.jsx`)
