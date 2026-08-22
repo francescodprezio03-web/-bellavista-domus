@@ -52,20 +52,56 @@
     />
     <meta name="twitter:image" content="https://bellavistadomus.netlify.app/images/hero.jpg" />
 
-    <!-- Dati strutturati: aiutano Google a capire che è una struttura ricettiva -->
+    <!-- Dati strutturati: aiutano Google a capire che è una struttura ricettiva.
+         Tenere allineato a CONFIG.property in src/App.jsx se quei dati cambiano
+         (capienza, CIR/CIN, contatti, link di prenotazione). -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "LodgingBusiness",
         "name": "Bellavista Domus",
-        "description": "Casa vacanze premium a 10 metri dal mare a Torre a Mare (Bari), Puglia.",
+        "description": "Casa vacanze premium a 10 metri dal mare a Torre a Mare (Bari), Puglia. Fino a 7 ospiti, 3 camere, 2 bagni.",
+        "url": "https://bellavistadomus.netlify.app/",
+        "telephone": "+39 331 822 8563",
+        "email": "francescod.prezio03@icloud.com",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Torre a Mare",
           "addressRegion": "Bari",
           "addressCountry": "IT"
         },
-        "image": "https://bellavistadomus.netlify.app/images/hero.jpg"
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 41.052,
+          "longitude": 16.958
+        },
+        "image": [
+          "https://bellavistadomus.netlify.app/images/hero.jpg",
+          "https://bellavistadomus.netlify.app/images/intro.jpg",
+          "https://bellavistadomus.netlify.app/images/casa-soggiorno.jpg"
+        ],
+        "sameAs": [
+          "https://www.booking.com/Share-UkSF6kA",
+          "https://www.airbnb.it/rooms/1741483445487016562"
+        ],
+        "petsAllowed": true,
+        "numberOfRooms": 3,
+        "amenityFeature": [
+          { "@type": "LocationFeatureSpecification", "name": "Vicinanza al mare", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Parcheggio privato", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Cucina completa", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Balconi", "value": true }
+        ],
+        "containsPlace": {
+          "@type": "Accommodation",
+          "name": "Bellavista Domus",
+          "numberOfBedrooms": 3,
+          "numberOfBathroomsTotal": 2,
+          "occupancy": {
+            "@type": "QuantitativeValue",
+            "maxValue": 7
+          }
+        }
       }
     </script>
 
