@@ -188,6 +188,13 @@ const translations = {
     },
     stickyCta: "Verifica disponibilità",
     photoPlaceholder: "Fotografia in arrivo",
+    cookieBanner: {
+      ariaLabel: "Consenso cookie",
+      text: "Usiamo Google Analytics solo se acconsenti, per capire come viene usato il sito. Nessun cookie di profilazione.",
+      linkLabel: "Maggiori informazioni",
+      reject: "Rifiuta",
+      accept: "Accetta",
+    },
   },
   en: {
     nav: { home: "Home", house: "The House", gallery: "Gallery", location: "Location", contact: "Contact", book: "Book now" },
@@ -260,6 +267,13 @@ const translations = {
     },
     stickyCta: "Check availability",
     photoPlaceholder: "Photo coming soon",
+    cookieBanner: {
+      ariaLabel: "Cookie consent",
+      text: "We only use Google Analytics if you consent, to understand how the site is used. No profiling cookies.",
+      linkLabel: "Learn more",
+      reject: "Decline",
+      accept: "Accept",
+    },
   },
 };
 
@@ -697,7 +711,7 @@ function Footer({ t, go }) {
    raccolta dati di Google Analytics (Consent Mode); "Rifiuta" la lascia
    disattivata. La scelta viene ricordata in questo browser. */
 
-function CookieBanner() {
+function CookieBanner({ t }) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -719,15 +733,14 @@ function CookieBanner() {
   if (!visible) return null;
 
   return (
-    <div className="bd-cookiebanner" role="dialog" aria-label="Consenso cookie">
+    <div className="bd-cookiebanner" role="dialog" aria-label={t.cookieBanner.ariaLabel}>
       <p>
-        Usiamo Google Analytics solo se acconsenti, per capire come viene usato
-        il sito. Nessun cookie di profilazione. {" "}
-        <a href="/privacy.html" target="_blank" rel="noopener noreferrer">Maggiori informazioni</a>.
+        {t.cookieBanner.text} {" "}
+        <a href={t.footer.privacyUrl} target="_blank" rel="noopener noreferrer">{t.cookieBanner.linkLabel}</a>.
       </p>
       <div className="bd-cookiebanner__actions">
-        <button className="bd-btn bd-btn--ghost" onClick={() => choose("rejected")}>Rifiuta</button>
-        <button className="bd-btn bd-btn--primary bd-btn--sm" onClick={() => choose("accepted")}>Accetta</button>
+        <button className="bd-btn bd-btn--ghost" onClick={() => choose("rejected")}>{t.cookieBanner.reject}</button>
+        <button className="bd-btn bd-btn--primary bd-btn--sm" onClick={() => choose("accepted")}>{t.cookieBanner.accept}</button>
       </div>
     </div>
   );
@@ -1244,7 +1257,7 @@ export default function BellavistaDomus() {
       <Footer t={t} go={go} />
       <StickyCta t={t} go={go} />
       <WhatsAppButton />
-      <CookieBanner />
+      <CookieBanner t={t} />
     </div>
   );
 }

@@ -78,7 +78,10 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
 
 - Contenuti bilingue: ogni testo visibile vive in `translations.it` e
   `translations.en` con la stessa struttura a chiavi — se si aggiunge un
-  testo, va aggiunto in entrambe le lingue.
+  testo, va aggiunto in entrambe le lingue. Questo include `CookieBanner`
+  (testo/pulsanti in `translations.<lang>.cookieBanner`, link privacy in
+  `translations.<lang>.footer.privacyUrl`): il componente riceve `t` come
+  prop, non deve mai avere testo o `href` hardcoded al suo interno.
 - Le fotografie non vanno mai incorporate come base64 nel codice (in
   passato il file era ~9MB per questo motivo): restano file reali in
   `public/images/`, referenziati per path.
