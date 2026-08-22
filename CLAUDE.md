@@ -31,8 +31,9 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
   tipo `/images/nome.jpg`. `PhotoSlot` mostra un placeholder elegante
   (mai l'icona di immagine rotta) se il file manca o non carica.
 - **`public/privacy.html`** — pagina privacy statica, linkata dal footer.
-- **`torre-a-mare.html`**, **`polignano-a-mare.html`** (root, stesso
-  livello di `index.html`) — pagine guida statiche "cosa vedere a...",
+- **`torre-a-mare.html`**, **`polignano-a-mare.html`**, **`monopoli.html`**,
+  **`bari.html`**, **`alberobello.html`** (root, stesso livello di
+  `index.html`) — pagine guida statiche "cosa vedere a...",
   stessa identità visiva del sito (Fraunces/Inter, palette blu
   Adriatico/avorio/sabbia) e stessa struttura tecnica (SEO
   title/description/OG/Twitter, JSON-LD `Article`). Linkate dalle

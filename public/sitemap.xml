@@ -16,6 +16,21 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://bellavistadomus.netlify.app/monopoli.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://bellavistadomus.netlify.app/bari.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://bellavistadomus.netlify.app/alberobello.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://bellavistadomus.netlify.app/privacy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
