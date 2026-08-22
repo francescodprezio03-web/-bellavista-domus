@@ -54,6 +54,10 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
   eventuale versione in un'altra lingua) va dichiarata lì per finire
   nella build, seguendo lo stesso schema.
 - **`public/robots.txt`**, **`public/sitemap.xml`** — SEO tecnico.
+- **`netlify.toml`** (root) — non tocca build/publish (quelli restano
+  nelle impostazioni del sito su Netlify o nel drag&drop manuale di
+  `dist/`, vedi README.md): forza solo il `Content-Type` HTTP corretto
+  su `sitemap.xml` (`application/xml`) e `robots.txt` (`text/plain`).
 
 ## Dati chiave della struttura (da `CONFIG.property` in `App.jsx`)
 
