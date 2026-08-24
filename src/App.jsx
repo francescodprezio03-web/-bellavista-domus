@@ -75,7 +75,7 @@ const CONFIG = {
       { key: "bedroom", url: "/images/casa-camera.jpg", span: 5, aspect: "4/5" },
       { key: "kitchen", url: "/images/casa-cucina.jpg", span: 4, aspect: "1/1" },
       { key: "bathroom", url: "/images/casa-bagno.jpg", span: 4, aspect: "1/1" },
-      { key: "balcony", url: "/images/casa-balcone.jpg", span: 4, aspect: "1/1" },
+      { key: "balcony", url: "/images/terrazzo-migliorata.jpg", span: 4, aspect: "1/1" },
       { key: "outdoor", url: "/images/casa-spazi-esterni.jpg", span: 6, aspect: "4/3" },
       { key: "parking", url: "/images/casa-parcheggio.jpg", span: 6, aspect: "4/3" },
     ],
