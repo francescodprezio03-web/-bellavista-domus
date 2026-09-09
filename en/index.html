@@ -1,13 +1,17 @@
 <!doctype html>
-<html lang="it">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Google tag (gtag.js) — Google Analytics, con Consent Mode v2: nessun
-         dato viene raccolto finché l'utente non accetta il banner cookie.
-         ad_storage/ad_user_data/ad_personalization restano sempre negati:
-         il sito non usa pubblicità o remarketing, solo statistiche. -->
+    <!-- Versione inglese della homepage. Serve la stessa applicazione React
+         di index.html: è l'attributo lang qui sopra a dire ad App quale
+         lingua mostrare (vedi src/main.jsx). Se si modifica un tag SEO
+         nella home italiana, va aggiornato anche qui: sono due pagine
+         separate proprio perché ognuna abbia i propri meta in lingua. -->
+
+    <!-- Google tag (gtag.js) — identico a index.html, Consent Mode v2:
+         nessun dato raccolto finché l'utente non accetta il banner. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -24,55 +28,52 @@
       gtag('config', 'G-4LF1J1R5PT');
     </script>
 
-    <!-- Titolo e descrizione: quelli che appaiono su Google -->
-    <title>Bellavista Domus — Casa vacanze sul mare a Torre a Mare, Bari</title>
+    <title>Bellavista Domus — Seafront Holiday Home in Torre a Mare, Bari</title>
     <meta
       name="description"
-      content="Casa vacanze premium a 10 metri dal mare a Torre a Mare (Bari), Puglia. Fino a 7 ospiti, 3 camere, 2 bagni. Ideale per famiglie e gruppi."
+      content="Premium holiday home 10 metres from the sea in Torre a Mare (Bari), Puglia. Up to 7 guests, 3 bedrooms, 2 bathrooms. Ideal for families and groups."
     />
-    <link rel="canonical" href="https://bellavistadomus.netlify.app/" />
+    <link rel="canonical" href="https://bellavistadomus.netlify.app/en/" />
 
-    <!-- Coppia hreflang: dice ai motori di ricerca che questa pagina e
-         /en/ sono lo stesso contenuto in due lingue, così mostrano la
-         versione giusta a seconda del paese di chi cerca. x-default indica
-         quale servire a chi non rientra in nessuna delle due.
-         Se si aggiunge una lingua, va aggiunta in tutti e tre i posti:
-         qui, in en/index.html e in public/sitemap.xml. -->
+    <!-- Coppia hreflang: dice ai motori di ricerca che questa pagina e la
+         home italiana sono lo stesso contenuto in due lingue, così mostrano
+         la versione giusta a seconda del paese di chi cerca. x-default
+         indica quale servire a chi non rientra in nessuna delle due. -->
     <link rel="alternate" hreflang="it" href="https://bellavistadomus.netlify.app/" />
     <link rel="alternate" hreflang="en" href="https://bellavistadomus.netlify.app/en/" />
     <link rel="alternate" hreflang="x-default" href="https://bellavistadomus.netlify.app/" />
 
-    <!-- Anteprima quando il link viene condiviso su WhatsApp, Facebook, Instagram... -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Bellavista Domus" />
-    <meta property="og:title" content="Bellavista Domus — Casa vacanze sul mare a Torre a Mare, Bari" />
+    <meta property="og:title" content="Bellavista Domus — Seafront Holiday Home in Torre a Mare, Bari" />
     <meta
       property="og:description"
-      content="Casa vacanze premium a 10 metri dal mare a Torre a Mare (Bari), Puglia. Fino a 7 ospiti, 3 camere, 2 bagni."
+      content="Premium holiday home 10 metres from the sea in Torre a Mare (Bari), Puglia. Up to 7 guests, 3 bedrooms, 2 bathrooms."
     />
     <meta property="og:image" content="https://bellavistadomus.netlify.app/images/puglia-torre-a-mare.jpg" />
-    <meta property="og:url" content="https://bellavistadomus.netlify.app/" />
-    <meta property="og:locale" content="it_IT" />
-    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:url" content="https://bellavistadomus.netlify.app/en/" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="it_IT" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Bellavista Domus — Casa vacanze sul mare a Torre a Mare, Bari" />
+    <meta name="twitter:title" content="Bellavista Domus — Seafront Holiday Home in Torre a Mare, Bari" />
     <meta
       name="twitter:description"
-      content="Casa vacanze premium a 10 metri dal mare a Torre a Mare (Bari), Puglia."
+      content="Premium holiday home 10 metres from the sea in Torre a Mare (Bari), Puglia."
     />
     <meta name="twitter:image" content="https://bellavistadomus.netlify.app/images/puglia-torre-a-mare.jpg" />
 
-    <!-- Dati strutturati: aiutano Google a capire che è una struttura ricettiva.
-         Tenere allineato a CONFIG.property in src/App.jsx se quei dati cambiano
-         (capienza, CIR/CIN, contatti, link di prenotazione). -->
+    <!-- Dati strutturati: stessa struttura ricettiva di index.html, descritta
+         in inglese e con url/inLanguage di questa pagina. Le coordinate vanno
+         tenute allineate a CONFIG.maps in src/App.jsx e al JSON-LD italiano. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "LodgingBusiness",
         "name": "Bellavista Domus",
-        "description": "Casa vacanze premium a 10 metri dal mare a Torre a Mare (Bari), Puglia. Fino a 7 ospiti, 3 camere, 2 bagni.",
-        "url": "https://bellavistadomus.netlify.app/",
+        "description": "Premium holiday home 10 metres from the sea in Torre a Mare (Bari), Puglia. Up to 7 guests, 3 bedrooms, 2 bathrooms.",
+        "url": "https://bellavistadomus.netlify.app/en/",
+        "inLanguage": "en",
         "telephone": "+39 331 822 8563",
         "email": "francescod.prezio03@icloud.com",
         "address": {
@@ -100,10 +101,10 @@
         "petsAllowed": true,
         "numberOfRooms": 3,
         "amenityFeature": [
-          { "@type": "LocationFeatureSpecification", "name": "Vicinanza al mare", "value": true },
-          { "@type": "LocationFeatureSpecification", "name": "Parcheggio privato", "value": true },
-          { "@type": "LocationFeatureSpecification", "name": "Cucina completa", "value": true },
-          { "@type": "LocationFeatureSpecification", "name": "Balconi", "value": true }
+          { "@type": "LocationFeatureSpecification", "name": "Close to the sea", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Private parking", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Full kitchen", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Balconies", "value": true }
         ],
         "containsPlace": {
           "@type": "Accommodation",
@@ -118,13 +119,7 @@
       }
     </script>
 
-    <!-- La fotografia dell'hero è l'immagine che Google cronometra come LCP.
-         Senza questo preload il browser la scopre solo dopo aver scaricato ed
-         eseguito il bundle React: il preload la fa partire subito, in
-         parallelo. Se cambia il percorso in CONFIG.images.hero (src/App.jsx),
-         va aggiornato anche qui. -->
     <link rel="preload" as="image" href="/images/hero.jpg" fetchpriority="high" />
-
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>

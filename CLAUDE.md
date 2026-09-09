@@ -14,10 +14,24 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
 
 ## Dove si modifica cosa
 
-- **`index.html`** — tutto ciò che serve ai motori di ricerca e alle
-  anteprime social: `<title>`, meta description, Open Graph/Twitter card,
-  dati strutturati JSON-LD (`LodgingBusiness`), Google tag (gtag.js) con
-  Consent Mode v2, favicon.
+- **`index.html`** (home italiana, `/`) e **`en/index.html`** (home
+  inglese, `/en/`) — due pagine HTML che servono **la stessa applicazione
+  React**: è l'attributo `lang` dell'`<html>` a decidere quale lingua
+  mostrare (`src/main.jsx` lo legge e lo passa ad `App` come prop `lang`).
+  Ognuna contiene i propri tag per motori di ricerca e anteprime social:
+  `<title>`, meta description, Open Graph/Twitter card, dati strutturati
+  JSON-LD (`LodgingBusiness`), Google tag (gtag.js) con Consent Mode v2,
+  preload dell'hero, favicon. **Sono deliberatamente duplicate**: è ciò che
+  dà all'inglese un indirizzo indicizzabile invece di un interruttore che
+  spariva al ricaricamento. Se si modifica un tag SEO in una, va aggiornato
+  anche nell'altra.
+  Le due pagine si dichiarano a vicenda con `<link rel="alternate"
+  hreflang>` (it, en, x-default), e le stesse coppie sono ripetute in
+  `public/sitemap.xml`. Aggiungere una lingua significa toccare quattro
+  punti: la nuova cartella con il suo `index.html`, gli hreflang nelle
+  pagine esistenti, la sitemap, e `HOME_LINGUE` in `App.jsx`.
+  `en/index.html` va dichiarata in `vite.config.js` come entry point
+  (`mainEn`), altrimenti non finisce nella build.
 - **`src/App.jsx`** — un unico file che contiene tutto il sito:
   - `CONFIG` in cima al file: link di prenotazione (Booking.com/Airbnb),
     dati della struttura (nome, località, ospiti/camere/bagni, CIR/CIN,
@@ -77,7 +91,12 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
   località nel testo sono link con classe `.placelink`, e in fondo a ogni
   pagina c'è un blocco `<nav class="morelinks">` con le altre quattro guide.
   Regola ferrea: **una pagina italiana linka solo pagine italiane, una
-  inglese solo pagine `-en.html`** — mai incroci di lingua.
+  inglese solo pagine `-en.html`** — mai incroci di lingua. Lo stesso vale
+  per i ritorni alla homepage: le guide italiane puntano a `/`, quelle
+  inglesi a `/en/`.
+  Le guide mantengono il suffisso `-en.html` invece di spostarsi sotto
+  `/en/` perché sono già indicizzate da Google: rinominarle costerebbe
+  redirect e posizionamento, senza guadagno.
 - **`public/robots.txt`**, **`public/sitemap.xml`** — SEO tecnico.
 - **`netlify.toml`** (root) — non tocca build/publish (quelli restano
   nelle impostazioni del sito su Netlify o nel drag&drop manuale di

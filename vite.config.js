@@ -17,6 +17,9 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
+        // Homepage in inglese: stessa applicazione React, head proprio.
+        // Finisce in dist/en/index.html, servita all'indirizzo /en/.
+        mainEn: resolve(__dirname, "en/index.html"),
         torreAMare: resolve(__dirname, "torre-a-mare.html"),
         torreAMareEn: resolve(__dirname, "torre-a-mare-en.html"),
         polignanoAMare: resolve(__dirname, "polignano-a-mare.html"),

@@ -4,6 +4,17 @@
     <loc>https://bellavistadomus.netlify.app/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://bellavistadomus.netlify.app/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bellavistadomus.netlify.app/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bellavistadomus.netlify.app/" />
+  </url>
+  <url>
+    <loc>https://bellavistadomus.netlify.app/en/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="it" href="https://bellavistadomus.netlify.app/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bellavistadomus.netlify.app/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bellavistadomus.netlify.app/" />
   </url>
   <url>
     <loc>https://bellavistadomus.netlify.app/torre-a-mare.html</loc>

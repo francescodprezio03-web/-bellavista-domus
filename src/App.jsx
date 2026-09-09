@@ -480,7 +480,12 @@ function MapCard({ t }) {
 
 /* ---------------------------------- HEADER ----------------------------------- */
 
-function Header({ lang, setLang, t, go }) {
+/* Indirizzo della homepage per ciascuna lingua. Usato dal selettore in alto
+   e dai ritorni al sito: è l'unico punto da toccare se un giorno si
+   aggiunge una terza lingua. */
+const HOME_LINGUE = { it: "/", en: "/en/" };
+
+function Header({ lang, t, go }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -521,11 +526,32 @@ function Header({ lang, setLang, t, go }) {
         </nav>
 
         <div className="bd-header__right">
-          <div className="bd-langswitch" role="group" aria-label="Language">
-            <button className={lang === "it" ? "is-active" : ""} onClick={() => setLang("it")}>IT</button>
-            <span>/</span>
-            <button className={lang === "en" ? "is-active" : ""} onClick={() => setLang("en")}>EN</button>
-          </div>
+          {/* Link veri, non pulsanti: cambiare lingua cambia indirizzo. Così
+              la pagina inglese si può condividere e i motori di ricerca la
+              vedono. L'ancora corrente viene portata dietro, per non
+              rispedire in cima chi stava leggendo a metà pagina. */}
+          <nav className="bd-langswitch" aria-label="Language">
+            {["it", "en"].map((codice, i) => (
+              <React.Fragment key={codice}>
+                {i > 0 && <span aria-hidden="true">/</span>}
+                <a
+                  href={HOME_LINGUE[codice]}
+                  className={lang === codice ? "is-active" : ""}
+                  hrefLang={codice}
+                  aria-current={lang === codice ? "page" : undefined}
+                  onClick={(e) => {
+                    if (lang === codice) { e.preventDefault(); return; }
+                    if (window.location.hash) {
+                      e.preventDefault();
+                      window.location.href = HOME_LINGUE[codice] + window.location.hash;
+                    }
+                  }}
+                >
+                  {codice.toUpperCase()}
+                </a>
+              </React.Fragment>
+            ))}
+          </nav>
           <a
             href="#booking"
             className="bd-btn bd-btn--primary bd-btn--sm bd-nav--desktop-only"
@@ -1072,8 +1098,10 @@ const STYLES = `
 .bd-nav--desktop a:hover{opacity:0.65;}
 .bd-header__right{display:flex;align-items:center;gap:22px;}
 .bd-langswitch{display:flex;align-items:center;gap:6px;font-size:11.5px;letter-spacing:0.05em;}
-.bd-langswitch button{opacity:0.55;font-weight:500;}
-.bd-langswitch button.is-active{opacity:1;text-decoration:underline;text-underline-offset:3px;}
+.bd-langswitch a{opacity:0.55;font-weight:500;cursor:pointer;transition:opacity .15s;}
+.bd-langswitch a:hover{opacity:0.85;}
+.bd-langswitch a.is-active{opacity:1;text-decoration:underline;text-underline-offset:3px;cursor:default;}
+.bd-langswitch a:focus-visible{outline:1px solid currentColor;outline-offset:3px;opacity:1;}
 .bd-header:not(.bd-header--solid) .bd-langswitch{color:var(--white);}
 .bd-nav--desktop-only{display:inline-flex;}
 .bd-burger{display:none;width:26px;height:20px;position:relative;}
@@ -1429,13 +1457,13 @@ const STYLES = `
 
 /* ------------------------------------ APP ------------------------------------------ */
 
-export default function BellavistaDomus() {
-  const [lang, setLang] = useState("it");
+/* La lingua arriva dall'attributo lang della pagina (vedi src/main.jsx):
+   "it" per index.html, "en" per en/index.html. Non è più uno stato che
+   cambia in pagina — cambiare lingua significa cambiare indirizzo, quindi
+   titolo, meta e dati strutturati li possiede ognuna delle due pagine HTML,
+   coerentemente con la convenzione del progetto (SEO solo nell'HTML). */
+export default function BellavistaDomus({ lang = "it" }) {
   const t = translations[lang];
-
-  useEffect(() => {
-    document.title = CONFIG.seo[lang].title;
-  }, [lang]);
 
   const go = (href) => {
     const el = document.querySelector(href);
@@ -1445,7 +1473,7 @@ export default function BellavistaDomus() {
   return (
     <div className="bd-root">
       <style>{STYLES}</style>
-      <Header lang={lang} setLang={setLang} t={t} go={go} />
+      <Header lang={lang} t={t} go={go} />
       <Hero t={t} go={go} />
       <Intro t={t} />
       <Features t={t} />
