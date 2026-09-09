@@ -86,6 +86,23 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
   placeholder/Unsplash), referenziate da `CONFIG.images` con path assoluti
   tipo `/images/nome.jpg`. `PhotoSlot` mostra un placeholder elegante
   (mai l'icona di immagine rotta) se il file manca o non carica.
+  Accanto a ogni JPEG ci sono le **copie WebP a più larghezze**
+  (`hero-480.webp`, `hero-900.webp`, `hero-1400.webp`, `hero.webp`),
+  generate da `scripts/genera-webp.py` (richiede Python con Pillow, non fa
+  parte di `npm run build`). I JPEG restano come ripiego e come archivio.
+  `PhotoSlot` costruisce un elemento `<picture>` leggendo l'elenco
+  `VARIANTI_IMMAGINI` in `App.jsx`. **Tre cose vanno di pari passo**, e
+  sfasarne una rompe le immagini in silenzio:
+  1. i file in `public/images/`
+  2. l'elenco `VARIANTI_IMMAGINI` in `src/App.jsx` (non tutte le foto hanno
+     le stesse larghezze: quelle già piccole non vengono ingrandite)
+  3. il `<link rel="preload">` dell'hero nelle due home, che deve elencare
+     le stesse varianti — se puntasse al JPEG, il browser scaricherebbe
+     quello **e poi** la variante WebP, cioè il doppio
+  Il valore di `sizes` passato a ogni `PhotoSlot` dice al browser quanto
+  spazio occuperà l'immagine e è ciò che gli fa scegliere la variante:
+  sbagliarlo per eccesso vanifica tutto il lavoro. Aggiungendo uno slot
+  fotografico, va passato un `sizes` coerente con il riquadro che lo ospita.
 - **`public/privacy.html`**, **`public/privacy-en.html`** — pagina privacy
   statica IT/EN, con hreflang reciproci. Il footer (`Footer` in `App.jsx`)
   sceglie l'URL giusto tramite `t.footer.privacyUrl` — non aggiungere mai

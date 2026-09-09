@@ -629,15 +629,73 @@ function Reveal({ as: Tag = "div", delay = 0, className = "", children, ...rest 
    sempre l'intero spazio del suo contenitore (stessa dimensione/proporzione
    che avrà con la fotografia reale). */
 
-function PhotoSlot({ src, alt = "", label = "", dark = false, compact = false, position = "center", placeholderText = "Fotografia in arrivo", priority = false }) {
+/* Varianti WebP disponibili per ogni fotografia, generate una volta sola dai
+   JPEG originali (vedi la sezione "Fotografie" in CLAUDE.md). Ogni voce dice
+   la dimensione dell'originale e a quali larghezze esistono le copie.
+   Serve perché non tutte le immagini hanno le stesse varianti: quelle già
+   piccole non vengono ingrandite. Se si aggiunge o sostituisce una foto,
+   questo elenco va rigenerato, altrimenti il browser chiede file inesistenti. */
+const VARIANTI_IMMAGINI = {
+  "casa-bagno": { w: 1100, h: 1467, v: [480, 900, 1100] },
+  "casa-camera": { w: 1200, h: 1600, v: [480, 900, 1200] },
+  "casa-cucina": { w: 1100, h: 1467, v: [480, 900, 1100] },
+  "casa-parcheggio": { w: 1200, h: 1600, v: [480, 900, 1200] },
+  "casa-soggiorno": { w: 1200, h: 1600, v: [480, 900, 1200] },
+  "casa-spazi-esterni": { w: 1900, h: 2533, v: [480, 900, 1400, 1900] },
+  "galleria-01": { w: 1000, h: 1333, v: [480, 900, 1000] },
+  "galleria-02": { w: 1000, h: 1333, v: [480, 900, 1000] },
+  "galleria-03": { w: 1000, h: 1333, v: [480, 900, 1000] },
+  "galleria-04": { w: 1000, h: 1333, v: [480, 900, 1000] },
+  "galleria-05": { w: 1600, h: 2133, v: [480, 900, 1400, 1600] },
+  "galleria-06": { w: 1000, h: 1333, v: [480, 900, 1000] },
+  "galleria-07": { w: 1000, h: 1333, v: [480, 900, 1000] },
+  "galleria-08": { w: 1000, h: 1333, v: [480, 900, 1000] },
+  "galleria-09": { w: 1000, h: 1333, v: [480, 900, 1000] },
+  "hero": { w: 1900, h: 2533, v: [480, 900, 1400, 1900] },
+  "intro": { w: 1600, h: 2133, v: [480, 900, 1400, 1600] },
+  "posizione-mare": { w: 1900, h: 2533, v: [480, 900, 1400, 1900] },
+  "puglia-alberobello": { w: 900, h: 1125, v: [480, 900] },
+  "puglia-bari": { w: 900, h: 1600, v: [480, 900] },
+  "puglia-monopoli": { w: 900, h: 1600, v: [480, 900] },
+  "puglia-polignano": { w: 900, h: 1200, v: [480, 900] },
+  "puglia-torre-a-mare": { w: 900, h: 1600, v: [480, 900] },
+  "terrazzo-migliorata": { w: 1400, h: 1811, v: [480, 900, 1400] },
+};
+
+/* Da "/images/hero.jpg" ricava l'elenco delle copie WebP con la loro
+   larghezza, nella forma che il browser si aspetta nell'attributo srcset.
+   Restituisce null per percorsi non riconosciuti: in quel caso PhotoSlot
+   serve semplicemente il JPEG, come prima. */
+function sorgentiWebp(src) {
+  const nome = /^\/images\/(.+)\.jpg$/.exec(src || "")?.[1];
+  const dati = nome && VARIANTI_IMMAGINI[nome];
+  if (!dati) return null;
+  return {
+    srcSet: dati.v
+      .map((l) => `/images/${nome}${l === dati.w ? "" : `-${l}`}.webp ${l}w`)
+      .join(", "),
+    width: dati.w,
+    height: dati.h,
+  };
+}
+
+/* "sizes" dice al browser quanto spazio occuperà l'immagine PRIMA di aver
+   letto il CSS, ed è ciò che gli permette di scegliere la variante giusta.
+   Sbagliarlo per eccesso vanifica il lavoro: chiederebbe comunque il file
+   grande. Il valore va passato da chi usa PhotoSlot, in base al riquadro
+   in cui la fotografia vive. */
+function PhotoSlot({ src, alt = "", label = "", dark = false, compact = false, position = "center", placeholderText = "Fotografia in arrivo", priority = false, sizes = "100vw" }) {
   const [failed, setFailed] = useState(false);
   const showPlaceholder = !src || failed;
+  const webp = sorgentiWebp(src);
 
   if (!showPlaceholder) {
-    return (
+    const immagine = (
       <img
         src={src}
         alt={alt}
+        width={webp ? webp.width : undefined}
+        height={webp ? webp.height : undefined}
         /* priority={true} va usato SOLO per la fotografia dell'hero: è
            l'immagine più grande e più in alto della pagina, quella che Google
            cronometra come LCP. Rimandarne il caricamento (loading="lazy")
@@ -650,6 +708,18 @@ function PhotoSlot({ src, alt = "", label = "", dark = false, compact = false, p
         style={{ objectPosition: position }}
         onError={() => setFailed(true)}
       />
+    );
+
+    /* Senza varianti (percorso non riconosciuto) si serve il JPEG e basta.
+       Con le varianti, il browser sceglie da sé la copia WebP più adatta
+       allo schermo; se non capisse il WebP, ricade sul JPEG dentro l'img. */
+    if (!webp) return immagine;
+
+    return (
+      <picture className="bd-photo__pic">
+        <source type="image/webp" srcSet={webp.srcSet} sizes={sizes} />
+        {immagine}
+      </picture>
     );
   }
 
@@ -916,7 +986,7 @@ function Hero({ t, go }) {
     <section id="home" className="bd-hero">
       <div className="bd-hero__imgwrap">
         <div className="bd-hero__img" style={{ transform: `translateY(${offset}px)` }}>
-          <PhotoSlot src={CONFIG.images.hero} alt={CONFIG.property.name} dark position="center 68%" placeholderText={t.photoPlaceholder} priority />
+          <PhotoSlot src={CONFIG.images.hero} alt={CONFIG.property.name} dark position="center 68%" placeholderText={t.photoPlaceholder} priority sizes="100vw" />
         </div>
       </div>
       <div className="bd-hero__scrim" />
@@ -955,7 +1025,7 @@ function Intro({ t }) {
           <p className="bd-body">{t.intro.text}</p>
         </Reveal>
         <Reveal delay={150} className="bd-intro__img">
-          <PhotoSlot src={CONFIG.images.intro} alt={CONFIG.property.name} position="center 78%" placeholderText={t.photoPlaceholder} />
+          <PhotoSlot src={CONFIG.images.intro} alt={CONFIG.property.name} position="center 78%" placeholderText={t.photoPlaceholder} sizes="(max-width: 900px) 100vw, 50vw" />
         </Reveal>
       </div>
     </section>
@@ -1001,7 +1071,7 @@ function House({ t }) {
             style={{ gridColumn: `span ${item.span}` }}
           >
             <div className="bd-house__frame" style={{ aspectRatio: item.aspect }}>
-              <PhotoSlot src={item.url} alt={t.house.items[item.key]} placeholderText={t.photoPlaceholder} />
+              <PhotoSlot src={item.url} alt={t.house.items[item.key]} placeholderText={t.photoPlaceholder} sizes="(max-width: 900px) 100vw, 45vw" />
             </div>
             <p className="bd-house__caption">{t.house.items[item.key]}</p>
           </Reveal>
@@ -1056,7 +1126,7 @@ function Gallery({ t }) {
             onClick={() => { setLightbox(i); traccia("apre_galleria", { indice: i + 1 }); }}
             aria-label={`${t.gallery.title} ${i + 1}`}
           >
-            <PhotoSlot src={src} alt={`${CONFIG.property.name} ${i + 1}`} compact placeholderText={t.photoPlaceholder} />
+            <PhotoSlot src={src} alt={`${CONFIG.property.name} ${i + 1}`} compact placeholderText={t.photoPlaceholder} sizes="(max-width: 700px) 50vw, 25vw" />
           </Reveal>
         ))}
       </div>
@@ -1067,7 +1137,7 @@ function Gallery({ t }) {
           <button className="bd-lightbox__nav bd-lightbox__nav--prev" onClick={prev} aria-label="Previous">‹</button>
           <figure className="bd-lightbox__figure" onClick={(e) => e.stopPropagation()}>
             <div className="bd-lightbox__imgwrap">
-              <PhotoSlot src={images[lightbox]} alt="" placeholderText={t.photoPlaceholder} />
+              <PhotoSlot src={images[lightbox]} alt="" placeholderText={t.photoPlaceholder} sizes="100vw" />
             </div>
             <figcaption>{CONFIG.property.name} — {String(lightbox + 1).padStart(2, "0")} / {String(images.length).padStart(2, "0")}</figcaption>
           </figure>
@@ -1084,7 +1154,7 @@ function Location({ t }) {
   return (
     <section id="location" className="bd-location">
       <div className="bd-location__hero">
-        <PhotoSlot src={CONFIG.images.location} alt={t.location.title} dark position="center 40%" placeholderText={t.photoPlaceholder} />
+        <PhotoSlot src={CONFIG.images.location} alt={t.location.title} dark position="center 40%" placeholderText={t.photoPlaceholder} sizes="100vw" />
         <div className="bd-location__hero-content">
           <Reveal>
             <p className="bd-eyebrow bd-eyebrow--light">{t.location.eyebrow}</p>
@@ -1111,7 +1181,7 @@ function Location({ t }) {
           {t.location.places.map((p, i) => (
             <Reveal key={p.key} delay={i * 70} className="bd-explore__card">
               <div className="bd-explore__img">
-                <PhotoSlot src={CONFIG.images.explore[p.key]} alt={p.name} compact placeholderText={t.photoPlaceholder} />
+                <PhotoSlot src={CONFIG.images.explore[p.key]} alt={p.name} compact placeholderText={t.photoPlaceholder} sizes="(max-width: 900px) 50vw, 20vw" />
               </div>
               <h4>{p.name}</h4>
               <p>{p.desc}</p>
@@ -1558,6 +1628,10 @@ const STYLES = `
 .bd-root button{font-family:inherit;cursor:pointer;background:none;border:none;color:inherit;}
 
 /* Photo slot — fotografia reale o placeholder elegante, stesso ingombro */
+/* display:contents fa sparire <picture> dal layout, così l'immagine dentro
+   continua a posizionarsi rispetto al riquadro come faceva prima che
+   aggiungessimo le varianti WebP. */
+.bd-photo__pic{display:contents;}
 .bd-photo__img, .bd-photo__placeholder{position:absolute;inset:0;width:100%;height:100%;}
 .bd-photo__img{object-fit:cover;display:block;}
 .bd-photo__placeholder{

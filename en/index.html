@@ -133,7 +133,24 @@
       }
     </script>
 
-    <link rel="preload" as="image" href="/images/hero.jpg" fetchpriority="high" />
+    <!-- La fotografia dell'hero è l'immagine che Google cronometra come LCP.
+         Senza questo preload il browser la scopre solo dopo aver scaricato ed
+         eseguito il bundle React: il preload la fa partire subito, in parallelo.
+
+         Deve elencare le stesse varianti WebP dell'elemento <picture> in
+         PhotoSlot, con lo stesso "sizes": se preloadassimo il JPEG, il
+         browser scaricherebbe quello E POI la variante WebP scelta, cioè
+         il doppio. Se cambia CONFIG.images.hero o l'elenco delle varianti
+         in src/App.jsx, va aggiornato anche qui. -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="/images/hero.webp"
+      imagesrcset="/images/hero-480.webp 480w, /images/hero-900.webp 900w, /images/hero-1400.webp 1400w, /images/hero.webp 1900w"
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- FAQ: generato dal contenuto di translations.<lang>.faq in src/App.jsx -->
