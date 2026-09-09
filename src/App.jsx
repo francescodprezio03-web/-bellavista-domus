@@ -173,6 +173,57 @@ const translations = {
       },
     },
     gallery: { eyebrow: "Fotografie", title: "Galleria" },
+    /* Elenco delle dotazioni reali della casa. Regola: si scrive solo ciò che
+       c'è davvero. Un ospite che non trova quello che ha letto qui lascia una
+       recensione negativa, e su una struttura giovane pesa moltissimo. */
+    amenities: {
+      eyebrow: "Dotazioni",
+      title: "Cosa trovi in casa",
+      text: "Tutto quello che serve per una settimana in famiglia o con amici, senza dover comprare nulla appena arrivati.",
+      bedsTitle: "Come si dorme",
+      beds: [
+        { room: "Camera 1", detail: "Letto matrimoniale", places: "2 posti" },
+        { room: "Camera 2", detail: "Letto matrimoniale", places: "2 posti" },
+        { room: "Camera 3", detail: "Letto a una piazza e mezza e letto a castello", places: "3 posti" },
+      ],
+      groups: [
+        {
+          title: "Cucina",
+          items: ["Forno", "Friggitrice ad aria", "Lavastoviglie", "Frigorifero con congelatore", "Macchina del caffè", "Pentole e padelle", "Piatti, bicchieri, posate e tazze"],
+        },
+        {
+          title: "Clima",
+          items: ["Aria condizionata caldo/freddo in tutte e tre le camere", "Aria condizionata caldo/freddo in salotto"],
+        },
+        {
+          title: "Bagni e biancheria",
+          items: ["Due bagni, entrambi con doccia", "Lenzuola e asciugamani inclusi", "Lavatrice", "Stendibiancheria", "Asciugacapelli", "Sapone"],
+        },
+        {
+          title: "Connettività",
+          items: ["Wi-Fi in fibra fino a 500 Mbps", "TV in salotto con Netflix e altri servizi di streaming"],
+        },
+        {
+          title: "Spazi esterni",
+          items: ["Giardino privato", "Barbecue a carbone", "Oltre 12 posti a sedere all'aperto su più tavoli", "Sedie sdraio"],
+        },
+        {
+          title: "Parcheggio",
+          items: ["Due posti auto privati gratuiti", "Spazio per scooter e biciclette", "Parcheggio libero gratuito anche fuori dalla struttura"],
+        },
+      ],
+      familyTitle: "Per le famiglie",
+      familyText: "Seggiolone, culla, sponde per il letto e fasciatoio sono disponibili senza costi aggiuntivi. Segnalaceli al momento della prenotazione, così troviamo tutto già pronto al tuo arrivo.",
+      rulesTitle: "Informazioni pratiche",
+      rules: [
+        { label: "Check-in", value: "dalle 15:00" },
+        { label: "Check-out", value: "entro le 11:00" },
+        { label: "Fumo", value: "consentito solo all'esterno" },
+        { label: "Animali", value: "taglia piccola e media, con un lieve supplemento sulle pulizie" },
+        { label: "Feste", value: "non consentite" },
+        { label: "Cauzione", value: "500 €, da versare in struttura e restituita a fine soggiorno" },
+      ],
+    },
     location: {
       eyebrow: "Dove siamo",
       title: "Il mare è appena fuori",
@@ -283,6 +334,54 @@ const translations = {
       },
     },
     gallery: { eyebrow: "Photographs", title: "Gallery" },
+    amenities: {
+      eyebrow: "Amenities",
+      title: "What you will find inside",
+      text: "Everything you need for a week with family or friends, without having to buy anything on arrival.",
+      bedsTitle: "Sleeping arrangements",
+      beds: [
+        { room: "Bedroom 1", detail: "Double bed", places: "2 guests" },
+        { room: "Bedroom 2", detail: "Double bed", places: "2 guests" },
+        { room: "Bedroom 3", detail: "Small double bed and bunk bed", places: "3 guests" },
+      ],
+      groups: [
+        {
+          title: "Kitchen",
+          items: ["Oven", "Air fryer", "Dishwasher", "Fridge with freezer", "Coffee machine", "Pots and pans", "Plates, glasses, cutlery and cups"],
+        },
+        {
+          title: "Climate",
+          items: ["Air conditioning with heating in all three bedrooms", "Air conditioning with heating in the living room"],
+        },
+        {
+          title: "Bathrooms and linen",
+          items: ["Two bathrooms, both with a shower", "Bed linen and towels included", "Washing machine", "Clothes airer", "Hairdryer", "Soap"],
+        },
+        {
+          title: "Connectivity",
+          items: ["Fibre Wi-Fi up to 500 Mbps", "Living room TV with Netflix and other streaming services"],
+        },
+        {
+          title: "Outdoor spaces",
+          items: ["Private garden", "Charcoal barbecue", "Over 12 outdoor seats across several tables", "Sun loungers"],
+        },
+        {
+          title: "Parking",
+          items: ["Two free private parking spaces", "Room for scooters and bicycles", "Free on-street parking outside the property"],
+        },
+      ],
+      familyTitle: "For families",
+      familyText: "A high chair, cot, bed rails and a changing mat are available at no extra cost. Just tell us when you book, and everything will be ready when you arrive.",
+      rulesTitle: "Practical information",
+      rules: [
+        { label: "Check-in", value: "from 3:00 pm" },
+        { label: "Check-out", value: "by 11:00 am" },
+        { label: "Smoking", value: "outdoors only" },
+        { label: "Pets", value: "small and medium sized, with a small cleaning surcharge" },
+        { label: "Parties", value: "not allowed" },
+        { label: "Deposit", value: "€500, payable on arrival and returned at the end of your stay" },
+      ],
+    },
     location: {
       eyebrow: "Where we are",
       title: "The sea is just outside",
@@ -896,6 +995,69 @@ function Location({ t }) {
             </Reveal>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------ SERVIZI E DOTAZIONI -------------------------------- */
+
+function Amenities({ t }) {
+  const a = t.amenities;
+  return (
+    <section id="servizi" className="bd-amen">
+      <div className="bd-amen__inner">
+        <Reveal className="bd-section-head">
+          <p className="bd-eyebrow">{a.eyebrow}</p>
+          <div className="bd-hairline" />
+          <h2 className="bd-h2">{a.title}</h2>
+          <p className="bd-body bd-body--narrow">{a.text}</p>
+        </Reveal>
+
+        {/* I posti letto stanno in cima e separati dal resto: è la prima cosa
+            che una famiglia verifica, prima ancora delle dotazioni. */}
+        <Reveal className="bd-amen__beds">
+          <h3 className="bd-amen__subtitle">{a.bedsTitle}</h3>
+          <div className="bd-amen__bedrow">
+            {a.beds.map((b) => (
+              <div key={b.room} className="bd-bed">
+                <span className="bd-bed__room">{b.room}</span>
+                <span className="bd-bed__detail">{b.detail}</span>
+                <span className="bd-bed__places">{b.places}</span>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+
+        <div className="bd-amen__grid">
+          {a.groups.map((g, i) => (
+            <Reveal as="div" key={g.title} delay={i * 50} className="bd-amen__group">
+              <h3 className="bd-amen__grouptitle">{g.title}</h3>
+              <ul>
+                {g.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal className="bd-amen__family">
+          <h3 className="bd-amen__subtitle">{a.familyTitle}</h3>
+          <p>{a.familyText}</p>
+        </Reveal>
+
+        <Reveal className="bd-amen__rules">
+          <h3 className="bd-amen__subtitle">{a.rulesTitle}</h3>
+          <dl>
+            {a.rules.map((r) => (
+              <div key={r.label}>
+                <dt>{r.label}</dt>
+                <dd>{r.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
       </div>
     </section>
   );
@@ -1651,6 +1813,83 @@ const STYLES = `
   .bd-map__distances{margin-top:24px;}
 }
 
+/* Servizi e dotazioni */
+.bd-amen{padding:120px 32px;background:var(--ivory);}
+.bd-amen__inner{max-width:1080px;margin:0 auto;}
+.bd-amen__subtitle{
+  font-family:'Fraunces',serif;font-weight:500;font-size:21px;
+  margin:0 0 22px;letter-spacing:-0.005em;color:var(--sea-deep);
+}
+
+.bd-amen__beds{margin-top:66px;}
+.bd-amen__bedrow{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.bd-bed{
+  display:flex;flex-direction:column;gap:5px;
+  background:var(--white);border:1px solid var(--line);border-radius:2px;padding:22px 24px;
+}
+.bd-bed__room{
+  font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--sand);font-weight:600;
+}
+.bd-bed__detail{font-size:15.5px;color:var(--sea-deep);line-height:1.45;font-weight:400;}
+.bd-bed__places{
+  font-family:'Fraunces',serif;font-size:17px;color:var(--stone);
+  font-variant-numeric:tabular-nums;margin-top:4px;
+}
+
+.bd-amen__grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:44px 40px;
+  margin-top:72px;padding-top:56px;border-top:1px solid var(--line);
+}
+.bd-amen__grouptitle{
+  font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--sea);font-weight:600;margin:0 0 16px;
+}
+.bd-amen__group ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;}
+.bd-amen__group li{
+  font-size:15px;line-height:1.5;color:var(--stone);font-weight:300;
+  padding-left:19px;position:relative;
+}
+/* Trattino invece di pallino: più sobrio, coerente con il resto del sito. */
+.bd-amen__group li::before{
+  content:"";position:absolute;left:0;top:11px;
+  width:9px;height:1px;background:var(--sand);
+}
+
+.bd-amen__family{
+  margin-top:72px;padding:34px 36px;
+  background:var(--ivory-2);border-left:2px solid var(--sand);border-radius:0 2px 2px 0;
+}
+.bd-amen__family p{
+  margin:0;font-size:15.5px;line-height:1.7;color:var(--stone);font-weight:300;max-width:66ch;
+}
+
+.bd-amen__rules{margin-top:60px;padding-top:52px;border-top:1px solid var(--line);}
+.bd-amen__rules dl{
+  margin:0;display:grid;grid-template-columns:repeat(2,1fr);gap:2px 44px;
+}
+.bd-amen__rules dl > div{
+  display:flex;gap:16px;align-items:baseline;
+  padding:13px 0;border-bottom:1px solid var(--line);
+}
+.bd-amen__rules dt{
+  flex:none;width:104px;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--sea-deep);font-weight:600;
+}
+.bd-amen__rules dd{margin:0;font-size:14.5px;line-height:1.55;color:var(--stone);font-weight:300;}
+
+@media (max-width:900px){
+  .bd-amen__grid{grid-template-columns:repeat(2,1fr);gap:36px 32px;}
+  .bd-amen__bedrow{grid-template-columns:1fr;}
+  .bd-amen__rules dl{grid-template-columns:1fr;gap:0;}
+}
+@media (max-width:600px){
+  .bd-amen{padding:80px 22px;}
+  .bd-amen__grid{grid-template-columns:1fr;gap:32px;margin-top:52px;padding-top:44px;}
+  .bd-amen__family{padding:26px 24px;margin-top:52px;}
+  .bd-amen__rules dt{width:88px;}
+}
+
 /* Modulo richiesta disponibilità */
 .bd-form{background:var(--ivory-2);border-top:1px solid var(--line);padding:110px 32px;}
 .bd-form__inner{max-width:760px;margin:0 auto;}
@@ -1840,6 +2079,9 @@ export default function BellavistaDomus({ lang = "it" }) {
       <Features t={t} />
       <House t={t} />
       <Gallery t={t} />
+      {/* Dopo le fotografie e prima della posizione: si vede la casa, si
+          legge cosa contiene, poi si scopre dov'è. */}
+      <Amenities t={t} />
       <Location t={t} />
       <Booking t={t} />
       {/* Il modulo porta l'id "contact": la voce Contatti del menu ci arriva
