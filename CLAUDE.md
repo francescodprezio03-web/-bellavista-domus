@@ -21,10 +21,24 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
 - **`src/App.jsx`** — un unico file che contiene tutto il sito:
   - `CONFIG` in cima al file: link di prenotazione (Booking.com/Airbnb),
     dati della struttura (nome, località, ospiti/camere/bagni, CIR/CIN,
-    email, telefono), percorsi delle fotografie (`CONFIG.images`).
+    email, telefono, CAP/comune/provincia), percorsi delle fotografie
+    (`CONFIG.images`) e `CONFIG.maps` (coordinate della casa + link alla
+    scheda Google). **Le coordinate in `CONFIG.maps` vanno tenute allineate
+    al blocco `geo` del JSON-LD in `index.html`**: sono due copie dello
+    stesso dato, una per la mappa in pagina e una per i motori di ricerca.
   - `translations` (it/en): tutti i testi del sito nelle due lingue.
   - Componenti di sezione (Header, Hero, Intro, Features, House, Gallery,
-    Location, Booking, Footer, CookieBanner, WhatsAppButton, StickyCta).
+    Location, MapCard, Booking, Footer, CookieBanner, WhatsAppButton,
+    StickyCta).
+  - `PhotoSlot` accetta `priority`: va usato **su una sola immagine**,
+    quella dell'hero, che così carica in `eager` con `fetchpriority="high"`
+    (è l'immagine misurata da Google come LCP, e `index.html` la precarica
+    con un `<link rel="preload">`). Tutte le altre restano `lazy`.
+  - `MapCard` incorpora Google Maps **solo dopo un click dell'utente**:
+    l'`<iframe>` non esiste nel DOM finché non si preme "Mostra la mappa".
+    Non trasformarlo mai in un iframe sempre presente — vanificherebbe il
+    Consent Mode, perché Google riceverebbe l'IP di ogni visitatore prima
+    che il banner cookie sia stato accettato.
   - `STYLES`: tutto il CSS del sito, in una template string.
 - **`public/images/`** — fotografie reali della struttura (non
   placeholder/Unsplash), referenziate da `CONFIG.images` con path assoluti
@@ -59,6 +73,11 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
   (`build.rollupOptions.input`) — ogni nuova pagina guida (e la sua
   eventuale versione in un'altra lingua) va dichiarata lì per finire
   nella build, seguendo lo stesso schema.
+  Le dieci guide sono anche **collegate tra loro**: le menzioni delle altre
+  località nel testo sono link con classe `.placelink`, e in fondo a ogni
+  pagina c'è un blocco `<nav class="morelinks">` con le altre quattro guide.
+  Regola ferrea: **una pagina italiana linka solo pagine italiane, una
+  inglese solo pagine `-en.html`** — mai incroci di lingua.
 - **`public/robots.txt`**, **`public/sitemap.xml`** — SEO tecnico.
 - **`netlify.toml`** (root) — non tocca build/publish (quelli restano
   nelle impostazioni del sito su Netlify o nel drag&drop manuale di

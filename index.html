@@ -66,15 +66,17 @@
         "email": "francescod.prezio03@icloud.com",
         "address": {
           "@type": "PostalAddress",
+          "postalCode": "70126",
           "addressLocality": "Torre a Mare",
-          "addressRegion": "Bari",
+          "addressRegion": "BA",
           "addressCountry": "IT"
         },
         "geo": {
           "@type": "GeoCoordinates",
-          "latitude": 41.052,
-          "longitude": 16.958
+          "latitude": 41.0929646,
+          "longitude": 16.9849044
         },
+        "hasMap": "https://maps.app.goo.gl/jLEXjAeG8ijbvvFf6",
         "image": [
           "https://bellavistadomus.netlify.app/images/hero.jpg",
           "https://bellavistadomus.netlify.app/images/intro.jpg",
@@ -104,6 +106,13 @@
         }
       }
     </script>
+
+    <!-- La fotografia dell'hero è l'immagine che Google cronometra come LCP.
+         Senza questo preload il browser la scopre solo dopo aver scaricato ed
+         eseguito il bundle React: il preload la fa partire subito, in
+         parallelo. Se cambia il percorso in CONFIG.images.hero (src/App.jsx),
+         va aggiornato anche qui. -->
+    <link rel="preload" as="image" href="/images/hero.jpg" fetchpriority="high" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>

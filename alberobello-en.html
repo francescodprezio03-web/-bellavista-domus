@@ -164,6 +164,31 @@
       header{padding:18px 22px;}
       .hero__content{padding:0 22px 30px;}
     }
+
+    /* --- collegamenti tra le guide ------------------------------------- */
+    .placelink{
+      color:var(--sea);font-weight:500;text-decoration:none;
+      border-bottom:1px solid rgba(56,102,124,0.35);
+      transition:border-color .15s;
+    }
+    .placelink:hover,.placelink:focus-visible{border-bottom-color:var(--sea);}
+
+    .morelinks{margin:64px 0 0;}
+    .morelinks h2{font-size:20px;margin:0 0 20px;}
+    .morelinks__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+    .morelinks__card{
+      display:flex;gap:14px;align-items:center;text-decoration:none;color:inherit;
+      border:1px solid var(--line);border-radius:2px;padding:10px;background:var(--white);
+      transition:border-color .15s;
+    }
+    .morelinks__card:hover,.morelinks__card:focus-visible{border-color:var(--sand);}
+    .morelinks__card img{width:76px;height:64px;object-fit:cover;border-radius:2px;flex:none;}
+    .morelinks__card b{
+      display:block;font-family:'Fraunces',serif;font-weight:500;font-size:16px;
+      color:var(--sea-deep);margin-bottom:3px;
+    }
+    .morelinks__card span{font-size:13.5px;line-height:1.45;color:var(--stone);font-weight:300;}
+    @media (max-width:560px){.morelinks__grid{grid-template-columns:1fr;}}
   </style>
 </head>
 <body>
@@ -184,8 +209,7 @@
   <main>
     <p class="lede">
       Alberobello, a UNESCO World Heritage site, is the most iconic
-      destination inland from the coast, about 50 minutes from Torre a
-      Mare.
+      destination inland from the coast, about 50 minutes from <a class="placelink" href="/torre-a-mare-en.html">Torre a Mare</a>.
     </p>
 
     <h2>The Trulli and Rione Monti</h2>
@@ -224,6 +248,28 @@
       <p>About 50 minutes from Alberobello, 10 metres from the beach in Torre a Mare.</p>
       <a href="/#location">Discover Bellavista Domus →</a>
     </div>
+
+    <nav class="morelinks">
+      <h2>More guides nearby</h2>
+      <div class="morelinks__grid">
+        <a class="morelinks__card" href="/torre-a-mare-en.html">
+          <img src="/images/puglia-torre-a-mare.jpg" alt="Guide to Torre a Mare" width="76" height="64" loading="lazy">
+          <span><b>Torre a Mare</b>The seaside village next door</span>
+        </a>
+        <a class="morelinks__card" href="/bari-en.html">
+          <img src="/images/puglia-bari.jpg" alt="Guide to Bari" width="76" height="64" loading="lazy">
+          <span><b>Bari</b>The regional capital, fifteen minutes away</span>
+        </a>
+        <a class="morelinks__card" href="/polignano-a-mare-en.html">
+          <img src="/images/puglia-polignano.jpg" alt="Guide to Polignano a Mare" width="76" height="64" loading="lazy">
+          <span><b>Polignano a Mare</b>Cliffs plunging into the sea</span>
+        </a>
+        <a class="morelinks__card" href="/monopoli-en.html">
+          <img src="/images/puglia-monopoli.jpg" alt="Guide to Monopoli" width="76" height="64" loading="lazy">
+          <span><b>Monopoli</b>Historic harbour and sandy beaches</span>
+        </a>
+      </div>
+    </nav>
 
     <hr>
     <a href="/" class="back">← Back to site</a>

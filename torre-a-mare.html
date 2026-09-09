@@ -163,6 +163,31 @@
       header{padding:18px 22px;}
       .hero__content{padding:0 22px 30px;}
     }
+
+    /* --- collegamenti tra le guide ------------------------------------- */
+    .placelink{
+      color:var(--sea);font-weight:500;text-decoration:none;
+      border-bottom:1px solid rgba(56,102,124,0.35);
+      transition:border-color .15s;
+    }
+    .placelink:hover,.placelink:focus-visible{border-bottom-color:var(--sea);}
+
+    .morelinks{margin:64px 0 0;}
+    .morelinks h2{font-size:20px;margin:0 0 20px;}
+    .morelinks__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+    .morelinks__card{
+      display:flex;gap:14px;align-items:center;text-decoration:none;color:inherit;
+      border:1px solid var(--line);border-radius:2px;padding:10px;background:var(--white);
+      transition:border-color .15s;
+    }
+    .morelinks__card:hover,.morelinks__card:focus-visible{border-color:var(--sand);}
+    .morelinks__card img{width:76px;height:64px;object-fit:cover;border-radius:2px;flex:none;}
+    .morelinks__card b{
+      display:block;font-family:'Fraunces',serif;font-weight:500;font-size:16px;
+      color:var(--sea-deep);margin-bottom:3px;
+    }
+    .morelinks__card span{font-size:13.5px;line-height:1.45;color:var(--stone);font-weight:300;}
+    @media (max-width:560px){.morelinks__grid{grid-template-columns:1fr;}}
   </style>
 </head>
 <body>
@@ -228,13 +253,13 @@
     <h2>Nei dintorni</h2>
     <p>
       Torre a Mare è un ottimo punto di partenza per esplorare il resto della costa
-      barese: il centro di <strong>Bari</strong>, con il suo lungomare e il centro
+      barese: il centro di <a class="placelink" href="/bari.html">Bari</a>, con il suo lungomare e il centro
       storico, dista circa dieci minuti in auto o pochi minuti in treno (la
       frazione ha una propria fermata sulla linea Bari–Lecce); scendendo lungo la
       costa verso sud si raggiungono in breve tempo le scogliere di
-      <strong>Polignano a Mare</strong> e il centro storico di <strong>Monopoli</strong>,
+      <a class="placelink" href="/polignano-a-mare.html">Polignano a Mare</a> e il centro storico di <a class="placelink" href="/monopoli.html">Monopoli</a>,
       mentre nell'entroterra si trovano i celebri trulli di
-      <strong>Alberobello</strong>, patrimonio UNESCO.
+      <a class="placelink" href="/alberobello.html">Alberobello</a>, patrimonio UNESCO.
     </p>
 
     <div class="cta">
@@ -242,6 +267,28 @@
       <p>Bellavista Domus è a soli 10 metri dalla spiaggia, nel cuore di questa zona.</p>
       <a href="/#location">Scopri Bellavista Domus →</a>
     </div>
+
+    <nav class="morelinks">
+      <h2>Altre guide della zona</h2>
+      <div class="morelinks__grid">
+        <a class="morelinks__card" href="/bari.html">
+          <img src="/images/puglia-bari.jpg" alt="Guida a Bari" width="76" height="64" loading="lazy">
+          <span><b>Bari</b>Il capoluogo, a quindici minuti</span>
+        </a>
+        <a class="morelinks__card" href="/polignano-a-mare.html">
+          <img src="/images/puglia-polignano.jpg" alt="Guida a Polignano a Mare" width="76" height="64" loading="lazy">
+          <span><b>Polignano a Mare</b>Le scogliere a picco sul mare</span>
+        </a>
+        <a class="morelinks__card" href="/monopoli.html">
+          <img src="/images/puglia-monopoli.jpg" alt="Guida a Monopoli" width="76" height="64" loading="lazy">
+          <span><b>Monopoli</b>Porto storico e spiagge di sabbia</span>
+        </a>
+        <a class="morelinks__card" href="/alberobello.html">
+          <img src="/images/puglia-alberobello.jpg" alt="Guida a Alberobello" width="76" height="64" loading="lazy">
+          <span><b>Alberobello</b>I trulli, patrimonio UNESCO</span>
+        </a>
+      </div>
+    </nav>
 
     <hr>
     <a href="/" class="back">← Torna al sito</a>

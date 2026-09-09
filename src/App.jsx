@@ -63,6 +63,23 @@ const CONFIG = {
     cin: "IT072006C200127710",
     email: "francescod.prezio03@icloud.com",
     phone: "+39 331 822 8563",
+    // Riga della via, facoltativa: se resta vuota la scheda mostra solo
+    // CAP, comune e provincia, e la mappa resta comunque precisa perché
+    // punta alle coordinate qui sotto, non a un indirizzo scritto.
+    street: "",
+    postalCode: "70126",
+    city: "Torre a Mare",
+    province: "BA",
+  },
+  maps: {
+    // Coordinate reali della struttura, lette dalla scheda Google Maps.
+    // Le stesse vanno tenute allineate al blocco "geo" dei dati strutturati
+    // in index.html: è da lì che Google capisce dove si trova la casa.
+    lat: 41.0929646,
+    lng: 16.9849044,
+    // Link condivisibile alla scheda Google di Bellavista Domus: apre il
+    // luogo registrato, con recensioni e foto, non un punto anonimo.
+    placeUrl: "https://maps.app.goo.gl/jLEXjAeG8ijbvvFf6",
   },
   images: {
     // Ogni percorso punta a un file reale in /public/images. Per sostituire
@@ -118,7 +135,7 @@ const CONFIG = {
 
 const translations = {
   it: {
-    nav: { home: "Home", house: "La Casa", gallery: "Galleria", location: "Posizione", contact: "Contatti", book: "Prenota ora" },
+    nav: { home: "Home", house: "La Casa", gallery: "Galleria", location: "Posizione", explore: "Dintorni", contact: "Contatti", book: "Prenota ora" },
     hero: {
       title: "Bellavista Domus",
       subtitle: "A pochi passi dal mare.",
@@ -159,6 +176,17 @@ const translations = {
       eyebrow: "Dove siamo",
       title: "Il mare è appena fuori",
       text: "A pochi passi dal Mare Adriatico, Bellavista Domus offre un soggiorno costiero autentico a Torre a Mare, restando vicina a Bari e al meglio della Puglia.",
+      mapEyebrow: "Sulla mappa",
+      mapTitle: "Dove ci trovi",
+      mapShow: "Mostra la mappa",
+      mapPrivacy: "Caricando la mappa, Google riceve il tuo indirizzo IP.",
+      mapOpen: "Apri in Google Maps",
+      distances: [
+        { value: "10 m", label: "dalla spiaggia" },
+        { value: "5 min", label: "a piedi dal porticciolo" },
+        { value: "15 min", label: "in auto da Bari" },
+        { value: "25 min", label: "dall'aeroporto di Bari" },
+      ],
       exploreEyebrow: "Nei dintorni",
       exploreTitle: "Scopri la Puglia",
       places: [
@@ -197,7 +225,7 @@ const translations = {
     },
   },
   en: {
-    nav: { home: "Home", house: "The House", gallery: "Gallery", location: "Location", contact: "Contact", book: "Book now" },
+    nav: { home: "Home", house: "The House", gallery: "Gallery", location: "Location", explore: "Nearby", contact: "Contact", book: "Book now" },
     hero: {
       title: "Bellavista Domus",
       subtitle: "A few steps from the sea.",
@@ -238,6 +266,17 @@ const translations = {
       eyebrow: "Where we are",
       title: "The sea is just outside",
       text: "Just a few steps from the Adriatic Sea, Bellavista Domus offers an authentic coastal stay in Torre a Mare, while remaining close to Bari and the best of Puglia.",
+      mapEyebrow: "On the map",
+      mapTitle: "Where to find us",
+      mapShow: "Show the map",
+      mapPrivacy: "Loading the map shares your IP address with Google.",
+      mapOpen: "Open in Google Maps",
+      distances: [
+        { value: "10 m", label: "to the beach" },
+        { value: "5 min", label: "walk to the harbour" },
+        { value: "15 min", label: "drive to Bari" },
+        { value: "25 min", label: "from Bari airport" },
+      ],
       exploreEyebrow: "Nearby",
       exploreTitle: "Explore Puglia",
       places: [
@@ -323,7 +362,7 @@ function Reveal({ as: Tag = "div", delay = 0, className = "", children, ...rest 
    sempre l'intero spazio del suo contenitore (stessa dimensione/proporzione
    che avrà con la fotografia reale). */
 
-function PhotoSlot({ src, alt = "", label = "", dark = false, compact = false, position = "center", placeholderText = "Fotografia in arrivo" }) {
+function PhotoSlot({ src, alt = "", label = "", dark = false, compact = false, position = "center", placeholderText = "Fotografia in arrivo", priority = false }) {
   const [failed, setFailed] = useState(false);
   const showPlaceholder = !src || failed;
 
@@ -332,7 +371,14 @@ function PhotoSlot({ src, alt = "", label = "", dark = false, compact = false, p
       <img
         src={src}
         alt={alt}
-        loading="lazy"
+        /* priority={true} va usato SOLO per la fotografia dell'hero: è
+           l'immagine più grande e più in alto della pagina, quella che Google
+           cronometra come LCP. Rimandarne il caricamento (loading="lazy")
+           significa ritardare di proposito la metrica più importante. Tutte
+           le altre restano pigre: sono sotto la piega e non servono subito. */
+        loading={priority ? "eager" : "lazy"}
+        fetchpriority={priority ? "high" : undefined}
+        decoding={priority ? "sync" : "async"}
         className="bd-photo__img"
         style={{ objectPosition: position }}
         onError={() => setFailed(true)}
@@ -349,6 +395,85 @@ function PhotoSlot({ src, alt = "", label = "", dark = false, compact = false, p
           {label ? `${label} · ${placeholderText}` : placeholderText}
         </span>
       )}
+    </div>
+  );
+}
+
+/* ----------------------------------- MAPPA ------------------------------------ */
+
+/* Indirizzo leggibile e sorgenti della mappa, ricavati da CONFIG.
+   Il segnaposto usa le coordinate, non un indirizzo scritto: così è preciso
+   anche senza la via, e non dipende da come Google interpreta il testo. */
+function datiIndirizzo() {
+  const p = CONFIG.property;
+  const { lat, lng } = CONFIG.maps;
+  return {
+    via: (p.street || "").trim(),
+    comune: `${p.postalCode} ${p.city} (${p.province})`,
+    srcIframe: `https://www.google.com/maps?q=${lat},${lng}&z=17&hl=it&output=embed`,
+    linkMaps: CONFIG.maps.placeUrl,
+  };
+}
+
+/* La mappa di Google carica script e cookie di Google appena viene inserita
+   nella pagina. Per non vanificare il Consent Mode del banner cookie, qui
+   l'iframe NON esiste finché l'utente non lo chiede: prima c'è solo una
+   scheda con l'indirizzo e un pulsante. Chi non clicca non manda a Google
+   nemmeno il proprio indirizzo IP. */
+function MapCard({ t }) {
+  const [mostraMappa, setMostraMappa] = useState(false);
+  const { via, comune, srcIframe, linkMaps } = datiIndirizzo();
+
+  return (
+    <div className="bd-map">
+      <div className="bd-map__info">
+        <p className="bd-eyebrow">{t.location.mapEyebrow}</p>
+        <div className="bd-hairline" />
+        <h3 className="bd-h3">{t.location.mapTitle}</h3>
+
+        <address className="bd-map__address">
+          <span className="bd-map__name">{CONFIG.property.name}</span>
+          {via && <span>{via}</span>}
+          <span>{comune}</span>
+        </address>
+
+        <ul className="bd-map__distances">
+          {t.location.distances.map((d) => (
+            <li key={d.label}>
+              <span className="bd-map__dist-value">{d.value}</span>
+              <span className="bd-map__dist-label">{d.label}</span>
+            </li>
+          ))}
+        </ul>
+
+        <a className="bd-map__open" href={linkMaps} target="_blank" rel="noopener noreferrer">
+          {t.location.mapOpen} →
+        </a>
+      </div>
+
+      <div className="bd-map__frame">
+        {mostraMappa ? (
+          <iframe
+            className="bd-map__iframe"
+            title={t.location.mapTitle}
+            src={srcIframe}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+        ) : (
+          <button type="button" className="bd-map__placeholder" onClick={() => setMostraMappa(true)}>
+            <span className="bd-map__pin" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" strokeWidth="1.4">
+                <path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z" />
+                <circle cx="12" cy="10" r="2.6" />
+              </svg>
+            </span>
+            <span className="bd-map__cta">{t.location.mapShow}</span>
+            <span className="bd-map__privacy">{t.location.mapPrivacy}</span>
+          </button>
+        )}
+      </div>
     </div>
   );
 }
@@ -371,6 +496,7 @@ function Header({ lang, setLang, t, go }) {
     { href: "#house", label: t.nav.house },
     { href: "#gallery", label: t.nav.gallery },
     { href: "#location", label: t.nav.location },
+    { href: "#explore", label: t.nav.explore },
     { href: "#contact", label: t.nav.contact },
   ];
 
@@ -441,7 +567,7 @@ function Hero({ t, go }) {
     <section id="home" className="bd-hero">
       <div className="bd-hero__imgwrap">
         <div className="bd-hero__img" style={{ transform: `translateY(${offset}px)` }}>
-          <PhotoSlot src={CONFIG.images.hero} alt={CONFIG.property.name} dark position="center 68%" placeholderText={t.photoPlaceholder} />
+          <PhotoSlot src={CONFIG.images.hero} alt={CONFIG.property.name} dark position="center 68%" placeholderText={t.photoPlaceholder} priority />
         </div>
       </div>
       <div className="bd-hero__scrim" />
@@ -620,7 +746,13 @@ function Location({ t }) {
         </div>
       </div>
 
-      <div className="bd-explore">
+      <Reveal>
+        <MapCard t={t} />
+      </Reveal>
+
+      {/* L'id serve alla voce "Dintorni" del menu: senza, la sezione delle
+          guide sarebbe raggiungibile solo scorrendo fin dentro "Posizione". */}
+      <div className="bd-explore" id="explore">
         <Reveal className="bd-section-head">
           <p className="bd-eyebrow">{t.location.exploreEyebrow}</p>
           <div className="bd-hairline" />
@@ -1127,6 +1259,66 @@ const STYLES = `
   display:flex;align-items:flex-end;padding:80px 32px;
 }
 .bd-location__hero-content > div{max-width:620px;margin:0 auto;width:100%;text-align:left;}
+/* Mappa: scheda a due colonne, indirizzo e distanze a sinistra, riquadro
+   della mappa a destra. L'iframe compare solo dopo il click (vedi MapCard). */
+.bd-map{
+  max-width:1280px;margin:110px auto 0;padding:0 32px;
+  display:grid;grid-template-columns:minmax(280px,1fr) 1.45fr;gap:48px;align-items:center;
+}
+.bd-map__address{
+  font-style:normal;display:flex;flex-direction:column;gap:3px;
+  margin:28px 0 0;font-size:15.5px;line-height:1.65;color:var(--stone);font-weight:300;
+}
+.bd-map__name{font-weight:500;color:var(--sea-deep);}
+.bd-map__distances{
+  list-style:none;padding:0;margin:30px 0 0;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:20px 28px;
+}
+.bd-map__distances li{display:flex;flex-direction:column;gap:2px;}
+.bd-map__dist-value{
+  font-family:'Fraunces',serif;font-size:22px;font-weight:400;color:var(--sea-deep);
+  font-variant-numeric:tabular-nums;line-height:1.1;
+}
+.bd-map__dist-label{font-size:12.5px;color:var(--stone);font-weight:300;line-height:1.4;}
+.bd-map__open{
+  display:inline-block;margin-top:32px;font-size:12px;letter-spacing:0.06em;
+  text-transform:uppercase;font-weight:500;color:var(--sea-deep);
+  border-bottom:1px solid currentColor;padding-bottom:3px;
+}
+.bd-map__open:hover{opacity:0.65;}
+
+.bd-map__frame{
+  position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:2px;
+  background:var(--ivory-2);border:1px solid var(--line);
+}
+.bd-map__iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;}
+.bd-map__placeholder{
+  position:absolute;inset:0;width:100%;height:100%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  padding:32px;text-align:center;color:var(--sea);
+  background:
+    radial-gradient(circle at 30% 25%, rgba(205,179,136,0.16), transparent 55%),
+    radial-gradient(circle at 72% 70%, rgba(56,102,124,0.13), transparent 52%),
+    var(--ivory-2);
+  transition:background-color .25s;
+}
+.bd-map__placeholder:hover .bd-map__cta{border-bottom-color:currentColor;}
+.bd-map__placeholder:focus-visible{outline:2px solid var(--sea);outline-offset:-4px;}
+.bd-map__pin{display:block;color:var(--sea);opacity:0.75;}
+.bd-map__cta{
+  font-size:13px;letter-spacing:0.07em;text-transform:uppercase;font-weight:500;
+  color:var(--sea-deep);border-bottom:1px solid transparent;padding-bottom:3px;
+}
+.bd-map__privacy{
+  font-size:11.5px;line-height:1.5;color:var(--stone);font-weight:300;max-width:34ch;opacity:0.85;
+}
+
+@media (max-width:900px){
+  .bd-map{grid-template-columns:1fr;gap:32px;margin-top:76px;}
+  .bd-map__frame{aspect-ratio:3/2;}
+  .bd-map__distances{margin-top:24px;}
+}
+
 .bd-explore{max-width:1280px;margin:110px auto 0;padding:0 32px;}
 .bd-explore__grid{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;}
 .bd-explore__img{position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:2px;margin-bottom:18px;}
