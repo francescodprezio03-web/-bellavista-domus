@@ -1245,13 +1245,23 @@ function codificaModulo(dati) {
     .join("&");
 }
 
-function oggi() {
-  return new Date().toISOString().slice(0, 10);
+/* La data odierna si calcola solo nel browser, mai durante il prerendering:
+   l'HTML viene generato il giorno della build e visitato giorni dopo, quindi
+   una data scritta nell'HTML sarebbe già vecchia e farebbe litigare React
+   con il markup che trova. Finché non parte l'effetto, il campo non ha
+   limite minimo: il controllo vero resta comunque lato nostro. */
+function useOggi() {
+  const [oggi, setOggi] = useState("");
+  useEffect(() => {
+    setOggi(new Date().toISOString().slice(0, 10));
+  }, []);
+  return oggi;
 }
 
 function ContactForm({ t }) {
   const [valori, setValori] = useState(VUOTO);
   const [stato, setStato] = useState("pronto"); // pronto | invio | inviato | errore
+  const oggi = useOggi();
 
   const aggiorna = (campo) => (e) =>
     setValori((v) => ({ ...v, [campo]: e.target.type === "checkbox" ? e.target.checked : e.target.value }));
@@ -1330,7 +1340,7 @@ function ContactForm({ t }) {
 
           <label className="bd-field">
             <span>{t.form.arrival}</span>
-            <input type="date" name="arrivo" value={valori.arrivo} onChange={aggiorna("arrivo")} min={oggi()} required />
+            <input type="date" name="arrivo" value={valori.arrivo} onChange={aggiorna("arrivo")} min={oggi || undefined} required />
           </label>
 
           <label className="bd-field">
@@ -1340,7 +1350,7 @@ function ContactForm({ t }) {
               name="partenza"
               value={valori.partenza}
               onChange={aggiorna("partenza")}
-              min={valori.arrivo || oggi()}
+              min={valori.arrivo || oggi || undefined}
               required
             />
           </label>
@@ -1615,10 +1625,22 @@ const STYLES = `
 .bd-section-head .bd-body{margin-left:auto;margin-right:auto;}
 
 /* Reveal */
-.bd-reveal{opacity:0;transform:translateY(30px);transition:opacity 1s cubic-bezier(.16,.8,.24,1), transform 1s cubic-bezier(.16,.8,.24,1);}
-.bd-reveal--visible{opacity:1;transform:translateY(0);}
+/* Le animazioni d'ingresso partono nascoste, ma SOLO se JavaScript è attivo:
+   la classe bd-js la mette src/main.jsx appena parte. Senza questa
+   condizione, l'HTML prerenderizzato mostrerebbe una pagina completa di
+   testo ma tutta a opacità zero per chi non esegue JavaScript — cioè
+   proprio i motori di risposta AI per cui il prerendering esiste. */
+.bd-js .bd-reveal{opacity:0;transform:translateY(30px);transition:opacity 1s cubic-bezier(.16,.8,.24,1), transform 1s cubic-bezier(.16,.8,.24,1);}
+/* Il prefisso .bd-js va ripetuto anche qui, e non è pedanteria: senza, questa
+   regola pesa una classe contro le due della riga sopra, quindi perde — e
+   tutto il sito resta invisibile con JavaScript attivo. Le tre regole di
+   .bd-reveal devono avere la stessa specificità o essere in ordine crescente. */
+.bd-js .bd-reveal--visible{opacity:1;transform:translateY(0);}
 @media (prefers-reduced-motion: reduce){
-  .bd-reveal{opacity:1;transform:none;transition:none;}
+  /* Anche qui serve il prefisso .bd-js, per lo stesso motivo di specificità:
+     chi ha chiesto al sistema di ridurre le animazioni deve vedere la pagina
+     ferma e visibile, non ferma e trasparente. */
+  .bd-js .bd-reveal, .bd-js .bd-reveal--visible{opacity:1;transform:none;transition:none;}
   .bd-hairline{width:44px !important;transition:none;}
 }
 

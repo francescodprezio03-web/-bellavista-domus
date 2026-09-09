@@ -157,11 +157,49 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
   pubblicitari (`ad_*`) restano sempre negati, il sito non fa remarketing.
 - Sito interamente in italiano nei commenti/codice; nessun uso di TypeScript.
 
+## Prerendering
+
+`npm run build` esegue **tre** passaggi in fila:
+
+1. `vite build` — pagine e bundle per il browser, in `dist/`
+2. `vite build --ssr src/entry-server.jsx --outDir dist-ssr` — la stessa
+   applicazione compilata per essere eseguita da Node
+3. `node scripts/prerender.mjs` — esegue React lato Node e infila l'HTML
+   risultante dentro `<div id="root">` di `dist/index.html` e
+   `dist/en/index.html`
+
+Serve perché senza, il server manda una pagina vuota e tutto il testo lo
+costruisce React nel browser: Google esegue JavaScript e ci arriva lo
+stesso, ma i motori di risposta AI e diversi crawler vedono una pagina
+bianca. `build:solo-client` salta il prerendering, utile per isolare un
+problema.
+
+Tre vincoli da non violare, altrimenti il prerendering si rompe in modo
+silenzioso:
+
+- **Niente API del browser durante il render.** `window`, `document`,
+  `localStorage` e `new Date()` vanno usati solo dentro `useEffect`, mai
+  nel corpo di un componente: durante il passo 3 il codice gira in Node,
+  dove non esistono. Per la data di oggi c'è l'hook `useOggi()`.
+- **La classe `bd-js`.** `src/main.jsx` la mette su `<html>` appena parte, e
+  `.bd-js .bd-reveal` è ciò che tiene nascoste le animazioni d'ingresso.
+  Se si torna a scrivere `.bd-reveal{opacity:0}` senza il prefisso, la
+  pagina prerenderizzata diventa piena di testo invisibile per chi non
+  esegue JavaScript — cioè per il pubblico che il prerendering serve.
+- **`src/main.jsx` usa `hydrateRoot`** quando trova il contenitore già
+  pieno, `createRoot` quando è vuoto (sviluppo). Non semplificarlo a un
+  solo `createRoot`: butterebbe via l'HTML generato facendo sfarfallare
+  la pagina.
+
+Aggiungendo una lingua va aggiornato anche l'elenco `PAGINE` in
+`scripts/prerender.mjs`.
+
 ## Comandi utili
 
 ```bash
 npm install
-npm run dev      # sviluppo locale, http://localhost:5173
-npm run build    # genera dist/ pronto per l'hosting
-npm run preview  # anteprima locale della build di produzione
+npm run dev               # sviluppo locale, http://localhost:5173
+npm run build             # build completa con prerendering (vedi sopra)
+npm run build:solo-client # build senza prerendering, per diagnosi
+npm run preview           # anteprima locale della build di produzione
 ```
