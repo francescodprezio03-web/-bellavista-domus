@@ -136,6 +136,7 @@ const CONFIG = {
 const translations = {
   it: {
     nav: { home: "Home", house: "La Casa", gallery: "Galleria", location: "Posizione", explore: "Dintorni", contact: "Contatti", book: "Prenota ora" },
+    topbar: { address: "Apri la posizione su Google Maps", phone: "Chiama Bellavista Domus", email: "Scrivi a Bellavista Domus" },
     hero: {
       title: "Bellavista Domus",
       subtitle: "A pochi passi dal mare.",
@@ -204,6 +205,25 @@ const translations = {
       booking: "Prenota su Booking.com",
       airbnb: "Prenota su Airbnb",
     },
+    form: {
+      eyebrow: "Richiesta",
+      title: "Verifica le date del tuo soggiorno",
+      text: "Scrivici le date e quanti siete: ti rispondiamo con disponibilità e prezzo, di solito entro poche ore.",
+      name: "Nome e cognome",
+      email: "Email",
+      arrival: "Arrivo",
+      departure: "Partenza",
+      guests: "Ospiti",
+      message: "Messaggio (facoltativo)",
+      consent: "Ho letto e accetto l'",
+      consentLink: "informativa sulla privacy",
+      submit: "Invia richiesta",
+      sending: "Invio in corso…",
+      error: "Non è stato possibile inviare la richiesta. Riprova, oppure scrivici direttamente a " + CONFIG.property.email + ".",
+      doneTitle: "Richiesta ricevuta",
+      doneText: "Grazie, ti rispondiamo al più presto con disponibilità e prezzo. Se hai fretta, puoi scriverci anche su WhatsApp.",
+      honeypot: "Non compilare questo campo",
+    },
     footer: {
       tagline: "Casa vacanze sul mare",
       contactTitle: "Contatti",
@@ -226,6 +246,7 @@ const translations = {
   },
   en: {
     nav: { home: "Home", house: "The House", gallery: "Gallery", location: "Location", explore: "Nearby", contact: "Contact", book: "Book now" },
+    topbar: { address: "Open the location on Google Maps", phone: "Call Bellavista Domus", email: "Email Bellavista Domus" },
     hero: {
       title: "Bellavista Domus",
       subtitle: "A few steps from the sea.",
@@ -293,6 +314,25 @@ const translations = {
       text: "Choose the platform you prefer: availability is always up to date.",
       booking: "Book on Booking.com",
       airbnb: "Book on Airbnb",
+    },
+    form: {
+      eyebrow: "Enquiry",
+      title: "Check the dates of your stay",
+      text: "Tell us your dates and how many you are: we reply with availability and price, usually within a few hours.",
+      name: "Full name",
+      email: "Email",
+      arrival: "Arrival",
+      departure: "Departure",
+      guests: "Guests",
+      message: "Message (optional)",
+      consent: "I have read and accept the",
+      consentLink: "privacy policy",
+      submit: "Send enquiry",
+      sending: "Sending…",
+      error: "We could not send your enquiry. Please try again, or write to us directly at " + CONFIG.property.email + ".",
+      doneTitle: "Enquiry received",
+      doneText: "Thank you. We will get back to you shortly with availability and price. If you are in a hurry, you can also reach us on WhatsApp.",
+      honeypot: "Do not fill in this field",
     },
     footer: {
       tagline: "Seafront holiday home",
@@ -485,6 +525,61 @@ function MapCard({ t }) {
    aggiunge una terza lingua. */
 const HOME_LINGUE = { it: "/", en: "/en/" };
 
+/* Icone della barra contatti: piccole, disegnate a mano, ereditano il colore
+   dal testo. Meglio di una libreria di icone per tre sole forme. */
+const IconaPin = () => (
+  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+    <path d="M12 22s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z" />
+    <circle cx="12" cy="10.5" r="2.4" />
+  </svg>
+);
+const IconaTelefono = () => (
+  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+    <path d="M21 16.4v2.7a1.8 1.8 0 0 1-2 1.8 17.6 17.6 0 0 1-7.7-2.7 17.3 17.3 0 0 1-5.3-5.3A17.6 17.6 0 0 1 3.3 5.1 1.8 1.8 0 0 1 5.1 3h2.7a1.8 1.8 0 0 1 1.8 1.6c.1.9.3 1.7.6 2.5a1.8 1.8 0 0 1-.4 1.9l-1.1 1.1a14 14 0 0 0 5.3 5.3l1.1-1.1a1.8 1.8 0 0 1 1.9-.4c.8.3 1.6.5 2.5.6a1.8 1.8 0 0 1 1.5 1.8z" />
+  </svg>
+);
+const IconaEmail = () => (
+  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+    <rect x="2.5" y="4.5" width="19" height="15" rx="2" />
+    <path d="m3 6 9 6.5L21 6" />
+  </svg>
+);
+
+/* Barra contatti sopra il menu: indirizzo, telefono ed email sempre
+   raggiungibili senza scorrere fino al footer. Su telefono il tocco apre
+   direttamente la chiamata o il client di posta. Scompare quando si scorre,
+   per lasciare tutto lo spazio al menu compatto. */
+function TopBar({ t }) {
+  const p = CONFIG.property;
+  const { via, comune } = datiIndirizzo();
+  const indirizzo = via ? `${via}, ${comune}` : comune;
+
+  return (
+    <div className="bd-topbar">
+      <div className="bd-topbar__inner">
+        <a
+          className="bd-topbar__item bd-topbar__addr"
+          href={CONFIG.maps.placeUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={t.topbar.address}
+        >
+          <IconaPin />
+          <span>{indirizzo}</span>
+        </a>
+        <a className="bd-topbar__item" href={`tel:${p.phone.replace(/\s/g, "")}`} title={t.topbar.phone}>
+          <IconaTelefono />
+          <span>{p.phone}</span>
+        </a>
+        <a className="bd-topbar__item" href={`mailto:${p.email}`} title={t.topbar.email}>
+          <IconaEmail />
+          <span>{p.email}</span>
+        </a>
+      </div>
+    </div>
+  );
+}
+
 function Header({ lang, t, go }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -512,6 +607,7 @@ function Header({ lang, t, go }) {
 
   return (
     <header className={`bd-header ${scrolled ? "bd-header--solid" : ""}`}>
+      <TopBar t={t} />
       <div className="bd-header__inner">
         <a href="#home" className="bd-logo" onClick={(e) => { e.preventDefault(); handleGo("#home"); }}>
           {CONFIG.property.name}
@@ -805,6 +901,159 @@ function Location({ t }) {
   );
 }
 
+/* ------------------------------ RICHIESTA DISPONIBILITÀ ---------------------------- */
+
+/* Nome del modulo. Deve coincidere ESATTAMENTE con quello del modulo statico
+   nascosto in index.html e in en/index.html: Netlify legge l'HTML pubblicato
+   per sapere che il modulo esiste e quali campi ha, e il sito qui è costruito
+   da React nel browser, dove Netlify non arriva a guardare. */
+const NOME_MODULO = "richiesta-disponibilita";
+
+const VUOTO = { nome: "", email: "", arrivo: "", partenza: "", ospiti: "2", messaggio: "", privacy: false };
+
+/* Netlify si aspetta i dati nella stessa forma in cui li manderebbe un modulo
+   HTML tradizionale, non in JSON. */
+function codificaModulo(dati) {
+  return Object.keys(dati)
+    .map((k) => encodeURIComponent(k) + "=" + encodeURIComponent(dati[k]))
+    .join("&");
+}
+
+function oggi() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function ContactForm({ t }) {
+  const [valori, setValori] = useState(VUOTO);
+  const [stato, setStato] = useState("pronto"); // pronto | invio | inviato | errore
+
+  const aggiorna = (campo) => (e) =>
+    setValori((v) => ({ ...v, [campo]: e.target.type === "checkbox" ? e.target.checked : e.target.value }));
+
+  const invia = async (e) => {
+    e.preventDefault();
+    setStato("invio");
+    try {
+      const risposta = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: codificaModulo({
+          "form-name": NOME_MODULO,
+          nome: valori.nome,
+          email: valori.email,
+          arrivo: valori.arrivo,
+          partenza: valori.partenza,
+          ospiti: valori.ospiti,
+          messaggio: valori.messaggio,
+        }),
+      });
+      if (!risposta.ok) throw new Error(risposta.status);
+      setStato("inviato");
+      setValori(VUOTO);
+    } catch (err) {
+      // In sviluppo locale non esiste nessun Netlify che raccolga i dati:
+      // l'errore qui è atteso e non indica un problema del modulo.
+      setStato("errore");
+    }
+  };
+
+  if (stato === "inviato") {
+    return (
+      <section id="contact" className="bd-form">
+        <Reveal className="bd-form__inner">
+          <div className="bd-form__done" role="status">
+            <p className="bd-eyebrow">{t.form.eyebrow}</p>
+            <h2 className="bd-h3">{t.form.doneTitle}</h2>
+            <p className="bd-body bd-body--narrow">{t.form.doneText}</p>
+          </div>
+        </Reveal>
+      </section>
+    );
+  }
+
+  return (
+    <section id="contact" className="bd-form">
+      <Reveal className="bd-form__inner">
+        <div className="bd-section-head">
+          <p className="bd-eyebrow">{t.form.eyebrow}</p>
+          <div className="bd-hairline" />
+          <h2 className="bd-h3">{t.form.title}</h2>
+          <p className="bd-body bd-body--narrow">{t.form.text}</p>
+        </div>
+
+        <form className="bd-form__grid" name={NOME_MODULO} method="POST" onSubmit={invia} noValidate={false}>
+          {/* Netlify usa questo campo per riconoscere il modulo, e il campo
+              esca sotto per scartare gli invii automatici degli spambot. */}
+          <input type="hidden" name="form-name" value={NOME_MODULO} />
+          <p className="bd-form__hp">
+            <label>
+              {t.form.honeypot} <input name="bot-field" tabIndex={-1} autoComplete="off" />
+            </label>
+          </p>
+
+          <label className="bd-field">
+            <span>{t.form.name}</span>
+            <input type="text" name="nome" value={valori.nome} onChange={aggiorna("nome")} required autoComplete="name" />
+          </label>
+
+          <label className="bd-field">
+            <span>{t.form.email}</span>
+            <input type="email" name="email" value={valori.email} onChange={aggiorna("email")} required autoComplete="email" />
+          </label>
+
+          <label className="bd-field">
+            <span>{t.form.arrival}</span>
+            <input type="date" name="arrivo" value={valori.arrivo} onChange={aggiorna("arrivo")} min={oggi()} required />
+          </label>
+
+          <label className="bd-field">
+            <span>{t.form.departure}</span>
+            <input
+              type="date"
+              name="partenza"
+              value={valori.partenza}
+              onChange={aggiorna("partenza")}
+              min={valori.arrivo || oggi()}
+              required
+            />
+          </label>
+
+          <label className="bd-field">
+            <span>{t.form.guests}</span>
+            <select name="ospiti" value={valori.ospiti} onChange={aggiorna("ospiti")} required>
+              {Array.from({ length: CONFIG.property.guests }, (_, i) => i + 1).map((n) => (
+                <option key={n} value={String(n)}>{n}</option>
+              ))}
+            </select>
+          </label>
+
+          <label className="bd-field bd-field--full">
+            <span>{t.form.message}</span>
+            <textarea name="messaggio" rows={4} value={valori.messaggio} onChange={aggiorna("messaggio")} />
+          </label>
+
+          <label className="bd-field--full bd-form__consent">
+            <input type="checkbox" checked={valori.privacy} onChange={aggiorna("privacy")} required />
+            <span>
+              {t.form.consent}{" "}
+              <a href={t.footer.privacyUrl} target="_blank" rel="noopener noreferrer">{t.form.consentLink}</a>.
+            </span>
+          </label>
+
+          <div className="bd-field--full bd-form__actions">
+            <button type="submit" className="bd-btn bd-btn--send" disabled={stato === "invio"}>
+              {stato === "invio" ? t.form.sending : t.form.submit}
+            </button>
+            {stato === "errore" && (
+              <p className="bd-form__error" role="alert">{t.form.error}</p>
+            )}
+          </div>
+        </form>
+      </Reveal>
+    </section>
+  );
+}
+
 /* --------------------------------- BOOKING -------------------------------------- */
 
 function Booking({ t }) {
@@ -833,7 +1082,7 @@ function Booking({ t }) {
 
 function Footer({ t, go }) {
   return (
-    <footer id="contact" className="bd-footer">
+    <footer className="bd-footer">
       <div className="bd-footer__top">
         <p className="bd-logo bd-logo--footer">{CONFIG.property.name}</p>
         <p className="bd-footer__tagline">{t.footer.tagline} · {CONFIG.property.locationLine}</p>
@@ -1073,19 +1322,74 @@ const STYLES = `
 /* Header */
 .bd-header{
   position:fixed;top:0;left:0;right:0;z-index:100;
-  transition:background .4s ease, border-color .4s ease, padding .4s ease;
-  padding:26px 0;
+  transition:background .4s ease, border-color .4s ease;
   border-bottom:1px solid transparent;
 }
+/* Velatura sfumata sotto l'intestazione trasparente: senza, il testo chiaro
+   di barra contatti e menu resta illeggibile quando l'hero è luminoso
+   (cielo, mare, muri bianchi). Sfuma verso il basso per non creare una
+   fascia netta, e sparisce quando l'intestazione diventa opaca. */
+.bd-header::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg, rgba(16,40,56,0.62) 0%, rgba(16,40,56,0.34) 55%, rgba(16,40,56,0) 100%);
+  opacity:1;transition:opacity .4s ease;
+}
+.bd-header--solid::before{opacity:0;}
+.bd-header__inner, .bd-topbar{position:relative;z-index:1;}
 .bd-header--solid{
   background:rgba(250,247,241,0.90);
   backdrop-filter:blur(12px);
   border-bottom:1px solid var(--line);
-  padding:16px 0;
 }
+/* Lo spazio verticale dell'intestazione sta qui e non su .bd-header, perché
+   la barra contatti dev'essere una striscia a tutta larghezza attaccata al
+   bordo dello schermo, non un blocco che galleggia dentro un'imbottitura. */
 .bd-header__inner{
-  max-width:1280px;margin:0 auto;padding:0 32px;
+  max-width:1280px;margin:0 auto;padding:26px 32px;
   display:flex;align-items:center;justify-content:space-between;gap:24px;
+  transition:padding .4s ease;
+}
+.bd-header--solid .bd-header__inner{padding:16px 32px;}
+
+/* Barra contatti: striscia piena blu Adriatico in cima alla pagina.
+   Il fondo pieno è una scelta deliberata — il testo dei recapiti è piccolo
+   e sopra una fotografia non regge, per quanto lo si veli. Collassa quando
+   si scorre, lasciando solo il menu compatto. */
+.bd-topbar{
+  overflow:hidden;max-height:46px;opacity:1;
+  background:var(--sea-deep);
+  transition:max-height .4s ease, opacity .3s ease;
+}
+.bd-header--solid .bd-topbar{max-height:0;opacity:0;}
+.bd-topbar__inner{
+  max-width:1280px;margin:0 auto;padding:13px 32px;
+  display:flex;flex-wrap:wrap;align-items:center;gap:6px 28px;
+  font-size:12.5px;letter-spacing:0.02em;
+}
+/* Il selettore è doppio (.bd-topbar .bd-topbar__item) di proposito: più in
+   alto nel foglio la regola ".bd-root a" imposta color:inherit su ogni link
+   del sito, e pesa più di una singola classe. Senza il doppio selettore
+   vince lei, i recapiti ereditano il blu del testo del sito e diventano
+   illeggibili sopra questa striscia, anch'essa blu.
+   Nota: niente backtick nei commenti qui dentro — tutto questo CSS vive in
+   una stringa JavaScript delimitata da backtick, e uno di troppo la spezza. */
+.bd-topbar .bd-topbar__item{
+  display:inline-flex;align-items:center;gap:7px;
+  color:rgba(255,255,255,0.94);font-weight:400;
+  transition:color .15s;
+}
+.bd-topbar .bd-topbar__item:hover{color:var(--sand);}
+.bd-topbar .bd-topbar__item:focus-visible{outline:1px solid var(--sand);outline-offset:3px;}
+.bd-topbar .bd-topbar__item svg{flex:none;color:var(--sand);}
+
+@media (max-width:760px){
+  /* Su schermo stretto l'indirizzo esteso non entra: restano telefono ed
+     email, che sono le due azioni che si compiono davvero da telefono. */
+  .bd-topbar__addr{display:none;}
+  .bd-topbar__inner{padding:11px 22px;gap:4px 20px;font-size:12px;}
+  .bd-topbar{max-height:42px;}
+  .bd-header__inner{padding:18px 22px;}
+  .bd-header--solid .bd-header__inner{padding:14px 22px;}
 }
 .bd-logo{
   font-family:'Fraunces',serif;font-size:20px;letter-spacing:0.015em;
@@ -1347,6 +1651,63 @@ const STYLES = `
   .bd-map__distances{margin-top:24px;}
 }
 
+/* Modulo richiesta disponibilità */
+.bd-form{background:var(--ivory-2);border-top:1px solid var(--line);padding:110px 32px;}
+.bd-form__inner{max-width:760px;margin:0 auto;}
+.bd-form__grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:22px 24px;margin-top:44px;
+}
+.bd-field{display:flex;flex-direction:column;gap:8px;}
+.bd-field--full{grid-column:1 / -1;}
+.bd-field > span{
+  font-size:11.5px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--stone);font-weight:500;
+}
+.bd-form input[type=text],
+.bd-form input[type=email],
+.bd-form input[type=date],
+.bd-form select,
+.bd-form textarea{
+  font-family:'Inter',sans-serif;font-size:15px;color:var(--sea-deep);
+  background:var(--white);border:1px solid var(--line);border-radius:2px;
+  padding:13px 14px;width:100%;
+  transition:border-color .15s, box-shadow .15s;
+}
+.bd-form textarea{resize:vertical;min-height:110px;line-height:1.6;}
+.bd-form input:focus,.bd-form select:focus,.bd-form textarea:focus{
+  outline:none;border-color:var(--sea);box-shadow:0 0 0 3px rgba(56,102,124,0.12);
+}
+.bd-form input:invalid:not(:placeholder-shown){border-color:#A4553C;}
+
+/* Campo esca per gli spambot: invisibile a chi naviga, compilato dai robot.
+   Va nascosto senza display:none, altrimenti alcuni bot lo riconoscono. */
+.bd-form__hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden;}
+
+.bd-form__consent{
+  display:flex;align-items:flex-start;gap:11px;
+  font-size:13.5px;line-height:1.6;color:var(--stone);font-weight:300;cursor:pointer;
+}
+.bd-form__consent input{margin-top:3px;flex:none;width:16px;height:16px;accent-color:var(--sea);}
+.bd-form__consent a{color:var(--sea);border-bottom:1px solid currentColor;}
+
+.bd-form__actions{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-top:6px;}
+.bd-btn.bd-btn--send{
+  background:var(--sea-deep);color:var(--ivory);border:none;
+}
+.bd-btn.bd-btn--send:hover:not(:disabled){
+  background:#0b1d29;transform:translateY(-2px);box-shadow:0 14px 28px rgba(16,40,56,0.2);
+}
+.bd-btn.bd-btn--send:disabled{opacity:0.55;cursor:default;}
+.bd-form__error{font-size:13.5px;color:#A4553C;margin:0;font-weight:400;line-height:1.5;}
+
+.bd-form__done{text-align:center;padding:20px 0;}
+.bd-form__done .bd-h3{margin-top:14px;}
+
+@media (max-width:640px){
+  .bd-form{padding:76px 22px;}
+  .bd-form__grid{grid-template-columns:1fr;gap:18px;margin-top:34px;}
+}
+
 .bd-explore{max-width:1280px;margin:110px auto 0;padding:0 32px;}
 .bd-explore__grid{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;}
 .bd-explore__img{position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:2px;margin-bottom:18px;}
@@ -1481,6 +1842,9 @@ export default function BellavistaDomus({ lang = "it" }) {
       <Gallery t={t} />
       <Location t={t} />
       <Booking t={t} />
+      {/* Il modulo porta l'id "contact": la voce Contatti del menu ci arriva
+          direttamente, e il footer con i recapiti resta subito sotto. */}
+      <ContactForm t={t} />
       <Footer t={t} go={go} />
       <StickyCta t={t} go={go} />
       <WhatsAppButton />

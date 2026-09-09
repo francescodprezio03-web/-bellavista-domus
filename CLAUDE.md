@@ -53,7 +53,21 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
     Non trasformarlo mai in un iframe sempre presente — vanificherebbe il
     Consent Mode, perché Google riceverebbe l'IP di ogni visitatore prima
     che il banner cookie sia stato accettato.
-  - `STYLES`: tutto il CSS del sito, in una template string.
+  - `ContactForm`: modulo di richiesta disponibilità, gestito da **Netlify
+    Forms**. Netlify scopre i moduli leggendo l'HTML pubblicato, ma qui il
+    modulo lo disegna React nel browser: per questo in `index.html` esiste
+    una copia statica nascosta che ne dichiara nome e campi. **Il nome
+    (`richiesta-disponibilita`, costante `NOME_MODULO`) e l'elenco dei campi
+    devono restare identici nei due posti**, altrimenti Netlify rifiuta gli
+    invii. In sviluppo locale l'invio fallisce sempre: non esiste nessun
+    Netlify che raccolga i dati, e l'errore mostrato è atteso.
+  - `STYLES`: tutto il CSS del sito, in una template string. **Mai usare
+    backtick nei commenti dentro STYLES**: il CSS vive in una stringa
+    delimitata da backtick e uno di troppo spezza il file.
+  - Attenzione alla specificità dei selettori: in cima al foglio la regola
+    `.bd-root a` imposta `color:inherit` su ogni link e pesa più di una
+    singola classe. Per dare un colore proprio ai link di un componente
+    serve un selettore a due classi (es. `.bd-topbar .bd-topbar__item`).
 - **`public/images/`** — fotografie reali della struttura (non
   placeholder/Unsplash), referenziate da `CONFIG.images` con path assoluti
   tipo `/images/nome.jpg`. `PhotoSlot` mostra un placeholder elegante

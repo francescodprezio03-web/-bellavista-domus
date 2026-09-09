@@ -128,6 +128,23 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
+    <!-- Dichiarazione del modulo per Netlify Forms.
+         Netlify scopre i moduli leggendo l'HTML pubblicato, ma il modulo vero
+         lo disegna React nel browser, dove Netlify non arriva: questa copia
+         statica e nascosta serve solo a dichiararne nome e campi. Il nome e
+         l'elenco dei campi devono restare identici a quelli del componente
+         ContactForm in src/App.jsx, altrimenti gli invii vengono rifiutati.
+         Basta che esista in una pagina del sito: vale per tutte. -->
+    <form name="richiesta-disponibilita" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="nome" />
+      <input type="email" name="email" />
+      <input type="date" name="arrivo" />
+      <input type="date" name="partenza" />
+      <input type="text" name="ospiti" />
+      <textarea name="messaggio"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
+
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
