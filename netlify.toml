@@ -13,3 +13,32 @@
   for = "/robots.txt"
   [headers.values]
     Content-Type = "text/plain; charset=utf-8"
+
+# --- Cache -------------------------------------------------------------
+# Senza queste regole ogni visitatore che torna riscarica 6,6 MB di
+# fotografie. Con la cache le riscarica solo la prima volta.
+#
+# Le immagini in /images tengono lo stesso nome quando le sostituisci, quindi
+# un anno di cache "immutable" sarebbe sbagliato: userebbero la versione
+# vecchia. Un mese è il compromesso: veloce per chi torna, e una foto
+# sostituita si propaga in tempi ragionevoli. Per vederla subito, rinomina
+# il file (es. hero-2.jpg) e aggiorna CONFIG.images in src/App.jsx.
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+# I file generati dalla build hanno un codice univoco nel nome (app-a1b2c3.js):
+# se cambia il contenuto cambia il nome, quindi possono restare in cache un
+# anno senza rischio di servire una versione vecchia.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Le pagine HTML non vanno mai messe in cache a lungo: sono il punto da cui
+# il browser scopre quali file nuovi esistono dopo una pubblicazione.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

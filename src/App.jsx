@@ -455,6 +455,44 @@ const translations = {
   },
 };
 
+/* -------------------------------- TRACCIAMENTO -------------------------------- */
+
+/* Invia un evento a Google Analytics. Non fa nulla se gtag non è caricato
+   (per esempio in sviluppo locale, o se un blocco pubblicità lo ferma):
+   il sito deve funzionare identico in ogni caso.
+
+   Il Consent Mode resta rispettato: finché l'utente non accetta il banner,
+   gtag riceve gli eventi ma non scrive cookie né identifica nessuno. Non
+   serve quindi condizionare le chiamate al consenso.
+
+   Questi eventi sono ciò che distingue "quante persone sono passate" da
+   "quante hanno fatto qualcosa": senza, non è possibile valutare né una
+   campagna pubblicitaria né se conviene un motore di prenotazione. */
+function traccia(evento, parametri) {
+  if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+  window.gtag("event", evento, parametri || {});
+}
+
+/* Segnala una volta sola che il visitatore è arrivato in fondo alla pagina:
+   distingue chi legge davvero da chi rimbalza dopo due secondi. */
+function useScrollDepth() {
+  useEffect(() => {
+    let inviato = false;
+    const onScroll = () => {
+      if (inviato) return;
+      const altezza = document.documentElement.scrollHeight - window.innerHeight;
+      if (altezza <= 0) return;
+      if (window.scrollY / altezza >= 0.75) {
+        inviato = true;
+        traccia("scroll_75");
+        window.removeEventListener("scroll", onScroll);
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+}
+
 /* ---------------------------------- HOOKS ----------------------------------- */
 
 function useReveal() {
@@ -601,7 +639,7 @@ function MapCard({ t }) {
             allowFullScreen
           />
         ) : (
-          <button type="button" className="bd-map__placeholder" onClick={() => setMostraMappa(true)}>
+          <button type="button" className="bd-map__placeholder" onClick={() => { setMostraMappa(true); traccia("apre_mappa"); }}>
             <span className="bd-map__pin" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" strokeWidth="1.4">
                 <path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z" />
@@ -666,11 +704,11 @@ function TopBar({ t }) {
           <IconaPin />
           <span>{indirizzo}</span>
         </a>
-        <a className="bd-topbar__item" href={`tel:${p.phone.replace(/\s/g, "")}`} title={t.topbar.phone}>
+        <a className="bd-topbar__item" href={`tel:${p.phone.replace(/\s/g, "")}`} title={t.topbar.phone} onClick={() => traccia("contatto", { metodo: "telefono" })}>
           <IconaTelefono />
           <span>{p.phone}</span>
         </a>
-        <a className="bd-topbar__item" href={`mailto:${p.email}`} title={t.topbar.email}>
+        <a className="bd-topbar__item" href={`mailto:${p.email}`} title={t.topbar.email} onClick={() => traccia("contatto", { metodo: "email" })}>
           <IconaEmail />
           <span>{p.email}</span>
         </a>
@@ -925,7 +963,7 @@ function Gallery({ t }) {
             delay={(i % 6) * 45}
             as="button"
             className={`bd-gallery__item bd-gallery__item--${i % 5}`}
-            onClick={() => setLightbox(i)}
+            onClick={() => { setLightbox(i); traccia("apre_galleria", { indice: i + 1 }); }}
             aria-label={`${t.gallery.title} ${i + 1}`}
           >
             <PhotoSlot src={src} alt={`${CONFIG.property.name} ${i + 1}`} compact placeholderText={t.photoPlaceholder} />
@@ -1112,6 +1150,7 @@ function ContactForm({ t }) {
       if (!risposta.ok) throw new Error(risposta.status);
       setStato("inviato");
       setValori(VUOTO);
+      traccia("richiesta_inviata", { ospiti: valori.ospiti });
     } catch (err) {
       // In sviluppo locale non esiste nessun Netlify che raccolga i dati:
       // l'errore qui è atteso e non indica un problema del modulo.
@@ -1228,10 +1267,10 @@ function Booking({ t }) {
         <h2 className="bd-h2 bd-h2--light">{t.booking.title}</h2>
         <p className="bd-body bd-body--light">{t.booking.text}</p>
         <div className="bd-booking__ctas">
-          <a href={CONFIG.links.booking} target="_blank" rel="noopener noreferrer" className="bd-btn bd-btn--primary">
+          <a href={CONFIG.links.booking} target="_blank" rel="noopener noreferrer" className="bd-btn bd-btn--primary" onClick={() => traccia("click_ota", { piattaforma: "booking" })}>
             {t.booking.booking}
           </a>
-          <a href={CONFIG.links.airbnb} target="_blank" rel="noopener noreferrer" className="bd-btn bd-btn--ghost">
+          <a href={CONFIG.links.airbnb} target="_blank" rel="noopener noreferrer" className="bd-btn bd-btn--ghost" onClick={() => traccia("click_ota", { piattaforma: "airbnb" })}>
             {t.booking.airbnb}
           </a>
         </div>
@@ -1329,6 +1368,7 @@ function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Scrivici su WhatsApp"
+      onClick={() => traccia("contatto", { metodo: "whatsapp" })}
     >
       <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true">
         <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.1c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.8-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.82 2 .9 2.14.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.46.29.15.46.13.63-.08.17-.2.72-.84.91-1.13.19-.29.38-.24.65-.14.27.1 1.69.8 1.98.94.29.15.48.22.55.34.07.13.07.72-.17 1.4Z"/>
@@ -2064,6 +2104,7 @@ const STYLES = `
    coerentemente con la convenzione del progetto (SEO solo nell'HTML). */
 export default function BellavistaDomus({ lang = "it" }) {
   const t = translations[lang];
+  useScrollDepth();
 
   const go = (href) => {
     const el = document.querySelector(href);
