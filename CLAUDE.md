@@ -61,6 +61,20 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
     devono restare identici nei due posti**, altrimenti Netlify rifiuta gli
     invii. In sviluppo locale l'invio fallisce sempre: non esiste nessun
     Netlify che raccolga i dati, e l'errore mostrato è atteso.
+  - `Faq`: domande frequenti, costruite con `details`/`summary` nativi —
+    niente JavaScript, accessibili da tastiera, e il testo resta nell'HTML
+    anche a fisarmonica chiusa, quindi leggibile da motori di ricerca e
+    assistenti AI. **Le risposte in `translations.<lang>.faq.items` devono
+    restare identiche al blocco JSON-LD `FAQPage` nelle due home**: sono
+    due copie dello stesso testo, e dichiarare a Google qualcosa di diverso
+    da quanto mostri in pagina è una violazione delle sue linee guida.
+    (Nota: dal 7 maggio 2026 Google non mostra più i risultati arricchiti
+    delle FAQ; il markup resta utile solo per far capire la pagina.)
+  - `traccia(evento, parametri)`: invia eventi a Google Analytics. Esce
+    senza fare nulla se `gtag` non c'è (sviluppo locale, blocchi
+    pubblicitari), così il sito non può rompersi per il tracciamento.
+    Eventi attivi: `contatto` (metodo), `click_ota` (piattaforma),
+    `apre_mappa`, `apre_galleria`, `richiesta_inviata`, `scroll_75`.
   - `STYLES`: tutto il CSS del sito, in una template string. **Mai usare
     backtick nei commenti dentro STYLES**: il CSS vive in una stringa
     delimitata da backtick e uno di troppo spezza il file.

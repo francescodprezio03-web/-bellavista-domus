@@ -216,6 +216,8 @@ const translations = {
       familyText: "Seggiolone, culla, sponde per il letto e fasciatoio sono disponibili senza costi aggiuntivi. Segnalaceli al momento della prenotazione, così troviamo tutto già pronto al tuo arrivo.",
       rulesTitle: "Informazioni pratiche",
       rules: [
+        { label: "Soggiorno minimo", value: "2 notti in bassa stagione, 4 in alta stagione" },
+        { label: "Pulizie finali", value: "99 €, da aggiungere al soggiorno" },
         { label: "Check-in", value: "dalle 15:00" },
         { label: "Check-out", value: "entro le 11:00" },
         { label: "Fumo", value: "consentito solo all'esterno" },
@@ -247,6 +249,51 @@ const translations = {
         { key: "polignano", name: "Polignano a Mare", desc: "Celebre per le sue scogliere a picco sul mare.", link: "/polignano-a-mare.html", linkLabel: "Cosa vedere a Polignano a Mare" },
         { key: "monopoli", name: "Monopoli", desc: "Porto storico e centro antico affacciato sull'Adriatico.", link: "/monopoli.html", linkLabel: "Cosa vedere a Monopoli" },
         { key: "alberobello", name: "Alberobello", desc: "Patrimonio UNESCO, famosa per i trulli.", link: "/alberobello.html", linkLabel: "Cosa vedere ad Alberobello" },
+      ],
+    },
+    /* Domande frequenti. Ogni risposta deve restare allineata al blocco
+       JSON-LD FAQPage in index.html: se cambia una risposta qui, va
+       cambiata anche lì, altrimenti dichiari a Google una cosa e ne
+       mostri un'altra. */
+    faq: {
+      eyebrow: "Domande frequenti",
+      title: "Le risposte alle domande più comuni",
+      text: "Se non trovi quello che cerchi, scrivici: rispondiamo di solito entro poche ore.",
+      items: [
+        { q: "Quante persone può ospitare la casa?",
+          a: "Fino a 7 ospiti in 3 camere da letto: due camere con letto matrimoniale e una terza con un letto a una piazza e mezza più un letto a castello. I bagni sono due, entrambi con doccia." },
+        { q: "Quanto dista davvero il mare?",
+          a: "Dieci metri. La spiaggia libera è appena fuori dalla porta di casa: non serve prendere l'auto, né attraversare strade trafficate." },
+        { q: "Qual è il soggiorno minimo?",
+          a: "Due notti in bassa stagione e quattro notti in alta stagione." },
+        { q: "A che ora sono il check-in e il check-out?",
+          a: "Il check-in è dalle 15:00, il check-out entro le 11:00. Se hai un volo o un treno con orari difficili, scrivici: cerchiamo di venirti incontro quando il calendario lo permette." },
+        { q: "Le pulizie finali sono incluse?",
+          a: "No, si aggiungono al costo del soggiorno e costano 99 €. È un importo unico, indipendente dalla durata del soggiorno e dal numero di ospiti." },
+        { q: "È prevista una cauzione?",
+          a: "Sì, 500 €, da versare all'arrivo in struttura. Viene restituita per intero alla fine del soggiorno, salvo danni." },
+        { q: "Si paga la tassa di soggiorno?",
+          a: "Sì, si versa in struttura ed è dovuta al Comune di Bari, non a noi. Il regolamento comunale prevede esenzioni — per i minori e oltre un certo numero di notti consecutive — quindi l'importo esatto te lo confermiamo al momento della prenotazione, in base a quanti siete e quanto vi fermate." },
+        { q: "Lenzuola e asciugamani sono inclusi?",
+          a: "Sì, lenzuola e asciugamani sono inclusi e già pronti al tuo arrivo. In casa trovi anche sapone, asciugacapelli, lavatrice e stendibiancheria." },
+        { q: "C'è il parcheggio?",
+          a: "Sì, due posti auto privati e gratuiti all'interno della proprietà, con spazio anche per scooter e biciclette. Fuori dalla struttura il parcheggio è libero e gratuito." },
+        { q: "Sono ammessi gli animali?",
+          a: "Sì, cani e gatti di taglia piccola e media sono benvenuti, con un lieve supplemento sulle pulizie. Segnalacelo al momento della prenotazione." },
+        { q: "Si può fumare?",
+          a: "Solo all'esterno. Il giardino e gli spazi all'aperto sono a disposizione; all'interno della casa non si fuma." },
+        { q: "C'è l'aria condizionata?",
+          a: "Sì, in tutte e tre le camere da letto e in salotto, con funzione sia di raffrescamento sia di riscaldamento. La casa è quindi confortevole anche fuori stagione." },
+        { q: "Com'è la connessione internet?",
+          a: "Wi-Fi in fibra fino a 500 Mbps in tutta la casa. È una connessione adatta anche a chi deve lavorare o fare videochiamate durante il soggiorno." },
+        { q: "Avete attrezzature per bambini piccoli?",
+          a: "Sì: seggiolone, culla, sponde per il letto e fasciatoio, senza costi aggiuntivi. Vanno però richiesti al momento della prenotazione, così troviamo tutto già pronto al tuo arrivo." },
+        { q: "Si possono organizzare feste o eventi?",
+          a: "No, feste ed eventi non sono consentiti. La casa è pensata per famiglie e gruppi che cercano tranquillità, e ci teniamo al rapporto con il vicinato." },
+        { q: "C'è la piscina?",
+          a: "No, e non è una dimenticanza: la casa è a dieci metri dal mare, con la spiaggia libera appena fuori dalla porta. Chi cerca la villa con piscina nell'entroterra troverà di meglio altrove; chi vuole scendere in spiaggia scalzo è nel posto giusto. In giardino ci sono comunque oltre 12 posti a sedere all'aperto e il barbecue." },
+        { q: "Come si arriva a Torre a Mare?",
+          a: "In auto, circa 15 minuti dal centro di Bari e 25 dall'aeroporto. In treno, Torre a Mare ha una propria fermata sulla linea Bari-Lecce, a pochi minuti dalla stazione centrale di Bari. Una volta qui, l'auto non è indispensabile per il mare e il borgo, ma è comoda per visitare la Puglia." },
       ],
     },
     booking: {
@@ -374,6 +421,8 @@ const translations = {
       familyText: "A high chair, cot, bed rails and a changing mat are available at no extra cost. Just tell us when you book, and everything will be ready when you arrive.",
       rulesTitle: "Practical information",
       rules: [
+        { label: "Minimum stay", value: "2 nights in low season, 4 in high season" },
+        { label: "Final cleaning", value: "€99, added to the stay" },
         { label: "Check-in", value: "from 3:00 pm" },
         { label: "Check-out", value: "by 11:00 am" },
         { label: "Smoking", value: "outdoors only" },
@@ -405,6 +454,47 @@ const translations = {
         { key: "polignano", name: "Polignano a Mare", desc: "Famous for its cliffs overlooking the sea.", link: "/polignano-a-mare-en.html", linkLabel: "What to see in Polignano a Mare" },
         { key: "monopoli", name: "Monopoli", desc: "Historic port and old town facing the Adriatic.", link: "/monopoli-en.html", linkLabel: "What to see in Monopoli" },
         { key: "alberobello", name: "Alberobello", desc: "UNESCO World Heritage site, famous for its trulli.", link: "/alberobello-en.html", linkLabel: "What to see in Alberobello" },
+      ],
+    },
+    faq: {
+      eyebrow: "Frequently asked questions",
+      title: "Answers to the most common questions",
+      text: "If you cannot find what you are looking for, write to us: we usually reply within a few hours.",
+      items: [
+        { q: "How many guests can the house sleep?",
+          a: "Up to 7 guests in 3 bedrooms: two bedrooms with a double bed, and a third with a small double bed plus a bunk bed. There are two bathrooms, both with a shower." },
+        { q: "How far is the sea, really?",
+          a: "Ten metres. The public beach is just outside the front door: no need to take the car, and no busy roads to cross." },
+        { q: "What is the minimum stay?",
+          a: "Two nights in low season and four nights in high season." },
+        { q: "What are the check-in and check-out times?",
+          a: "Check-in is from 3:00 pm and check-out by 11:00 am. If your flight or train times are awkward, do write to us: we try to accommodate you whenever the calendar allows." },
+        { q: "Is the final cleaning included?",
+          a: "No, it is added to the cost of the stay and comes to €99. It is a single charge, regardless of how long you stay or how many of you there are." },
+        { q: "Is a deposit required?",
+          a: "Yes, €500, payable on arrival at the property. It is returned in full at the end of your stay, barring damage." },
+        { q: "Is there a tourist tax?",
+          a: "Yes. It is paid at the property and is owed to the Municipality of Bari, not to us. The municipal regulation provides exemptions — for children and beyond a certain number of consecutive nights — so we confirm the exact amount when you book, based on how many you are and how long you stay." },
+        { q: "Are bed linen and towels included?",
+          a: "Yes, bed linen and towels are included and ready when you arrive. You will also find soap, a hairdryer, a washing machine and a clothes airer." },
+        { q: "Is there parking?",
+          a: "Yes, two free private parking spaces within the property, with room for scooters and bicycles too. Outside the property, on-street parking is free and unrestricted." },
+        { q: "Are pets allowed?",
+          a: "Yes, small and medium sized dogs and cats are welcome, with a small cleaning surcharge. Please let us know when you book." },
+        { q: "Is smoking allowed?",
+          a: "Outdoors only. The garden and outdoor spaces are at your disposal; there is no smoking inside the house." },
+        { q: "Is there air conditioning?",
+          a: "Yes, in all three bedrooms and in the living room, with both cooling and heating. The house is therefore comfortable outside the summer season too." },
+        { q: "What is the internet connection like?",
+          a: "Fibre Wi-Fi up to 500 Mbps throughout the house. It is fast enough for working and video calls during your stay." },
+        { q: "Do you have equipment for small children?",
+          a: "Yes: a high chair, cot, bed rails and a changing mat, at no extra cost. Please request them when you book, so everything is ready when you arrive." },
+        { q: "Can I host a party or an event?",
+          a: "No, parties and events are not allowed. The house is designed for families and groups looking for peace and quiet, and we value our relationship with the neighbours." },
+        { q: "Is there a swimming pool?",
+          a: "No, and that is not an oversight: the house is ten metres from the sea, with the public beach just outside the door. If you are looking for an inland villa with a pool, you will find better elsewhere; if you want to walk to the beach barefoot, you are in the right place. The garden does have over 12 outdoor seats and a barbecue." },
+        { q: "How do I get to Torre a Mare?",
+          a: "By car, about 15 minutes from central Bari and 25 from the airport. By train, Torre a Mare has its own stop on the Bari-Lecce line, a few minutes from Bari central station. Once here, a car is not essential for the beach and the village, but it is handy for exploring Puglia." },
       ],
     },
     booking: {
@@ -1096,6 +1186,42 @@ function Amenities({ t }) {
             ))}
           </dl>
         </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* --------------------------------- DOMANDE FREQUENTI -------------------------------- */
+
+/* Fisarmonica costruita con details/summary nativi invece che con JavaScript:
+   funziona senza script, è già accessibile da tastiera e da lettore di
+   schermo, e il contenuto resta nell'HTML anche quando è chiuso — quindi
+   leggibile da motori di ricerca e assistenti AI. */
+function Faq({ t }) {
+  const f = t.faq;
+  return (
+    <section id="faq" className="bd-faq">
+      <div className="bd-faq__inner">
+        <Reveal className="bd-section-head">
+          <p className="bd-eyebrow">{f.eyebrow}</p>
+          <div className="bd-hairline" />
+          <h2 className="bd-h2">{f.title}</h2>
+          <p className="bd-body bd-body--narrow">{f.text}</p>
+        </Reveal>
+
+        <div className="bd-faq__list">
+          {f.items.map((item, i) => (
+            <Reveal as="details" key={item.q} delay={Math.min(i, 6) * 40} className="bd-faq__item">
+              <summary>
+                <span>{item.q}</span>
+                <span className="bd-faq__sign" aria-hidden="true" />
+              </summary>
+              <div className="bd-faq__answer">
+                <p>{item.a}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -1930,6 +2056,43 @@ const STYLES = `
   .bd-amen__rules dt{width:88px;}
 }
 
+/* Domande frequenti */
+.bd-faq{padding:120px 32px;background:var(--ivory);}
+.bd-faq__inner{max-width:820px;margin:0 auto;}
+.bd-faq__list{margin-top:56px;border-top:1px solid var(--line);}
+.bd-faq__item{border-bottom:1px solid var(--line);}
+.bd-faq__item summary{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:24px;
+  padding:22px 0;cursor:pointer;list-style:none;
+  font-size:17px;line-height:1.5;font-weight:500;color:var(--sea-deep);
+  transition:color .15s;
+}
+.bd-faq__item summary::-webkit-details-marker{display:none;}
+.bd-faq__item summary:hover{color:var(--sea);}
+.bd-faq__item summary:focus-visible{outline:2px solid var(--sea);outline-offset:3px;}
+
+/* Il segno è una croce che ruota diventando un meno: due sole barre, nessuna
+   icona da caricare. */
+.bd-faq__sign{position:relative;flex:none;width:14px;height:14px;margin-top:5px;}
+.bd-faq__sign::before,.bd-faq__sign::after{
+  content:"";position:absolute;left:0;top:6px;width:14px;height:1.5px;
+  background:var(--sand);transition:transform .25s ease;
+}
+.bd-faq__sign::after{transform:rotate(90deg);}
+.bd-faq__item[open] .bd-faq__sign::after{transform:rotate(0deg);}
+
+.bd-faq__answer{padding:0 0 24px;max-width:66ch;}
+.bd-faq__answer p{
+  margin:0;font-size:15.5px;line-height:1.75;color:var(--stone);font-weight:300;
+}
+
+@media (max-width:600px){
+  .bd-faq{padding:80px 22px;}
+  .bd-faq__list{margin-top:40px;}
+  .bd-faq__item summary{font-size:16px;gap:16px;padding:19px 0;}
+  .bd-faq__answer p{font-size:15px;}
+}
+
 /* Modulo richiesta disponibilità */
 .bd-form{background:var(--ivory-2);border-top:1px solid var(--line);padding:110px 32px;}
 .bd-form__inner{max-width:760px;margin:0 auto;}
@@ -2125,6 +2288,9 @@ export default function BellavistaDomus({ lang = "it" }) {
       <Amenities t={t} />
       <Location t={t} />
       <Booking t={t} />
+      {/* Le FAQ stanno subito prima del modulo: si tolgono gli ultimi dubbi,
+          e chi ne ha ancora trova il modulo già lì sotto. */}
+      <Faq t={t} />
       {/* Il modulo porta l'id "contact": la voce Contatti del menu ci arriva
           direttamente, e il footer con i recapiti resta subito sotto. */}
       <ContactForm t={t} />
