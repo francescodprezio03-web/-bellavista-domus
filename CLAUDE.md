@@ -155,6 +155,26 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
   Le guide mantengono il suffisso `-en.html` invece di spostarsi sotto
   `/en/` perché sono già indicizzate da Google: rinominarle costerebbe
   redirect e posizionamento, senza guadagno.
+  I **nomi di locali e luoghi** consigliati nel testo (ristoranti, bar,
+  panifici, le due spiagge) sono link con classe `.maplink` verso la
+  ricerca di Google Maps:
+  `https://www.google.com/maps/search/?api=1&amp;query=<nome+località>`.
+  Tre regole:
+  1. **La località va sempre nella query**, anche quando il nome sembra
+     univoco: "La Vela", "Transatlantico" e "Pescaria" esistono in più
+     città, e senza "Torre a Mare Bari" o "Polignano a Mare" Maps porta
+     altrove.
+  2. Si linka alla **ricerca**, non alla scheda di un singolo posto né al
+     sito del locale: le piccole trattorie cambiano o abbandonano il sito
+     di continuo, un link morto sulla guida è peggio di nessun link.
+  3. Ogni link porta `target="_blank" rel="noopener"` e un
+     `aria-label="<nome> su Google Maps"` (`on Google Maps` nelle pagine
+     inglesi), perché il testo del link da solo non dice dove porta.
+  L'`&amp;` nell'URL va scritto come entità: `&` nudo dentro un attributo
+  `href` è tollerato dai browser ma segnalato dai validatori.
+  A differenza di `.placelink`, che collega le guide tra loro, `.maplink`
+  esce dal sito: **non conta come incrocio di lingua**, la scheda Maps è
+  la stessa per entrambe le versioni della pagina.
 - **`grotte-di-castellana.html`**, **`matera.html`**, **`valle-d-itria.html`**
   (più le versioni `-en.html`) — tre guide su mete più lontane, con la stessa
   struttura delle altre. Le fotografie di apertura **non sono di proprietà**:
