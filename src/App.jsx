@@ -293,7 +293,8 @@ const translations = {
         { q: "C'è la piscina?",
           a: "Non ancora: una piscina è in progetto per l'estate 2027. Oggi la casa punta su altro — dieci metri dal mare, con la conca sabbiosa davanti, e un giardino privato con oltre 12 posti a sedere all'aperto e il barbecue. Se stai valutando un soggiorno nell'estate 2027, scrivici prima di prenotare: ti diciamo a che punto sono i lavori, così non prenoti su un'aspettativa." },
         { q: "Come si arriva a Torre a Mare?",
-          a: "In auto, circa 15 minuti dal centro di Bari e 25 dall'aeroporto. In treno, Torre a Mare ha una propria fermata sulla linea Bari-Lecce, a pochi minuti dalla stazione centrale di Bari. Una volta qui, l'auto non è indispensabile per il mare e il borgo, ma è comoda per visitare la Puglia." },
+          a: "In auto si esce a Torre a Mare centro e si è a casa in due minuti; dall'aeroporto di Bari sono circa 20 minuti, 25 con traffico. Con i mezzi pubblici il modo più semplice è l'autobus 12 (o 12/) dalla stazione centrale di Bari. Una volta qui, per la spiaggia e il borgo l'auto non serve; per la spesa e i servizi sì, sono a circa cinque minuti.",
+          href: "/come-arrivare.html", linkLabel: "Tutti i dettagli su come arrivare" },
       ],
     },
     booking: {
@@ -494,7 +495,8 @@ const translations = {
         { q: "Is there a swimming pool?",
           a: "Not yet: a pool is planned for summer 2027. Today the house offers something else — ten metres from the sea, with a sandy cove in front, and a private garden with over 12 outdoor seats and a barbecue. If you are considering a stay in summer 2027, write to us before booking: we will tell you where the works stand, so you are not booking on an expectation." },
         { q: "How do I get to Torre a Mare?",
-          a: "By car, about 15 minutes from central Bari and 25 from the airport. By train, Torre a Mare has its own stop on the Bari-Lecce line, a few minutes from Bari central station. Once here, a car is not essential for the beach and the village, but it is handy for exploring Puglia." },
+          a: "By car, take the Torre a Mare centro exit and you are at the house in two minutes; from Bari airport it is about 20 minutes, 25 with traffic. By public transport the simplest way is bus 12 (or 12/) from Bari central station. Once here, you will not need a car for the beach and the village; for shopping and errands you will, as they are about five minutes away.",
+          href: "/come-arrivare-en.html", linkLabel: "Full details on getting here" },
       ],
     },
     booking: {
@@ -1288,6 +1290,15 @@ function Faq({ t }) {
               </summary>
               <div className="bd-faq__answer">
                 <p>{item.a}</p>
+                {/* Alcune risposte rimandano a una pagina che approfondisce.
+                    Il link resta fuori dal testo della risposta perché quel
+                    testo finisce identico nei dati strutturati, dove un
+                    tag HTML non avrebbe senso. */}
+                {item.href && (
+                  <a className="bd-faq__more" href={item.href}>
+                    {item.linkLabel} →
+                  </a>
+                )}
               </div>
             </Reveal>
           ))}
@@ -2178,6 +2189,14 @@ const STYLES = `
 .bd-faq__item[open] .bd-faq__sign::after{transform:rotate(0deg);}
 
 .bd-faq__answer{padding:0 0 24px;max-width:66ch;}
+/* Selettore a due classi, come per gli altri link del sito: la regola
+   generale .bd-root a imposta color:inherit e altrimenti vincerebbe. */
+.bd-faq .bd-faq__more{
+  display:inline-block;margin-top:14px;font-size:12px;letter-spacing:0.06em;
+  text-transform:uppercase;font-weight:500;color:var(--sea);
+  border-bottom:1px solid currentColor;padding-bottom:3px;
+}
+.bd-faq .bd-faq__more:hover{opacity:0.7;}
 .bd-faq__answer p{
   margin:0;font-size:15.5px;line-height:1.75;color:var(--stone);font-weight:300;
 }

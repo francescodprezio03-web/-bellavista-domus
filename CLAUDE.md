@@ -142,6 +142,15 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
   Le guide mantengono il suffisso `-en.html` invece di spostarsi sotto
   `/en/` perché sono già indicizzate da Google: rinominarle costerebbe
   redirect e posizionamento, senza guadagno.
+- **`come-arrivare.html`**, **`come-arrivare-en.html`** (root) — pagina
+  informativa su come raggiungere la casa: auto e uscita, aeroporto,
+  autobus 12 dalla stazione di Bari, parcheggio, check-in, servizi.
+  Stessa struttura tecnica delle guide (entry point in `vite.config.js`,
+  hreflang, JSON-LD `Article`) e stesso foglio di stile, copiato da
+  `torre-a-mare.html`. È collegata dalla risposta "Come si arriva" nelle
+  FAQ, tramite i campi facoltativi `href`/`linkLabel` di una voce di
+  `faq.items` — il link sta fuori dal testo della risposta perché quel
+  testo finisce identico nel JSON-LD, dove un tag HTML non avrebbe senso.
 - **`public/robots.txt`**, **`public/sitemap.xml`** — SEO tecnico.
 - **`netlify.toml`** (root) — non tocca build/publish (quelli restano
   nelle impostazioni del sito su Netlify o nel drag&drop manuale di

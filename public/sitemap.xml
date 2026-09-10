@@ -75,6 +75,20 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://bellavistadomus.netlify.app/alberobello-en.html" />
   </url>
   <url>
+    <loc>https://bellavistadomus.netlify.app/come-arrivare.html</loc>
+    <lastmod>2026-09-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="it" href="https://bellavistadomus.netlify.app/come-arrivare.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bellavistadomus.netlify.app/come-arrivare-en.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bellavistadomus.netlify.app/come-arrivare.html" />
+  </url>
+  <url>
+    <loc>https://bellavistadomus.netlify.app/come-arrivare-en.html</loc>
+    <lastmod>2026-09-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="it" href="https://bellavistadomus.netlify.app/come-arrivare.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bellavistadomus.netlify.app/come-arrivare-en.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bellavistadomus.netlify.app/come-arrivare.html" />
+  </url>
+  <url>
     <loc>https://bellavistadomus.netlify.app/privacy.html</loc>
     <lastmod>2026-09-10</lastmod>
     <xhtml:link rel="alternate" hreflang="it" href="https://bellavistadomus.netlify.app/privacy.html" />

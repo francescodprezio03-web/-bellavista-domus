@@ -30,6 +30,8 @@ export default defineConfig({
         bariEn: resolve(__dirname, "bari-en.html"),
         alberobello: resolve(__dirname, "alberobello.html"),
         alberobelloEn: resolve(__dirname, "alberobello-en.html"),
+        comeArrivare: resolve(__dirname, "come-arrivare.html"),
+        comeArrivareEn: resolve(__dirname, "come-arrivare-en.html"),
       },
     },
   },
