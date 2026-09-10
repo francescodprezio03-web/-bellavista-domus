@@ -188,6 +188,12 @@
     }
     .morelinks__card span{font-size:13.5px;line-height:1.45;color:var(--stone);font-weight:300;}
     @media (max-width:560px){.morelinks__grid{grid-template-columns:1fr;}}
+
+    .morelinks--testo{margin-top:34px;}
+    .morelinks--testo ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:11px;}
+    .morelinks--testo li{font-size:15px;line-height:1.55;color:var(--stone);font-weight:300;}
+    .morelinks--testo a{color:var(--sea-deep);font-weight:500;border-bottom:1px solid var(--line);}
+    .morelinks--testo a:hover{border-bottom-color:var(--sea);}
   </style>
 </head>
 <body>
@@ -197,7 +203,10 @@
   </header>
 
   <div class="hero">
-    <img src="/images/puglia-bari.jpg" alt="Il centro storico di Bari Vecchia" loading="eager" />
+    <picture>
+      <source type="image/webp" srcset="/images/puglia-bari-480.webp 480w, /images/puglia-bari.webp 900w" sizes="100vw">
+      <img src="/images/puglia-bari.jpg" alt="Il centro storico di Bari Vecchia" width="900" height="1600" loading="eager" fetchpriority="high" />
+    </picture>
     <div class="hero__scrim"></div>
     <div class="hero__content">
       <p class="eyebrow">Nei dintorni · Capoluogo</p>
@@ -296,6 +305,16 @@
           <span><b>Alberobello</b>I trulli, patrimonio UNESCO</span>
         </a>
       </div>
+    </nav>
+
+    <nav class="morelinks morelinks--testo">
+      <h2>Altre mete nei dintorni</h2>
+      <ul>
+        <li><a href="/grotte-di-castellana.html">Le Grotte di Castellana</a> — sessanta metri sottoterra, a circa 40 minuti</li>
+        <li><a href="/valle-d-itria.html">La Valle d'Itria</a> — Locorotondo, Cisternino, Martina Franca e Ostuni</li>
+        <li><a href="/matera.html">Matera e i Sassi</a> — poco più di un'ora, in Basilicata</li>
+        <li><a href="/come-arrivare.html">Come arrivare a Bellavista Domus</a></li>
+      </ul>
     </nav>
 
     <hr>

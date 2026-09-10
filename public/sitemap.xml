@@ -89,6 +89,48 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://bellavistadomus.netlify.app/come-arrivare.html" />
   </url>
   <url>
+    <loc>https://bellavistadomus.netlify.app/grotte-di-castellana.html</loc>
+    <lastmod>2026-09-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="it" href="https://bellavistadomus.netlify.app/grotte-di-castellana.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bellavistadomus.netlify.app/grotte-di-castellana-en.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bellavistadomus.netlify.app/grotte-di-castellana.html" />
+  </url>
+  <url>
+    <loc>https://bellavistadomus.netlify.app/grotte-di-castellana-en.html</loc>
+    <lastmod>2026-09-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="it" href="https://bellavistadomus.netlify.app/grotte-di-castellana.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bellavistadomus.netlify.app/grotte-di-castellana-en.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bellavistadomus.netlify.app/grotte-di-castellana.html" />
+  </url>
+  <url>
+    <loc>https://bellavistadomus.netlify.app/matera.html</loc>
+    <lastmod>2026-09-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="it" href="https://bellavistadomus.netlify.app/matera.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bellavistadomus.netlify.app/matera-en.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bellavistadomus.netlify.app/matera.html" />
+  </url>
+  <url>
+    <loc>https://bellavistadomus.netlify.app/matera-en.html</loc>
+    <lastmod>2026-09-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="it" href="https://bellavistadomus.netlify.app/matera.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bellavistadomus.netlify.app/matera-en.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bellavistadomus.netlify.app/matera.html" />
+  </url>
+  <url>
+    <loc>https://bellavistadomus.netlify.app/valle-d-itria.html</loc>
+    <lastmod>2026-09-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="it" href="https://bellavistadomus.netlify.app/valle-d-itria.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bellavistadomus.netlify.app/valle-d-itria-en.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bellavistadomus.netlify.app/valle-d-itria.html" />
+  </url>
+  <url>
+    <loc>https://bellavistadomus.netlify.app/valle-d-itria-en.html</loc>
+    <lastmod>2026-09-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="it" href="https://bellavistadomus.netlify.app/valle-d-itria.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bellavistadomus.netlify.app/valle-d-itria-en.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bellavistadomus.netlify.app/valle-d-itria.html" />
+  </url>
+  <url>
     <loc>https://bellavistadomus.netlify.app/privacy.html</loc>
     <lastmod>2026-09-10</lastmod>
     <xhtml:link rel="alternate" hreflang="it" href="https://bellavistadomus.netlify.app/privacy.html" />

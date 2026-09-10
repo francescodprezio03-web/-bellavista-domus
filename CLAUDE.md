@@ -103,6 +103,19 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
   spazio occuperà l'immagine e è ciò che gli fa scegliere la variante:
   sbagliarlo per eccesso vanifica tutto il lavoro. Aggiungendo uno slot
   fotografico, va passato un `sizes` coerente con il riquadro che lo ospita.
+
+  **La forma conta quanto la risoluzione.** Con `object-fit: cover`, se la
+  proporzione della foto non è quella del riquadro, il browser la ingrandisce
+  finché copre il lato mancante. Una foto orizzontale 16:9 in un riquadro
+  verticale 3:4 viene ingrandita oltre **due volte** e appare sgranata, anche
+  se la sua larghezza sarebbe più che sufficiente. `sizes` non protegge da
+  questo, perché descrive solo la larghezza.
+  Per questo le tre foto orizzontali delle guide nuove esistono in due
+  versioni: quella **larga** (`puglia-matera.jpg`) per l'apertura a tutta
+  pagina, e un **ritaglio verticale** (`puglia-matera-scheda.jpg`, 3:4) per le
+  schede di "Scopri la Puglia". Aggiungendo una foto orizzontale che deve
+  comparire anche in una scheda, va generato il ritaglio: i riquadri delle
+  schede sono 3:4 (`.bd-explore__img`).
 - **`public/privacy.html`**, **`public/privacy-en.html`** — pagina privacy
   statica IT/EN, con hreflang reciproci. Il footer (`Footer` in `App.jsx`)
   sceglie l'URL giusto tramite `t.footer.privacyUrl` — non aggiungere mai
@@ -142,6 +155,16 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
   Le guide mantengono il suffisso `-en.html` invece di spostarsi sotto
   `/en/` perché sono già indicizzate da Google: rinominarle costerebbe
   redirect e posizionamento, senza guadagno.
+- **`grotte-di-castellana.html`**, **`matera.html`**, **`valle-d-itria.html`**
+  (più le versioni `-en.html`) — tre guide su mete più lontane, con la stessa
+  struttura delle altre. Le fotografie di apertura **non sono di proprietà**:
+  Valle d'Itria e Matera vengono da Unsplash (autori Arianna Zappia e Diego
+  Geraldi, uso commerciale consentito); l'origine di quella delle grotte non è
+  documentata. Prima di sostituirle o aggiungerne altre, verificare sempre la
+  licenza: un'immagine di agenzia usata senza diritti espone a richieste di
+  risarcimento. Nelle altre guide queste tre mete sono linkate con un elenco
+  testuale in fondo (`.morelinks--testo`), non con schede: le miniature
+  esistono ma la griglia a quattro schede è già piena.
 - **`come-arrivare.html`**, **`come-arrivare-en.html`** (root) — pagina
   informativa su come raggiungere la casa: auto e uscita, aeroporto,
   autobus 12 dalla stazione di Bari, parcheggio, check-in, servizi.

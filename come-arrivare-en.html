@@ -173,6 +173,12 @@
     }
     .morelinks__card span{font-size:13.5px;line-height:1.45;color:var(--stone);font-weight:300;}
     @media (max-width:560px){.morelinks__grid{grid-template-columns:1fr;}}
+
+    .morelinks--testo{margin-top:34px;}
+    .morelinks--testo ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:11px;}
+    .morelinks--testo li{font-size:15px;line-height:1.55;color:var(--stone);font-weight:300;}
+    .morelinks--testo a{color:var(--sea-deep);font-weight:500;border-bottom:1px solid var(--line);}
+    .morelinks--testo a:hover{border-bottom-color:var(--sea);}
   </style>
 </head>
 <body>
@@ -182,7 +188,10 @@
   </header>
 
   <div class="hero">
-    <img src="/images/puglia-torre-a-mare.jpg" alt="The seafront in Torre a Mare, Bari" loading="eager" />
+    <picture>
+      <source type="image/webp" srcset="/images/puglia-torre-a-mare-480.webp 480w, /images/puglia-torre-a-mare.webp 900w" sizes="100vw">
+      <img src="/images/puglia-torre-a-mare.jpg" alt="The seafront in Torre a Mare, Bari" width="900" height="1600" loading="eager" fetchpriority="high" />
+    </picture>
     <div class="hero__scrim"></div>
     <div class="hero__content">
       <p class="eyebrow">Practical information · Torre a Mare</p>
@@ -282,6 +291,16 @@
           <span><b>Monopoli</b>Historic harbour and sandy beaches</span>
         </a>
       </div>
+    </nav>
+
+    <nav class="morelinks morelinks--testo">
+      <h2>More places to visit</h2>
+      <ul>
+        <li><a href="/grotte-di-castellana-en.html">The Castellana Caves</a> — sixty metres underground, about 40 minutes away</li>
+        <li><a href="/valle-d-itria-en.html">The Valle d'Itria</a> — Locorotondo, Cisternino, Martina Franca and Ostuni</li>
+        <li><a href="/matera-en.html">Matera and the Sassi</a> — a little over an hour, in Basilicata</li>
+        <li><a href="/come-arrivare-en.html">Getting to Bellavista Domus</a></li>
+      </ul>
     </nav>
 
     <hr>

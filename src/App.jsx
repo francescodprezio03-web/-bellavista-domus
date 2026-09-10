@@ -115,6 +115,12 @@ const CONFIG = {
       polignano: "/images/puglia-polignano.jpg",
       monopoli: "/images/puglia-monopoli.jpg",
       alberobello: "/images/puglia-alberobello.jpg",
+      // Ritagli verticali dedicati: il riquadro della scheda è 3:4, e una
+      // fotografia orizzontale ci verrebbe ingrandita di oltre due volte.
+      // Le pagine guida usano invece la versione larga, senza suffisso.
+      castellana: "/images/puglia-castellana-scheda.jpg",
+      matera: "/images/puglia-matera-scheda.jpg",
+      valleditria: "/images/puglia-valle-d-itria-scheda.jpg",
     },
   },
   seo: {
@@ -249,6 +255,9 @@ const translations = {
         { key: "polignano", name: "Polignano a Mare", desc: "Celebre per le sue scogliere a picco sul mare.", link: "/polignano-a-mare.html", linkLabel: "Cosa vedere a Polignano a Mare" },
         { key: "monopoli", name: "Monopoli", desc: "Porto storico e centro antico affacciato sull'Adriatico.", link: "/monopoli.html", linkLabel: "Cosa vedere a Monopoli" },
         { key: "alberobello", name: "Alberobello", desc: "Patrimonio UNESCO, famosa per i trulli.", link: "/alberobello.html", linkLabel: "Cosa vedere ad Alberobello" },
+        { key: "castellana", name: "Grotte di Castellana", desc: "Sessanta metri sottoterra, tra stalattiti e alabastro.", link: "/grotte-di-castellana.html", linkLabel: "Come visitarle" },
+        { key: "valleditria", name: "Valle d'Itria", desc: "Locorotondo, Cisternino, Martina Franca e Ostuni.", link: "/valle-d-itria.html", linkLabel: "Il giro in una giornata" },
+        { key: "matera", name: "Matera", desc: "I Sassi, patrimonio UNESCO, poco più di un'ora.", link: "/matera.html", linkLabel: "Organizzare la visita" },
       ],
     },
     /* Domande frequenti. Ogni risposta deve restare allineata al blocco
@@ -332,6 +341,11 @@ const translations = {
       rights: "Tutti i diritti riservati.",
       top: "Torna su",
       privacyUrl: "/privacy.html",
+      pagesTitle: "Pagine",
+      pages: [
+        { href: "/come-arrivare.html", label: "Come arrivare" },
+        { href: "/torre-a-mare.html", label: "Cosa vedere a Torre a Mare" },
+      ],
     },
     stickyCta: "Verifica disponibilità",
     photoPlaceholder: "Fotografia in arrivo",
@@ -455,6 +469,9 @@ const translations = {
         { key: "polignano", name: "Polignano a Mare", desc: "Famous for its cliffs overlooking the sea.", link: "/polignano-a-mare-en.html", linkLabel: "What to see in Polignano a Mare" },
         { key: "monopoli", name: "Monopoli", desc: "Historic port and old town facing the Adriatic.", link: "/monopoli-en.html", linkLabel: "What to see in Monopoli" },
         { key: "alberobello", name: "Alberobello", desc: "UNESCO World Heritage site, famous for its trulli.", link: "/alberobello-en.html", linkLabel: "What to see in Alberobello" },
+        { key: "castellana", name: "Castellana Caves", desc: "Sixty metres underground, among stalactites and alabaster.", link: "/grotte-di-castellana-en.html", linkLabel: "How to visit" },
+        { key: "valleditria", name: "Valle d'Itria", desc: "Locorotondo, Cisternino, Martina Franca and Ostuni.", link: "/valle-d-itria-en.html", linkLabel: "A day out" },
+        { key: "matera", name: "Matera", desc: "The Sassi, a UNESCO site, a little over an hour away.", link: "/matera-en.html", linkLabel: "Planning the visit" },
       ],
     },
     faq: {
@@ -534,6 +551,11 @@ const translations = {
       rights: "All rights reserved.",
       top: "Back to top",
       privacyUrl: "/privacy-en.html",
+      pagesTitle: "Pages",
+      pages: [
+        { href: "/come-arrivare-en.html", label: "Getting here" },
+        { href: "/torre-a-mare-en.html", label: "What to see in Torre a Mare" },
+      ],
     },
     stickyCta: "Check availability",
     photoPlaceholder: "Photo coming soon",
@@ -657,6 +679,12 @@ const VARIANTI_IMMAGINI = {
   "intro": { w: 1600, h: 2133, v: [480, 900, 1400, 1600] },
   "posizione-mare": { w: 1900, h: 2533, v: [480, 900, 1400, 1900] },
   "puglia-alberobello": { w: 900, h: 1125, v: [480, 900] },
+  "puglia-castellana-scheda": { w: 960, h: 1280, v: [480, 900, 960] },
+  "puglia-matera-scheda": { w: 1080, h: 1440, v: [480, 900, 1080] },
+  "puglia-valle-d-itria-scheda": { w: 1080, h: 1440, v: [480, 900, 1080] },
+  "puglia-castellana": { w: 1920, h: 1280, v: [480, 900, 1400, 1920] },
+  "puglia-matera": { w: 2560, h: 1707, v: [480, 900, 1400, 1900, 2560] },
+  "puglia-valle-d-itria": { w: 2560, h: 1440, v: [480, 900, 1400, 1900, 2560] },
   "puglia-bari": { w: 900, h: 1600, v: [480, 900] },
   "puglia-monopoli": { w: 900, h: 1600, v: [480, 900] },
   "puglia-polignano": { w: 900, h: 1200, v: [480, 900] },
@@ -1183,7 +1211,7 @@ function Location({ t }) {
           {t.location.places.map((p, i) => (
             <Reveal key={p.key} delay={i * 70} className="bd-explore__card">
               <div className="bd-explore__img">
-                <PhotoSlot src={CONFIG.images.explore[p.key]} alt={p.name} compact placeholderText={t.photoPlaceholder} sizes="(max-width: 900px) 50vw, 20vw" />
+                <PhotoSlot src={CONFIG.images.explore[p.key]} alt={p.name} compact placeholderText={t.photoPlaceholder} sizes="(max-width: 900px) 50vw, 25vw" />
               </div>
               <h4>{p.name}</h4>
               <p>{p.desc}</p>
@@ -1518,7 +1546,14 @@ function Footer({ t, go }) {
           <p>{t.footer.cin}: {CONFIG.property.cin}</p>
         </div>
         <div>
-          <p className="bd-footer__title">&nbsp;</p>
+          {/* Le pagine informative vivono fuori dalla homepage: senza un
+              rimando qui, chi le cerca in fondo alla pagina non le trova. */}
+          <p className="bd-footer__title">{t.footer.pagesTitle}</p>
+          {t.footer.pages.map((pg) => (
+            <p key={pg.href}>
+              <a className="bd-footer__page" href={pg.href}>{pg.label}</a>
+            </p>
+          ))}
           <button className="bd-footer__totop" onClick={() => go("#home")}>{t.footer.top} ↑</button>
         </div>
       </div>
@@ -2266,7 +2301,7 @@ const STYLES = `
 }
 
 .bd-explore{max-width:1280px;margin:110px auto 0;padding:0 32px;}
-.bd-explore__grid{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;}
+.bd-explore__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px 22px;}
 .bd-explore__img{position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:2px;margin-bottom:18px;}
 .bd-explore__img img{transition:transform .7s cubic-bezier(.16,.8,.24,1);}
 .bd-explore__card:hover .bd-explore__img img{transform:scale(1.06);}
@@ -2307,6 +2342,13 @@ const STYLES = `
 }
 .bd-footer__grid p{margin:0 0 6px;}
 .bd-footer__title{text-transform:uppercase;letter-spacing:0.12em;font-size:11px;color:var(--sea-deep);font-weight:600;margin-bottom:14px !important;}
+/* Selettore a due classi: la regola generale .bd-root a imposta
+   color:inherit e altrimenti vincerebbe su questa. */
+.bd-footer .bd-footer__page{
+  color:rgba(255,255,255,0.78);border-bottom:1px solid rgba(255,255,255,0.22);
+  transition:color .15s, border-color .15s;
+}
+.bd-footer .bd-footer__page:hover{color:var(--white);border-bottom-color:var(--sand);}
 .bd-footer__totop{font-size:13px;color:var(--sea-deep);text-decoration:underline;text-underline-offset:3px;}
 .bd-footer__bottom{max-width:1280px;margin:26px auto 0;font-size:12px;color:var(--stone);letter-spacing:0.02em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
 .bd-footer__privacy{text-decoration:underline;text-underline-offset:3px;}
