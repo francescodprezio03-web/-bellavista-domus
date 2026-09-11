@@ -179,6 +179,24 @@ const translations = {
       },
     },
     gallery: { eyebrow: "Fotografie", title: "Galleria" },
+    /* Recensione reale, riportata parola per parola come l'ha scritta
+       l'ospite: non si corregge, non si accorcia, non si abbellisce. È
+       pubblica su Airbnb e chiunque può confrontarla. Finché è una sola
+       resta una citazione singola: una griglia con una scheda sola
+       direbbe all'ospite che nessun altro ha ancora dormito qui. */
+    testimonial: {
+      eyebrow: "La voce degli ospiti",
+      quote:
+        "Ci siamo trovati benissimo in 6, spazi ampi, casa completa di tutto e camere con aria condizionata, terrazzino esterno stupendo. Francesco è stato gentilissimo e disponibile per qualsiasi dubbio riguardo la casa e non solo. Ci è sembrato di essere a casa, con il vantaggio di essere a due passi dal mare. Consigliatissimo, spero di poterci tornare presto",
+      translation: null,
+      author: "Gaetana",
+      /* Solo il mese, non le date esatte del soggiorno: sono informazioni
+         dell'ospite, e per chi legge il mese basta a dare il contesto. */
+      stay: "agosto 2026",
+      stayIso: "2026-08",
+      rating: "Valutazione 5 su 5",
+      source: "Recensione pubblica su Airbnb",
+    },
     /* Elenco delle dotazioni reali della casa. Regola: si scrive solo ciò che
        c'è davvero. Un ospite che non trova quello che ha letto qui lascia una
        recensione negativa, e su una struttura giovane pesa moltissimo. */
@@ -309,25 +327,37 @@ const translations = {
     booking: {
       eyebrow: "Prenota",
       title: "Pronto a svegliarti con il mare davanti?",
-      text: "Scegli la piattaforma che preferisci: la disponibilità è sempre aggiornata.",
-      booking: "Prenota su Booking.com",
-      airbnb: "Prenota su Airbnb",
+      /* La ragione dello sconto è scritta, non promessa: prenotando qui non
+         c'è la commissione della piattaforma. È una frase da mantenere
+         davvero — se il prezzo diretto non è più basso, è pubblicità
+         ingannevole. In Italia le clausole di parity rate sono nulle per
+         legge dal 2017 (L. 124/2017, art. 1 c. 166), quindi si può fare. */
+      text: "Scrivici direttamente: non paghi le commissioni della piattaforma, e a parità di date il prezzo che ti facciamo è più basso.",
+      direct: "Scrivici e prenota diretto",
+      alt: "Oppure prenota dove preferisci",
+      booking: "Booking.com",
+      airbnb: "Airbnb",
     },
     form: {
       eyebrow: "Richiesta",
       title: "Verifica le date del tuo soggiorno",
-      text: "Scrivici le date e quanti siete: ti rispondiamo con disponibilità e prezzo, di solito entro poche ore.",
+      text: "Scrivici quando vorresti venire e quanti siete: ti rispondiamo con disponibilità e prezzo, di solito entro poche ore. Se le date non sono ancora certe, lasciale in bianco e raccontacelo nel messaggio.",
       name: "Nome e cognome",
+      /* Le date NON sono obbligatorie: chi cerca a gennaio per agosto non le
+         ha, e un campo obbligatorio che non si può compilare fa chiudere la
+         pagina invece di far scrivere. */
+      arrival: "Arrivo (facoltativo)",
+      departure: "Partenza (facoltativo)",
       email: "Email",
-      arrival: "Arrivo",
-      departure: "Partenza",
       guests: "Ospiti",
       message: "Messaggio (facoltativo)",
       consent: "Ho letto e accetto l'",
       consentLink: "informativa sulla privacy",
       submit: "Invia richiesta",
       sending: "Invio in corso…",
-      error: "Non è stato possibile inviare la richiesta. Riprova, oppure scrivici direttamente a " + CONFIG.property.email + ".",
+      /* Se l'invio fallisce l'ospite non deve restare senza strada: qui ci
+         sono entrambi i recapiti, non solo l'email. */
+      error: "Non è stato possibile inviare la richiesta. Scrivici direttamente a " + CONFIG.property.email + " oppure su WhatsApp al " + CONFIG.property.phone + ".",
       doneTitle: "Richiesta ricevuta",
       doneText: "Grazie, ti rispondiamo al più presto con disponibilità e prezzo. Se hai fretta, puoi scriverci anche su WhatsApp.",
       honeypot: "Non compilare questo campo",
@@ -348,6 +378,13 @@ const translations = {
       ],
     },
     stickyCta: "Verifica disponibilità",
+    /* Il messaggio precompilato di WhatsApp e la descrizione per gli screen
+       reader vivono qui e non nel componente: un ospite inglese che tocca il
+       pulsante non deve ritrovarsi a scrivere in italiano. */
+    whatsapp: {
+      aria: "Scrivici su WhatsApp",
+      message: "Ciao! Vorrei avere informazioni sulla disponibilità di Bellavista Domus.",
+    },
     photoPlaceholder: "Fotografia in arrivo",
     cookieBanner: {
       ariaLabel: "Consenso cookie",
@@ -396,6 +433,21 @@ const translations = {
       },
     },
     gallery: { eyebrow: "Photographs", title: "Gallery" },
+    /* La citazione resta in italiano anche qui, con la traduzione sotto:
+       è così che l'ha scritta l'ospite ed è così che si legge su Airbnb.
+       Tradurla e basta la farebbe sembrare scritta da noi. */
+    testimonial: {
+      eyebrow: "In our guests' words",
+      quote:
+        "Ci siamo trovati benissimo in 6, spazi ampi, casa completa di tutto e camere con aria condizionata, terrazzino esterno stupendo. Francesco è stato gentilissimo e disponibile per qualsiasi dubbio riguardo la casa e non solo. Ci è sembrato di essere a casa, con il vantaggio di essere a due passi dal mare. Consigliatissimo, spero di poterci tornare presto",
+      translation:
+        "The six of us had a wonderful stay: plenty of room, a house with everything you need, air conditioning in the bedrooms and a beautiful terrace. Francesco was extremely kind and happy to answer any question, about the house and beyond. It felt like being at home, with the sea a couple of steps away. Highly recommended, I hope to come back soon.",
+      author: "Gaetana",
+      stay: "August 2026",
+      stayIso: "2026-08",
+      rating: "Rated 5 out of 5",
+      source: "Public review on Airbnb",
+    },
     amenities: {
       eyebrow: "Amenities",
       title: "What you will find inside",
@@ -519,25 +571,27 @@ const translations = {
     booking: {
       eyebrow: "Book",
       title: "Ready to wake up by the sea?",
-      text: "Choose the platform you prefer: availability is always up to date.",
-      booking: "Book on Booking.com",
-      airbnb: "Book on Airbnb",
+      text: "Write to us directly: you pay no platform commission, and for the same dates the price we quote you is lower.",
+      direct: "Write to us and book direct",
+      alt: "Or book wherever you prefer",
+      booking: "Booking.com",
+      airbnb: "Airbnb",
     },
     form: {
       eyebrow: "Enquiry",
       title: "Check the dates of your stay",
-      text: "Tell us your dates and how many you are: we reply with availability and price, usually within a few hours.",
+      text: "Tell us when you would like to come and how many you are: we reply with availability and price, usually within a few hours. If your dates are not fixed yet, leave them blank and tell us in the message.",
       name: "Full name",
+      arrival: "Arrival (optional)",
+      departure: "Departure (optional)",
       email: "Email",
-      arrival: "Arrival",
-      departure: "Departure",
       guests: "Guests",
       message: "Message (optional)",
       consent: "I have read and accept the",
       consentLink: "privacy policy",
       submit: "Send enquiry",
       sending: "Sending…",
-      error: "We could not send your enquiry. Please try again, or write to us directly at " + CONFIG.property.email + ".",
+      error: "We could not send your enquiry. Please write to us directly at " + CONFIG.property.email + " or on WhatsApp at " + CONFIG.property.phone + ".",
       doneTitle: "Enquiry received",
       doneText: "Thank you. We will get back to you shortly with availability and price. If you are in a hurry, you can also reach us on WhatsApp.",
       honeypot: "Do not fill in this field",
@@ -558,6 +612,10 @@ const translations = {
       ],
     },
     stickyCta: "Check availability",
+    whatsapp: {
+      aria: "Message us on WhatsApp",
+      message: "Hello! I would like some information about availability at Bellavista Domus.",
+    },
     photoPlaceholder: "Photo coming soon",
     cookieBanner: {
       ariaLabel: "Cookie consent",
@@ -976,9 +1034,9 @@ function Header({ lang, t, go }) {
             ))}
           </nav>
           <a
-            href="#booking"
+            href="#contact"
             className="bd-btn bd-btn--primary bd-btn--sm bd-nav--desktop-only"
-            onClick={(e) => { e.preventDefault(); handleGo("#booking"); }}
+            onClick={(e) => { e.preventDefault(); handleGo("#contact"); }}
           >
             {t.nav.book}
           </a>
@@ -994,7 +1052,7 @@ function Header({ lang, t, go }) {
             {item.label}
           </a>
         ))}
-        <a href="#booking" className="bd-btn bd-btn--primary" onClick={(e) => { e.preventDefault(); handleGo("#booking"); }}>
+        <a href="#contact" className="bd-btn bd-btn--primary" onClick={(e) => { e.preventDefault(); handleGo("#contact"); }}>
           {t.nav.book}
         </a>
       </div>
@@ -1026,7 +1084,7 @@ function Hero({ t, go }) {
         <p className="bd-hero__subtitle">{t.hero.subtitle}</p>
         <p className="bd-hero__info">{t.hero.info}</p>
         <div className="bd-hero__ctas">
-          <a href="#booking" className="bd-btn bd-btn--primary" onClick={(e) => { e.preventDefault(); go("#booking"); }}>
+          <a href="#contact" className="bd-btn bd-btn--primary" onClick={(e) => { e.preventDefault(); go("#contact"); }}>
             {t.hero.ctaPrimary}
           </a>
           <a href="#house" className="bd-btn bd-btn--ghost" onClick={(e) => { e.preventDefault(); go("#house"); }}>
@@ -1174,6 +1232,56 @@ function Gallery({ t }) {
           <button className="bd-lightbox__nav bd-lightbox__nav--next" onClick={next} aria-label="Next">›</button>
         </div>
       )}
+    </section>
+  );
+}
+
+/* -------------------------------- TESTIMONIAL ------------------------------------ */
+
+/* Una sola citazione, a tutta larghezza. Struttura figure/blockquote/
+   figcaption: l'attribuzione non può stare dentro il blockquote, perché il
+   blockquote contiene solo ciò che l'ospite ha effettivamente scritto.
+   Il componente si toglie da solo di mezzo se la chiave non c'è, così
+   aggiungere una lingua non può far esplodere la pagina. */
+function Testimonial({ t }) {
+  const v = t.testimonial;
+  if (!v || !v.quote) return null;
+  return (
+    <section className="bd-quote">
+      <Reveal className="bd-quote__inner">
+        <p className="bd-eyebrow">{v.eyebrow}</p>
+        <div className="bd-hairline" />
+        <figure className="bd-quote__figure">
+          <blockquote className="bd-quote__text" cite={CONFIG.links.airbnb}>
+            {"“" + v.quote + "”"}
+          </blockquote>
+          {v.translation ? (
+            <p className="bd-quote__translation">{v.translation}</p>
+          ) : null}
+          <figcaption className="bd-quote__meta">
+            {/* Le stelle sono decorative: il punteggio vero lo legge lo
+                screen reader dall'aria-label, non da cinque simboli. */}
+            <span className="bd-quote__stars" role="img" aria-label={v.rating}>
+              <span aria-hidden="true">★★★★★</span>
+            </span>
+            <span className="bd-quote__author">{v.author}</span>
+            {v.stay ? (
+              <time className="bd-quote__stay" dateTime={v.stayIso}>
+                {v.stay}
+              </time>
+            ) : null}
+            <a
+              className="bd-quote__link"
+              href={CONFIG.links.airbnb}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => traccia("click_ota", { piattaforma: "airbnb_recensione" })}
+            >
+              {v.source}
+            </a>
+          </figcaption>
+        </figure>
+      </Reveal>
     </section>
   );
 }
@@ -1339,9 +1447,12 @@ function Faq({ t }) {
 /* ------------------------------ RICHIESTA DISPONIBILITÀ ---------------------------- */
 
 /* Nome del modulo. Deve coincidere ESATTAMENTE con quello del modulo statico
-   nascosto in index.html e in en/index.html: Netlify legge l'HTML pubblicato
-   per sapere che il modulo esiste e quali campi ha, e il sito qui è costruito
-   da React nel browser, dove Netlify non arriva a guardare. */
+   nascosto in index.html: Netlify legge l'HTML pubblicato per sapere che il
+   modulo esiste e quali campi ha, e il sito qui è costruito da React nel
+   browser, dove Netlify non arriva a guardare. Una sola dichiarazione basta
+   per tutto il sito — anche gli invii dalla pagina inglese vengono
+   riconosciuti dal valore di form-name — ma l'elenco dei campi qui sotto e
+   quello del modulo statico devono restare identici. */
 const NOME_MODULO = "richiesta-disponibilita";
 
 const VUOTO = { nome: "", email: "", arrivo: "", partenza: "", ospiti: "2", messaggio: "", privacy: false };
@@ -1390,6 +1501,7 @@ function ContactForm({ t }) {
           partenza: valori.partenza,
           ospiti: valori.ospiti,
           messaggio: valori.messaggio,
+          privacy: valori.privacy ? "accettata" : "non accettata",
         }),
       });
       if (!risposta.ok) throw new Error(risposta.status);
@@ -1449,7 +1561,7 @@ function ContactForm({ t }) {
 
           <label className="bd-field">
             <span>{t.form.arrival}</span>
-            <input type="date" name="arrivo" value={valori.arrivo} onChange={aggiorna("arrivo")} min={oggi || undefined} required />
+            <input type="date" name="arrivo" value={valori.arrivo} onChange={aggiorna("arrivo")} min={oggi || undefined} />
           </label>
 
           <label className="bd-field">
@@ -1460,7 +1572,6 @@ function ContactForm({ t }) {
               value={valori.partenza}
               onChange={aggiorna("partenza")}
               min={valori.arrivo || oggi || undefined}
-              required
             />
           </label>
 
@@ -1479,7 +1590,10 @@ function ContactForm({ t }) {
           </label>
 
           <label className="bd-field--full bd-form__consent">
-            <input type="checkbox" checked={valori.privacy} onChange={aggiorna("privacy")} required />
+            {/* Il campo ha un name e viene inviato: chiedere un consenso e
+                non conservarne traccia lo rende inutile il giorno in cui
+                bisogna dimostrare di averlo raccolto. */}
+            <input type="checkbox" name="privacy" checked={valori.privacy} onChange={aggiorna("privacy")} required />
             <span>
               {t.form.consent}{" "}
               <a href={t.footer.privacyUrl} target="_blank" rel="noopener noreferrer">{t.form.consentLink}</a>.
@@ -1502,7 +1616,12 @@ function ContactForm({ t }) {
 
 /* --------------------------------- BOOKING -------------------------------------- */
 
-function Booking({ t }) {
+/* Gerarchia deliberata: il contatto diretto è il pulsante pieno, le due
+   piattaforme sono link secondari sotto. Chi vuole Booking o Airbnb li trova
+   comunque, ma chi non ha una preferenza scrive qui — e su quella
+   prenotazione non c'è commissione. Invertire questa gerarchia significa
+   pagare due volte lo stesso ospite quando c'è pubblicità a pagamento. */
+function Booking({ t, go }) {
   return (
     <section id="booking" className="bd-booking">
       <div className="bd-booking__glow" />
@@ -1512,10 +1631,21 @@ function Booking({ t }) {
         <h2 className="bd-h2 bd-h2--light">{t.booking.title}</h2>
         <p className="bd-body bd-body--light">{t.booking.text}</p>
         <div className="bd-booking__ctas">
-          <a href={CONFIG.links.booking} target="_blank" rel="noopener noreferrer" className="bd-btn bd-btn--primary" onClick={() => traccia("click_ota", { piattaforma: "booking" })}>
+          <a
+            href="#contact"
+            className="bd-btn bd-btn--primary"
+            onClick={(e) => { e.preventDefault(); go("#contact"); traccia("contatto", { metodo: "diretto_prenota" }); }}
+          >
+            {t.booking.direct}
+          </a>
+        </div>
+        <p className="bd-booking__alt">{t.booking.alt}</p>
+        <div className="bd-booking__ota">
+          <a href={CONFIG.links.booking} target="_blank" rel="noopener noreferrer" className="bd-booking__otalink" onClick={() => traccia("click_ota", { piattaforma: "booking" })}>
             {t.booking.booking}
           </a>
-          <a href={CONFIG.links.airbnb} target="_blank" rel="noopener noreferrer" className="bd-btn bd-btn--ghost" onClick={() => traccia("click_ota", { piattaforma: "airbnb" })}>
+          <span className="bd-booking__sep" aria-hidden="true">·</span>
+          <a href={CONFIG.links.airbnb} target="_blank" rel="noopener noreferrer" className="bd-booking__otalink" onClick={() => traccia("click_ota", { piattaforma: "airbnb" })}>
             {t.booking.airbnb}
           </a>
         </div>
@@ -1608,18 +1738,16 @@ function CookieBanner({ t }) {
 
 /* ------------------------------- WHATSAPP -------------------------------- */
 
-function WhatsAppButton() {
+function WhatsAppButton({ t }) {
   const digits = CONFIG.property.phone.replace(/\D/g, ""); // solo numeri, per il link wa.me
-  const message = encodeURIComponent(
-    "Ciao! Vorrei avere informazioni sulla disponibilità di Bellavista Domus."
-  );
+  const message = encodeURIComponent(t.whatsapp.message);
   return (
     <a
       className="bd-whatsapp"
       href={`https://wa.me/${digits}?text=${message}`}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Scrivici su WhatsApp"
+      aria-label={t.whatsapp.aria}
       onClick={() => traccia("contatto", { metodo: "whatsapp" })}
     >
       <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true">
@@ -1640,7 +1768,9 @@ function StickyCta({ t, go }) {
   }, []);
   return (
     <div className={`bd-stickycta ${show ? "is-visible" : ""}`}>
-      <button onClick={() => go("#booking")}>{t.stickyCta}</button>
+      {/* Porta al modulo, non alla sezione Prenota: su telefono questo è il
+          pulsante più cliccato di tutto il sito. */}
+      <button onClick={() => go("#contact")}>{t.stickyCta}</button>
     </div>
   );
 }
@@ -2036,6 +2166,45 @@ const STYLES = `
   .bd-gallery__item{scroll-snap-align:start;grid-column:auto !important;grid-row:auto !important;}
 }
 
+/* Testimonial: una citazione sola, su fascia sabbia per staccarla dal
+   flusso. Il link porta un selettore a DUE classi perche .bd-root a
+   imposta color:inherit e batterebbe la singola classe. */
+.bd-quote{
+  background:var(--ivory-2);border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);padding:110px 32px;
+}
+.bd-quote__inner{max-width:820px;margin:0 auto;text-align:center;}
+.bd-quote .bd-eyebrow{justify-content:center;}
+.bd-quote .bd-hairline{margin-left:auto;margin-right:auto;}
+.bd-quote__figure{margin:0;}
+.bd-quote__text{
+  font-family:'Fraunces',serif;font-weight:340;font-style:italic;
+  font-size:clamp(21px,2.4vw,29px);line-height:1.55;letter-spacing:-0.01em;
+  color:var(--sea-deep);margin:0;text-wrap:balance;
+}
+.bd-quote__translation{
+  font-family:'Inter',sans-serif;font-size:15px;line-height:1.75;
+  color:var(--stone);margin:22px 0 0;
+}
+.bd-quote__meta{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+  gap:8px 14px;margin:34px 0 0;
+  font-family:'Inter',sans-serif;font-size:14px;letter-spacing:0.01em;
+}
+.bd-quote__stars{color:var(--sand);font-size:16px;letter-spacing:0.14em;}
+.bd-quote__author{font-weight:500;color:var(--sea-deep);}
+.bd-quote__stay{color:var(--stone);}
+.bd-quote .bd-quote__link{
+  color:var(--sea);text-decoration:none;
+  border-bottom:1px solid rgba(56,102,124,0.35);transition:border-color .15s;
+}
+.bd-quote .bd-quote__link:hover,
+.bd-quote .bd-quote__link:focus-visible{border-bottom-color:var(--sea);}
+@media (max-width:900px){
+  .bd-quote{padding:76px 22px;}
+  .bd-quote__meta{margin-top:26px;}
+}
+
 .bd-lightbox{
   position:fixed;inset:0;background:rgba(8,18,25,0.96);z-index:300;
   display:flex;align-items:center;justify-content:center;padding:40px;
@@ -2329,6 +2498,24 @@ const STYLES = `
 .bd-booking__inner .bd-hairline{margin-left:auto;margin-right:auto;}
 .bd-booking__inner .bd-body{margin-left:auto;margin-right:auto;}
 .bd-booking__ctas{display:flex;gap:34px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:40px;}
+/* Le due piattaforme restano raggiungibili ma in secondo piano: testo, non
+   pulsanti. Il selettore del link e' a due classi perche .bd-root a
+   imposta color:inherit e batterebbe la singola classe. */
+.bd-booking__alt{
+  font-family:'Inter',sans-serif;font-size:13px;letter-spacing:0.06em;
+  text-transform:uppercase;color:rgba(255,255,255,0.55);margin:38px 0 0;
+}
+.bd-booking__ota{
+  display:flex;gap:12px;justify-content:center;align-items:center;
+  flex-wrap:wrap;margin-top:12px;font-family:'Inter',sans-serif;font-size:15px;
+}
+.bd-booking .bd-booking__otalink{
+  color:rgba(255,255,255,0.82);text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,0.32);transition:border-color .15s,color .15s;
+}
+.bd-booking .bd-booking__otalink:hover,
+.bd-booking .bd-booking__otalink:focus-visible{color:#fff;border-bottom-color:#fff;}
+.bd-booking__sep{color:rgba(255,255,255,0.4);}
 
 /* Footer */
 .bd-footer{background:var(--ivory-2);border-top:1px solid var(--line);padding:110px 32px 34px;}
@@ -2440,11 +2627,14 @@ export default function BellavistaDomus({ lang = "it" }) {
       <Features t={t} />
       <House t={t} />
       <Gallery t={t} />
+      {/* Subito dopo le fotografie: si è appena finito di guardare la casa,
+          ed è il momento in cui la parola di un ospite pesa di più. */}
+      <Testimonial t={t} />
       {/* Dopo le fotografie e prima della posizione: si vede la casa, si
           legge cosa contiene, poi si scopre dov'è. */}
       <Amenities t={t} />
       <Location t={t} />
-      <Booking t={t} />
+      <Booking t={t} go={go} />
       {/* Le FAQ stanno subito prima del modulo: si tolgono gli ultimi dubbi,
           e chi ne ha ancora trova il modulo già lì sotto. */}
       <Faq t={t} />
@@ -2453,7 +2643,7 @@ export default function BellavistaDomus({ lang = "it" }) {
       <ContactForm t={t} />
       <Footer t={t} go={go} />
       <StickyCta t={t} go={go} />
-      <WhatsAppButton />
+      <WhatsAppButton t={t} />
       <CookieBanner t={t} />
     </div>
   );

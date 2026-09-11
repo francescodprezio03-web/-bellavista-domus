@@ -61,6 +61,49 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
     devono restare identici nei due posti**, altrimenti Netlify rifiuta gli
     invii. In sviluppo locale l'invio fallisce sempre: non esiste nessun
     Netlify che raccolga i dati, e l'errore mostrato è atteso.
+  - **Dove portano i pulsanti — regola da non invertire.** Tutti i richiami
+    principali ("Prenota ora" nell'intestazione desktop e nel menu mobile,
+    "Verifica disponibilità" nell'hero, la barra fissa `StickyCta`, il
+    pulsante pieno della sezione `Booking`) puntano a **`#contact`**, cioè
+    al modulo. Booking.com e Airbnb restano raggiungibili, ma come **link
+    testuali in secondo piano** dentro `Booking`, mai come pulsanti. Il
+    motivo è economico: su una prenotazione diretta non c'è commissione, e
+    con pubblicità a pagamento mandare quel traffico a un'OTA significa
+    pagare due volte lo stesso ospite. Nel sorgente **non deve esistere
+    nessun link a `#booking`**: la sezione conserva l'`id` solo per chi ci
+    arriva scorrendo. La frase di `booking.text` promette un prezzo più
+    basso di quello delle piattaforme — è una promessa da mantenere davvero,
+    e in Italia è lecita perché le clausole di parity rate sono nulle per
+    legge dal 2017 (L. 124/2017, art. 1 c. 166).
+  - **Modulo: date facoltative.** `arrivo` e `partenza` non hanno `required`
+    e non devono riacquistarlo. Chi cerca a gennaio per agosto non ha date
+    certe, e un campo obbligatorio che non si può compilare fa chiudere la
+    pagina invece di far scrivere. Obbligatori restano solo nome, email e
+    consenso.
+  - **Consenso privacy.** Il checkbox ha `name="privacy"`, viene inviato a
+    Netlify come `"accettata"`/`"non accettata"` ed è dichiarato nel modulo
+    statico di `index.html`. Chiedere un consenso senza conservarne traccia
+    lo rende inutile proprio quando servirebbe dimostrarlo.
+  - `WhatsAppButton` riceve `t`: il messaggio precompilato e l'`aria-label`
+    stanno in `translations.<lang>.whatsapp`, mai nel componente. Un ospite
+    inglese che tocca il pulsante non deve ritrovarsi a scrivere in italiano.
+  - `Testimonial`: la recensione degli ospiti, subito dopo la galleria.
+    Il testo in `translations.<lang>.testimonial.quote` è **riportato parola
+    per parola** come l'ospite l'ha scritto su Airbnb, punteggiatura
+    compresa: non si corregge, non si accorcia, non si riscrive — è
+    pubblico e confrontabile. Nella versione inglese la citazione resta in
+    italiano e la traduzione va nel campo `translation` (in `it` è `null`).
+    Finché la recensione è **una sola** resta una citazione a tutta
+    larghezza: una griglia con una scheda sola direbbe al visitatore che
+    nessun altro ha ancora dormito lì. Da tre o quattro in su ha senso
+    convertirla in griglia.
+    **Non aggiungere mai un blocco JSON-LD `Review`/`AggregateRating` alle
+    home.** Dal 2019 Google ignora le recensioni marcate su
+    `LodgingBusiness`/`LocalBusiness` quando è la struttura stessa a
+    controllarle ("self-serving"): il markup non produce stelline nei
+    risultati, e le uniche stelline reali arrivano dalla scheda Google
+    Business. Le date esatte del soggiorno non si pubblicano: solo il mese
+    (`stay`, con `stayIso` per l'attributo `datetime` del tag `time`).
   - `Faq`: domande frequenti, costruite con `details`/`summary` nativi —
     niente JavaScript, accessibili da tastiera, e il testo resta nell'HTML
     anche a fisarmonica chiusa, quindi leggibile da motori di ricerca e
