@@ -199,13 +199,14 @@
 <body>
   <header>
     <a href="/" class="logo">Bellavista Domus</a>
-    <a href="/" class="back">← Torna al sito</a>
+    <a href="/#explore" class="back">← Torna al sito</a>
   </header>
 
   <div class="hero">
     <picture>
-      <source type="image/webp" srcset="/images/puglia-alberobello-480.webp 480w, /images/puglia-alberobello.webp 900w" sizes="100vw">
-      <img src="/images/puglia-alberobello.jpg" alt="I trulli del rione Monti ad Alberobello" width="900" height="1125" loading="eager" fetchpriority="high" />
+      <source media="(max-width: 700px)" type="image/webp" srcset="/images/puglia-alberobello-scheda-480.webp 480w, /images/puglia-alberobello-scheda-900.webp 900w, /images/puglia-alberobello-scheda.webp 1080w" sizes="100vw">
+      <source type="image/webp" srcset="/images/puglia-alberobello-480.webp 480w, /images/puglia-alberobello-900.webp 900w, /images/puglia-alberobello-1400.webp 1400w, /images/puglia-alberobello-1900.webp 1900w, /images/puglia-alberobello.webp 2560w" sizes="100vw">
+      <img src="/images/puglia-alberobello.jpg" alt="I trulli del rione Monti ad Alberobello" width="2560" height="823" loading="eager" fetchpriority="high" />
     </picture>
     <div class="hero__scrim"></div>
     <div class="hero__content">
@@ -244,7 +245,13 @@
       uniche al mondo, dalla posa a secco delle pietre fino agli arredi
       d'epoca conservati al suo interno.
     </p>
-
+    <p>
+      L'ingresso costa <strong>2,50 €</strong>. È aperto dalle 10:00 alle 12:45
+      e dalle 15:30 alle 18:30 (fino alle 18:00 da novembre a marzo). Gli orari
+      cambiano di stagione in stagione: se ci tieni, controllali sul
+      <a class="maplink" href="https://www.trullosovrano.eu/ingresso-biglietti/"
+         target="_blank" rel="noopener">sito ufficiale</a> prima di partire.
+    </p>
     <h2>Se Alberobello ti sembra troppo turistica</h2>
     <p>
       Alberobello è bellissima ma molto frequentata. Nella stessa zona, la Valle
@@ -257,11 +264,12 @@
 
     <h2>Dove parcheggiare</h2>
     <p>
-      I parcheggi adibiti si trovano facilmente. Come per Monopoli,
-      <strong>dopo le 19</strong> è il momento più comodo, e anche il più bello
-      per girare tra i trulli.
+      I parcheggi adibiti si trovano senza grosse difficoltà, appena fuori dal
+      centro. Un avvertimento sull'orario: a differenza di Monopoli, ad
+      Alberobello <strong>non conviene arrivare la sera</strong> — il Trullo
+      Sovrano e buona parte delle botteghe chiudono entro le 18:30, e resteresti
+      a girare tra i trulli chiusi.
     </p>
-
     <h2>Come arrivare</h2>
     <p>
       Circa 50 minuti in auto da Torre a Mare; consigliata la macchina per la
@@ -307,7 +315,7 @@
     </nav>
 
     <hr>
-    <a href="/" class="back">← Torna al sito</a>
+    <a href="/#explore" class="back">← Torna al sito</a>
   </main>
 
   <footer>

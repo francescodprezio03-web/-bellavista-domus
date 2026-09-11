@@ -111,10 +111,10 @@ const CONFIG = {
     location: "/images/posizione-mare.jpg",
     explore: {
       torreamare: "/images/puglia-torre-a-mare.jpg",
-      bari: "/images/puglia-bari.jpg",
-      polignano: "/images/puglia-polignano.jpg",
-      monopoli: "/images/puglia-monopoli.jpg",
-      alberobello: "/images/puglia-alberobello.jpg",
+      bari: "/images/puglia-bari-scheda.jpg",
+      polignano: "/images/puglia-polignano-scheda.jpg",
+      monopoli: "/images/puglia-monopoli-scheda.jpg",
+      alberobello: "/images/puglia-alberobello-scheda.jpg",
       // Ritagli verticali dedicati: il riquadro della scheda è 3:4, e una
       // fotografia orizzontale ci verrebbe ingrandita di oltre due volte.
       // Le pagine guida usano invece la versione larga, senza suffisso.
@@ -736,16 +736,20 @@ const VARIANTI_IMMAGINI = {
   "hero": { w: 1900, h: 2533, v: [480, 900, 1400, 1900] },
   "intro": { w: 1600, h: 2133, v: [480, 900, 1400, 1600] },
   "posizione-mare": { w: 1900, h: 2533, v: [480, 900, 1400, 1900] },
-  "puglia-alberobello": { w: 900, h: 1125, v: [480, 900] },
+  "puglia-alberobello": { w: 2560, h: 823, v: [480, 900, 1400, 1900, 2560] },
+  "puglia-alberobello-scheda": { w: 1080, h: 1440, v: [480, 900, 1080] },
+  "puglia-bari-scheda": { w: 1080, h: 1440, v: [480, 900, 1080] },
+  "puglia-monopoli-scheda": { w: 1080, h: 1440, v: [480, 900, 1080] },
+  "puglia-polignano-scheda": { w: 1080, h: 1440, v: [480, 900, 1080] },
   "puglia-castellana-scheda": { w: 960, h: 1280, v: [480, 900, 960] },
   "puglia-matera-scheda": { w: 1080, h: 1440, v: [480, 900, 1080] },
   "puglia-valle-d-itria-scheda": { w: 1080, h: 1440, v: [480, 900, 1080] },
   "puglia-castellana": { w: 1920, h: 1280, v: [480, 900, 1400, 1920] },
   "puglia-matera": { w: 2560, h: 1707, v: [480, 900, 1400, 1900, 2560] },
   "puglia-valle-d-itria": { w: 2560, h: 1440, v: [480, 900, 1400, 1900, 2560] },
-  "puglia-bari": { w: 900, h: 1600, v: [480, 900] },
-  "puglia-monopoli": { w: 900, h: 1600, v: [480, 900] },
-  "puglia-polignano": { w: 900, h: 1200, v: [480, 900] },
+  "puglia-bari": { w: 2560, h: 823, v: [480, 900, 1400, 1900, 2560] },
+  "puglia-monopoli": { w: 2560, h: 823, v: [480, 900, 1400, 1900, 2560] },
+  "puglia-polignano": { w: 2560, h: 823, v: [480, 900, 1400, 1900, 2560] },
   "puglia-torre-a-mare": { w: 900, h: 1600, v: [480, 900] },
   "terrazzo-migliorata": { w: 1400, h: 1811, v: [480, 900, 1400] },
 };
@@ -1316,17 +1320,27 @@ function Location({ t }) {
           <h3 className="bd-h3">{t.location.exploreTitle}</h3>
         </Reveal>
         <div className="bd-explore__grid">
+          {/* La scheda intera è il link, fotografia compresa: è dove la gente
+              clicca per istinto. Di conseguenza l'etichetta in fondo è uno
+              <span>, non un <a>: un link dentro un link non è HTML valido e i
+              browser lo rendono in modi imprevedibili. */}
           {t.location.places.map((p, i) => (
-            <Reveal key={p.key} delay={i * 70} className="bd-explore__card">
+            <Reveal
+              key={p.key}
+              as={p.link ? "a" : "div"}
+              delay={i * 70}
+              className="bd-explore__card"
+              {...(p.link ? { href: p.link, onClick: () => traccia("apre_guida", { meta: p.key }) } : {})}
+            >
               <div className="bd-explore__img">
                 <PhotoSlot src={CONFIG.images.explore[p.key]} alt={p.name} compact placeholderText={t.photoPlaceholder} sizes="(max-width: 900px) 50vw, 25vw" />
               </div>
               <h4>{p.name}</h4>
               <p>{p.desc}</p>
               {p.link && (
-                <a href={p.link} className="bd-explore__link">
+                <span className="bd-explore__link">
                   {p.linkLabel} →
-                </a>
+                </span>
               )}
             </Reveal>
           ))}
@@ -2476,11 +2490,21 @@ const STYLES = `
 .bd-explore__card:hover .bd-explore__img img{transform:scale(1.06);}
 .bd-explore__card h4{font-family:'Fraunces',serif;font-size:17px;font-weight:500;margin:0 0 6px;}
 .bd-explore__card p{font-size:13.5px;color:var(--stone);line-height:1.6;margin:0;font-weight:300;}
+/* Tutta la scheda e' un link. Selettore a due classi per non perdere contro
+   .bd-root a, e contorno visibile quando ci si arriva con il tasto Tab. */
+.bd-explore .bd-explore__card{
+  display:block;text-decoration:none;color:inherit;border-radius:2px;
+}
+.bd-explore .bd-explore__card:focus-visible{
+  outline:2px solid var(--sea);outline-offset:6px;
+}
 .bd-explore__link{
   display:inline-block;margin-top:12px;font-size:12px;letter-spacing:0.04em;
   color:var(--sea-deep);border-bottom:1px solid currentColor;padding-bottom:2px;font-weight:500;
 }
-.bd-explore__link:hover{opacity:0.7;}
+/* L'etichetta ora e' uno span: l'effetto al passaggio del mouse va preso
+   dalla scheda, non da se stessa. */
+.bd-explore__card:hover .bd-explore__link{opacity:0.7;}
 @media (max-width:900px){
   .bd-explore__grid{grid-template-columns:repeat(2,1fr);}
   .bd-explore{margin-top:76px;}

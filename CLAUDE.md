@@ -117,7 +117,18 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
     senza fare nulla se `gtag` non c'è (sviluppo locale, blocchi
     pubblicitari), così il sito non può rompersi per il tracciamento.
     Eventi attivi: `contatto` (metodo), `click_ota` (piattaforma),
-    `apre_mappa`, `apre_galleria`, `richiesta_inviata`, `scroll_75`.
+    `apre_mappa`, `apre_galleria`, `apre_guida` (meta), `richiesta_inviata`,
+    `scroll_75`.
+  - **Le schede di "Scopri la Puglia" sono link per intero.** In `Location`
+    ogni scheda è un `Reveal as="a"` che avvolge fotografia, titolo,
+    descrizione ed etichetta: è sulla foto che la gente clicca per istinto, e
+    così la scheda è anche una sola fermata del tasto Tab invece di due. Di
+    conseguenza l'etichetta in fondo è uno `<span class="bd-explore__link">`
+    e **non deve tornare a essere un `<a>`**: un link dentro un link non è
+    HTML valido. L'effetto al passaggio del mouse si prende dalla scheda
+    (`.bd-explore__card:hover .bd-explore__link`), e il contorno di messa a
+    fuoco da tastiera è su `.bd-explore .bd-explore__card:focus-visible` —
+    toglierlo renderebbe la sezione inutilizzabile senza mouse.
   - `STYLES`: tutto il CSS del sito, in una template string. **Mai usare
     backtick nei commenti dentro STYLES**: il CSS vive in una stringa
     delimitata da backtick e uno di troppo spezza il file.
@@ -153,12 +164,27 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
   verticale 3:4 viene ingrandita oltre **due volte** e appare sgranata, anche
   se la sua larghezza sarebbe più che sufficiente. `sizes` non protegge da
   questo, perché descrive solo la larghezza.
-  Per questo le tre foto orizzontali delle guide nuove esistono in due
-  versioni: quella **larga** (`puglia-matera.jpg`) per l'apertura a tutta
+  Per questo le foto delle guide esistono in **due versioni**: quella
+  **larga** (`puglia-matera.jpg`, rapporto ~3,1) per l'apertura a tutta
   pagina, e un **ritaglio verticale** (`puglia-matera-scheda.jpg`, 3:4) per le
-  schede di "Scopri la Puglia". Aggiungendo una foto orizzontale che deve
-  comparire anche in una scheda, va generato il ritaglio: i riquadri delle
-  schede sono 3:4 (`.bd-explore__img`).
+  schede di "Scopri la Puglia". I riquadri delle schede sono 3:4
+  (`.bd-explore__img`). Vale per tutte e otto le mete tranne Torre a Mare,
+  la cui foto è ancora l'originale da 900px in attesa di una fotografia
+  vera del posto.
+  Il ritaglio `-scheda` serve **anche come apertura sul telefono**: lì il
+  riquadro `.hero` è quasi quadrato, e la fascia larga mostrerebbe una
+  striscia inutilizzabile. Nelle guide il `<picture>` ha quindi due
+  `<source>`: il primo con `media="(max-width: 700px)"` che punta alle
+  varianti `-scheda`, il secondo con quelle larghe. **Le due sorgenti vanno
+  sempre insieme**: aggiungerne una sola significa servire il ritaglio
+  sbagliato a metà dei visitatori.
+  Le foto d'origine di Bari, Polignano, Monopoli e Alberobello sono
+  verticali ad altissima risoluzione (3.400–5.000px di larghezza): i ritagli
+  se ne servono e non c'è ingrandimento su nessuno schermo. Gli attributi
+  `width`/`height` dell'`<img>` descrivono la **variante larga** (2560×823)
+  e vanno aggiornati insieme ai file, altrimenti il browser riserva alla
+  foto uno spazio della forma sbagliata e la pagina salta durante il
+  caricamento.
 - **`public/privacy.html`**, **`public/privacy-en.html`** — pagina privacy
   statica IT/EN, con hreflang reciproci. Il footer (`Footer` in `App.jsx`)
   sceglie l'URL giusto tramite `t.footer.privacyUrl` — non aggiungere mai
@@ -195,6 +221,13 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
   inglese solo pagine `-en.html`** — mai incroci di lingua. Lo stesso vale
   per i ritorni alla homepage: le guide italiane puntano a `/`, quelle
   inglesi a `/en/`.
+  **I due ritorni alla homepage non sono equivalenti.** Il logo
+  (`class="logo"`) punta alla cima (`/` o `/en/`), come ci si aspetta da un
+  logo. Il link "Torna al sito" (`class="back"`, presente due volte per
+  pagina) punta invece alla **sezione da cui si arriva**: `#explore` per le
+  otto guide sulle mete, `#faq` per `come-arrivare`, che si raggiunge dalle
+  domande frequenti e non dalle schede. Senza l'ancora la homepage si
+  ricarica dall'inizio e l'ospite perde il punto in cui era.
   Le guide mantengono il suffisso `-en.html` invece di spostarsi sotto
   `/en/` perché sono già indicizzate da Google: rinominarle costerebbe
   redirect e posizionamento, senza guadagno.

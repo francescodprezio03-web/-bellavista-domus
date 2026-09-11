@@ -205,13 +205,14 @@
 <body>
   <header>
     <a href="/" class="logo">Bellavista Domus</a>
-    <a href="/" class="back">← Torna al sito</a>
+    <a href="/#explore" class="back">← Torna al sito</a>
   </header>
 
   <div class="hero">
     <picture>
-      <source type="image/webp" srcset="/images/puglia-polignano-480.webp 480w, /images/puglia-polignano.webp 900w" sizes="100vw">
-      <img src="/images/puglia-polignano.jpg" alt="Il centro storico di Polignano a Mare a picco sul mare" width="900" height="1200" loading="eager" fetchpriority="high" />
+      <source media="(max-width: 700px)" type="image/webp" srcset="/images/puglia-polignano-scheda-480.webp 480w, /images/puglia-polignano-scheda-900.webp 900w, /images/puglia-polignano-scheda.webp 1080w" sizes="100vw">
+      <source type="image/webp" srcset="/images/puglia-polignano-480.webp 480w, /images/puglia-polignano-900.webp 900w, /images/puglia-polignano-1400.webp 1400w, /images/puglia-polignano-1900.webp 1900w, /images/puglia-polignano.webp 2560w" sizes="100vw">
+      <img src="/images/puglia-polignano.jpg" alt="Il centro storico di Polignano a Mare a picco sul mare" width="2560" height="823" loading="eager" fetchpriority="high" />
     </picture>
     <div class="hero__scrim"></div>
     <div class="hero__content">
@@ -256,6 +257,11 @@
       diretta sull'Adriatico.
     </p>
 
+    <p>
+      Sulle gite in barca un avvertimento pratico: i prezzi ballano molto e
+      alcune proposte sono fuori mercato. Se vuoi, <strong>scrivici prima di
+      prenotare</strong>: ti aiutiamo a trovare l'offerta buona del momento.
+    </p>
     <h2>Sulle tracce di Domenico Modugno</h2>
     <p>
       Polignano a Mare è la città natale del cantautore <strong>Domenico Modugno</strong>,
@@ -349,7 +355,7 @@
     </nav>
 
     <hr>
-    <a href="/" class="back">← Torna al sito</a>
+    <a href="/#explore" class="back">← Torna al sito</a>
   </main>
 
   <footer>
