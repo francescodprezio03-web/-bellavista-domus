@@ -379,6 +379,24 @@ const translations = {
       top: "Torna su",
       privacyUrl: "/privacy.html",
     },
+    /* Calendario: i testi dichiarano apertamente il limite della fonte.
+       Promettere una disponibilità "certa" quando i portali si aggiornano
+       ogni poche ore significa far trovare a qualcuno un no dopo un sì. */
+    calendario: {
+      eyebrow: "Disponibilità",
+      title: "Le tue date sono libere?",
+      text: "Il calendario segna le notti già prenotate. È aggiornato dai portali ogni poche ore, quindi consideralo un'indicazione: la conferma definitiva te la diamo noi.",
+      caricamento: "Sto leggendo il calendario…",
+      errore: "In questo momento non riesco a leggere il calendario. Scrivici le date e ti rispondiamo noi.",
+      libero: "Libero",
+      occupato: "Occupato",
+      precedente: "Mese precedente",
+      successivo: "Mese successivo",
+      mesi: ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"],
+      giorni: ["L","M","M","G","V","S","D"],
+      giorniEstesi: ["lunedì","martedì","mercoledì","giovedì","venerdì","sabato","domenica"],
+      esempio: "Dati di esempio — in locale il calendario vero non è disponibile",
+    },
     stickyCta: "Verifica disponibilità",
     /* Il messaggio precompilato di WhatsApp e la descrizione per gli screen
        reader vivono qui e non nel componente: un ospite inglese che tocca il
@@ -607,6 +625,21 @@ const translations = {
       rights: "All rights reserved.",
       top: "Back to top",
       privacyUrl: "/privacy-en.html",
+    },
+    calendario: {
+      eyebrow: "Availability",
+      title: "Are your dates free?",
+      text: "The calendar marks the nights already booked. It is refreshed from the platforms every few hours, so treat it as a guide: the final confirmation comes from us.",
+      caricamento: "Loading the calendar…",
+      errore: "We cannot read the calendar right now. Send us your dates and we will reply.",
+      libero: "Free",
+      occupato: "Booked",
+      precedente: "Previous month",
+      successivo: "Next month",
+      mesi: ["January","February","March","April","May","June","July","August","September","October","November","December"],
+      giorni: ["M","T","W","T","F","S","S"],
+      giorniEstesi: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      esempio: "Sample data — the real calendar is not available locally",
     },
     stickyCta: "Check availability",
     whatsapp: {
@@ -1507,6 +1540,160 @@ function useOggi() {
     setOggi(new Date().toISOString().slice(0, 10));
   }, []);
   return oggi;
+}
+
+/* ------------------------------- CALENDARIO ---------------------------------- */
+
+/* Legge /api/disponibilita (la funzione in netlify/functions) e disegna due
+   mesi con le notti già prenotate. Tre principi:
+   1. Non si inventa nulla: se la lettura fallisce non mostra un calendario
+      tutto libero, mostra che non è riuscita e rimanda al modulo.
+   2. Non viene prerenderizzato: dipende dalla data odierna e da una chiamata
+      di rete, quindi resta vuoto finché non parte nel browser.
+   3. In locale la funzione non esiste — lì mostra date finte, ma con un
+      avviso ben visibile, per non far credere che stia funzionando. */
+
+function chiave(anno, mese, giorno) {
+  return `${anno}-${String(mese + 1).padStart(2, "0")}-${String(giorno).padStart(2, "0")}`;
+}
+
+/* Griglia di un mese che inizia di lunedì, con le caselle vuote iniziali. */
+function grigliaMese(anno, mese) {
+  const primo = new Date(Date.UTC(anno, mese, 1));
+  const vuote = (primo.getUTCDay() + 6) % 7; // domenica=0 -> 6
+  const quanti = new Date(Date.UTC(anno, mese + 1, 0)).getUTCDate();
+  const celle = Array(vuote).fill(null);
+  for (let g = 1; g <= quanti; g++) celle.push(g);
+  return celle;
+}
+
+function Calendario({ t, go }) {
+  const v = t.calendario;
+  const [stato, setStato] = useState("caricamento"); // caricamento | pronto | errore
+  const [occupate, setOccupate] = useState(() => new Set());
+  const [esempio, setEsempio] = useState(false);
+  const [oggi, setOggi] = useState(null);
+  const [scorri, setScorri] = useState(0);
+
+  useEffect(() => {
+    setOggi(new Date());
+    let vivo = true;
+    fetch("/api/disponibilita")
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
+      .then((dati) => {
+        if (!vivo) return;
+        setOccupate(new Set(dati.occupate || []));
+        setStato("pronto");
+      })
+      .catch(() => {
+        if (!vivo) return;
+        const locale = /^(localhost|127\.0\.0\.1)$/.test(window.location.hostname);
+        if (locale) {
+          /* Qualche notte finta, solo per far vedere l'aspetto. */
+          const d = new Date();
+          const finte = new Set();
+          for (const salto of [3, 4, 5, 6, 17, 18, 19, 33, 34, 48, 49, 50, 51]) {
+            const x = new Date(d);
+            x.setDate(x.getDate() + salto);
+            finte.add(x.toISOString().slice(0, 10));
+          }
+          setOccupate(finte);
+          setEsempio(true);
+          setStato("pronto");
+        } else {
+          setStato("errore");
+        }
+      });
+    return () => { vivo = false; };
+  }, []);
+
+  if (!oggi) return <section id="calendario" className="bd-cal" aria-hidden="true" />;
+
+  const base = new Date(oggi.getFullYear(), oggi.getMonth() + scorri, 1);
+  const mesi = [0, 1].map((i) => {
+    const d = new Date(base.getFullYear(), base.getMonth() + i, 1);
+    return { anno: d.getFullYear(), mese: d.getMonth() };
+  });
+  const ieri = chiave(oggi.getFullYear(), oggi.getMonth(), oggi.getDate());
+
+  return (
+    <section id="calendario" className="bd-cal">
+      <Reveal className="bd-cal__inner">
+        <div className="bd-section-head">
+          <p className="bd-eyebrow">{v.eyebrow}</p>
+          <div className="bd-hairline" />
+          <h2 className="bd-h3">{v.title}</h2>
+          <p className="bd-body bd-body--narrow">{v.text}</p>
+        </div>
+
+        {stato === "caricamento" && <p className="bd-cal__stato">{v.caricamento}</p>}
+
+        {stato === "errore" && (
+          <p className="bd-cal__stato bd-cal__stato--errore" role="status">
+            {v.errore}{" "}
+            <a href="#contact" className="bd-cal__link" onClick={(e) => { e.preventDefault(); go("#contact"); }}>
+              {t.nav.contact} →
+            </a>
+          </p>
+        )}
+
+        {stato === "pronto" && (
+          <>
+            {esempio && <p className="bd-cal__esempio" role="status">{v.esempio}</p>}
+
+            <div className="bd-cal__barra">
+              <button
+                type="button"
+                className="bd-cal__freccia"
+                onClick={() => setScorri((s) => Math.max(0, s - 1))}
+                disabled={scorri === 0}
+                aria-label={v.precedente}
+              >←</button>
+              <span className="bd-cal__legenda">
+                <span className="bd-cal__chip bd-cal__chip--libero" /> {v.libero}
+                <span className="bd-cal__chip bd-cal__chip--occupato" /> {v.occupato}
+              </span>
+              <button
+                type="button"
+                className="bd-cal__freccia"
+                onClick={() => setScorri((s) => Math.min(16, s + 1))}
+                disabled={scorri >= 16}
+                aria-label={v.successivo}
+              >→</button>
+            </div>
+
+            <div className="bd-cal__mesi">
+              {mesi.map(({ anno, mese }) => (
+                <div className="bd-cal__mese" key={`${anno}-${mese}`}>
+                  <p className="bd-cal__titolo">{v.mesi[mese]} {anno}</p>
+                  <div className="bd-cal__intestazione" aria-hidden="true">
+                    {v.giorni.map((g, i) => <span key={i}>{g}</span>)}
+                  </div>
+                  <div className="bd-cal__griglia">
+                    {grigliaMese(anno, mese).map((g, i) => {
+                      if (g === null) return <span key={`v${i}`} className="bd-cal__vuota" />;
+                      const k = chiave(anno, mese, g);
+                      const passata = k < ieri;
+                      const presa = occupate.has(k);
+                      const cls = passata ? "bd-cal__g bd-cal__g--passata"
+                        : presa ? "bd-cal__g bd-cal__g--occupata"
+                        : "bd-cal__g";
+                      const etichetta = `${g} ${v.mesi[mese]} ${anno} — ${presa ? v.occupato : v.libero}`;
+                      return (
+                        <span key={k} className={cls} title={passata ? undefined : etichetta}>
+                          {g}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+      </Reveal>
+    </section>
+  );
 }
 
 function ContactForm({ t }) {
@@ -2588,6 +2775,67 @@ const STYLES = `
 }
 .bd-footer__grid p{margin:0 0 6px;}
 .bd-footer__title{text-transform:uppercase;letter-spacing:0.12em;font-size:11px;color:var(--sea-deep);font-weight:600;margin-bottom:14px !important;}
+/* Calendario disponibilita */
+.bd-cal{padding:0 32px 20px;min-height:120px;}
+.bd-cal__inner{max-width:860px;margin:0 auto;}
+.bd-cal__stato{text-align:center;color:var(--stone);font-size:15px;margin:26px 0 0;}
+.bd-cal__stato--errore{color:var(--sea-deep);}
+.bd-cal .bd-cal__link{color:var(--sea);border-bottom:1px solid rgba(56,102,124,0.35);text-decoration:none;white-space:nowrap;}
+.bd-cal__esempio{
+  text-align:center;font-size:12.5px;letter-spacing:0.04em;color:var(--stone);
+  background:var(--ivory-2);border:1px dashed var(--line);border-radius:2px;
+  padding:10px 14px;margin:22px auto 0;max-width:520px;
+}
+.bd-cal__barra{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  margin:34px 0 18px;flex-wrap:wrap;
+}
+.bd-cal__freccia{
+  font-size:17px;line-height:1;color:var(--sea-deep);
+  border:1px solid var(--line);border-radius:2px;padding:8px 14px;background:var(--white);
+  transition:border-color .15s, opacity .15s;
+}
+.bd-cal__freccia:hover:not(:disabled){border-color:var(--sea);}
+.bd-cal__freccia:disabled{opacity:0.35;cursor:default;}
+.bd-cal__legenda{
+  display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--stone);
+  letter-spacing:0.03em;flex-wrap:wrap;justify-content:center;
+}
+.bd-cal__chip{width:13px;height:13px;border-radius:2px;display:inline-block;}
+.bd-cal__chip--libero{background:var(--white);border:1px solid var(--line);}
+.bd-cal__chip--occupato{background:var(--ivory-2);border:1px solid var(--line);position:relative;}
+.bd-cal__chip--occupato::after{
+  content:"";position:absolute;inset:1px;
+  background:linear-gradient(135deg,transparent 44%,var(--stone) 44%,var(--stone) 56%,transparent 56%);
+}
+.bd-cal__mesi{display:grid;grid-template-columns:1fr 1fr;gap:34px;}
+.bd-cal__titolo{
+  font-family:'Fraunces',serif;font-size:17px;font-weight:500;color:var(--sea-deep);
+  margin:0 0 12px;text-align:center;text-transform:capitalize;
+}
+.bd-cal__intestazione,.bd-cal__griglia{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
+.bd-cal__intestazione{
+  font-size:11px;letter-spacing:0.08em;color:var(--stone);text-align:center;
+  margin-bottom:6px;text-transform:uppercase;
+}
+.bd-cal__g,.bd-cal__vuota{
+  aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+  font-size:13.5px;border-radius:2px;
+}
+.bd-cal__g{background:var(--white);border:1px solid var(--line);color:var(--sea-deep);}
+.bd-cal__g--passata{background:transparent;border-color:transparent;color:rgba(105,98,79,0.35);}
+/* Occupato: non solo un colore diverso, anche una trama. Chi non distingue
+   bene i colori deve comunque vedere la differenza. */
+.bd-cal__g--occupata{
+  background:var(--ivory-2);color:rgba(105,98,79,0.55);
+  background-image:repeating-linear-gradient(135deg,transparent 0 5px,rgba(105,98,79,0.30) 5px 7px);
+}
+@media (max-width:700px){
+  .bd-cal{padding:0 22px 16px;}
+  .bd-cal__mesi{grid-template-columns:1fr;gap:28px;}
+  .bd-cal__barra{margin:26px 0 14px;}
+}
+
 .bd-footer__coda{display:flex;align-items:center;gap:20px;}
 .bd-footer__totop{font-size:12px;color:var(--stone);text-decoration:underline;text-underline-offset:3px;letter-spacing:0.02em;}
 .bd-footer__totop:hover{color:var(--sea-deep);}
@@ -2692,6 +2940,9 @@ export default function BellavistaDomus({ lang = "it" }) {
       {/* Le FAQ stanno subito prima del modulo: si tolgono gli ultimi dubbi,
           e chi ne ha ancora trova il modulo già lì sotto. */}
       <Faq t={t} />
+      {/* Il calendario sta appena prima del modulo: l'ospite controlla le sue
+          date e, se sono libere, ha già sotto gli occhi dove scrivere. */}
+      <Calendario t={t} go={go} />
       {/* Il modulo porta l'id "contact": la voce Contatti del menu ci arriva
           direttamente, e il footer con i recapiti resta subito sotto. */}
       <ContactForm t={t} />

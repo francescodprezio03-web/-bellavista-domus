@@ -1,8 +1,15 @@
 # Bellavista Domus — contesto del progetto
 
 Sito vetrina (one-page, IT/EN) per una casa vacanze a Torre a Mare (Bari),
-Puglia. React + Vite, nessun backend: contenuti e SEO sono dati statici
-dentro il repo, pubblicato come sito statico (build in `dist/`).
+Puglia. React + Vite: contenuti e SEO sono dati statici dentro il repo,
+pubblicato come sito statico (build in `dist/`).
+
+**Un'eccezione alla staticità**: `netlify/functions/disponibilita.mjs` gira
+lato server e legge i calendari iCal di Airbnb e Booking per il componente
+`Calendario`. Conseguenza pratica: **il caricamento manuale di `dist/` non
+porta online le funzioni** — serve la build automatica collegata a GitHub.
+Con il drag&drop il sito funziona comunque, ma il calendario mostra il
+messaggio di errore invece delle date.
 
 ## Stack
 
@@ -104,6 +111,24 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
     risultati, e le uniche stelline reali arrivano dalla scheda Google
     Business. Le date esatte del soggiorno non si pubblicano: solo il mese
     (`stay`, con `stayIso` per l'attributo `datetime` del tag `time`).
+  - `Calendario`: mostra due mesi con le notti già prenotate, leggendole da
+    `/api/disponibilita` (la funzione in `netlify/functions/`). Sta appena
+    prima del modulo di contatto, così chi trova libere le proprie date ha
+    già sotto gli occhi dove scrivere. Tre regole:
+    1. **Non inventa mai disponibilità.** Se la lettura fallisce non disegna
+       un calendario tutto libero: dichiara che non è riuscito e rimanda al
+       modulo. Un "libero" sbagliato costa un ospite.
+    2. **Non viene prerenderizzato**: dipende dalla data odierna e da una
+       chiamata di rete, quindi finché `oggi` è `null` rende una sezione
+       vuota. È anche ciò che evita disallineamenti fra HTML e idratazione.
+    3. In locale la funzione non esiste: mostra date finte **con un avviso
+       visibile**. Non togliere quell'avviso.
+    Le notti occupate si distinguono per trama, non solo per colore: chi non
+    distingue bene i colori deve comunque vedere la differenza.
+    **Limite da non nascondere**: Airbnb e Booking rigenerano il loro iCal
+    ogni 1-4 ore, e contengono solo le prenotazioni fatte lì. Una
+    prenotazione diretta non bloccata sui portali continua a risultare
+    libera. Il testo in pagina lo dice: il calendario è indicativo.
   - `Faq`: domande frequenti, costruite con `details`/`summary` nativi —
     niente JavaScript, accessibili da tastiera, e il testo resta nell'HTML
     anche a fisarmonica chiusa, quindi leggibile da motori di ricerca e
