@@ -34,7 +34,7 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
   (`mainEn`), altrimenti non finisce nella build.
 - **`src/App.jsx`** — un unico file che contiene tutto il sito:
   - `CONFIG` in cima al file: link di prenotazione (Booking.com/Airbnb),
-    dati della struttura (nome, località, ospiti/camere/bagni, CIR/CIN,
+    dati della struttura (nome, località, ospiti/camere/bagni, CIS/CIN,
     email, telefono, CAP/comune/provincia), percorsi delle fotografie
     (`CONFIG.images`) e `CONFIG.maps` (coordinate della casa + link alla
     scheda Google). **Le coordinate in `CONFIG.maps` vanno tenute allineate
@@ -185,6 +185,34 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
   e vanno aggiornati insieme ai file, altrimenti il browser riserva alla
   foto uno spazio della forma sbagliata e la pagina salta durante il
   caricamento.
+- **`public/images/og/`** — le **anteprime social**, una per pagina, tutte
+  1200×630 (il formato 1,91:1 che usano WhatsApp, Facebook e X). Sono ritagli
+  dedicati generati dalle fotografie: senza, le piattaforme ritagliano da sole
+  una foto verticale e ne mostrano una striscia centrale a caso.
+  Ogni pagina dichiara `og:image`, `twitter:image` (**lo stesso file**) e
+  `og:image:width`/`height`. **L'anteprima deve essere una fotografia, mai il
+  logo**: chi riceve il link non conosce ancora il marchio, e un rettangolo
+  bianco col nome dell'attività viene aperto molto meno di una foto della
+  scogliera o del mare. `branding/og-image.png` resta in cartella ma non è
+  usato da nessuna pagina.
+- **`public/branding/`** — il marchio. I file **`logo-orizzontale.png`**
+  (1024×363) e **`logo-orizzontale-chiaro.png`** sono la stessa grafica in due
+  colori: il secondo ha il blu portato su avorio e serve **solo** finché
+  l'intestazione è trasparente e sta sopra la fotografia scura dell'apertura,
+  dove il blu sparirebbe. `logo-header.png` e `logo-header-chiaro.png` sono
+  le stesse due a 300px, usate nell'intestazione: a 34px di altezza bastano
+  anche sugli schermi a tripla densità, e il file da 1024px sarebbe uno
+  spreco.
+  **I PNG originali erano inutilizzabili così com'erano**: la grafica stava
+  al centro di una tela molto più grande, con pixel semitrasparenti sparsi
+  ovunque, quindi `height:34px` mostrava una scritta alta nove pixel. Sono
+  stati ritagliati sul contenuto vero e ripuliti dalle macchioline isolate.
+  Se in futuro arriva un logo nuovo, **va controllato lo stesso**: apri il
+  file e guarda quanta tela vuota ha attorno prima di metterlo in pagina.
+  Le icone (`favicon.ico` con 16/32/48, i due PNG, `apple-touch-icon`, i due
+  `android-chrome`) sono dichiarate in tutte e ventidue le pagine e in
+  `public/site.webmanifest`. Il vecchio `public/favicon.svg` non è più
+  citato da nessuna pagina.
 - **`public/privacy.html`**, **`public/privacy-en.html`** — pagina privacy
   statica IT/EN, con hreflang reciproci. Il footer (`Footer` in `App.jsx`)
   sceglie l'URL giusto tramite `t.footer.privacyUrl` — non aggiungere mai
@@ -281,7 +309,15 @@ dentro il repo, pubblicato come sito statico (build in `dist/`).
 - Nome: Bellavista Domus
 - Località: Torre a Mare, Bari, Puglia — a ~10 metri dal mare
 - Capienza: fino a 7 ospiti, 3 camere da letto, 2 bagni
-- CIR: `072006C200127710` — CIN: `IT072006C200127710`
+- **CIS** (Regione Puglia, L.R. 57/2018): `BA07200691000078417`
+- **CIN** (Banca Dati Strutture Ricettive, Ministero del Turismo):
+  `IT072006C200127710`
+  Sono due codici distinti rilasciati da enti diversi, e **nessuno dei due si
+  ricava dall'altro**: se servono, si copiano dai documenti originali, non si
+  deducono. In Puglia il codice regionale si chiama **CIS**, non CIR come in
+  altre regioni, ed è obbligatorio in ogni annuncio dal 1° luglio 2020.
+  (In passato il sito mostrava come "CIR" il CIN privato del prefisso `IT`:
+  un codice inesistente. Non ripetere quella scorciatoia.)
 - Contatti: `francescod.prezio03@icloud.com`, `+39 331 822 8563`
 - Prenotazioni: link diretti a Booking.com e Airbnb (in `CONFIG.links`)
 

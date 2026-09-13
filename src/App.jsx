@@ -5,7 +5,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
    ----------------------------------------------------------------------------
    COME MODIFICARE QUESTO FILE (guida rapida)
    1) CONFIG.links        -> link di prenotazione Booking.com / Airbnb
-   2) CONFIG.property      -> dati della struttura (nome, luogo, CIR/CIN, capienza)
+   2) CONFIG.property      -> dati della struttura (nome, luogo, CIS/CIN, capienza)
    3) CONFIG.images        -> tutte le fotografie (oggi sono placeholder da Unsplash,
                                sostituiscile con gli URL delle tue foto reali)
    4) translations (it/en)  -> tutti i testi del sito, in italiano e inglese
@@ -59,7 +59,14 @@ const CONFIG = {
     guests: 7,
     bedrooms: 3,
     bathrooms: 2,
-    cir: "072006C200127710",
+    /* Due codici distinti, rilasciati da enti diversi. Nessuno dei due si
+       ricava dall'altro: vanno copiati dai documenti originali.
+       - CIS: Codice Identificativo di Struttura della Regione Puglia
+         (L.R. 57/2018), obbligatorio in ogni annuncio dal 1° luglio 2020.
+         In Puglia si chiama CIS, non CIR come in altre regioni.
+       - CIN: Codice Identificativo Nazionale, dalla Banca Dati Strutture
+         Ricettive del Ministero del Turismo. */
+    cis: "BA07200691000078417",
     cin: "IT072006C200127710",
     email: "francescod.prezio03@icloud.com",
     phone: "+39 331 822 8563",
@@ -366,16 +373,11 @@ const translations = {
       tagline: "Casa vacanze sul mare",
       contactTitle: "Contatti",
       infoTitle: "Informazioni",
-      cir: "CIR",
+      cis: "CIS",
       cin: "CIN",
       rights: "Tutti i diritti riservati.",
       top: "Torna su",
       privacyUrl: "/privacy.html",
-      pagesTitle: "Pagine",
-      pages: [
-        { href: "/come-arrivare.html", label: "Come arrivare" },
-        { href: "/torre-a-mare.html", label: "Cosa vedere a Torre a Mare" },
-      ],
     },
     stickyCta: "Verifica disponibilità",
     /* Il messaggio precompilato di WhatsApp e la descrizione per gli screen
@@ -600,16 +602,11 @@ const translations = {
       tagline: "Seafront holiday home",
       contactTitle: "Contact",
       infoTitle: "Information",
-      cir: "CIR",
+      cis: "CIS",
       cin: "CIN",
       rights: "All rights reserved.",
       top: "Back to top",
       privacyUrl: "/privacy-en.html",
-      pagesTitle: "Pages",
-      pages: [
-        { href: "/come-arrivare-en.html", label: "Getting here" },
-        { href: "/torre-a-mare-en.html", label: "What to see in Torre a Mare" },
-      ],
     },
     stickyCta: "Check availability",
     whatsapp: {
@@ -999,7 +996,27 @@ function Header({ lang, t, go }) {
       <TopBar t={t} />
       <div className="bd-header__inner">
         <a href="#home" className="bd-logo" onClick={(e) => { e.preventDefault(); handleGo("#home"); }}>
-          {CONFIG.property.name}
+          {/* Due versioni dello stesso marchio: finché l'intestazione è
+              trasparente sta sopra la fotografia scura dell'apertura e il blu
+              sparirebbe, quindi si mostra quella chiara. Appena la barra
+              diventa piena si torna a quella a colori. Solo una delle due
+              porta il testo alternativo: sono la stessa cosa. */}
+          <img
+            src="/branding/logo-header-chiaro.png"
+            alt=""
+            aria-hidden="true"
+            width="300"
+            height="106"
+            className="bd-logo__img bd-logo__img--chiaro"
+          />
+          <img
+            src="/branding/logo-header.png"
+            alt={CONFIG.property.name}
+            width="300"
+            height="106"
+            className="bd-logo__img bd-logo__img--scuro"
+          />
+          <span className="bd-logo__text">{CONFIG.property.name}</span>
         </a>
 
         <nav className="bd-nav bd-nav--desktop">
@@ -1674,7 +1691,13 @@ function Footer({ t, go }) {
   return (
     <footer className="bd-footer">
       <div className="bd-footer__top">
-        <p className="bd-logo bd-logo--footer">{CONFIG.property.name}</p>
+        <img
+          src="/branding/logo-orizzontale.png"
+          alt={CONFIG.property.name}
+          width="1024"
+          height="363"
+          className="bd-logo--footer"
+        />
         <p className="bd-footer__tagline">{t.footer.tagline} · {CONFIG.property.locationLine}</p>
       </div>
 
@@ -1686,25 +1709,20 @@ function Footer({ t, go }) {
         </div>
         <div>
           <p className="bd-footer__title">{t.footer.infoTitle}</p>
-          <p>{t.footer.cir}: {CONFIG.property.cir}</p>
+          <p>{t.footer.cis}: {CONFIG.property.cis}</p>
           <p>{t.footer.cin}: {CONFIG.property.cin}</p>
-        </div>
-        <div>
-          {/* Le pagine informative vivono fuori dalla homepage: senza un
-              rimando qui, chi le cerca in fondo alla pagina non le trova. */}
-          <p className="bd-footer__title">{t.footer.pagesTitle}</p>
-          {t.footer.pages.map((pg) => (
-            <p key={pg.href}>
-              <a className="bd-footer__page" href={pg.href}>{pg.label}</a>
-            </p>
-          ))}
-          <button className="bd-footer__totop" onClick={() => go("#home")}>{t.footer.top} ↑</button>
         </div>
       </div>
 
       <div className="bd-footer__bottom">
         <span>© {new Date().getFullYear()} {CONFIG.property.name}. {t.footer.rights}</span>
-        <a href={t.footer.privacyUrl} className="bd-footer__privacy">Privacy</a>
+        {/* "Torna su" sta qui e non in una colonna propria: la homepage è
+            lunga, e chi arriva in fondo senza questo pulsante deve rifare
+            tutta la strada all'indietro scorrendo. */}
+        <span className="bd-footer__coda">
+          <a href={t.footer.privacyUrl} className="bd-footer__privacy">Privacy</a>
+          <button className="bd-footer__totop" onClick={() => go("#home")}>{t.footer.top} ↑</button>
+        </span>
       </div>
     </footer>
   );
@@ -1963,7 +1981,7 @@ const STYLES = `
   display:flex;align-items:center;justify-content:space-between;gap:24px;
   transition:padding .4s ease;
 }
-.bd-header--solid .bd-header__inner{padding:16px 32px;}
+.bd-header--solid .bd-header__inner{padding:12px 32px;}
 
 /* Barra contatti: striscia piena blu Adriatico in cima alla pagina.
    Il fondo pieno è una scelta deliberata — il testo dei recapiti è piccolo
@@ -2002,14 +2020,25 @@ const STYLES = `
   .bd-topbar__addr{display:none;}
   .bd-topbar__inner{padding:11px 22px;gap:4px 20px;font-size:12px;}
   .bd-topbar{max-height:42px;}
-  .bd-header__inner{padding:18px 22px;}
-  .bd-header--solid .bd-header__inner{padding:14px 22px;}
+  .bd-header__inner{padding:16px 22px;}
+  .bd-header--solid .bd-header__inner{padding:10px 22px;}
 }
 .bd-logo{
   font-family:'Fraunces',serif;font-size:20px;letter-spacing:0.015em;
   color:var(--sea-deep);
+  display:flex;align-items:center;
 }
 .bd-header:not(.bd-header--solid) .bd-logo{color:var(--white);}
+/* Cresce quando la barra diventa piena: li' la striscia blu dei contatti si
+   e' chiusa e il marchio resta l'unico segno di identita'. Il margine della
+   barra si stringe della stessa misura, cosi' l'altezza complessiva non
+   cambia e il contenuto non perde spazio di lettura. */
+.bd-logo__img{display:block;height:42px;width:auto;transition:height .4s ease;}
+.bd-header--solid .bd-logo__img{height:44px;}
+/* Si alterna in base allo stato della barra, mai tutt'e due insieme. */
+.bd-header:not(.bd-header--solid) .bd-logo__img--scuro{display:none;}
+.bd-header--solid .bd-logo__img--chiaro{display:none;}
+.bd-logo__text{display:none;}
 .bd-nav--desktop{display:flex;gap:36px;font-size:12.5px;letter-spacing:0.06em;text-transform:uppercase;font-weight:500;}
 .bd-header:not(.bd-header--solid) .bd-nav--desktop a{color:rgba(255,255,255,0.92);}
 .bd-nav--desktop a{position:relative;padding-bottom:3px;}
@@ -2052,6 +2081,11 @@ const STYLES = `
   .bd-burger{display:block;}
   .bd-mobilemenu{display:block;}
   .bd-logo{font-size:17px;}
+  /* Ritagliato bene il marchio e' largo ~80px: sta accanto al pulsante del
+     menu senza stringere nulla, quindi sul telefono si mostra anche qui. */
+  .bd-logo__img{height:34px;}
+  .bd-header--solid .bd-logo__img{height:36px;}
+  .bd-logo__text{display:none;}
 }
 
 /* Hero */
@@ -2544,23 +2578,19 @@ const STYLES = `
 /* Footer */
 .bd-footer{background:var(--ivory-2);border-top:1px solid var(--line);padding:110px 32px 34px;}
 .bd-footer__top{max-width:1280px;margin:0 auto;padding-bottom:56px;}
-.bd-logo--footer{font-family:'Fraunces',serif;font-size:30px;color:var(--sea-deep);margin:0 0 10px;letter-spacing:-0.01em;}
+.bd-logo--footer{display:block;height:56px;width:auto;margin:0 0 14px;}
+@media (max-width:700px){.bd-logo--footer{height:44px;}}
 .bd-footer__tagline{font-family:'Fraunces',serif;font-style:italic;font-size:16px;color:var(--stone);margin:0;}
 .bd-footer__grid{
-  max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;
+  max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;
   padding:40px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
   font-size:14px;color:var(--stone);font-weight:300;
 }
 .bd-footer__grid p{margin:0 0 6px;}
 .bd-footer__title{text-transform:uppercase;letter-spacing:0.12em;font-size:11px;color:var(--sea-deep);font-weight:600;margin-bottom:14px !important;}
-/* Selettore a due classi: la regola generale .bd-root a imposta
-   color:inherit e altrimenti vincerebbe su questa. */
-.bd-footer .bd-footer__page{
-  color:rgba(255,255,255,0.78);border-bottom:1px solid rgba(255,255,255,0.22);
-  transition:color .15s, border-color .15s;
-}
-.bd-footer .bd-footer__page:hover{color:var(--white);border-bottom-color:var(--sand);}
-.bd-footer__totop{font-size:13px;color:var(--sea-deep);text-decoration:underline;text-underline-offset:3px;}
+.bd-footer__coda{display:flex;align-items:center;gap:20px;}
+.bd-footer__totop{font-size:12px;color:var(--stone);text-decoration:underline;text-underline-offset:3px;letter-spacing:0.02em;}
+.bd-footer__totop:hover{color:var(--sea-deep);}
 .bd-footer__bottom{max-width:1280px;margin:26px auto 0;font-size:12px;color:var(--stone);letter-spacing:0.02em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
 .bd-footer__privacy{text-decoration:underline;text-underline-offset:3px;}
 @media (max-width:700px){

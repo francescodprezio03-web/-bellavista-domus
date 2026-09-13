@@ -50,7 +50,9 @@
       property="og:description"
       content="Casa vacanze premium a 10 metri dal mare a Torre a Mare (Bari), Puglia. Fino a 7 ospiti, 3 camere, 2 bagni."
     />
-    <meta property="og:image" content="https://bellavistadomus.netlify.app/images/puglia-torre-a-mare.jpg" />
+    <meta property="og:image" content="https://bellavistadomus.netlify.app/images/og/home.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:url" content="https://bellavistadomus.netlify.app/" />
     <meta property="og:locale" content="it_IT" />
     <meta property="og:locale:alternate" content="en_US" />
@@ -61,11 +63,11 @@
       name="twitter:description"
       content="Casa vacanze premium a 10 metri dal mare a Torre a Mare (Bari), Puglia."
     />
-    <meta name="twitter:image" content="https://bellavistadomus.netlify.app/images/puglia-torre-a-mare.jpg" />
+    <meta name="twitter:image" content="https://bellavistadomus.netlify.app/images/og/home.jpg" />
 
     <!-- Dati strutturati: aiutano Google a capire che è una struttura ricettiva.
          Tenere allineato a CONFIG.property in src/App.jsx se quei dati cambiano
-         (capienza, CIR/CIN, contatti, link di prenotazione). -->
+         (capienza, CIS/CIN, contatti, link di prenotazione). -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -88,6 +90,7 @@
           "longitude": 16.9849044
         },
         "hasMap": "https://maps.app.goo.gl/jLEXjAeG8ijbvvFf6",
+        "logo": "https://bellavistadomus.netlify.app/branding/logo-orizzontale.png",
         "image": [
           "https://bellavistadomus.netlify.app/images/hero.jpg",
           "https://bellavistadomus.netlify.app/images/intro.jpg",
@@ -151,7 +154,13 @@
       fetchpriority="high"
     />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/branding/favicon.ico" sizes="32x32" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/branding/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/branding/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="/branding/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#102838" />
+    <link rel="apple-touch-icon" href="/branding/apple-touch-icon.png" />
 
             <!-- FAQ: generato dal contenuto di translations.<lang>.faq in src/App.jsx -->
     <script type="application/ld+json">

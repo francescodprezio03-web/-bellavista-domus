@@ -9,7 +9,12 @@
   <link rel="alternate" hreflang="it" href="https://bellavistadomus.netlify.app/privacy.html" />
   <link rel="alternate" hreflang="en" href="https://bellavistadomus.netlify.app/privacy-en.html" />
   <link rel="alternate" hreflang="x-default" href="https://bellavistadomus.netlify.app/privacy.html" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/branding/favicon.ico" sizes="32x32" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/branding/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/branding/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/branding/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#102838" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap');
 
@@ -36,7 +41,11 @@
       display:flex;align-items:center;justify-content:space-between;
       max-width:1000px;margin:0 auto;
     }
-    .logo{font-family:'Fraunces',serif;font-size:19px;color:var(--sea-deep);text-decoration:none;}
+    .logo{display:block;line-height:0;}
+    /* Stesso marchio della homepage: sopra un fondo chiaro serve
+       la versione a colori, non quella chiara. */
+    .logo img{height:38px;width:auto;}
+    @media (max-width:700px){.logo img{height:32px;}}
     .back{font-size:13px;letter-spacing:0.04em;text-transform:uppercase;text-decoration:none;color:var(--sea-deep);border-bottom:1px solid currentColor;padding-bottom:2px;}
     main{max-width:720px;margin:0 auto;padding:70px 32px 120px;}
     h1{
@@ -71,7 +80,9 @@
 </head>
 <body>
   <header>
-    <a href="/en/" class="logo">Bellavista Domus</a>
+    <a href="/en/" class="logo">
+      <img src="/branding/logo-header.png" alt="Bellavista Domus" width="300" height="106" />
+    </a>
     <a href="/en/" class="back">← Back to site</a>
   </header>
 

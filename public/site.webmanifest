@@ -1,0 +1,13 @@
+{
+  "name": "Bellavista Domus",
+  "short_name": "Bellavista",
+  "description": "Casa vacanze a 10 metri dal mare a Torre a Mare, Bari.",
+  "icons": [
+    { "src": "/branding/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/branding/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#102838",
+  "background_color": "#FAF7F1",
+  "display": "browser",
+  "start_url": "/"
+}
