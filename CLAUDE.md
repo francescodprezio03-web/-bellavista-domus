@@ -15,7 +15,11 @@ messaggio di errore invece delle date.
 
 - **Vite 5** + **React 18** (`@vitejs/plugin-react`), niente router/CSS
   framework: gli stili sono un'unica stringa CSS iniettata via `<style>` in
-  `App.jsx` (variabile `STYLES`), niente file `.css` separati.
+  `App.jsx` (variabile `STYLES`), niente file `.css` separati (l'unica
+  eccezione è `public/fonts/fonts.css`, condiviso da tutte le pagine).
+  `STYLES` si inserisce con `dangerouslySetInnerHTML`: come testo normale,
+  nel prerendering React trasformerebbe apostrofi e `&` in entità che dentro
+  `<style>` il browser non riconverte, rompendo il CSS e l'idratazione.
 - Nessun test runner, nessun linter configurato.
 - Deploy come sito statico (Netlify/Vercel) — vedi `README.md` per i passi.
 
@@ -27,7 +31,8 @@ messaggio di errore invece delle date.
   mostrare (`src/main.jsx` lo legge e lo passa ad `App` come prop `lang`).
   Ognuna contiene i propri tag per motori di ricerca e anteprime social:
   `<title>`, meta description, Open Graph/Twitter card, dati strutturati
-  JSON-LD (`LodgingBusiness`), Google tag (gtag.js) con Consent Mode v2,
+  JSON-LD (`LodgingBusiness`), il richiamo a `public/js/consenso.js` (Google
+  Analytics con Consent Mode v2, caricato solo dopo il consenso),
   preload dell'hero, favicon. **Sono deliberatamente duplicate**: è ciò che
   dà all'inglese un indirizzo indicizzabile invece di un interruttore che
   spariva al ricaricamento. Se si modifica un tag SEO in una, va aggiornato
@@ -55,7 +60,8 @@ messaggio di errore invece delle date.
     quella dell'hero, che così carica in `eager` con `fetchpriority="high"`
     (è l'immagine misurata da Google come LCP, e `index.html` la precarica
     con un `<link rel="preload">`). Tutte le altre restano `lazy`.
-  - `MapCard` incorpora Google Maps **solo dopo un click dell'utente**:
+  - `MapCard` incorpora Google Maps **solo dopo un click dell'utente**
+    (lo dice anche l'informativa privacy, al punto 7):
     l'`<iframe>` non esiste nel DOM finché non si preme "Mostra la mappa".
     Non trasformarlo mai in un iframe sempre presente — vanificherebbe il
     Consent Mode, perché Google riceverebbe l'IP di ogni visitatore prima
@@ -139,8 +145,9 @@ messaggio di errore invece delle date.
     (Nota: dal 7 maggio 2026 Google non mostra più i risultati arricchiti
     delle FAQ; il markup resta utile solo per far capire la pagina.)
   - `traccia(evento, parametri)`: invia eventi a Google Analytics. Esce
-    senza fare nulla se `gtag` non c'è (sviluppo locale, blocchi
-    pubblicitari), così il sito non può rompersi per il tracciamento.
+    senza fare nulla finché il visitatore non ha accettato i cookie
+    (`window.bdAnalyticsAttivo`) o se `gtag` non c'è (sviluppo locale,
+    blocchi pubblicitari), così il sito non può rompersi per il tracciamento.
     Eventi attivi: `contatto` (metodo), `click_ota` (piattaforma),
     `apre_mappa`, `apre_galleria`, `apre_guida` (meta), `richiesta_inviata`,
     `scroll_75`.
@@ -326,8 +333,41 @@ messaggio di errore invece delle date.
 - **`public/robots.txt`**, **`public/sitemap.xml`** — SEO tecnico.
 - **`netlify.toml`** (root) — non tocca build/publish (quelli restano
   nelle impostazioni del sito su Netlify o nel drag&drop manuale di
-  `dist/`, vedi README.md): forza solo il `Content-Type` HTTP corretto
-  su `sitemap.xml` (`application/xml`) e `robots.txt` (`text/plain`).
+  `dist/`, vedi README.md). Contiene: il `Content-Type` di `sitemap.xml` e
+  `robots.txt`, le regole di cache (immagini, font, asset, HTML) e le
+  **intestazioni di sicurezza** valide per tutto il sito, prima fra tutte
+  la **Content-Security-Policy**: l'elenco chiuso di ciò che il browser può
+  caricare. Oggi ammette solo il sito stesso, Google Analytics 4 (domini
+  indicati da Google nella guida
+  https://developers.google.com/tag-platform/security/guides/csp) e la
+  mappa di Google in `frame-src`. Due regole che ne discendono:
+  1. **Ogni nuova risorsa esterna** (script, font, mappa, widget, immagine
+     remota) va aggiunta alla CSP, altrimenti il browser la blocca in
+     silenzio: l'errore si vede solo nella console. Va anche descritta
+     nell'informativa privacy e, se trasmette dati a terzi, caricata solo
+     dopo il consenso.
+  2. **Nessuno script scritto dentro le pagine** (`<script>...codice...</script>`):
+     la CSP li blocca. Il codice va in un file in `public/js/` e si carica
+     con `src=`. Oggi ce ne sono due: `public/js/consenso.js` (Consent Mode
+     e caricamento di gtag.js dopo il consenso, nelle due home, senza
+     `async`) e `public/js/anno.js` (l'anno nel footer di guide e privacy). I blocchi JSON-LD (`type="application/ld+json"`) non
+     sono script eseguibili e restano nelle pagine.
+  `style-src` contiene `'unsafe-inline'` perché tutto il CSS vive in
+  `<style>` dentro le pagine e React scrive stili sugli elementi: è un
+  compromesso consapevole, molto meno rischioso di script inline.
+- **`public/fonts/`** — i font **Fraunces** e **Inter**, ospitati sul sito
+  invece che su Google Fonts: così nessun visitatore trasmette il proprio
+  IP a Google solo per leggere una pagina. Licenza libera SIL OFL 1.1 (testi
+  in `OFL-Fraunces.txt` e `OFL-Inter.txt`), file presi dai pacchetti
+  `@fontsource-variable/fraunces` e `@fontsource-variable/inter` 5.3.0 (non
+  sono dipendenze npm: i file sono copiati qui). Sono font variabili: un
+  file copre tutti gli spessori e, per Fraunces, la dimensione ottica.
+  `fonts.css` li dichiara e ogni pagina lo richiama con
+  `@import url('/fonts/fonts.css');` in cima al proprio CSS (nelle home, in
+  cima a `STYLES`). Le due home precaricano `inter-latin.woff2` e
+  `fraunces-latin.woff2` con `<link rel="preload">`: **se cambiano i nomi
+  dei file, vanno aggiornati anche quei preload**. Non tornare mai a
+  `fonts.googleapis.com`.
 
 ## Dati chiave della struttura (da `CONFIG.property` in `App.jsx`)
 
@@ -358,9 +398,17 @@ messaggio di errore invece delle date.
   passato il file era ~9MB per questo motivo): restano file reali in
   `public/images/`, referenziati per path.
 - SEO e dati strutturati vivono solo in `index.html`, non in `App.jsx`.
-- Consent Mode v2: Google Analytics non raccoglie dati finché l'utente non
-  accetta il cookie banner (`CookieBanner` in `App.jsx`); i cookie
-  pubblicitari (`ad_*`) restano sempre negati, il sito non fa remarketing.
+- Consent Mode v2 **con caricamento dopo il consenso**: finché l'utente non
+  preme "Accetta" nel cookie banner, gtag.js **non viene nemmeno scaricato**
+  e il sito non contatta Google. L'unico interruttore è
+  `window.bdAttivaAnalytics()` in `public/js/consenso.js`, chiamato da
+  quel file se la scelta "accepted" è già salvata e da `CookieBanner`
+  quando si preme "Accetta". **Non rimettere mai** un
+  `<script src="https://www.googletagmanager.com/...">` fisso nelle home:
+  riporterebbe Google a ricevere l'IP di ogni visitatore prima del
+  consenso. `traccia()` scarta gli eventi finché il consenso non c'è. I
+  cookie pubblicitari (`ad_*`) restano sempre negati, il sito non fa
+  remarketing.
 - Sito interamente in italiano nei commenti/codice; nessun uso di TypeScript.
 
 ## Prerendering
