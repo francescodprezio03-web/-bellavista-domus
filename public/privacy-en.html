@@ -16,7 +16,7 @@
   <link rel="manifest" href="/site.webmanifest" />
   <meta name="theme-color" content="#102838" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap');
+    @import url('/fonts/fonts.css');
 
     :root{
       --ivory:#FAF7F1;
@@ -88,7 +88,7 @@
 
   <main>
     <h1>Privacy and Cookie Policy</h1>
-    <p class="updated">Last updated: 22 August 2026</p>
+    <p class="updated">Last updated: 24 September 2026</p>
 
     <h2>1. Data Controller</h2>
     <p>The data controller is:</p>
@@ -140,8 +140,8 @@
       websites, where their respective privacy policies apply:
     </p>
     <ul>
-      <li>Booking.com privacy policy: <a href="https://www.booking.com/content/privacy.en-gb.html" target="_blank" rel="noopener">booking.com/content/privacy.en-gb.html</a></li>
-      <li>Airbnb privacy policy: <a href="https://www.airbnb.com/help/article/2855" target="_blank" rel="noopener">airbnb.com/help/article/2855</a></li>
+      <li>Booking.com privacy policy: <a href="https://www.booking.com/content/privacy.en-gb.html" target="_blank" rel="noopener noreferrer">booking.com/content/privacy.en-gb.html</a></li>
+      <li>Airbnb privacy policy: <a href="https://www.airbnb.com/help/article/2855" target="_blank" rel="noopener noreferrer">airbnb.com/help/article/2855</a></li>
     </ul>
     <p>
       Bellavista Domus has no access to payment data or to any information
@@ -183,7 +183,7 @@
       United States: the transfer is based on the Standard Contractual Clauses
       approved by the European Commission and on the EU-US Data Privacy Framework.
       Netlify's privacy policy is available at
-      <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener">netlify.com/privacy</a>.
+      <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener noreferrer">netlify.com/privacy</a>.
     </p>
     <p>
       Otherwise, your data may be disclosed exclusively to public authorities, where
@@ -204,7 +204,7 @@
     <p>
       You also have the right to lodge a complaint with the Italian Data
       Protection Authority, the <strong>Garante per la Protezione dei Dati
-      Personali</strong> (<a href="https://www.garanteprivacy.it" target="_blank" rel="noopener">www.garanteprivacy.it</a>),
+      Personali</strong> (<a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer">www.garanteprivacy.it</a>),
       if you believe the processing violates EU Regulation 2016/679 (GDPR).
     </p>
 
@@ -215,11 +215,13 @@
       viewed pages), in order to improve the user experience.
     </p>
     <p>
-      We use Google's <strong>Consent Mode v2</strong>: analytics cookies are
-      only activated after your explicit consent, which you can give or
-      decline via the banner shown on your first visit to the site. You can
-      change your choice at any time by clearing cookies in your browser and
-      reloading the page.
+      Google Analytics is loaded <strong>only after your explicit
+      consent</strong>, which you can give or decline via the banner shown
+      on your first visit to the site: until you press “Accept”, the site
+      does not contact Google's servers and sets no analytics cookies. We
+      also use Google's <strong>Consent Mode v2</strong>. You can change
+      your choice at any time by clearing cookies and site data in your
+      browser and reloading the page.
     </p>
     <p>
       Data collected by Google Analytics may be transferred to servers
@@ -227,9 +229,9 @@
       <strong>EU-U.S. Data Privacy Framework</strong>, which ensures a level
       of personal data protection recognised as adequate by the European
       Commission. For more information:
-      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's privacy policy</a>
+      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's privacy policy</a>
       and
-      <a href="https://marketingplatform.google.com/about/analytics/terms/us/" target="_blank" rel="noopener">Google Analytics Terms of Service</a>.
+      <a href="https://marketingplatform.google.com/about/analytics/terms/us/" target="_blank" rel="noopener noreferrer">Google Analytics Terms of Service</a>.
     </p>
     <p>
       This site <strong>does not use advertising profiling cookies or
@@ -240,6 +242,19 @@
       operation (e.g. to remember the selected IT/EN language, or your
       choice on the cookie banner), which do not require consent under
       applicable law.
+    </p>
+    <p>
+      <strong>Map.</strong> In the location section, the Google Maps map is
+      not loaded automatically: it only appears if you press the “Show the
+      map” button. Only at that moment does your browser connect to Google's
+      servers, which receive technical data such as your IP address and may
+      set their own cookies, in accordance with
+      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's privacy policy</a>.
+      If you do not press the button, no data is sent to Google.
+    </p>
+    <p>
+      The site's typefaces are hosted on our own servers: displaying them
+      does not involve connections to external services.
     </p>
     <p>
       If further tools are added in the future (e.g. Meta Pixel, third-party
@@ -260,6 +275,6 @@
   <footer>
     © <span id="year"></span> Bellavista Domus.
   </footer>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="/js/anno.js"></script>
 </body>
 </html>
