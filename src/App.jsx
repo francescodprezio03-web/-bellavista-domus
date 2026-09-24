@@ -2787,8 +2787,8 @@ const STYLES = `
   padding:10px 14px;margin:22px auto 0;max-width:520px;
 }
 .bd-cal__barra{
-  display:flex;align-items:center;justify-content:space-between;gap:16px;
-  margin:34px 0 18px;flex-wrap:wrap;
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;
+  margin:34px 0 18px;
 }
 .bd-cal__freccia{
   font-size:17px;line-height:1;color:var(--sea-deep);
@@ -2799,7 +2799,7 @@ const STYLES = `
 .bd-cal__freccia:disabled{opacity:0.35;cursor:default;}
 .bd-cal__legenda{
   display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--stone);
-  letter-spacing:0.03em;flex-wrap:wrap;justify-content:center;
+  letter-spacing:0.03em;justify-content:center;white-space:nowrap;
 }
 .bd-cal__chip{width:13px;height:13px;border-radius:2px;display:inline-block;}
 .bd-cal__chip--libero{background:var(--white);border:1px solid var(--line);}
@@ -2833,7 +2833,9 @@ const STYLES = `
 @media (max-width:700px){
   .bd-cal{padding:0 22px 16px;}
   .bd-cal__mesi{grid-template-columns:1fr;gap:28px;}
-  .bd-cal__barra{margin:26px 0 14px;}
+  .bd-cal__barra{margin:26px 0 14px;gap:8px;}
+  .bd-cal__freccia{padding:8px 11px;}
+  .bd-cal__legenda{gap:6px;font-size:12px;}
 }
 
 .bd-footer__coda{display:flex;align-items:center;gap:20px;}
@@ -2922,7 +2924,12 @@ export default function BellavistaDomus({ lang = "it" }) {
 
   return (
     <div className="bd-root">
-      <style>{STYLES}</style>
+      {/* Gli stili vanno inseriti come HTML grezzo: come testo normale React
+          nel prerendering trasforma apostrofi e "&" in codici (&#x27;, &amp;)
+          che dentro <style> il browser non riconverte. Il CSS preparato per
+          Google risultava rotto e React, trovando una differenza, rifaceva
+          tutta la pagina da capo al caricamento. */}
+      <style dangerouslySetInnerHTML={{ __html: STYLES }} />
       <Header lang={lang} t={t} go={go} />
       <Hero t={t} go={go} />
       <Intro t={t} />
