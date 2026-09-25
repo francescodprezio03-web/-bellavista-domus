@@ -10,23 +10,11 @@
          nella home italiana, va aggiornato anche qui: sono due pagine
          separate proprio perché ognuna abbia i propri meta in lingua. -->
 
-    <!-- Google tag (gtag.js) — identico a index.html, Consent Mode v2:
-         nessun dato raccolto finché l'utente non accetta il banner. -->
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('consent', 'default', {
-        'ad_storage': 'denied',
-        'ad_user_data': 'denied',
-        'ad_personalization': 'denied',
-        'analytics_storage': 'denied'
-      });
-    </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LF1J1R5PT"></script>
-    <script>
-      gtag('js', new Date());
-      gtag('config', 'G-4LF1J1R5PT');
-    </script>
+    <!-- Google Analytics (GA4) — identico a index.html: Consent Mode v2 e
+         caricamento SOLO dopo il consenso. È public/js/consenso.js ad
+         aggiungere gtag.js alla pagina quando l'utente preme "Accept": non
+         rimettere qui un <script src="https://www.googletagmanager.com/..."> fisso. -->
+    <script src="/js/consenso.js"></script>
 
     <title>Bellavista Domus — Seafront Holiday Home in Torre a Mare, Bari</title>
     <meta
@@ -154,6 +142,12 @@
       imagesizes="100vw"
       fetchpriority="high"
     />
+
+    <!-- I due font principali (testo e titoli) sono ospitati sul sito, in
+         public/fonts/. Il preload li fa partire subito invece che dopo la
+         lettura del CSS. Se cambiano i file dei font, va aggiornato anche qui. -->
+    <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/branding/favicon.ico" sizes="32x32" />
     <link rel="icon" type="image/png" sizes="32x32" href="/branding/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/branding/favicon-16x16.png" />

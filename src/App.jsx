@@ -659,19 +659,17 @@ const translations = {
 
 /* -------------------------------- TRACCIAMENTO -------------------------------- */
 
-/* Invia un evento a Google Analytics. Non fa nulla se gtag non è caricato
-   (per esempio in sviluppo locale, o se un blocco pubblicità lo ferma):
-   il sito deve funzionare identico in ogni caso.
-
-   Il Consent Mode resta rispettato: finché l'utente non accetta il banner,
-   gtag riceve gli eventi ma non scrive cookie né identifica nessuno. Non
-   serve quindi condizionare le chiamate al consenso.
+/* Invia un evento a Google Analytics. Non fa nulla finché il visitatore non
+   ha accettato il banner cookie (bdAnalyticsAttivo, in public/js/consenso.js),
+   né se gtag manca (sviluppo locale, blocchi pubblicitari): il sito deve
+   funzionare identico in ogni caso. Gli eventi precedenti al consenso non
+   vengono accodati né inviati dopo: si scartano.
 
    Questi eventi sono ciò che distingue "quante persone sono passate" da
    "quante hanno fatto qualcosa": senza, non è possibile valutare né una
    campagna pubblicitaria né se conviene un motore di prenotazione. */
 function traccia(evento, parametri) {
-  if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+  if (typeof window === "undefined" || !window.bdAnalyticsAttivo || typeof window.gtag !== "function") return;
   window.gtag("event", evento, parametri || {});
 }
 
@@ -1916,9 +1914,10 @@ function Footer({ t, go }) {
 }
 
 /* ------------------------------- COOKIE BANNER -------------------------------- */
-/* Mostra il banner solo se l'utente non ha già scelto. "Accetta" abilita la
-   raccolta dati di Google Analytics (Consent Mode); "Rifiuta" la lascia
-   disattivata. La scelta viene ricordata in questo browser. */
+/* Mostra il banner solo se l'utente non ha già scelto. "Accetta" carica
+   Google Analytics tramite window.bdAttivaAnalytics (public/js/consenso.js):
+   prima di quel momento gtag.js non viene nemmeno scaricato. "Rifiuta" non
+   carica nulla. La scelta viene ricordata in questo browser. */
 
 function CookieBanner({ t }) {
   const [visible, setVisible] = useState(false);
@@ -1926,15 +1925,15 @@ function CookieBanner({ t }) {
   useEffect(() => {
     const saved = localStorage.getItem("bd-cookie-consent");
     if (!saved) setVisible(true);
-    else if (saved === "accepted" && window.gtag) {
-      window.gtag("consent", "update", { analytics_storage: "granted" });
+    else if (saved === "accepted" && window.bdAttivaAnalytics) {
+      window.bdAttivaAnalytics();
     }
   }, []);
 
   const choose = (value) => {
     localStorage.setItem("bd-cookie-consent", value);
-    if (value === "accepted" && window.gtag) {
-      window.gtag("consent", "update", { analytics_storage: "granted" });
+    if (value === "accepted" && window.bdAttivaAnalytics) {
+      window.bdAttivaAnalytics();
     }
     setVisible(false);
   };
@@ -1997,7 +1996,7 @@ function StickyCta({ t, go }) {
 /* ------------------------------------ STYLES --------------------------------------- */
 
 const STYLES = `
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap');
+@import url('/fonts/fonts.css');
 
 :root{
   --ivory:#FAF7F1;

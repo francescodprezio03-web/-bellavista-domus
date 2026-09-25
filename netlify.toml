@@ -52,3 +52,44 @@
   for = "/*.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
+
+# I font (public/fonts) tengono lo stesso nome se li sostituisci: stesso
+# ragionamento delle immagini, un mese di cache.
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+# --- Sicurezza -----------------------------------------------------------
+# Valgono per ogni file del sito.
+#
+# Content-Security-Policy: l'elenco di ciò che il browser può caricare ed
+# eseguire. Tutto il resto viene bloccato, così uno script estraneo non può
+# girare sul sito neanche se qualcuno riuscisse a infilarlo in una pagina.
+#   default-src 'self'       di base, solo file di questo sito
+#   script-src               questo sito + Google Analytics (gtag.js).
+#                            NESSUNO script scritto dentro le pagine: il codice
+#                            va in un file (public/js/) e si carica con src=
+#   style-src 'unsafe-inline' serve per i <style> dentro le pagine e per lo
+#                            stile degli elementi disegnati da React
+#   font-src 'self'          i font sono in public/fonts, niente Google Fonts
+#   img-src / connect-src    questo sito + i domini di Google Analytics 4
+#                            indicati da Google nella sua guida sulla CSP
+#   frame-src                solo la mappa di Google, che MapCard crea dopo un
+#                            clic del visitatore
+#   form-action 'self'       il modulo può inviare dati solo a questo sito
+#   frame-ancestors 'none'   nessun altro sito può mostrare questo dentro un
+#                            riquadro (protezione dal "clickjacking")
+#   object-src 'none'        niente plugin (Flash e simili)
+#   base-uri 'self'          nessuno può cambiare l'indirizzo base dei link
+# Aggiungendo una risorsa esterna (script, font, mappa, widget, immagine
+# remota) va aggiunta qui, altrimenti il browser la blocca in silenzio: si
+# vede solo nella console degli strumenti per sviluppatori.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self' https://*.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src https://www.google.com https://maps.google.com; form-action 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests"
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"

@@ -4,25 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Google tag (gtag.js) — Google Analytics, con Consent Mode v2: nessun
-         dato viene raccolto finché l'utente non accetta il banner cookie.
-         ad_storage/ad_user_data/ad_personalization restano sempre negati:
-         il sito non usa pubblicità o remarketing, solo statistiche. -->
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('consent', 'default', {
-        'ad_storage': 'denied',
-        'ad_user_data': 'denied',
-        'ad_personalization': 'denied',
-        'analytics_storage': 'denied'
-      });
-    </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4LF1J1R5PT"></script>
-    <script>
-      gtag('js', new Date());
-      gtag('config', 'G-4LF1J1R5PT');
-    </script>
+    <!-- Google Analytics (GA4) con Consent Mode v2, caricato SOLO dopo il
+         consenso: finché l'utente non preme "Accetta" nel banner cookie, il
+         sito non scarica gtag.js e non contatta Google. È public/js/consenso.js
+         ad aggiungere gtag.js alla pagina dopo il consenso: non rimettere qui
+         un <script src="https://www.googletagmanager.com/..."> fisso.
+         Sta in un file e non dentro la pagina perché la Content-Security-Policy
+         (netlify.toml) vieta gli script scritti direttamente nell'HTML. -->
+    <script src="/js/consenso.js"></script>
 
     <!-- Titolo e descrizione: quelli che appaiono su Google -->
     <title>Bellavista Domus — Casa vacanze sul mare a Torre a Mare, Bari</title>
@@ -153,6 +142,12 @@
       imagesizes="100vw"
       fetchpriority="high"
     />
+
+    <!-- I due font principali (testo e titoli) sono ospitati sul sito, in
+         public/fonts/. Il preload li fa partire subito invece che dopo la
+         lettura del CSS. Se cambiano i file dei font, va aggiornato anche qui. -->
+    <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin />
 
     <link rel="icon" href="/branding/favicon.ico" sizes="32x32" />
     <link rel="icon" type="image/png" sizes="32x32" href="/branding/favicon-32x32.png" />
