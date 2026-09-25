@@ -55,7 +55,7 @@ const CONFIG = {
   },
   property: {
     name: "Bellavista Domus",
-    locationLine: "Torre a Mare · Bari · Puglia",
+    locationLine: "Torre a Mare, Bari, Puglia",
     guests: 7,
     bedrooms: 3,
     bathrooms: 2,
@@ -103,17 +103,20 @@ const CONFIG = {
       { key: "outdoor", url: "/images/casa-spazi-esterni.jpg", span: 6, aspect: "4/3" },
       { key: "parking", url: "/images/casa-parcheggio.jpg", span: 6, aspect: "4/3" },
     ],
-    // 9 slot: mantieni questo numero per non alterare la composizione della griglia
+    // 9 foto: da computer la prima è grande (2 colonne x 2 righe) e le altre
+    // riempiono la griglia a 4 colonne senza buchi (2 + 2 accanto alla grande,
+    // poi una riga da 4). Con un numero diverso l'ultima riga resta incompleta.
+    // L'ordine racconta la casa: soggiorno, esterni, camere, cucina, giardino.
     gallery: [
       "/images/galleria-01.jpg",
+      "/images/galleria-07.jpg",
       "/images/galleria-02.jpg",
+      "/images/galleria-06.jpg",
       "/images/galleria-03.jpg",
       "/images/galleria-04.jpg",
-      "/images/galleria-05.jpg",
-      "/images/galleria-06.jpg",
-      "/images/galleria-07.jpg",
-      "/images/galleria-08.jpg",
       "/images/galleria-09.jpg",
+      "/images/galleria-08.jpg",
+      "/images/galleria-05.jpg",
     ],
     location: "/images/posizione-mare.jpg",
     explore: {
@@ -153,7 +156,7 @@ const translations = {
     hero: {
       title: "Bellavista Domus",
       subtitle: "A pochi passi dal mare.",
-      info: `Fino a ${CONFIG.property.guests} ospiti · ${CONFIG.property.bedrooms} camere da letto · ${CONFIG.property.bathrooms} bagni`,
+      info: `Fino a ${CONFIG.property.guests} ospiti, ${CONFIG.property.bedrooms} camere da letto, ${CONFIG.property.bathrooms} bagni`,
       ctaPrimary: "Verifica disponibilità",
       ctaSecondary: "Scopri la casa",
       scroll: "Scorri",
@@ -420,7 +423,7 @@ const translations = {
     hero: {
       title: "Bellavista Domus",
       subtitle: "A few steps from the sea.",
-      info: `Up to ${CONFIG.property.guests} guests · ${CONFIG.property.bedrooms} bedrooms · ${CONFIG.property.bathrooms} bathrooms`,
+      info: `Up to ${CONFIG.property.guests} guests, ${CONFIG.property.bedrooms} bedrooms, ${CONFIG.property.bathrooms} bathrooms`,
       ctaPrimary: "Check availability",
       ctaSecondary: "Explore the house",
       scroll: "Scroll",
@@ -695,38 +698,15 @@ function useScrollDepth() {
 
 /* ---------------------------------- HOOKS ----------------------------------- */
 
-function useReveal() {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-            obs.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-  return [ref, visible];
-}
-
-function Reveal({ as: Tag = "div", delay = 0, className = "", children, ...rest }) {
-  const [ref, visible] = useReveal();
+/* Reveal era un contenitore con animazione d'ingresso (dissolvenza dal basso)
+   su ogni sezione. Tolta a settembre 2026: su un sito "premium" le dissolvenze
+   ovunque sembrano un modello pronto e rallentano la lettura; resta un solo
+   momento animato, l'apertura (hero). Il componente resta perché è usato in
+   molti punti, anche con as="a" per le schede di "Scopri la Puglia": ora
+   restituisce semplicemente l'elemento, senza osservatori né classi. */
+function Reveal({ as: Tag = "div", delay, className = "", children, ...rest }) {
   return (
-    <Tag
-      ref={ref}
-      className={`bd-reveal ${visible ? "bd-reveal--visible" : ""} ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
-      {...rest}
-    >
+    <Tag className={className || undefined} {...rest}>
       {children}
     </Tag>
   );
@@ -884,8 +864,6 @@ function MapCard({ t }) {
   return (
     <div className="bd-map">
       <div className="bd-map__info">
-        <p className="bd-eyebrow">{t.location.mapEyebrow}</p>
-        <div className="bd-hairline" />
         <h3 className="bd-h3">{t.location.mapTitle}</h3>
 
         <address className="bd-map__address">
@@ -904,7 +882,7 @@ function MapCard({ t }) {
         </ul>
 
         <a className="bd-map__open" href={linkMaps} target="_blank" rel="noopener noreferrer">
-          {t.location.mapOpen} →
+          {t.location.mapOpen}
         </a>
       </div>
 
@@ -944,59 +922,6 @@ const HOME_LINGUE = { it: "/", en: "/en/" };
 
 /* Icone della barra contatti: piccole, disegnate a mano, ereditano il colore
    dal testo. Meglio di una libreria di icone per tre sole forme. */
-const IconaPin = () => (
-  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-    <path d="M12 22s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z" />
-    <circle cx="12" cy="10.5" r="2.4" />
-  </svg>
-);
-const IconaTelefono = () => (
-  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-    <path d="M21 16.4v2.7a1.8 1.8 0 0 1-2 1.8 17.6 17.6 0 0 1-7.7-2.7 17.3 17.3 0 0 1-5.3-5.3A17.6 17.6 0 0 1 3.3 5.1 1.8 1.8 0 0 1 5.1 3h2.7a1.8 1.8 0 0 1 1.8 1.6c.1.9.3 1.7.6 2.5a1.8 1.8 0 0 1-.4 1.9l-1.1 1.1a14 14 0 0 0 5.3 5.3l1.1-1.1a1.8 1.8 0 0 1 1.9-.4c.8.3 1.6.5 2.5.6a1.8 1.8 0 0 1 1.5 1.8z" />
-  </svg>
-);
-const IconaEmail = () => (
-  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-    <rect x="2.5" y="4.5" width="19" height="15" rx="2" />
-    <path d="m3 6 9 6.5L21 6" />
-  </svg>
-);
-
-/* Barra contatti sopra il menu: indirizzo, telefono ed email sempre
-   raggiungibili senza scorrere fino al footer. Su telefono il tocco apre
-   direttamente la chiamata o il client di posta. Scompare quando si scorre,
-   per lasciare tutto lo spazio al menu compatto. */
-function TopBar({ t }) {
-  const p = CONFIG.property;
-  const { via, comune } = datiIndirizzo();
-  const indirizzo = via ? `${via}, ${comune}` : comune;
-
-  return (
-    <div className="bd-topbar">
-      <div className="bd-topbar__inner">
-        <a
-          className="bd-topbar__item bd-topbar__addr"
-          href={CONFIG.maps.placeUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          title={t.topbar.address}
-        >
-          <IconaPin />
-          <span>{indirizzo}</span>
-        </a>
-        <a className="bd-topbar__item" href={`tel:${p.phone.replace(/\s/g, "")}`} title={t.topbar.phone} onClick={() => traccia("contatto", { metodo: "telefono" })}>
-          <IconaTelefono />
-          <span>{p.phone}</span>
-        </a>
-        <a className="bd-topbar__item" href={`mailto:${p.email}`} title={t.topbar.email} onClick={() => traccia("contatto", { metodo: "email" })}>
-          <IconaEmail />
-          <span>{p.email}</span>
-        </a>
-      </div>
-    </div>
-  );
-}
-
 function Header({ lang, t, go }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -1024,7 +949,6 @@ function Header({ lang, t, go }) {
 
   return (
     <header className={`bd-header ${scrolled ? "bd-header--solid" : ""}`}>
-      <TopBar t={t} />
       <div className="bd-header__inner">
         <a href="#home" className="bd-logo" onClick={(e) => { e.preventDefault(); handleGo("#home"); }}>
           {/* Due versioni dello stesso marchio: finché l'intestazione è
@@ -1126,12 +1050,12 @@ function Hero({ t, go }) {
     <section id="home" className="bd-hero">
       <div className="bd-hero__imgwrap">
         <div className="bd-hero__img" style={{ transform: `translateY(${offset}px)` }}>
-          <PhotoSlot src={CONFIG.images.hero} alt={CONFIG.property.name} dark position="center 68%" placeholderText={t.photoPlaceholder} priority sizes="100vw" />
+          <PhotoSlot src={CONFIG.images.hero} alt={CONFIG.property.name} dark position="center 52%" placeholderText={t.photoPlaceholder} priority sizes="100vw" />
         </div>
       </div>
       <div className="bd-hero__scrim" />
       <div className="bd-hero__content">
-        <p className="bd-eyebrow bd-eyebrow--light bd-hero__kicker">{CONFIG.property.locationLine}</p>
+        <p className="bd-hero__kicker">{CONFIG.property.locationLine}</p>
         <h1 className="bd-hero__title">{t.hero.title}</h1>
         <p className="bd-hero__subtitle">{t.hero.subtitle}</p>
         <p className="bd-hero__info">{t.hero.info}</p>
@@ -1159,8 +1083,6 @@ function Intro({ t }) {
     <section id="intro" className="bd-intro">
       <div className="bd-intro__grid">
         <Reveal className="bd-intro__text">
-          <p className="bd-eyebrow">{t.intro.eyebrow}</p>
-          <div className="bd-hairline" />
           <h2 className="bd-h2">{t.intro.title}</h2>
           <p className="bd-body">{t.intro.text}</p>
         </Reveal>
@@ -1196,13 +1118,11 @@ function House({ t }) {
   return (
     <section id="house" className="bd-house">
       <Reveal className="bd-section-head">
-        <p className="bd-eyebrow">{t.house.eyebrow}</p>
-        <div className="bd-hairline" />
         <h2 className="bd-h2">{t.house.title}</h2>
         <p className="bd-body bd-body--narrow">{t.house.text}</p>
       </Reveal>
 
-      <div className="bd-house__grid">
+      <div className="bd-house__grid" tabIndex={0} role="region" aria-label={t.house.title}>
         {items.map((item, i) => (
           <Reveal
             key={item.key}
@@ -1251,8 +1171,6 @@ function Gallery({ t }) {
   return (
     <section id="gallery" className="bd-gallery">
       <Reveal className="bd-section-head">
-        <p className="bd-eyebrow">{t.gallery.eyebrow}</p>
-        <div className="bd-hairline" />
         <h2 className="bd-h2">{t.gallery.title}</h2>
       </Reveal>
 
@@ -1262,7 +1180,7 @@ function Gallery({ t }) {
             key={src + i}
             delay={(i % 6) * 45}
             as="button"
-            className={`bd-gallery__item bd-gallery__item--${i % 5}`}
+            className={i === 0 ? "bd-gallery__item bd-gallery__item--grande" : "bd-gallery__item"}
             onClick={() => { setLightbox(i); traccia("apre_galleria", { indice: i + 1 }); }}
             aria-label={`${t.gallery.title} ${i + 1}`}
           >
@@ -1301,8 +1219,6 @@ function Testimonial({ t }) {
   return (
     <section className="bd-quote">
       <Reveal className="bd-quote__inner">
-        <p className="bd-eyebrow">{v.eyebrow}</p>
-        <div className="bd-hairline" />
         <figure className="bd-quote__figure">
           <blockquote className="bd-quote__text" cite={CONFIG.links.airbnb}>
             {"“" + v.quote + "”"}
@@ -1347,8 +1263,6 @@ function Location({ t }) {
         <PhotoSlot src={CONFIG.images.location} alt={t.location.title} dark position="center 40%" placeholderText={t.photoPlaceholder} sizes="100vw" />
         <div className="bd-location__hero-content">
           <Reveal>
-            <p className="bd-eyebrow bd-eyebrow--light">{t.location.eyebrow}</p>
-            <div className="bd-hairline bd-hairline--light" />
             <h2 className="bd-h2 bd-h2--light">{t.location.title}</h2>
             <p className="bd-body bd-body--light bd-body--narrow">{t.location.text}</p>
           </Reveal>
@@ -1363,8 +1277,6 @@ function Location({ t }) {
           guide sarebbe raggiungibile solo scorrendo fin dentro "Posizione". */}
       <div className="bd-explore" id="explore">
         <Reveal className="bd-section-head">
-          <p className="bd-eyebrow">{t.location.exploreEyebrow}</p>
-          <div className="bd-hairline" />
           <h3 className="bd-h3">{t.location.exploreTitle}</h3>
         </Reveal>
         <div className="bd-explore__grid">
@@ -1387,7 +1299,7 @@ function Location({ t }) {
               <p>{p.desc}</p>
               {p.link && (
                 <span className="bd-explore__link">
-                  {p.linkLabel} →
+                  {p.linkLabel}
                 </span>
               )}
             </Reveal>
@@ -1406,8 +1318,6 @@ function Amenities({ t }) {
     <section id="servizi" className="bd-amen">
       <div className="bd-amen__inner">
         <Reveal className="bd-section-head">
-          <p className="bd-eyebrow">{a.eyebrow}</p>
-          <div className="bd-hairline" />
           <h2 className="bd-h2">{a.title}</h2>
           <p className="bd-body bd-body--narrow">{a.text}</p>
         </Reveal>
@@ -1473,8 +1383,6 @@ function Faq({ t }) {
     <section id="faq" className="bd-faq">
       <div className="bd-faq__inner">
         <Reveal className="bd-section-head">
-          <p className="bd-eyebrow">{f.eyebrow}</p>
-          <div className="bd-hairline" />
           <h2 className="bd-h2">{f.title}</h2>
           <p className="bd-body bd-body--narrow">{f.text}</p>
         </Reveal>
@@ -1494,7 +1402,7 @@ function Faq({ t }) {
                     tag HTML non avrebbe senso. */}
                 {item.href && (
                   <a className="bd-faq__more" href={item.href}>
-                    {item.linkLabel} →
+                    {item.linkLabel}
                   </a>
                 )}
               </div>
@@ -1618,8 +1526,6 @@ function Calendario({ t, go }) {
     <section id="calendario" className="bd-cal">
       <Reveal className="bd-cal__inner">
         <div className="bd-section-head">
-          <p className="bd-eyebrow">{v.eyebrow}</p>
-          <div className="bd-hairline" />
           <h2 className="bd-h3">{v.title}</h2>
           <p className="bd-body bd-body--narrow">{v.text}</p>
         </div>
@@ -1630,7 +1536,7 @@ function Calendario({ t, go }) {
           <p className="bd-cal__stato bd-cal__stato--errore" role="status">
             {v.errore}{" "}
             <a href="#contact" className="bd-cal__link" onClick={(e) => { e.preventDefault(); go("#contact"); }}>
-              {t.nav.contact} →
+              {t.nav.contact}
             </a>
           </p>
         )}
@@ -1736,7 +1642,6 @@ function ContactForm({ t }) {
       <section id="contact" className="bd-form">
         <Reveal className="bd-form__inner">
           <div className="bd-form__done" role="status">
-            <p className="bd-eyebrow">{t.form.eyebrow}</p>
             <h2 className="bd-h3">{t.form.doneTitle}</h2>
             <p className="bd-body bd-body--narrow">{t.form.doneText}</p>
           </div>
@@ -1749,8 +1654,6 @@ function ContactForm({ t }) {
     <section id="contact" className="bd-form">
       <Reveal className="bd-form__inner">
         <div className="bd-section-head">
-          <p className="bd-eyebrow">{t.form.eyebrow}</p>
-          <div className="bd-hairline" />
           <h2 className="bd-h3">{t.form.title}</h2>
           <p className="bd-body bd-body--narrow">{t.form.text}</p>
         </div>
@@ -1842,8 +1745,6 @@ function Booking({ t, go }) {
     <section id="booking" className="bd-booking">
       <div className="bd-booking__glow" />
       <Reveal className="bd-booking__inner">
-        <p className="bd-eyebrow bd-eyebrow--light">{t.booking.eyebrow}</p>
-        <div className="bd-hairline bd-hairline--light" />
         <h2 className="bd-h2 bd-h2--light">{t.booking.title}</h2>
         <p className="bd-body bd-body--light">{t.booking.text}</p>
         <div className="bd-booking__ctas">
@@ -1883,7 +1784,7 @@ function Footer({ t, go }) {
           height="363"
           className="bd-logo--footer"
         />
-        <p className="bd-footer__tagline">{t.footer.tagline} · {CONFIG.property.locationLine}</p>
+        <p className="bd-footer__tagline">{t.footer.tagline}. {CONFIG.property.locationLine}</p>
       </div>
 
       <div className="bd-footer__grid">
@@ -2045,18 +1946,6 @@ const STYLES = `
 .bd-photo__placeholder--compact .bd-photo__hair{width:16px;}
 
 /* Type */
-.bd-eyebrow{
-  font-family:'Inter',sans-serif;
-  font-size:11.5px;
-  letter-spacing:0.24em;
-  text-transform:uppercase;
-  color:var(--stone);
-  margin:0 0 16px;
-  font-weight:500;
-  display:flex;align-items:center;gap:10px;
-}
-/* trattino decorativo rimosso su richiesta */
-.bd-eyebrow--light{color:rgba(255,255,255,0.86);}
 .bd-h2{
   font-family:'Fraunces',serif;
   font-weight:340;
@@ -2081,36 +1970,9 @@ const STYLES = `
 }
 .bd-body--light{color:rgba(255,255,255,0.82);}
 .bd-body--narrow{max-width:44ch;}
-.bd-hairline{
-  width:0;height:1px;background:var(--sea-deep);opacity:0.45;margin:0 0 26px;
-  transform-origin:left;transition:width 1s cubic-bezier(.16,.8,.24,1) .15s;
-}
-.bd-reveal--visible .bd-hairline{width:44px;}
-.bd-hairline--light{background:var(--white);opacity:0.6;}
 .bd-section-head{max-width:640px;margin:0 auto 64px;text-align:center;}
-.bd-section-head .bd-eyebrow{justify-content:center;}
-.bd-section-head .bd-hairline{margin-left:auto;margin-right:auto;}
 .bd-section-head .bd-body{margin-left:auto;margin-right:auto;}
 
-/* Reveal */
-/* Le animazioni d'ingresso partono nascoste, ma SOLO se JavaScript è attivo:
-   la classe bd-js la mette src/main.jsx appena parte. Senza questa
-   condizione, l'HTML prerenderizzato mostrerebbe una pagina completa di
-   testo ma tutta a opacità zero per chi non esegue JavaScript — cioè
-   proprio i motori di risposta AI per cui il prerendering esiste. */
-.bd-js .bd-reveal{opacity:0;transform:translateY(30px);transition:opacity 1s cubic-bezier(.16,.8,.24,1), transform 1s cubic-bezier(.16,.8,.24,1);}
-/* Il prefisso .bd-js va ripetuto anche qui, e non è pedanteria: senza, questa
-   regola pesa una classe contro le due della riga sopra, quindi perde — e
-   tutto il sito resta invisibile con JavaScript attivo. Le tre regole di
-   .bd-reveal devono avere la stessa specificità o essere in ordine crescente. */
-.bd-js .bd-reveal--visible{opacity:1;transform:translateY(0);}
-@media (prefers-reduced-motion: reduce){
-  /* Anche qui serve il prefisso .bd-js, per lo stesso motivo di specificità:
-     chi ha chiesto al sistema di ridurre le animazioni deve vedere la pagina
-     ferma e visibile, non ferma e trasparente. */
-  .bd-js .bd-reveal, .bd-js .bd-reveal--visible{opacity:1;transform:none;transition:none;}
-  .bd-hairline{width:44px !important;transition:none;}
-}
 
 /* Buttons — fixed specificity: compound selectors so context never overrides intended color */
 .bd-btn{
@@ -2130,12 +1992,8 @@ const STYLES = `
 .bd-btn.bd-btn--ghost{
   padding:16px 0;color:inherit;position:relative;
 }
-.bd-btn.bd-btn--ghost::after{
-  content:'→';margin-left:2px;transition:transform .35s ease;display:inline-block;
-}
 .bd-btn.bd-btn--ghost span{position:relative;}
 .bd-btn.bd-btn--ghost{border-bottom:1px solid currentColor;padding-bottom:5px;}
-.bd-btn.bd-btn--ghost:hover::after{transform:translateX(5px);}
 
 /* Header */
 .bd-header{
@@ -2153,15 +2011,16 @@ const STYLES = `
   opacity:1;transition:opacity .4s ease;
 }
 .bd-header--solid::before{opacity:0;}
-.bd-header__inner, .bd-topbar{position:relative;z-index:1;}
+.bd-header__inner{position:relative;z-index:1;}
 .bd-header--solid{
   background:rgba(250,247,241,0.90);
   backdrop-filter:blur(12px);
   border-bottom:1px solid var(--line);
 }
-/* Lo spazio verticale dell'intestazione sta qui e non su .bd-header, perché
-   la barra contatti dev'essere una striscia a tutta larghezza attaccata al
-   bordo dello schermo, non un blocco che galleggia dentro un'imbottitura. */
+/* Lo spazio verticale dell'intestazione sta qui e non su .bd-header. Fino a
+   settembre 2026 sopra il menu c'era una barra contatti blu (indirizzo,
+   telefono, email): tolta per alleggerire l'apertura. I recapiti restano
+   nella sezione contatti, nel footer e nel pulsante WhatsApp. */
 .bd-header__inner{
   max-width:1280px;margin:0 auto;padding:26px 32px;
   display:flex;align-items:center;justify-content:space-between;gap:24px;
@@ -2169,43 +2028,7 @@ const STYLES = `
 }
 .bd-header--solid .bd-header__inner{padding:12px 32px;}
 
-/* Barra contatti: striscia piena blu Adriatico in cima alla pagina.
-   Il fondo pieno è una scelta deliberata — il testo dei recapiti è piccolo
-   e sopra una fotografia non regge, per quanto lo si veli. Collassa quando
-   si scorre, lasciando solo il menu compatto. */
-.bd-topbar{
-  overflow:hidden;max-height:46px;opacity:1;
-  background:var(--sea-deep);
-  transition:max-height .4s ease, opacity .3s ease;
-}
-.bd-header--solid .bd-topbar{max-height:0;opacity:0;}
-.bd-topbar__inner{
-  max-width:1280px;margin:0 auto;padding:13px 32px;
-  display:flex;flex-wrap:wrap;align-items:center;gap:6px 28px;
-  font-size:12.5px;letter-spacing:0.02em;
-}
-/* Il selettore è doppio (.bd-topbar .bd-topbar__item) di proposito: più in
-   alto nel foglio la regola ".bd-root a" imposta color:inherit su ogni link
-   del sito, e pesa più di una singola classe. Senza il doppio selettore
-   vince lei, i recapiti ereditano il blu del testo del sito e diventano
-   illeggibili sopra questa striscia, anch'essa blu.
-   Nota: niente backtick nei commenti qui dentro — tutto questo CSS vive in
-   una stringa JavaScript delimitata da backtick, e uno di troppo la spezza. */
-.bd-topbar .bd-topbar__item{
-  display:inline-flex;align-items:center;gap:7px;
-  color:rgba(255,255,255,0.94);font-weight:400;
-  transition:color .15s;
-}
-.bd-topbar .bd-topbar__item:hover{color:var(--sand);}
-.bd-topbar .bd-topbar__item:focus-visible{outline:1px solid var(--sand);outline-offset:3px;}
-.bd-topbar .bd-topbar__item svg{flex:none;color:var(--sand);}
-
 @media (max-width:760px){
-  /* Su schermo stretto l'indirizzo esteso non entra: restano telefono ed
-     email, che sono le due azioni che si compiono davvero da telefono. */
-  .bd-topbar__addr{display:none;}
-  .bd-topbar__inner{padding:11px 22px;gap:4px 20px;font-size:12px;}
-  .bd-topbar{max-height:42px;}
   .bd-header__inner{padding:16px 22px;}
   .bd-header--solid .bd-header__inner{padding:10px 22px;}
 }
@@ -2292,7 +2115,10 @@ const STYLES = `
   background:linear-gradient(180deg, rgba(16,40,56,0.22) 0%, rgba(16,40,56,0.02) 34%, rgba(16,40,56,0.16) 62%, rgba(16,40,56,0.66) 100%);
 }
 .bd-hero__content{position:relative;z-index:2;padding:0 32px 108px;max-width:1280px;margin:0 auto;width:100%;color:var(--white);}
-.bd-hero__kicker{animation:bd-fadeup .9s cubic-bezier(.16,.8,.24,1) .5s both;}
+.bd-hero__kicker{
+  font-size:15px;letter-spacing:0.01em;color:rgba(255,255,255,0.9);margin:0 0 14px;
+  animation:bd-fadeup .9s cubic-bezier(.16,.8,.24,1) .5s both;
+}
 .bd-hero__title{
   font-family:'Fraunces',serif;font-weight:340;
   font-size:clamp(52px,10.5vw,132px);
@@ -2305,7 +2131,7 @@ const STYLES = `
   animation:bd-fadeup 1s cubic-bezier(.16,.8,.24,1) .8s both;
 }
 .bd-hero__info{
-  font-size:13px;letter-spacing:0.08em;text-transform:uppercase;margin:0 0 40px;color:rgba(255,255,255,0.78);
+  font-size:15px;letter-spacing:0.01em;margin:0 0 40px;color:rgba(255,255,255,0.86);
   animation:bd-fadeup 1s cubic-bezier(.16,.8,.24,1) .92s both;
   padding-top:26px;border-top:1px solid rgba(255,255,255,0.28);max-width:480px;
 }
@@ -2373,31 +2199,32 @@ const STYLES = `
 }
 @media (max-width:900px){
   .bd-house{padding:96px 22px 40px;}
-  .bd-house__grid{grid-template-columns:1fr;gap:40px;}
-  .bd-house__card{grid-column:span 1 !important;}
-  .bd-house__frame{aspect-ratio:4/3 !important;}
+  .bd-house__grid{
+    display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
+    margin:0 -22px;padding:0 22px 6px;scroll-padding-inline:22px;
+  }
+  .bd-house__card{flex:0 0 82%;scroll-snap-align:start;grid-column:auto !important;}
+  .bd-house__frame{aspect-ratio:4/5 !important;}
 }
 
 /* Gallery */
 .bd-gallery{padding:70px 32px 150px;max-width:1280px;margin:0 auto;}
 .bd-gallery__grid{
-  display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:130px;gap:20px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
 }
-.bd-gallery__item{overflow:hidden;border-radius:2px;padding:0;position:relative;}
+.bd-gallery__item{overflow:hidden;border-radius:2px;padding:0;position:relative;aspect-ratio:3/4;}
 .bd-gallery__item img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.16,.8,.24,1), filter .5s ease;}
 .bd-gallery__item:hover img{transform:scale(1.06);filter:brightness(0.94);}
-.bd-gallery__item--0{grid-column:span 3;grid-row:span 3;}
-.bd-gallery__item--1{grid-column:span 3;grid-row:span 2;}
-.bd-gallery__item--2{grid-column:span 3;grid-row:span 2;}
-.bd-gallery__item--3{grid-column:span 2;grid-row:span 2;}
-.bd-gallery__item--4{grid-column:span 2;grid-row:span 2;}
+/* La prima foto occupa 2 colonne e 2 righe: l'altezza la decide la griglia,
+   per questo qui l'aspect-ratio si annulla. */
+.bd-gallery__item--grande{grid-column:span 2;grid-row:span 2;aspect-ratio:auto;}
 @media (max-width:900px){
   .bd-gallery{padding:56px 0 100px;}
   .bd-gallery__grid{
     grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:82%;
-    grid-auto-rows:300px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 22px;gap:16px;
+    grid-auto-rows:300px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 22px;gap:16px;scroll-padding-inline:22px;
   }
-  .bd-gallery__item{scroll-snap-align:start;grid-column:auto !important;grid-row:auto !important;}
+  .bd-gallery__item{scroll-snap-align:start;grid-column:auto !important;grid-row:auto !important;aspect-ratio:auto;}
 }
 
 /* Testimonial: una citazione sola, su fascia sabbia per staccarla dal
@@ -2408,8 +2235,6 @@ const STYLES = `
   border-bottom:1px solid var(--line);padding:110px 32px;
 }
 .bd-quote__inner{max-width:820px;margin:0 auto;text-align:center;}
-.bd-quote .bd-eyebrow{justify-content:center;}
-.bd-quote .bd-hairline{margin-left:auto;margin-right:auto;}
 .bd-quote__figure{margin:0;}
 .bd-quote__text{
   font-family:'Fraunces',serif;font-weight:340;font-style:italic;
@@ -2460,7 +2285,7 @@ const STYLES = `
 .bd-location__hero{position:relative;height:82vh;min-height:520px;overflow:hidden;}
 .bd-location__hero img{width:100%;height:100%;object-fit:cover;}
 .bd-location__hero-content{
-  position:absolute;inset:0;background:linear-gradient(180deg, rgba(16,40,56,0.06), rgba(16,40,56,0.68));
+  position:absolute;inset:0;background:linear-gradient(180deg, rgba(16,40,56,0) 45%, rgba(16,40,56,0.58));
   display:flex;align-items:flex-end;padding:80px 32px;
 }
 .bd-location__hero-content > div{max-width:620px;margin:0 auto;width:100%;text-align:left;}
@@ -2738,8 +2563,6 @@ const STYLES = `
   pointer-events:none;
 }
 .bd-booking__inner{max-width:640px;margin:0 auto;text-align:center;position:relative;color:var(--white);}
-.bd-booking__inner .bd-eyebrow{justify-content:center;}
-.bd-booking__inner .bd-hairline{margin-left:auto;margin-right:auto;}
 .bd-booking__inner .bd-body{margin-left:auto;margin-right:auto;}
 .bd-booking__ctas{display:flex;gap:34px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:40px;}
 /* Le due piattaforme restano raggiungibili ma in secondo piano: testo, non
