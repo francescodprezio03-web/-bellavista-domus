@@ -167,7 +167,18 @@ messaggio di errore invece delle date.
   - Attenzione alla specificità dei selettori: in cima al foglio la regola
     `.bd-root a` imposta `color:inherit` su ogni link e pesa più di una
     singola classe. Per dare un colore proprio ai link di un componente
-    serve un selettore a due classi (es. `.bd-topbar .bd-topbar__item`).
+    serve un selettore a due classi (es. `.bd-explore .bd-explore__card`).
+  - **Scelte grafiche (settembre 2026), da non reintrodurre senza motivo**:
+    niente scritta piccola in maiuscolo con lineetta sopra i titoli di
+    sezione (le vecchie classi `bd-eyebrow` e `bd-hairline` non esistono
+    più), niente puntini separatori "A · B · C" nei testi, niente freccia
+    "→" aggiunta ai link (resta solo come icona dei pulsanti del
+    calendario), niente barra contatti blu sopra il menu. `Reveal` non anima
+    più nulla: l'unico movimento automatico è l'entrata dell'apertura (hero).
+    Sono dettagli tipici dei modelli pronti e tolgono l'aria "premium".
+  - La **Galleria** da computer è una griglia a 4 colonne con la prima foto
+    grande (2x2): funziona senza buchi con **9 foto**. Da telefono (e
+    tablet) Galleria e La Casa si sfogliano in orizzontale.
 - **`public/images/`** — fotografie reali della struttura (non
   placeholder/Unsplash), referenziate da `CONFIG.images` con path assoluti
   tipo `/images/nome.jpg`. `PhotoSlot` mostra un placeholder elegante
