@@ -303,7 +303,10 @@ messaggio di errore invece delle date.
   2. Si linka alla **ricerca**, non alla scheda di un singolo posto né al
      sito del locale: le piccole trattorie cambiano o abbandonano il sito
      di continuo, un link morto sulla guida è peggio di nessun link.
-  3. Ogni link porta `target="_blank" rel="noopener"` e un
+  3. Ogni link porta `target="_blank" rel="noopener noreferrer"` (regola
+     valida per **ogni** link del sito che apre un'altra scheda: `noopener`
+     impedisce alla pagina aperta di controllare la nostra, `noreferrer`
+     non le dice da quale pagina arriva il visitatore) e un
      `aria-label="<nome> su Google Maps"` (`on Google Maps` nelle pagine
      inglesi), perché il testo del link da solo non dice dove porta.
   L'`&amp;` nell'URL va scritto come entità: `&` nudo dentro un attributo
