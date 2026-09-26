@@ -189,23 +189,34 @@ const translations = {
       },
     },
     gallery: { eyebrow: "Fotografie", title: "Galleria" },
-    /* Recensione reale, riportata parola per parola come l'ha scritta
-       l'ospite: non si corregge, non si accorcia, non si abbellisce. È
-       pubblica su Airbnb e chiunque può confrontarla. Finché è una sola
-       resta una citazione singola: una griglia con una scheda sola
-       direbbe all'ospite che nessun altro ha ancora dormito qui. */
+    /* Recensioni reali, riportate parola per parola come le hanno scritte gli
+       ospiti, refusi compresi: non si correggono, non si accorciano, non si
+       abbelliscono. Sono pubbliche e ognuna rimanda alla pagina della casa
+       sulla sua piattaforma (CONFIG.links), dove chiunque può confrontarla.
+       Quelle in un'altra lingua hanno la traduzione sotto, da aprire. Solo il
+       nome dell'ospite e il mese: niente cognomi, città, numeri di
+       prenotazione. Dalla più recente. La nota finale risponde al Codice del
+       Consumo (art. 22, comma 5-bis): dice da dove vengono le recensioni.
+       Niente dati strutturati Review/AggregateRating: vedi CLAUDE.md. */
     testimonial: {
-      eyebrow: "La voce degli ospiti",
-      quote:
-        "Ci siamo trovati benissimo in 6, spazi ampi, casa completa di tutto e camere con aria condizionata, terrazzino esterno stupendo. Francesco è stato gentilissimo e disponibile per qualsiasi dubbio riguardo la casa e non solo. Ci è sembrato di essere a casa, con il vantaggio di essere a due passi dal mare. Consigliatissimo, spero di poterci tornare presto",
-      translation: null,
-      author: "Gaetana",
-      /* Solo il mese, non le date esatte del soggiorno: sono informazioni
-         dell'ospite, e per chi legge il mese basta a dare il contesto. */
-      stay: "agosto 2026",
-      stayIso: "2026-08",
-      rating: "Valutazione 5 su 5",
-      source: "Recensione pubblica su Airbnb",
+      title: "Cosa dicono gli ospiti",
+      translationLabel: "Leggi la traduzione in italiano",
+      note: "Recensioni reali di ospiti che hanno soggiornato qui, riportate per intero dalle piattaforme su cui hanno prenotato. Ognuna rimanda alla pagina della casa su Airbnb o Booking.com, dove si può leggere l'originale.",
+      reviews: [
+        { platform: "airbnb", author: "Renáta", when: "settembre 2026", iso: "2026-09", stars: 5, rating: "Valutazione 5 su 5", title: null, lang: "en",
+          quote: "A wonderful place to stay – everything was perfect! The rooms are huge and spacious, with a large communal area that creates a really warm and welcoming atmosphere. The house also has a beautiful garden and a large terrace, which was perfect for relaxing and enjoying the surroundings.\nThe kitchen is fully equipped, and the whole house is spotlessly clean and has such a lovely atmosphere. It is a charming seaside home.\nWe were also welcomed with a lovely welcome package upon arrival, which was such a thoughtful touch.\nFrancesco was incredibly kind, helpful, and attentive, and we could always count on him whenever we needed anything.\nWe had a fantastic stay and would wholeheartedly recommend this beautiful place! ❤️",
+          translation: "Un posto meraviglioso in cui soggiornare: tutto era perfetto! Le camere sono enormi e spaziose, con un'ampia zona comune che crea un'atmosfera davvero calda e accogliente. La casa ha anche un bel giardino e un grande terrazzo, perfetto per rilassarsi e godersi i dintorni.\nLa cucina è completamente attrezzata e tutta la casa è pulitissima e ha un'atmosfera davvero piacevole. È un'incantevole casa sul mare.\nAll'arrivo siamo stati accolti anche con un bel pacchetto di benvenuto, un pensiero davvero gentile.\nFrancesco è stato incredibilmente gentile, disponibile e attento, e abbiamo sempre potuto contare su di lui per qualsiasi necessità.\nAbbiamo trascorso un soggiorno fantastico e consigliamo con tutto il cuore questo posto bellissimo! ❤️",
+          source: "Leggi su Airbnb" },
+        { platform: "booking", author: "Angela", when: "settembre 2026", iso: "2026-09", score: "9/10", rating: "Punteggio 9 su 10", title: "Fantastic!", lang: "en",
+          quote: "The villa was a perfect location for my needs,, close to family and a few steps from the sea. The host Francesco was amazing, very attentive and prompt\nIt's a perfect villa for a family, beautiful garden and very comfortable interior with a full kitchen , with all the amenities needed I will definitely be back.",
+          translation: "Fantastico!\nLa villa era in una posizione perfetta per le mie esigenze, vicina alla famiglia e a pochi passi dal mare. L'host Francesco è stato fantastico, molto attento e sollecito.\nÈ una villa perfetta per una famiglia, con un bel giardino e interni molto confortevoli, una cucina completa e tutti i servizi necessari. Tornerò sicuramente.",
+          source: "Leggi su Booking.com" },
+        { platform: "airbnb", author: "Gaetana", when: "agosto 2026", iso: "2026-08", stars: 5, rating: "Valutazione 5 su 5", title: null, lang: "it",
+          quote:
+            "Ci siamo trovati benissimo in 6, spazi ampi, casa completa di tutto e camere con aria condizionata, terrazzino esterno stupendo. Francesco è stato gentilissimo e disponibile per qualsiasi dubbio riguardo la casa e non solo. Ci è sembrato di essere a casa, con il vantaggio di essere a due passi dal mare. Consigliatissimo, spero di poterci tornare presto",
+          translation: null,
+          source: "Leggi su Airbnb" },
+      ],
     },
     /* Elenco delle dotazioni reali della casa. Regola: si scrive solo ciò che
        c'è davvero. Un ospite che non trova quello che ha letto qui lascia una
@@ -399,6 +410,13 @@ const translations = {
       giorni: ["L","M","M","G","V","S","D"],
       giorniEstesi: ["lunedì","martedì","mercoledì","giovedì","venerdì","sabato","domenica"],
       esempio: "Dati di esempio — in locale il calendario vero non è disponibile",
+      guidaArrivo: "Tocca il giorno di arrivo, poi quello di partenza: le date passano da sole nel modulo di richiesta.",
+      guidaPartenza: "Arrivo il {data}. Ora tocca il giorno di partenza.",
+      conflitto: "Tra queste date c'è una notte già prenotata: scegli un'altra partenza o un altro arrivo.",
+      dal: "Dal", al: "al", notte: "notte", notti: "notti",
+      arrivoAria: "arrivo", partenzaAria: "partenza",
+      richiedi: "Richiedi queste date",
+      annulla: "Cancella le date",
     },
     stickyCta: "Verifica disponibilità",
     /* Il messaggio precompilato di WhatsApp e la descrizione per gli screen
@@ -456,20 +474,29 @@ const translations = {
       },
     },
     gallery: { eyebrow: "Photographs", title: "Gallery" },
-    /* La citazione resta in italiano anche qui, con la traduzione sotto:
-       è così che l'ha scritta l'ospite ed è così che si legge su Airbnb.
-       Tradurla e basta la farebbe sembrare scritta da noi. */
+    /* Stesse recensioni della versione italiana, nella lingua in cui le
+       hanno scritte gli ospiti: quella di Gaetana resta in italiano con la
+       traduzione sotto. Tradurla e basta la farebbe sembrare scritta da noi. */
     testimonial: {
-      eyebrow: "In our guests' words",
-      quote:
-        "Ci siamo trovati benissimo in 6, spazi ampi, casa completa di tutto e camere con aria condizionata, terrazzino esterno stupendo. Francesco è stato gentilissimo e disponibile per qualsiasi dubbio riguardo la casa e non solo. Ci è sembrato di essere a casa, con il vantaggio di essere a due passi dal mare. Consigliatissimo, spero di poterci tornare presto",
-      translation:
-        "The six of us had a wonderful stay: plenty of room, a house with everything you need, air conditioning in the bedrooms and a beautiful terrace. Francesco was extremely kind and happy to answer any question, about the house and beyond. It felt like being at home, with the sea a couple of steps away. Highly recommended, I hope to come back soon.",
-      author: "Gaetana",
-      stay: "August 2026",
-      stayIso: "2026-08",
-      rating: "Rated 5 out of 5",
-      source: "Public review on Airbnb",
+      title: "What our guests say",
+      translationLabel: "Read the English translation",
+      note: "Genuine reviews from guests who stayed here, reproduced in full from the platforms they booked on. Each one links to the house's page on Airbnb or Booking.com, where the original can be read.",
+      reviews: [
+        { platform: "airbnb", author: "Renáta", when: "September 2026", iso: "2026-09", stars: 5, rating: "Rated 5 out of 5", title: null, lang: "en",
+          quote: "A wonderful place to stay – everything was perfect! The rooms are huge and spacious, with a large communal area that creates a really warm and welcoming atmosphere. The house also has a beautiful garden and a large terrace, which was perfect for relaxing and enjoying the surroundings.\nThe kitchen is fully equipped, and the whole house is spotlessly clean and has such a lovely atmosphere. It is a charming seaside home.\nWe were also welcomed with a lovely welcome package upon arrival, which was such a thoughtful touch.\nFrancesco was incredibly kind, helpful, and attentive, and we could always count on him whenever we needed anything.\nWe had a fantastic stay and would wholeheartedly recommend this beautiful place! ❤️",
+          translation: null,
+          source: "Read on Airbnb" },
+        { platform: "booking", author: "Angela", when: "September 2026", iso: "2026-09", score: "9/10", rating: "Scored 9 out of 10", title: "Fantastic!", lang: "en",
+          quote: "The villa was a perfect location for my needs,, close to family and a few steps from the sea. The host Francesco was amazing, very attentive and prompt\nIt's a perfect villa for a family, beautiful garden and very comfortable interior with a full kitchen , with all the amenities needed I will definitely be back.",
+          translation: null,
+          source: "Read on Booking.com" },
+        { platform: "airbnb", author: "Gaetana", when: "August 2026", iso: "2026-08", stars: 5, rating: "Rated 5 out of 5", title: null, lang: "it",
+          quote:
+            "Ci siamo trovati benissimo in 6, spazi ampi, casa completa di tutto e camere con aria condizionata, terrazzino esterno stupendo. Francesco è stato gentilissimo e disponibile per qualsiasi dubbio riguardo la casa e non solo. Ci è sembrato di essere a casa, con il vantaggio di essere a due passi dal mare. Consigliatissimo, spero di poterci tornare presto",
+          translation:
+            "The six of us had a wonderful stay: plenty of room, a house with everything you need, air conditioning in the bedrooms and a beautiful terrace. Francesco was extremely kind and happy to answer any question, about the house and beyond. It felt like being at home, with the sea a couple of steps away. Highly recommended, I hope to come back soon.",
+          source: "Read on Airbnb" },
+      ],
     },
     amenities: {
       eyebrow: "Amenities",
@@ -643,6 +670,13 @@ const translations = {
       giorni: ["M","T","W","T","F","S","S"],
       giorniEstesi: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
       esempio: "Sample data — the real calendar is not available locally",
+      guidaArrivo: "Tap your arrival day, then your departure day: the dates go straight into the request form.",
+      guidaPartenza: "Arrival on {data}. Now tap your departure day.",
+      conflitto: "There is a night already booked between these dates: choose another departure or arrival.",
+      dal: "From", al: "to", notte: "night", notti: "nights",
+      arrivoAria: "arrival", partenzaAria: "departure",
+      richiedi: "Request these dates",
+      annulla: "Clear dates",
     },
     stickyCta: "Check availability",
     whatsapp: {
@@ -1215,40 +1249,59 @@ function Gallery({ t }) {
    aggiungere una lingua non può far esplodere la pagina. */
 function Testimonial({ t }) {
   const v = t.testimonial;
-  if (!v || !v.quote) return null;
+  if (!v || !v.reviews || v.reviews.length === 0) return null;
   return (
-    <section className="bd-quote">
-      <Reveal className="bd-quote__inner">
-        <figure className="bd-quote__figure">
-          <blockquote className="bd-quote__text" cite={CONFIG.links.airbnb}>
-            {"“" + v.quote + "”"}
-          </blockquote>
-          {v.translation ? (
-            <p className="bd-quote__translation">{v.translation}</p>
-          ) : null}
-          <figcaption className="bd-quote__meta">
-            {/* Le stelle sono decorative: il punteggio vero lo legge lo
-                screen reader dall'aria-label, non da cinque simboli. */}
-            <span className="bd-quote__stars" role="img" aria-label={v.rating}>
-              <span aria-hidden="true">★★★★★</span>
-            </span>
-            <span className="bd-quote__author">{v.author}</span>
-            {v.stay ? (
-              <time className="bd-quote__stay" dateTime={v.stayIso}>
-                {v.stay}
-              </time>
-            ) : null}
-            <a
-              className="bd-quote__link"
-              href={CONFIG.links.airbnb}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => traccia("click_ota", { piattaforma: "airbnb_recensione" })}
-            >
-              {v.source}
-            </a>
-          </figcaption>
-        </figure>
+    <section className="bd-quote" aria-labelledby="recensioni-titolo">
+      <Reveal className="bd-rec">
+        <div className="bd-section-head">
+          <h2 className="bd-h3" id="recensioni-titolo">{v.title}</h2>
+        </div>
+        <div className="bd-rec__lista" tabIndex={0} role="region" aria-label={v.title}>
+          {v.reviews.map((r) => {
+            const link = r.platform === "booking" ? CONFIG.links.booking : CONFIG.links.airbnb;
+            return (
+              <figure className="bd-rec__card" key={r.author + r.iso}>
+                <p className="bd-rec__voto">
+                  {/* Il punteggio lo legge lo screen reader dall'aria-label.
+                      Booking usa i voti su 10: si mostra il voto, non stelle
+                      inventate. */}
+                  {r.stars ? (
+                    <span className="bd-rec__stelle" role="img" aria-label={r.rating}>
+                      <span aria-hidden="true">{"★".repeat(r.stars)}</span>
+                    </span>
+                  ) : (
+                    <span className="bd-rec__punteggio" role="img" aria-label={r.rating}>{r.score}</span>
+                  )}
+                  <span className="bd-rec__piattaforma">{r.platform === "booking" ? "Booking.com" : "Airbnb"}</span>
+                </p>
+                <blockquote className="bd-rec__testo" cite={link} lang={r.lang}>
+                  {r.title ? <p className="bd-rec__titolo">{r.title}</p> : null}
+                  <p>{r.quote}</p>
+                </blockquote>
+                {r.translation ? (
+                  <details className="bd-rec__traduzione">
+                    <summary>{v.translationLabel}</summary>
+                    <p>{r.translation}</p>
+                  </details>
+                ) : null}
+                <figcaption className="bd-rec__firma">
+                  <span className="bd-rec__autore">{r.author}</span>
+                  <time dateTime={r.iso}>{r.when}</time>
+                  <a
+                    className="bd-rec__link"
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => traccia("click_ota", { piattaforma: `${r.platform}_recensione` })}
+                  >
+                    {r.source}
+                  </a>
+                </figcaption>
+              </figure>
+            );
+          })}
+        </div>
+        <p className="bd-rec__nota">{v.note}</p>
       </Reveal>
     </section>
   );
@@ -1473,13 +1526,39 @@ function grigliaMese(anno, mese) {
   return celle;
 }
 
-function Calendario({ t, go }) {
+/* Somma giorni a una data "AAAA-MM-GG" e conta le notti tra due date.
+   Usano Date, ma girano solo nel browser: il calendario non viene
+   prerenderizzato (vedi sopra). */
+function aggiungiGiorni(k, n) {
+  const [a, m, g] = k.split("-").map(Number);
+  return new Date(Date.UTC(a, m - 1, g + n)).toISOString().slice(0, 10);
+}
+function contaNotti(da, a) {
+  const [y1, m1, d1] = da.split("-").map(Number);
+  const [y2, m2, d2] = a.split("-").map(Number);
+  return Math.round((Date.UTC(y2, m2 - 1, d2) - Date.UTC(y1, m1 - 1, d1)) / 86400000);
+}
+/* Vero se tutte le notti da "da" (compresa) ad "a" (esclusa) sono libere.
+   Il giorno di partenza può essere occupato: quella notte arriva qualcun
+   altro, ma chi parte la mattina non la usa. */
+function notteLibere(da, a, occupate) {
+  for (let k = da; k < a; k = aggiungiGiorni(k, 1)) if (occupate.has(k)) return false;
+  return true;
+}
+
+/* Le date si scelgono toccando il calendario: prima l'arrivo, poi la
+   partenza. Passano al modulo di richiesta tramite onScegli (lo stato sta in
+   BellavistaDomus), e nel modulo restano modificabili a mano. */
+function Calendario({ t, go, onScegli }) {
   const v = t.calendario;
   const [stato, setStato] = useState("caricamento"); // caricamento | pronto | errore
   const [occupate, setOccupate] = useState(() => new Set());
   const [esempio, setEsempio] = useState(false);
   const [oggi, setOggi] = useState(null);
   const [scorri, setScorri] = useState(0);
+  const [arrivo, setArrivo] = useState("");
+  const [partenza, setPartenza] = useState("");
+  const [avviso, setAvviso] = useState("");
 
   useEffect(() => {
     setOggi(new Date());
@@ -1521,6 +1600,24 @@ function Calendario({ t, go }) {
     return { anno: d.getFullYear(), mese: d.getMonth() };
   });
   const ieri = chiave(oggi.getFullYear(), oggi.getMonth(), oggi.getDate());
+
+  const formatta = (k) => {
+    const [a, m, g] = k.split("-").map(Number);
+    return `${g} ${v.mesi[m - 1]} ${a}`;
+  };
+  const comunica = (da, a) => { if (onScegli) onScegli({ arrivo: da, partenza: a }); };
+  const scegli = (k) => {
+    setAvviso("");
+    if (!arrivo || partenza || k <= arrivo) {
+      if (occupate.has(k)) return; // una notte occupata non può essere l'arrivo
+      setArrivo(k); setPartenza(""); comunica(k, "");
+      return;
+    }
+    if (!notteLibere(arrivo, k, occupate)) { setAvviso(v.conflitto); return; }
+    setPartenza(k); comunica(arrivo, k);
+    traccia("sceglie_date", { notti: contaNotti(arrivo, k) });
+  };
+  const azzera = () => { setArrivo(""); setPartenza(""); setAvviso(""); comunica("", ""); };
 
   return (
     <section id="calendario" className="bd-cal">
@@ -1583,15 +1680,52 @@ function Calendario({ t, go }) {
                         : presa ? "bd-cal__g bd-cal__g--occupata"
                         : "bd-cal__g";
                       const etichetta = `${g} ${v.mesi[mese]} ${anno} — ${presa ? v.occupato : v.libero}`;
+                      const puoPartire = arrivo && !partenza && k > arrivo && notteLibere(arrivo, k, occupate);
+                      const cliccabile = !passata && (!presa || puoPartire);
+                      if (!cliccabile) {
+                        return (
+                          <span key={k} className={cls} title={passata ? undefined : etichetta}>
+                            {g}
+                          </span>
+                        );
+                      }
+                      const inizio = k === arrivo, fine = k === partenza;
+                      const dentro = arrivo && partenza && k > arrivo && k < partenza;
+                      const stato = inizio ? ` bd-cal__g--inizio` : fine ? ` bd-cal__g--fine` : dentro ? ` bd-cal__g--dentro` : "";
+                      const ruolo = inizio ? `, ${v.arrivoAria}` : fine ? `, ${v.partenzaAria}` : "";
                       return (
-                        <span key={k} className={cls} title={passata ? undefined : etichetta}>
+                        <button
+                          type="button"
+                          key={k}
+                          className={cls + stato}
+                          onClick={() => scegli(k)}
+                          aria-pressed={inizio || fine}
+                          aria-label={etichetta + ruolo}
+                        >
                           {g}
-                        </span>
+                        </button>
                       );
                     })}
                   </div>
                 </div>
               ))}
+            </div>
+
+            <div className="bd-cal__scelta" aria-live="polite">
+              {avviso ? <p className="bd-cal__avviso">{avviso}</p> : null}
+              {!arrivo && !avviso ? <p className="bd-cal__guida">{v.guidaArrivo}</p> : null}
+              {arrivo && !partenza ? <p className="bd-cal__guida">{v.guidaPartenza.replace("{data}", formatta(arrivo))}</p> : null}
+              {arrivo && partenza ? (
+                <>
+                  <p className="bd-cal__riepilogo">
+                    {`${v.dal} ${formatta(arrivo)} ${v.al} ${formatta(partenza)}, ${contaNotti(arrivo, partenza)} ${contaNotti(arrivo, partenza) === 1 ? v.notte : v.notti}`}
+                  </p>
+                  <div className="bd-cal__azioni">
+                    <button type="button" className="bd-btn bd-btn--send" onClick={() => go("#contact")}>{v.richiedi}</button>
+                    <button type="button" className="bd-cal__annulla" onClick={azzera}>{v.annulla}</button>
+                  </div>
+                </>
+              ) : null}
             </div>
           </>
         )}
@@ -1600,10 +1734,17 @@ function Calendario({ t, go }) {
   );
 }
 
-function ContactForm({ t }) {
+function ContactForm({ t, dateScelte }) {
   const [valori, setValori] = useState(VUOTO);
   const [stato, setStato] = useState("pronto"); // pronto | invio | inviato | errore
   const oggi = useOggi();
+
+  /* Le date scelte toccando il calendario riempiono i campi, che restano
+     comunque modificabili a mano. */
+  useEffect(() => {
+    if (!dateScelte) return;
+    setValori((v) => ({ ...v, arrivo: dateScelte.arrivo, partenza: dateScelte.partenza }));
+  }, [dateScelte]);
 
   const aggiorna = (campo) => (e) =>
     setValori((v) => ({ ...v, [campo]: e.target.type === "checkbox" ? e.target.checked : e.target.value }));
@@ -2234,34 +2375,53 @@ const STYLES = `
   background:var(--ivory-2);border-top:1px solid var(--line);
   border-bottom:1px solid var(--line);padding:110px 32px;
 }
-.bd-quote__inner{max-width:820px;margin:0 auto;text-align:center;}
-.bd-quote__figure{margin:0;}
-.bd-quote__text{
-  font-family:'Fraunces',serif;font-weight:340;font-style:italic;
-  font-size:clamp(21px,2.4vw,29px);line-height:1.55;letter-spacing:-0.01em;
-  color:var(--sea-deep);margin:0;text-wrap:balance;
+/* Recensioni: una scheda per ospite, alta quanto il suo testo: aprendo una
+   traduzione non si allungano a vuoto anche le altre. */
+.bd-rec{max-width:1280px;margin:0 auto;}
+.bd-rec__lista{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start;}
+.bd-rec__card{
+  margin:0;background:var(--white);border:1px solid var(--line);border-radius:2px;
+  padding:34px 30px 28px;display:flex;flex-direction:column;gap:18px;
 }
-.bd-quote__translation{
-  font-family:'Inter',sans-serif;font-size:15px;line-height:1.75;
-  color:var(--stone);margin:22px 0 0;
+.bd-rec__voto{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0;
+  font-family:'Inter',sans-serif;font-size:13px;color:var(--stone);
 }
-.bd-quote__meta{
-  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
-  gap:8px 14px;margin:34px 0 0;
-  font-family:'Inter',sans-serif;font-size:14px;letter-spacing:0.01em;
+.bd-rec__stelle{color:var(--sand);font-size:15px;letter-spacing:0.12em;}
+.bd-rec__punteggio{
+  font-weight:600;font-size:13px;color:var(--white);background:var(--sea-deep);
+  padding:3px 8px;border-radius:2px;
 }
-.bd-quote__stars{color:var(--sand);font-size:16px;letter-spacing:0.14em;}
-.bd-quote__author{font-weight:500;color:var(--sea-deep);}
-.bd-quote__stay{color:var(--stone);}
-.bd-quote .bd-quote__link{
-  color:var(--sea);text-decoration:none;
+.bd-rec__testo{
+  margin:0;font-family:'Fraunces',serif;font-weight:340;font-style:italic;
+  font-size:18px;line-height:1.6;color:var(--sea-deep);white-space:pre-line;
+}
+.bd-rec__testo p{margin:0;}
+.bd-rec__testo .bd-rec__titolo{font-style:normal;font-weight:500;margin:0 0 8px;}
+.bd-rec__traduzione{font-family:'Inter',sans-serif;font-size:14px;line-height:1.7;color:var(--stone);}
+.bd-rec__traduzione summary{cursor:pointer;color:var(--sea);}
+.bd-rec__traduzione p{margin:10px 0 0;white-space:pre-line;}
+.bd-rec__firma{
+  padding-top:6px;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;
+  font-family:'Inter',sans-serif;font-size:14px;
+}
+.bd-rec__autore{font-weight:500;color:var(--sea-deep);}
+.bd-rec__firma time{color:var(--stone);}
+.bd-quote .bd-rec__link{
+  margin-left:auto;color:var(--sea);text-decoration:none;
   border-bottom:1px solid rgba(56,102,124,0.35);transition:border-color .15s;
 }
-.bd-quote .bd-quote__link:hover,
-.bd-quote .bd-quote__link:focus-visible{border-bottom-color:var(--sea);}
+.bd-quote .bd-rec__link:hover,
+.bd-quote .bd-rec__link:focus-visible{border-bottom-color:var(--sea);}
+.bd-rec__nota{max-width:640px;margin:34px auto 0;text-align:center;font-size:13.5px;line-height:1.7;color:var(--stone);}
 @media (max-width:900px){
   .bd-quote{padding:76px 22px;}
-  .bd-quote__meta{margin-top:26px;}
+  .bd-rec__lista{
+    display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
+    margin:0 -22px;padding:0 22px 6px;scroll-padding-inline:22px;
+  }
+  .bd-rec__card{flex:0 0 86%;scroll-snap-align:start;padding:28px 24px 24px;}
+  .bd-rec__testo{font-size:17px;}
 }
 
 .bd-lightbox{
@@ -2652,6 +2812,33 @@ const STYLES = `
   background:var(--ivory-2);color:rgba(105,98,79,0.55);
   background-image:repeating-linear-gradient(135deg,transparent 0 5px,rgba(105,98,79,0.30) 5px 7px);
 }
+/* Giorni selezionabili: sono pulsanti veri, raggiungibili da tastiera.
+   Il selettore ".bd-cal button.bd-cal__g" pesa più di ".bd-root button",
+   che altrimenti toglierebbe sfondo e bordo a tutti i pulsanti del sito.
+   Le regole degli stati vengono dopo e hanno lo stesso peso: vincono loro. */
+.bd-cal button.bd-cal__g{
+  font:inherit;font-size:13.5px;padding:0;cursor:pointer;
+  background:var(--white);border:1px solid var(--line);color:var(--sea-deep);
+  transition:border-color .15s, background-color .15s;
+}
+.bd-cal button.bd-cal__g--occupata{
+  background:var(--ivory-2);color:rgba(105,98,79,0.55);
+  background-image:repeating-linear-gradient(135deg,transparent 0 5px,rgba(105,98,79,0.30) 5px 7px);
+}
+.bd-cal button.bd-cal__g:hover{border-color:var(--sea);}
+.bd-cal button.bd-cal__g:focus-visible{outline:2px solid var(--sea);outline-offset:1px;}
+.bd-cal button.bd-cal__g--dentro{background:rgba(56,102,124,0.12);border-color:rgba(56,102,124,0.28);}
+.bd-cal button.bd-cal__g--inizio,
+.bd-cal button.bd-cal__g--fine{background:var(--sea-deep);background-image:none;border-color:var(--sea-deep);color:var(--white);}
+.bd-cal__scelta{margin:26px 0 0;text-align:center;min-height:48px;}
+.bd-cal__guida{font-size:14.5px;line-height:1.6;color:var(--stone);margin:0;}
+.bd-cal__avviso{font-size:14.5px;line-height:1.6;color:var(--sea-deep);margin:0 0 10px;}
+.bd-cal__riepilogo{font-family:'Fraunces',serif;font-size:19px;color:var(--sea-deep);margin:0 0 16px;}
+.bd-cal__azioni{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;justify-content:center;}
+.bd-cal .bd-cal__annulla{
+  padding:0 0 2px;font-size:14px;color:var(--stone);
+  border-bottom:1px solid rgba(105,98,79,0.35);
+}
 @media (max-width:700px){
   .bd-cal{padding:0 22px 16px;}
   .bd-cal__mesi{grid-template-columns:1fr;gap:28px;}
@@ -2738,6 +2925,7 @@ const STYLES = `
 export default function BellavistaDomus({ lang = "it" }) {
   const t = translations[lang];
   useScrollDepth();
+  const [dateScelte, setDateScelte] = useState(null);
 
   const go = (href) => {
     const el = document.querySelector(href);
@@ -2771,10 +2959,10 @@ export default function BellavistaDomus({ lang = "it" }) {
       <Faq t={t} />
       {/* Il calendario sta appena prima del modulo: l'ospite controlla le sue
           date e, se sono libere, ha già sotto gli occhi dove scrivere. */}
-      <Calendario t={t} go={go} />
+      <Calendario t={t} go={go} onScegli={setDateScelte} />
       {/* Il modulo porta l'id "contact": la voce Contatti del menu ci arriva
           direttamente, e il footer con i recapiti resta subito sotto. */}
-      <ContactForm t={t} />
+      <ContactForm t={t} dateScelte={dateScelte} />
       <Footer t={t} go={go} />
       <StickyCta t={t} go={go} />
       <WhatsAppButton t={t} />
