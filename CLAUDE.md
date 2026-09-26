@@ -100,7 +100,22 @@ messaggio di errore invece delle date.
   - `WhatsAppButton` riceve `t`: il messaggio precompilato e l'`aria-label`
     stanno in `translations.<lang>.whatsapp`, mai nel componente. Un ospite
     inglese che tocca il pulsante non deve ritrovarsi a scrivere in italiano.
-  - `Testimonial`: la recensione degli ospiti, subito dopo la galleria.
+  - `Testimonial`: le recensioni degli ospiti, subito dopo la galleria. I
+    testi stanno in `translations.*.testimonial.reviews`, dalla più recente,
+    e vanno riportati **parola per parola** (refusi compresi), nella lingua
+    originale con la traduzione sotto (`translation`, dentro un `<details>`).
+    Solo nome e mese: niente cognomi, città, numeri di prenotazione (il file
+    esportato da Booking li contiene: non va mai messo nel repository). Ogni
+    scheda rimanda alla pagina della casa sulla sua piattaforma
+    (`CONFIG.links.airbnb` / `CONFIG.links.booking`). Booking vota su 10: si
+    mostra il voto ("9/10"), mai stelle. La nota sotto le schede dice da
+    dove vengono le recensioni (Codice del Consumo, art. 22 comma 5-bis): non
+    toglierla.
+  - `Calendario`: le date si scelgono toccando i giorni (arrivo, poi
+    partenza) e passano al modulo tramite lo stato `dateScelte` in
+    `BellavistaDomus`. Una notte occupata non può essere l'arrivo; il giorno
+    di partenza può essere occupato (chi parte non usa quella notte), ma le
+    notti in mezzo devono essere libere. I giorni cliccabili sono `<button>`.
     Il testo in `translations.<lang>.testimonial.quote` è **riportato parola
     per parola** come l'ospite l'ha scritto su Airbnb, punteggiatura
     compresa: non si corregge, non si accorcia, non si riscrive — è
