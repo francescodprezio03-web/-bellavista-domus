@@ -448,6 +448,13 @@ messaggio di errore invece delle date.
   niente password del Wi-Fi, codici di porte o cassette, indirizzo non
   pubblicato — il repository è pubblico e la pagina è online per tutti.
   Solo informazioni già presenti nel resto del sito.
+  I testi promozionali di queste pagine non parlano di "prossimo
+  soggiorno": la pagina la apre anche chi non ha ancora prenotato.
+  **Ritorno dalle guide**: la pagina ospiti collega le guide con
+  `#da-ospiti` in fondo all'indirizzo; `public/js/ritorno-ospiti.js`
+  (incluso in tutte le 36 guide) in quel caso fa puntare i "Torna al sito"
+  a `ospiti*.html#guide` nella stessa lingua e passa il segnale ai link
+  verso le altre guide. Una guida nuova deve includere lo stesso script.
 - **`public/robots.txt`**, **`public/sitemap.xml`** — SEO tecnico. La
   sitemap elenca 44 indirizzi (11 pagine × 4 lingue) con i rispettivi
   hreflang.
