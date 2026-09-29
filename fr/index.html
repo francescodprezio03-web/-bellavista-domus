@@ -1,27 +1,26 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Versione inglese della homepage. Serve la stessa applicazione React
+    <!-- Versione francese della homepage. Serve la stessa applicazione React
          di index.html: è l'attributo lang qui sopra a dire ad App quale
          lingua mostrare (vedi src/main.jsx). Se si modifica un tag SEO
-         nella home italiana, va aggiornato anche qui: sono due pagine
-         separate proprio perché ognuna abbia i propri meta in lingua. -->
+         in una home, va aggiornato anche nelle altre tre. -->
 
     <!-- Google Analytics (GA4) — identico a index.html: Consent Mode v2 e
          caricamento SOLO dopo il consenso. È public/js/consenso.js ad
-         aggiungere gtag.js alla pagina quando l'utente preme "Accept": non
+         aggiungere gtag.js alla pagina quando l'utente accetta i cookie: non
          rimettere qui un <script src="https://www.googletagmanager.com/..."> fisso. -->
     <script src="/js/consenso.js"></script>
 
-    <title>Bellavista Domus — Seafront Holiday Home in Torre a Mare, Bari</title>
+    <title>Bellavista Domus — Maison de vacances à Torre a Mare, Bari</title>
     <meta
       name="description"
-      content="Holiday home 10 metres from the sea in Torre a Mare (Bari), Puglia. 7 guests, 3 bedrooms, 2 bathrooms. Book direct: up to 25% less than on Booking and Airbnb."
+      content="Maison de vacances à 10 mètres de la mer à Torre a Mare (Bari), Pouilles. 7 personnes, 3 chambres, 2 salles de bains. Réservez en direct : jusqu'à -25 %."
     />
-    <link rel="canonical" href="https://bellavistadomus.netlify.app/en/" />
+    <link rel="canonical" href="https://bellavistadomus.netlify.app/fr/" />
 
     <!-- hreflang: la stessa pagina in quattro lingue (it, en, fr, de). Le
          stesse coppie sono in tutte e quattro le home e in public/sitemap.xml:
@@ -35,39 +34,39 @@
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Bellavista Domus" />
-    <meta property="og:title" content="Bellavista Domus — Seafront Holiday Home in Torre a Mare, Bari" />
+    <meta property="og:title" content="Bellavista Domus — Maison de vacances à Torre a Mare, Bari" />
     <meta
       property="og:description"
-      content="Premium holiday home 10 metres from the sea in Torre a Mare (Bari), Puglia. Up to 7 guests, 3 bedrooms, 2 bathrooms. Book direct: up to 25% off compared with Booking.com and Airbnb."
+      content="Maison de vacances premium à 10 mètres de la mer à Torre a Mare (Bari), Pouilles. Jusqu'à 7 personnes, 3 chambres, 2 salles de bains. Réservez en direct : jusqu'à 25 % de réduction par rapport à Booking.com et Airbnb."
     />
     <meta property="og:image" content="https://bellavistadomus.netlify.app/images/og/home.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:url" content="https://bellavistadomus.netlify.app/en/" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://bellavistadomus.netlify.app/fr/" />
+    <meta property="og:locale" content="fr_FR" />
     <meta property="og:locale:alternate" content="it_IT" />
-    <meta property="og:locale:alternate" content="fr_FR" />
+    <meta property="og:locale:alternate" content="en_US" />
     <meta property="og:locale:alternate" content="de_DE" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Bellavista Domus — Seafront Holiday Home in Torre a Mare, Bari" />
+    <meta name="twitter:title" content="Bellavista Domus — Maison de vacances à Torre a Mare, Bari" />
     <meta
       name="twitter:description"
-      content="Premium holiday home 10 metres from the sea in Torre a Mare (Bari). Book direct: up to 25% off compared with Booking.com and Airbnb."
+      content="Maison de vacances premium à 10 mètres de la mer à Torre a Mare (Bari). Réservez en direct : jusqu'à 25 % de réduction par rapport à Booking.com et Airbnb."
     />
     <meta name="twitter:image" content="https://bellavistadomus.netlify.app/images/og/home.jpg" />
 
     <!-- Dati strutturati: stessa struttura ricettiva di index.html, descritta
-         in inglese e con url/inLanguage di questa pagina. Le coordinate vanno
+         in francese e con url/inLanguage di questa pagina. Le coordinate vanno
          tenute allineate a CONFIG.maps in src/App.jsx e al JSON-LD italiano. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "LodgingBusiness",
         "name": "Bellavista Domus",
-        "description": "Premium holiday home 10 metres from the sea in Torre a Mare (Bari), Puglia. Up to 7 guests, 3 bedrooms, 2 bathrooms.",
-        "url": "https://bellavistadomus.netlify.app/en/",
-        "inLanguage": "en",
+        "description": "Maison de vacances premium à 10 mètres de la mer à Torre a Mare (Bari), Pouilles. Jusqu'à 7 personnes, 3 chambres, 2 salles de bains.",
+        "url": "https://bellavistadomus.netlify.app/fr/",
+        "inLanguage": "fr",
         "telephone": "+39 331 822 8563",
         "email": "francescod.prezio03@icloud.com",
         "address": {
@@ -96,21 +95,21 @@
         "petsAllowed": true,
         "numberOfRooms": 3,
         "amenityFeature": [
-          { "@type": "LocationFeatureSpecification", "name": "Close to the sea", "value": true },
-          { "@type": "LocationFeatureSpecification", "name": "Private parking", "value": true },
-          { "@type": "LocationFeatureSpecification", "name": "Full kitchen", "value": true },
-          { "@type": "LocationFeatureSpecification", "name": "Balconies", "value": true },
-          { "@type": "LocationFeatureSpecification", "name": "Air conditioning", "value": true },
-          { "@type": "LocationFeatureSpecification", "name": "Heating", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Proche de la mer", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Parking privé", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Cuisine équipée", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Balcons", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Climatisation", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Chauffage", "value": true },
           { "@type": "LocationFeatureSpecification", "name": "Wi-Fi", "value": true },
-          { "@type": "LocationFeatureSpecification", "name": "Dishwasher", "value": true },
-          { "@type": "LocationFeatureSpecification", "name": "Washing machine", "value": true },
-          { "@type": "LocationFeatureSpecification", "name": "Private garden", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Lave-vaisselle", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Lave-linge", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Jardin privé", "value": true },
           { "@type": "LocationFeatureSpecification", "name": "Barbecue", "value": true },
-          { "@type": "LocationFeatureSpecification", "name": "Television", "value": true },
-          { "@type": "LocationFeatureSpecification", "name": "Bed linen and towels included", "value": true },
-          { "@type": "LocationFeatureSpecification", "name": "Family friendly", "value": true },
-          { "@type": "LocationFeatureSpecification", "name": "Swimming pool", "value": false }
+          { "@type": "LocationFeatureSpecification", "name": "Télévision", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Draps et serviettes inclus", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Adapté aux familles", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Piscine", "value": false }
         ],
         "checkinTime": "15:00",
         "checkoutTime": "11:00",
@@ -168,146 +167,146 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Is it cheaper to book direct?",
+            "name": "Est-il plus avantageux de réserver en direct ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes: if you book directly with us, by email, WhatsApp or the form on this site, you get up to 25% off the Booking.com and Airbnb rates for the same dates, because you pay no platform commission. The exact percentage depends on your dates: we confirm it in your quote."
+              "text": "Oui : si vous réservez directement auprès de nous, par e-mail, WhatsApp ou avec le formulaire du site, vous avez jusqu'à 25 % de réduction par rapport aux tarifs de Booking.com et Airbnb pour les mêmes dates, car vous ne payez pas les commissions des plateformes. Le pourcentage exact dépend des dates : nous vous le confirmons dans le devis."
             }
           },
           {
             "@type": "Question",
-            "name": "How many guests can the house sleep?",
+            "name": "Combien de personnes la maison peut-elle accueillir ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Up to 7 guests in 3 bedrooms: two bedrooms with a double bed, and a third with a small double bed plus a bunk bed. There are two bathrooms, both with a shower."
+              "text": "Jusqu'à 7 personnes dans 3 chambres : deux chambres avec lit double et une troisième avec un petit lit double et des lits superposés. Il y a deux salles de bains, toutes deux avec douche."
             }
           },
           {
             "@type": "Question",
-            "name": "How far is the sea, really?",
+            "name": "À quelle distance se trouve vraiment la mer ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Ten metres, with a sandy cove right in front of the house. You cross the road and you are on the free public beach, where sand alternates with rocks. The sea is visible from two of the three bedrooms, and you can hear it in the evening with the windows open."
+              "text": "Dix mètres, avec une petite anse de sable juste devant la maison. On traverse la route et on est sur la plage publique, où sable et rochers alternent. La mer se voit depuis deux des trois chambres, et on l'entend le soir, fenêtres ouvertes."
             }
           },
           {
             "@type": "Question",
-            "name": "What is the minimum stay?",
+            "name": "Quelle est la durée minimale du séjour ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Two nights in low season and four nights in high season."
+              "text": "Deux nuits en basse saison et quatre nuits en haute saison."
             }
           },
           {
             "@type": "Question",
-            "name": "What are the check-in and check-out times?",
+            "name": "À quelle heure se font l'arrivée et le départ ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Check-in is from 3:00 pm and check-out by 11:00 am. If your flight or train times are awkward, do write to us: we try to accommodate you whenever the calendar allows."
+              "text": "L'arrivée se fait à partir de 15h00, le départ avant 11h00. Si votre vol ou votre train a des horaires compliqués, écrivez-nous : nous essayons de nous adapter quand le calendrier le permet."
             }
           },
           {
             "@type": "Question",
-            "name": "Is the final cleaning included?",
+            "name": "Le ménage de fin de séjour est-il inclus ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No, it is added to the cost of the stay and comes to €99. It is a single charge, regardless of how long you stay or how many of you there are."
+              "text": "Non, il s'ajoute au prix du séjour et coûte 99 €. C'est un montant unique, qui ne dépend ni de la durée du séjour ni du nombre de personnes."
             }
           },
           {
             "@type": "Question",
-            "name": "Is a deposit required?",
+            "name": "Une caution est-elle demandée ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, €500, payable on arrival at the property. It is returned in full at the end of your stay, barring damage."
+              "text": "Oui, 500 €, à verser à l'arrivée sur place. Elle est restituée intégralement à la fin du séjour, sauf en cas de dommages."
             }
           },
           {
             "@type": "Question",
-            "name": "Is there a tourist tax?",
+            "name": "Faut-il payer la taxe de séjour ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. It is paid at the property and is owed to the Municipality of Bari, not to us. The municipal regulation provides exemptions — for children and beyond a certain number of consecutive nights — so we confirm the exact amount when you book, based on how many you are and how long you stay."
+              "text": "Oui, elle se paie sur place et elle est due à la commune de Bari, pas à nous. Le règlement municipal prévoit des exonérations — pour les mineurs et au-delà d'un certain nombre de nuits consécutives — nous vous confirmons donc le montant exact au moment de la réservation, selon le nombre de personnes et la durée du séjour."
             }
           },
           {
             "@type": "Question",
-            "name": "Are bed linen and towels included?",
+            "name": "Les draps et les serviettes sont-ils fournis ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, bed linen and towels are included and ready when you arrive. You will also find soap, a hairdryer, a washing machine and a clothes airer."
+              "text": "Oui, les draps et les serviettes sont inclus et prêts à votre arrivée. Vous trouverez aussi sur place du savon, un sèche-cheveux, un lave-linge et un étendoir."
             }
           },
           {
             "@type": "Question",
-            "name": "Is there parking?",
+            "name": "Y a-t-il un parking ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, two free private parking spaces within the property, with room for scooters and bicycles too. Outside the property, on-street parking is free and unrestricted."
+              "text": "Oui, deux places de parking privées et gratuites à l'intérieur de la propriété, avec de la place aussi pour les scooters et les vélos. À l'extérieur, le stationnement est libre et gratuit."
             }
           },
           {
             "@type": "Question",
-            "name": "Are pets allowed?",
+            "name": "Les animaux sont-ils acceptés ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, small and medium sized dogs and cats are welcome, with a small cleaning surcharge. Please let us know when you book."
+              "text": "Oui, les chiens et les chats de petite et moyenne taille sont les bienvenus, avec un léger supplément pour le ménage. Merci de nous le signaler au moment de la réservation."
             }
           },
           {
             "@type": "Question",
-            "name": "Is smoking allowed?",
+            "name": "Peut-on fumer ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Outdoors only. The garden and outdoor spaces are at your disposal; there is no smoking inside the house."
+              "text": "Uniquement à l'extérieur. Le jardin et les espaces extérieurs sont à votre disposition ; on ne fume pas à l'intérieur de la maison."
             }
           },
           {
             "@type": "Question",
-            "name": "Is there air conditioning?",
+            "name": "Y a-t-il la climatisation ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, in all three bedrooms and in the living room, with both cooling and heating. The house is therefore comfortable outside the summer season too."
+              "text": "Oui, dans les trois chambres et au salon, avec une fonction rafraîchissement et chauffage. La maison est donc confortable aussi hors saison."
             }
           },
           {
             "@type": "Question",
-            "name": "What is the internet connection like?",
+            "name": "Comment est la connexion internet ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Fibre Wi-Fi up to 500 Mbps throughout the house. It is fast enough for working and video calls during your stay."
+              "text": "Wi-Fi fibre jusqu'à 500 Mbit/s dans toute la maison. La connexion convient aussi à ceux qui doivent travailler ou faire des visioconférences pendant le séjour."
             }
           },
           {
             "@type": "Question",
-            "name": "Do you have equipment for small children?",
+            "name": "Avez-vous des équipements pour les jeunes enfants ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes: a high chair, cot, bed rails and a changing mat, at no extra cost. Please request them when you book, so everything is ready when you arrive."
+              "text": "Oui : chaise haute, lit bébé, barrières de lit et table à langer, sans frais supplémentaires. Il faut toutefois les demander au moment de la réservation, pour que tout soit prêt à votre arrivée."
             }
           },
           {
             "@type": "Question",
-            "name": "Can I host a party or an event?",
+            "name": "Peut-on organiser des fêtes ou des événements ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No, parties and events are not allowed. The house is designed for families and groups looking for peace and quiet, and we value our relationship with the neighbours."
+              "text": "Non, les fêtes et les événements ne sont pas autorisés. La maison est pensée pour les familles et les groupes en quête de tranquillité, et nous tenons à nos bonnes relations avec le voisinage."
             }
           },
           {
             "@type": "Question",
-            "name": "Is there a swimming pool?",
+            "name": "Y a-t-il une piscine ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Not yet: a pool is planned for summer 2027. Today the house offers something else — ten metres from the sea, with a sandy cove in front, and a private garden with over 12 outdoor seats and a barbecue. If you are considering a stay in summer 2027, write to us before booking: we will tell you where the works stand, so you are not booking on an expectation."
+              "text": "Pas encore : une piscine est prévue pour l'été 2027. Aujourd'hui, la maison mise sur autre chose — la mer à dix mètres, avec l'anse de sable juste devant, et un jardin privé avec plus de 12 places assises en plein air et le barbecue. Si vous envisagez un séjour à l'été 2027, écrivez-nous avant de réserver : nous vous dirons où en sont les travaux, pour que vous ne réserviez pas sur une simple promesse."
             }
           },
           {
             "@type": "Question",
-            "name": "How do I get to Torre a Mare?",
+            "name": "Comment rejoindre Torre a Mare ?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "By car, take the Torre a Mare centro exit and you are at the house in two minutes; from Bari airport it is about 20 minutes, 25 with traffic. By public transport the simplest way is bus 12 (or 12/) from Bari central station. Once here, you will not need a car for the beach and the village; for shopping and errands you will, as they are about five minutes away."
+              "text": "En voiture, on prend la sortie Torre a Mare centro et on est à la maison en deux minutes ; depuis l'aéroport de Bari, il faut environ 20 minutes, 25 avec la circulation. En transports en commun, le plus simple est le bus 12 (ou 12/) depuis la gare centrale de Bari. Une fois sur place, la voiture n'est pas nécessaire pour la plage et le village ; elle l'est pour les courses et les services, à environ cinq minutes."
             }
           }
         ]

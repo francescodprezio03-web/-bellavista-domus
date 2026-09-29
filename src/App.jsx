@@ -308,6 +308,8 @@ const translations = {
       title: "Le risposte alle domande più comuni",
       text: "Se non trovi quello che cerchi, scrivici: rispondiamo di solito entro poche ore.",
       items: [
+        { q: "Conviene prenotare direttamente?",
+          a: "Sì: se prenoti direttamente con noi, via email, WhatsApp o con il modulo del sito, hai fino al 25% di sconto rispetto alle tariffe di Booking.com e Airbnb per le stesse date, perché non paghi le commissioni delle piattaforme. La percentuale esatta dipende dalle date: te la confermiamo nel preventivo." },
         { q: "Quante persone può ospitare la casa?",
           a: "Fino a 7 ospiti in 3 camere da letto: due camere con letto matrimoniale e una terza con un letto a una piazza e mezza più un letto a castello. I bagni sono due, entrambi con doccia." },
         { q: "Quanto dista davvero il mare?",
@@ -351,9 +353,12 @@ const translations = {
       /* La ragione dello sconto è scritta, non promessa: prenotando qui non
          c'è la commissione della piattaforma. È una frase da mantenere
          davvero — se il prezzo diretto non è più basso, è pubblicità
-         ingannevole. In Italia le clausole di parity rate sono nulle per
-         legge dal 2017 (L. 124/2017, art. 1 c. 166), quindi si può fare. */
-      text: "Scrivici direttamente: non paghi le commissioni della piattaforma, e a parità di date il prezzo che ti facciamo è più basso.",
+         ingannevole (vedi il commento su "promo"). Prezzi diversi sul sito
+         si possono fare: in Italia le clausole di parity rate sono nulle per
+         legge dal 2017 (L. 124/2017, art. 1 c. 166), e nell'UE il Digital
+         Markets Act vieta a Booking.com di impedirli o di penalizzarli nel
+         posizionamento. */
+      text: "Prenota direttamente con noi via email, WhatsApp o con il modulo: rispetto alle tariffe di Booking.com e Airbnb per le stesse date hai fino al 25% di sconto, perché non paghi le commissioni delle piattaforme.",
       direct: "Scrivici e prenota diretto",
       alt: "Oppure prenota dove preferisci",
       booking: "Booking.com",
@@ -380,7 +385,7 @@ const translations = {
          sono entrambi i recapiti, non solo l'email. */
       error: "Non è stato possibile inviare la richiesta. Scrivici direttamente a " + CONFIG.property.email + " oppure su WhatsApp al " + CONFIG.property.phone + ".",
       doneTitle: "Richiesta ricevuta",
-      doneText: "Grazie, ti rispondiamo al più presto con disponibilità e prezzo. Se hai fretta, puoi scriverci anche su WhatsApp.",
+      doneText: "Grazie! Ti rispondiamo al più presto con disponibilità e prezzo diretto, fino al 25% in meno rispetto a Booking.com e Airbnb. Per una risposta ancora più rapida, mandaci anche un messaggio su WhatsApp: il testo è già pronto.",
       honeypot: "Non compilare questo campo",
     },
     footer: {
@@ -392,6 +397,8 @@ const translations = {
       rights: "Tutti i diritti riservati.",
       top: "Torna su",
       privacyUrl: "/privacy.html",
+      ospiti: "Guida per gli ospiti",
+      ospitiUrl: "/ospiti.html",
     },
     /* Calendario: i testi dichiarano apertamente il limite della fonte.
        Promettere una disponibilità "certa" quando i portali si aggiornano
@@ -423,8 +430,48 @@ const translations = {
        reader vivono qui e non nel componente: un ospite inglese che tocca il
        pulsante non deve ritrovarsi a scrivere in italiano. */
     whatsapp: {
-      aria: "Scrivici su WhatsApp",
-      message: "Ciao! Vorrei avere informazioni sulla disponibilità di Bellavista Domus.",
+      aria: "Scrivici su WhatsApp: fino al 25% di sconto prenotando diretto",
+      message: "Ciao! Vorrei prenotare direttamente Bellavista Domus con lo sconto fino al 25%. Mi dici disponibilità e prezzo per queste date: ",
+    },
+    /* Promozione della prenotazione diretta (settembre 2026). Francesco l'ha
+       voluta deliberatamente insistente: compare in molti punti della home e
+       in tutte le guide. Due regole da non perdere:
+       1. "Fino al" deve restare vero: in alcune date lo sconto rispetto alle
+          tariffe di Booking.com e Airbnb arriva davvero al 25%. Se non è più
+          così, la cifra si abbassa qui, nelle FAQ (anche nel JSON-LD delle due
+          home), nelle meta description e nelle 18 guide. Un vantaggio di
+          prezzo annunciato e non reale è pubblicità ingannevole (Codice del
+          Consumo, art. 21 c. 1 lett. d).
+       2. Nessun testo invita a mandare dati di pagamento o documenti via
+          email o WhatsApp. */
+    promo: {
+      cifra: "−25%",
+      chip: "fino a −25%",
+      barraLunga: "Fino al 25% di sconto se prenoti direttamente, via email o WhatsApp, rispetto alle tariffe di Booking.com e Airbnb",
+      barraMedia: "Fino al 25% di sconto prenotando diretto rispetto a Booking.com e Airbnb",
+      barraBreve: "prenotando diretto",
+      hero: "Fino al 25% di sconto se prenoti direttamente, rispetto alle tariffe di Booking.com e Airbnb.",
+      heroCta: "Scrivici su WhatsApp",
+      fino: "Fino al",
+      percento: "25%",
+      sconto: "di sconto",
+      fasciaAlto: "Fino al 25% di sconto se prenoti direttamente con noi, rispetto alle tariffe di Booking.com e Airbnb.",
+      fasciaRecensioni: "Vuoi essere il prossimo ospite? Prenota diretto e paghi fino al 25% in meno rispetto a Booking.com e Airbnb.",
+      modulo: "Richiedi un preventivo",
+      moduloTesto: "Fino al 25% di sconto rispetto a Booking.com e Airbnb. Preferisci scriverci subito?",
+      nota: "La percentuale esatta dipende dalle date: te la confermiamo nel preventivo.",
+      calendario: "Prenotando diretto paghi fino al 25% in meno rispetto a Booking.com e Airbnb.",
+      footer: "Prenota diretto: fino al 25% di sconto rispetto a Booking.com e Airbnb.",
+      whatsapp: "WhatsApp",
+      email: "Email",
+      emailOggetto: "Prenotazione diretta Bellavista Domus",
+      emailTesto: "Ciao, vorrei prenotare direttamente Bellavista Domus con lo sconto fino al 25%.\n\nArrivo:\nPartenza:\nNumero di ospiti:\n",
+      /* Dopo l'invio del modulo: il messaggio WhatsApp arriva già scritto,
+         con il nome e le date appena inseriti, così Francesco lo collega
+         subito alla richiesta. */
+      dopoModulo: "Continua su WhatsApp",
+      dopoModuloMessaggio: "Ciao, sono {nome}. Ho appena inviato una richiesta dal sito{date} (ospiti: {ospiti}). Vorrei prenotare diretto con lo sconto: mi confermi disponibilità e prezzo?",
+      dopoModuloDate: ", dal {arrivo} al {partenza}",
     },
     photoPlaceholder: "Fotografia in arrivo",
     cookieBanner: {
@@ -581,6 +628,8 @@ const translations = {
       title: "Answers to the most common questions",
       text: "If you cannot find what you are looking for, write to us: we usually reply within a few hours.",
       items: [
+        { q: "Is it cheaper to book direct?",
+          a: "Yes: if you book directly with us, by email, WhatsApp or the form on this site, you get up to 25% off the Booking.com and Airbnb rates for the same dates, because you pay no platform commission. The exact percentage depends on your dates: we confirm it in your quote." },
         { q: "How many guests can the house sleep?",
           a: "Up to 7 guests in 3 bedrooms: two bedrooms with a double bed, and a third with a small double bed plus a bunk bed. There are two bathrooms, both with a shower." },
         { q: "How far is the sea, really?",
@@ -621,7 +670,7 @@ const translations = {
     booking: {
       eyebrow: "Book",
       title: "Ready to wake up by the sea?",
-      text: "Write to us directly: you pay no platform commission, and for the same dates the price we quote you is lower.",
+      text: "Book directly with us by email, WhatsApp or the form: compared with the Booking.com and Airbnb rates for the same dates you get up to 25% off, because you pay no platform commission.",
       direct: "Write to us and book direct",
       alt: "Or book wherever you prefer",
       booking: "Booking.com",
@@ -643,7 +692,7 @@ const translations = {
       sending: "Sending…",
       error: "We could not send your enquiry. Please write to us directly at " + CONFIG.property.email + " or on WhatsApp at " + CONFIG.property.phone + ".",
       doneTitle: "Enquiry received",
-      doneText: "Thank you. We will get back to you shortly with availability and price. If you are in a hurry, you can also reach us on WhatsApp.",
+      doneText: "Thank you! We will get back to you shortly with availability and your direct price, up to 25% less than on Booking.com and Airbnb. For an even faster reply, send us a WhatsApp message too: the text is ready to go.",
       honeypot: "Do not fill in this field",
     },
     footer: {
@@ -655,6 +704,8 @@ const translations = {
       rights: "All rights reserved.",
       top: "Back to top",
       privacyUrl: "/privacy-en.html",
+      ospiti: "Guest guide",
+      ospitiUrl: "/ospiti-en.html",
     },
     calendario: {
       eyebrow: "Availability",
@@ -680,8 +731,34 @@ const translations = {
     },
     stickyCta: "Check availability",
     whatsapp: {
-      aria: "Message us on WhatsApp",
-      message: "Hello! I would like some information about availability at Bellavista Domus.",
+      aria: "Message us on WhatsApp: up to 25% off when you book direct",
+      message: "Hello! I would like to book Bellavista Domus directly with the discount of up to 25%. Could you tell me availability and price for these dates: ",
+    },
+    promo: {
+      cifra: "−25%",
+      chip: "up to −25%",
+      barraLunga: "Up to 25% off when you book direct, by email or WhatsApp, compared with Booking.com and Airbnb rates",
+      barraMedia: "Up to 25% off when you book direct, compared with Booking.com and Airbnb",
+      barraBreve: "when you book direct",
+      hero: "Up to 25% off when you book direct, compared with Booking.com and Airbnb rates.",
+      heroCta: "Message us on WhatsApp",
+      fino: "Up to",
+      percento: "25%",
+      sconto: "off",
+      fasciaAlto: "Up to 25% off when you book directly with us, compared with Booking.com and Airbnb rates.",
+      fasciaRecensioni: "Want to be our next guest? Book direct and pay up to 25% less than on Booking.com and Airbnb.",
+      modulo: "Request a quote",
+      moduloTesto: "Up to 25% off compared with Booking.com and Airbnb. Prefer to message us right away?",
+      nota: "The exact percentage depends on your dates: we confirm it in your quote.",
+      calendario: "Book direct and pay up to 25% less than on Booking.com and Airbnb.",
+      footer: "Book direct: up to 25% off compared with Booking.com and Airbnb.",
+      whatsapp: "WhatsApp",
+      email: "Email",
+      emailOggetto: "Direct booking Bellavista Domus",
+      emailTesto: "Hello, I would like to book Bellavista Domus directly with the discount of up to 25%.\n\nArrival:\nDeparture:\nNumber of guests:\n",
+      dopoModulo: "Continue on WhatsApp",
+      dopoModuloMessaggio: "Hello, I am {nome}. I have just sent an enquiry from the website{date} (guests: {ospiti}). I would like to book direct with the discount: could you confirm availability and price?",
+      dopoModuloDate: ", from {arrivo} to {partenza}",
     },
     photoPlaceholder: "Photo coming soon",
     cookieBanner: {
@@ -690,6 +767,583 @@ const translations = {
       linkLabel: "Learn more",
       reject: "Decline",
       accept: "Accept",
+    },
+  },
+  /* Francese e tedesco (settembre 2026): stessa struttura a chiavi di it/en.
+     Nel testo "25 %" porta uno spazio che non va a capo ( ), come vuole
+     la tipografia francese e tedesca. Le recensioni restano nella lingua
+     originale, con la traduzione sotto. */
+  fr: {
+    luogo: "Torre a Mare, Bari, Pouilles",
+    nav: { home: "Accueil", house: "La maison", gallery: "Galerie", location: "Emplacement", explore: "Alentours", contact: "Contact", book: "Réserver" },
+    topbar: { address: "Ouvrir l'emplacement dans Google Maps", phone: "Appeler Bellavista Domus", email: "Écrire à Bellavista Domus" },
+    hero: {
+      title: "Bellavista Domus",
+      subtitle: "À quelques pas de la mer.",
+      info: `Jusqu'à ${CONFIG.property.guests} personnes, ${CONFIG.property.bedrooms} chambres, ${CONFIG.property.bathrooms} salles de bains`,
+      ctaPrimary: "Vérifier les disponibilités",
+      ctaSecondary: "Découvrir la maison",
+      scroll: "Défiler",
+    },
+    intro: {
+      eyebrow: "Bienvenue",
+      title: "Votre séjour au bord de l'Adriatique",
+      text: "Réveillez-vous face à la mer, ralentissez et vivez les Pouilles à votre rythme. Bellavista Domus est une maison de vacances privée, pensée pour les familles et les groupes qui recherchent de l'espace, du confort et la mer à deux pas.",
+    },
+    features: [
+      { title: "À 10 m de la mer", desc: "Plage publique gratuite à deux pas de la porte." },
+      { title: `Jusqu'à ${CONFIG.property.guests} personnes`, desc: "Des espaces pensés pour les familles et les groupes." },
+      { title: `${CONFIG.property.bedrooms} chambres`, desc: "Des pièces privées et confortables pour chacun." },
+      { title: `${CONFIG.property.bathrooms} salles de bains`, desc: "Confort et praticité pour tout le groupe." },
+      { title: "Parking privé", desc: "Une place réservée, sans souci." },
+      { title: "Espaces extérieurs", desc: "Balcons et coin barbecue pour vivre dehors." },
+    ],
+    house: {
+      eyebrow: "La propriété",
+      title: "La maison",
+      text: "Bellavista Domus est une maison entière, pensée pour ceux qui veulent partager leur séjour dans les Pouilles en famille ou entre amis, sans renoncer à l'espace ni à l'intimité.",
+      items: {
+        living: "Séjour",
+        bedroom: "Chambres",
+        kitchen: "Cuisine équipée",
+        bathroom: "Salles de bains",
+        balcony: "Balcons",
+        outdoor: "Espaces extérieurs",
+        parking: "Parking privé",
+      },
+    },
+    gallery: { eyebrow: "Photographies", title: "Galerie" },
+    testimonial: {
+      title: "Ce qu'en disent nos voyageurs",
+      translationLabel: "Lire la traduction en français",
+      note: "Avis authentiques de voyageurs qui ont séjourné ici, reproduits intégralement depuis les plateformes sur lesquelles ils ont réservé. Chacun renvoie à la page de la maison sur Airbnb ou Booking.com, où l'on peut lire l'original.",
+      reviews: [
+        { platform: "airbnb", author: "Renáta", when: "septembre 2026", iso: "2026-09", stars: 5, rating: "Note de 5 sur 5", title: null, lang: "en",
+          quote: "A wonderful place to stay – everything was perfect! The rooms are huge and spacious, with a large communal area that creates a really warm and welcoming atmosphere. The house also has a beautiful garden and a large terrace, which was perfect for relaxing and enjoying the surroundings.\nThe kitchen is fully equipped, and the whole house is spotlessly clean and has such a lovely atmosphere. It is a charming seaside home.\nWe were also welcomed with a lovely welcome package upon arrival, which was such a thoughtful touch.\nFrancesco was incredibly kind, helpful, and attentive, and we could always count on him whenever we needed anything.\nWe had a fantastic stay and would wholeheartedly recommend this beautiful place! ❤️",
+          translation: "Un endroit merveilleux où séjourner : tout était parfait ! Les chambres sont immenses et spacieuses, avec un grand espace commun qui crée une atmosphère vraiment chaleureuse et accueillante. La maison a aussi un beau jardin et une grande terrasse, parfaite pour se détendre et profiter des environs.\nLa cuisine est entièrement équipée, toute la maison est d'une propreté impeccable et l'ambiance y est très agréable. C'est une charmante maison au bord de la mer.\nÀ notre arrivée, nous avons aussi été accueillis avec un joli panier de bienvenue, une attention vraiment délicate.\nFrancesco a été incroyablement gentil, serviable et attentionné, et nous avons toujours pu compter sur lui en cas de besoin.\nNous avons passé un séjour fantastique et recommandons de tout cœur ce magnifique endroit ! ❤️",
+          source: "Lire sur Airbnb" },
+        { platform: "booking", author: "Angela", when: "septembre 2026", iso: "2026-09", score: "9/10", rating: "Note de 9 sur 10", title: "Fantastic!", lang: "en",
+          quote: "The villa was a perfect location for my needs,, close to family and a few steps from the sea. The host Francesco was amazing, very attentive and prompt\nIt's a perfect villa for a family, beautiful garden and very comfortable interior with a full kitchen , with all the amenities needed I will definitely be back.",
+          translation: "Fantastique !\nLa villa était idéalement située pour mes besoins, près de ma famille et à quelques pas de la mer. L'hôte, Francesco, a été formidable, très attentionné et réactif.\nC'est une villa parfaite pour une famille, avec un beau jardin et un intérieur très confortable, une cuisine complète et tous les équipements nécessaires. Je reviendrai sans aucun doute.",
+          source: "Lire sur Booking.com" },
+        { platform: "airbnb", author: "Gaetana", when: "août 2026", iso: "2026-08", stars: 5, rating: "Note de 5 sur 5", title: null, lang: "it",
+          quote:
+            "Ci siamo trovati benissimo in 6, spazi ampi, casa completa di tutto e camere con aria condizionata, terrazzino esterno stupendo. Francesco è stato gentilissimo e disponibile per qualsiasi dubbio riguardo la casa e non solo. Ci è sembrato di essere a casa, con il vantaggio di essere a due passi dal mare. Consigliatissimo, spero di poterci tornare presto",
+          translation:
+            "Nous nous sommes très bien sentis à six : de grands espaces, une maison équipée de tout, des chambres climatisées et une magnifique petite terrasse. Francesco a été très gentil et disponible pour toutes nos questions, sur la maison et au-delà. Nous nous sommes sentis comme chez nous, avec l'avantage d'être à deux pas de la mer. Vivement recommandé, j'espère pouvoir y revenir bientôt.",
+          source: "Lire sur Airbnb" },
+      ],
+    },
+    amenities: {
+      eyebrow: "Équipements",
+      title: "Ce que vous trouverez sur place",
+      text: "Tout le nécessaire pour une semaine en famille ou entre amis, sans rien devoir acheter en arrivant.",
+      bedsTitle: "Les couchages",
+      beds: [
+        { room: "Chambre 1", detail: "Lit double", places: "2 places" },
+        { room: "Chambre 2", detail: "Lit double", places: "2 places" },
+        { room: "Chambre 3", detail: "Petit lit double et lits superposés", places: "3 places" },
+      ],
+      groups: [
+        {
+          title: "Cuisine",
+          items: ["Four", "Friteuse à air", "Lave-vaisselle", "Réfrigérateur avec congélateur", "Machine à café", "Casseroles et poêles", "Assiettes, verres, couverts et tasses"],
+        },
+        {
+          title: "Climatisation",
+          items: ["Climatisation réversible (chaud/froid) dans les trois chambres", "Climatisation réversible (chaud/froid) dans le salon"],
+        },
+        {
+          title: "Salles de bains et linge",
+          items: ["Deux salles de bains, toutes deux avec douche", "Draps et serviettes inclus", "Lave-linge", "Étendoir", "Sèche-cheveux", "Savon"],
+        },
+        {
+          title: "Connexion",
+          items: ["Wi-Fi fibre jusqu'à 500 Mbit/s", "TV au salon avec Netflix et d'autres services de streaming"],
+        },
+        {
+          title: "Espaces extérieurs",
+          items: ["Jardin privé", "Barbecue au charbon de bois", "Plus de 12 places assises en plein air, sur plusieurs tables", "Chaises longues"],
+        },
+        {
+          title: "Parking",
+          items: ["Deux places de parking privées et gratuites", "De la place pour les scooters et les vélos", "Stationnement libre et gratuit également dans la rue"],
+        },
+      ],
+      familyTitle: "Pour les familles",
+      familyText: "Chaise haute, lit bébé, barrières de lit et table à langer sont disponibles sans frais supplémentaires. Signalez-le-nous au moment de la réservation, et tout sera prêt à votre arrivée.",
+      rulesTitle: "Informations pratiques",
+      rules: [
+        { label: "Séjour minimum", value: "2 nuits en basse saison, 4 en haute saison" },
+        { label: "Ménage de fin de séjour", value: "99 €, en supplément du séjour" },
+        { label: "Arrivée", value: "à partir de 15h00" },
+        { label: "Départ", value: "avant 11h00" },
+        { label: "Tabac", value: "uniquement à l'extérieur" },
+        { label: "Animaux", value: "de petite et moyenne taille, avec un léger supplément pour le ménage" },
+        { label: "Fêtes", value: "non autorisées" },
+        { label: "Caution", value: "500 €, à verser sur place et restituée en fin de séjour" },
+      ],
+    },
+    location: {
+      eyebrow: "Où nous sommes",
+      title: "La mer est juste devant",
+      text: "À quelques pas de l'Adriatique, Bellavista Domus offre un séjour authentique en bord de mer à Torre a Mare, tout près de Bari et du meilleur des Pouilles.",
+      mapEyebrow: "Sur la carte",
+      mapTitle: "Comment nous trouver",
+      mapShow: "Afficher la carte",
+      mapPrivacy: "En chargeant la carte, Google reçoit votre adresse IP.",
+      mapOpen: "Ouvrir dans Google Maps",
+      distances: [
+        { value: "10 m", label: "de la plage" },
+        { value: "5 min", label: "à pied du petit port" },
+        { value: "15 min", label: "en voiture de Bari" },
+        { value: "25 min", label: "de l'aéroport de Bari" },
+      ],
+      exploreEyebrow: "Aux alentours",
+      exploreTitle: "Découvrir les Pouilles",
+      places: [
+        { key: "torreamare", name: "Torre a Mare", desc: "Le village de pêcheurs où se trouve Bellavista Domus.", link: "/torre-a-mare-fr.html", linkLabel: "Que voir à Torre a Mare" },
+        { key: "bari", name: "Bari", desc: "La capitale des Pouilles, entre vieille ville et front de mer.", link: "/bari-fr.html", linkLabel: "Que voir à Bari" },
+        { key: "polignano", name: "Polignano a Mare", desc: "Célèbre pour ses falaises à pic sur la mer.", link: "/polignano-a-mare-fr.html", linkLabel: "Que voir à Polignano a Mare" },
+        { key: "monopoli", name: "Monopoli", desc: "Port historique et vieille ville face à l'Adriatique.", link: "/monopoli-fr.html", linkLabel: "Que voir à Monopoli" },
+        { key: "alberobello", name: "Alberobello", desc: "Patrimoine de l'UNESCO, célèbre pour ses trulli.", link: "/alberobello-fr.html", linkLabel: "Que voir à Alberobello" },
+        { key: "castellana", name: "Grottes de Castellana", desc: "Soixante mètres sous terre, entre stalactites et albâtre.", link: "/grotte-di-castellana-fr.html", linkLabel: "Comment les visiter" },
+        { key: "valleditria", name: "Vallée d'Itria", desc: "Locorotondo, Cisternino, Martina Franca et Ostuni.", link: "/valle-d-itria-fr.html", linkLabel: "Le circuit en une journée" },
+        { key: "matera", name: "Matera", desc: "Les Sassi, patrimoine de l'UNESCO, à un peu plus d'une heure.", link: "/matera-fr.html", linkLabel: "Organiser la visite" },
+      ],
+    },
+    faq: {
+      eyebrow: "Questions fréquentes",
+      title: "Les réponses aux questions les plus courantes",
+      text: "Si vous ne trouvez pas ce que vous cherchez, écrivez-nous : nous répondons généralement en quelques heures.",
+      items: [
+        { q: "Est-il plus avantageux de réserver en direct ?",
+          a: "Oui : si vous réservez directement auprès de nous, par e-mail, WhatsApp ou avec le formulaire du site, vous avez jusqu'à 25 % de réduction par rapport aux tarifs de Booking.com et Airbnb pour les mêmes dates, car vous ne payez pas les commissions des plateformes. Le pourcentage exact dépend des dates : nous vous le confirmons dans le devis." },
+        { q: "Combien de personnes la maison peut-elle accueillir ?",
+          a: "Jusqu'à 7 personnes dans 3 chambres : deux chambres avec lit double et une troisième avec un petit lit double et des lits superposés. Il y a deux salles de bains, toutes deux avec douche." },
+        { q: "À quelle distance se trouve vraiment la mer ?",
+          a: "Dix mètres, avec une petite anse de sable juste devant la maison. On traverse la route et on est sur la plage publique, où sable et rochers alternent. La mer se voit depuis deux des trois chambres, et on l'entend le soir, fenêtres ouvertes." },
+        { q: "Quelle est la durée minimale du séjour ?",
+          a: "Deux nuits en basse saison et quatre nuits en haute saison." },
+        { q: "À quelle heure se font l'arrivée et le départ ?",
+          a: "L'arrivée se fait à partir de 15h00, le départ avant 11h00. Si votre vol ou votre train a des horaires compliqués, écrivez-nous : nous essayons de nous adapter quand le calendrier le permet." },
+        { q: "Le ménage de fin de séjour est-il inclus ?",
+          a: "Non, il s'ajoute au prix du séjour et coûte 99 €. C'est un montant unique, qui ne dépend ni de la durée du séjour ni du nombre de personnes." },
+        { q: "Une caution est-elle demandée ?",
+          a: "Oui, 500 €, à verser à l'arrivée sur place. Elle est restituée intégralement à la fin du séjour, sauf en cas de dommages." },
+        { q: "Faut-il payer la taxe de séjour ?",
+          a: "Oui, elle se paie sur place et elle est due à la commune de Bari, pas à nous. Le règlement municipal prévoit des exonérations — pour les mineurs et au-delà d'un certain nombre de nuits consécutives — nous vous confirmons donc le montant exact au moment de la réservation, selon le nombre de personnes et la durée du séjour." },
+        { q: "Les draps et les serviettes sont-ils fournis ?",
+          a: "Oui, les draps et les serviettes sont inclus et prêts à votre arrivée. Vous trouverez aussi sur place du savon, un sèche-cheveux, un lave-linge et un étendoir." },
+        { q: "Y a-t-il un parking ?",
+          a: "Oui, deux places de parking privées et gratuites à l'intérieur de la propriété, avec de la place aussi pour les scooters et les vélos. À l'extérieur, le stationnement est libre et gratuit." },
+        { q: "Les animaux sont-ils acceptés ?",
+          a: "Oui, les chiens et les chats de petite et moyenne taille sont les bienvenus, avec un léger supplément pour le ménage. Merci de nous le signaler au moment de la réservation." },
+        { q: "Peut-on fumer ?",
+          a: "Uniquement à l'extérieur. Le jardin et les espaces extérieurs sont à votre disposition ; on ne fume pas à l'intérieur de la maison." },
+        { q: "Y a-t-il la climatisation ?",
+          a: "Oui, dans les trois chambres et au salon, avec une fonction rafraîchissement et chauffage. La maison est donc confortable aussi hors saison." },
+        { q: "Comment est la connexion internet ?",
+          a: "Wi-Fi fibre jusqu'à 500 Mbit/s dans toute la maison. La connexion convient aussi à ceux qui doivent travailler ou faire des visioconférences pendant le séjour." },
+        { q: "Avez-vous des équipements pour les jeunes enfants ?",
+          a: "Oui : chaise haute, lit bébé, barrières de lit et table à langer, sans frais supplémentaires. Il faut toutefois les demander au moment de la réservation, pour que tout soit prêt à votre arrivée." },
+        { q: "Peut-on organiser des fêtes ou des événements ?",
+          a: "Non, les fêtes et les événements ne sont pas autorisés. La maison est pensée pour les familles et les groupes en quête de tranquillité, et nous tenons à nos bonnes relations avec le voisinage." },
+        { q: "Y a-t-il une piscine ?",
+          a: "Pas encore : une piscine est prévue pour l'été 2027. Aujourd'hui, la maison mise sur autre chose — la mer à dix mètres, avec l'anse de sable juste devant, et un jardin privé avec plus de 12 places assises en plein air et le barbecue. Si vous envisagez un séjour à l'été 2027, écrivez-nous avant de réserver : nous vous dirons où en sont les travaux, pour que vous ne réserviez pas sur une simple promesse." },
+        { q: "Comment rejoindre Torre a Mare ?",
+          a: "En voiture, on prend la sortie Torre a Mare centro et on est à la maison en deux minutes ; depuis l'aéroport de Bari, il faut environ 20 minutes, 25 avec la circulation. En transports en commun, le plus simple est le bus 12 (ou 12/) depuis la gare centrale de Bari. Une fois sur place, la voiture n'est pas nécessaire pour la plage et le village ; elle l'est pour les courses et les services, à environ cinq minutes.",
+          href: "/come-arrivare-fr.html", linkLabel: "Tous les détails pour venir" },
+      ],
+    },
+    booking: {
+      eyebrow: "Réserver",
+      title: "Prêt à vous réveiller face à la mer ?",
+      text: "Réservez directement auprès de nous par e-mail, WhatsApp ou avec le formulaire : par rapport aux tarifs de Booking.com et Airbnb pour les mêmes dates, vous avez jusqu'à 25 % de réduction, car vous ne payez pas les commissions des plateformes.",
+      direct: "Écrivez-nous et réservez en direct",
+      alt: "Ou réservez où vous préférez",
+      booking: "Booking.com",
+      airbnb: "Airbnb",
+    },
+    form: {
+      eyebrow: "Demande",
+      title: "Vérifiez les dates de votre séjour",
+      text: "Dites-nous quand vous aimeriez venir et combien vous êtes : nous vous répondons avec les disponibilités et le prix, généralement en quelques heures. Si vos dates ne sont pas encore fixées, laissez-les vides et précisez-le dans le message.",
+      name: "Nom et prénom",
+      arrival: "Arrivée (facultatif)",
+      departure: "Départ (facultatif)",
+      email: "E-mail",
+      guests: "Personnes",
+      message: "Message (facultatif)",
+      consent: "J'ai lu et j'accepte la",
+      consentLink: "politique de confidentialité",
+      submit: "Envoyer la demande",
+      sending: "Envoi en cours…",
+      error: "Impossible d'envoyer la demande. Écrivez-nous directement à " + CONFIG.property.email + " ou sur WhatsApp au " + CONFIG.property.phone + ".",
+      doneTitle: "Demande reçue",
+      doneText: "Merci ! Nous vous répondons au plus vite avec les disponibilités et le prix direct, jusqu'à 25 % moins cher que sur Booking.com et Airbnb. Pour une réponse encore plus rapide, envoyez-nous aussi un message sur WhatsApp : le texte est déjà prêt.",
+      honeypot: "Ne pas remplir ce champ",
+    },
+    footer: {
+      tagline: "Maison de vacances en bord de mer",
+      contactTitle: "Contact",
+      infoTitle: "Informations",
+      cis: "CIS",
+      cin: "CIN",
+      rights: "Tous droits réservés.",
+      top: "Haut de page",
+      privacyUrl: "/privacy-fr.html",
+      ospiti: "Guide des voyageurs",
+      ospitiUrl: "/ospiti-fr.html",
+    },
+    calendario: {
+      eyebrow: "Disponibilités",
+      title: "Vos dates sont-elles libres ?",
+      text: "Le calendrier indique les nuits déjà réservées. Il est mis à jour depuis les plateformes toutes les quelques heures : considérez-le comme une indication, la confirmation définitive vient de nous.",
+      caricamento: "Lecture du calendrier…",
+      errore: "Impossible de lire le calendrier pour le moment. Envoyez-nous vos dates et nous vous répondrons.",
+      libero: "Libre",
+      occupato: "Réservé",
+      precedente: "Mois précédent",
+      successivo: "Mois suivant",
+      mesi: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"],
+      giorni: ["L","M","M","J","V","S","D"],
+      giorniEstesi: ["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"],
+      esempio: "Données d'exemple — le vrai calendrier n'est pas disponible en local",
+      guidaArrivo: "Touchez le jour d'arrivée, puis celui du départ : les dates passent directement dans le formulaire de demande.",
+      guidaPartenza: "Arrivée le {data}. Touchez maintenant le jour du départ.",
+      conflitto: "Une nuit est déjà réservée entre ces dates : choisissez un autre départ ou une autre arrivée.",
+      dal: "Du", al: "au", notte: "nuit", notti: "nuits",
+      arrivoAria: "arrivée", partenzaAria: "départ",
+      richiedi: "Demander ces dates",
+      annulla: "Effacer les dates",
+    },
+    stickyCta: "Vérifier les disponibilités",
+    whatsapp: {
+      aria: "Écrivez-nous sur WhatsApp : jusqu'à 25 % de réduction en réservant en direct",
+      message: "Bonjour ! Je souhaite réserver Bellavista Domus en direct avec la réduction allant jusqu'à 25 %. Pourriez-vous m'indiquer les disponibilités et le prix pour ces dates : ",
+    },
+    promo: {
+      cifra: "−25%",
+      chip: "jusqu'à −25%",
+      barraLunga: "Jusqu'à 25 % de réduction si vous réservez en direct, par e-mail ou WhatsApp, par rapport aux tarifs de Booking.com et Airbnb",
+      barraMedia: "Jusqu'à 25 % de réduction en réservant en direct, par rapport à Booking.com et Airbnb",
+      barraBreve: "en réservant en direct",
+      hero: "Jusqu'à 25 % de réduction si vous réservez en direct, par rapport aux tarifs de Booking.com et Airbnb.",
+      heroCta: "Écrivez-nous sur WhatsApp",
+      fino: "Jusqu'à",
+      percento: "25 %",
+      sconto: "de réduction",
+      fasciaAlto: "Jusqu'à 25 % de réduction si vous réservez directement auprès de nous, par rapport aux tarifs de Booking.com et Airbnb.",
+      fasciaRecensioni: "Envie d'être nos prochains voyageurs ? Réservez en direct et payez jusqu'à 25 % de moins que sur Booking.com et Airbnb.",
+      modulo: "Demander un devis",
+      moduloTesto: "Jusqu'à 25 % de réduction par rapport à Booking.com et Airbnb. Vous préférez nous écrire tout de suite ?",
+      nota: "Le pourcentage exact dépend des dates : nous vous le confirmons dans le devis.",
+      calendario: "En réservant en direct, vous payez jusqu'à 25 % de moins que sur Booking.com et Airbnb.",
+      footer: "Réservez en direct : jusqu'à 25 % de réduction par rapport à Booking.com et Airbnb.",
+      whatsapp: "WhatsApp",
+      email: "E-mail",
+      emailOggetto: "Réservation directe Bellavista Domus",
+      emailTesto: "Bonjour, je souhaite réserver Bellavista Domus en direct avec la réduction allant jusqu'à 25 %.\n\nArrivée :\nDépart :\nNombre de personnes :\n",
+      dopoModulo: "Continuer sur WhatsApp",
+      dopoModuloMessaggio: "Bonjour, je suis {nome}. Je viens d'envoyer une demande depuis le site{date} (personnes : {ospiti}). Je souhaite réserver en direct avec la réduction : pourriez-vous me confirmer les disponibilités et le prix ?",
+      dopoModuloDate: ", du {arrivo} au {partenza}",
+    },
+    photoPlaceholder: "Photo à venir",
+    cookieBanner: {
+      ariaLabel: "Consentement aux cookies",
+      text: "Nous utilisons Google Analytics uniquement si vous y consentez, pour comprendre comment le site est utilisé. Aucun cookie de profilage.",
+      linkLabel: "En savoir plus",
+      reject: "Refuser",
+      accept: "Accepter",
+    },
+  },
+  de: {
+    luogo: "Torre a Mare, Bari, Apulien",
+    nav: { home: "Start", house: "Das Haus", gallery: "Galerie", location: "Lage", explore: "Umgebung", contact: "Kontakt", book: "Jetzt buchen" },
+    topbar: { address: "Lage in Google Maps öffnen", phone: "Bellavista Domus anrufen", email: "E-Mail an Bellavista Domus" },
+    hero: {
+      title: "Bellavista Domus",
+      subtitle: "Nur wenige Schritte vom Meer.",
+      info: `Bis zu ${CONFIG.property.guests} Gäste, ${CONFIG.property.bedrooms} Schlafzimmer, ${CONFIG.property.bathrooms} Badezimmer`,
+      ctaPrimary: "Verfügbarkeit prüfen",
+      ctaSecondary: "Das Haus entdecken",
+      scroll: "Scrollen",
+    },
+    intro: {
+      eyebrow: "Willkommen",
+      title: "Ihr Aufenthalt an der Adria",
+      text: "Mit Blick aufs Meer aufwachen, einen Gang zurückschalten und Apulien in Ihrem eigenen Tempo erleben. Bellavista Domus ist ein privates Ferienhaus für Familien und Gruppen, die Platz, Komfort und das Meer direkt vor der Tür suchen.",
+    },
+    features: [
+      { title: "10 m vom Meer", desc: "Freier Strand direkt vor der Haustür." },
+      { title: `Bis zu ${CONFIG.property.guests} Gäste`, desc: "Platz für Familien und größere Gruppen." },
+      { title: `${CONFIG.property.bedrooms} Schlafzimmer`, desc: "Private, komfortable Zimmer für alle." },
+      { title: `${CONFIG.property.bathrooms} Badezimmer`, desc: "Bequem und praktisch für die ganze Gruppe." },
+      { title: "Privatparkplatz", desc: "Ein reservierter Stellplatz, ganz ohne Sorgen." },
+      { title: "Außenbereiche", desc: "Balkone und Grillplatz für das Leben im Freien." },
+    ],
+    house: {
+      eyebrow: "Die Unterkunft",
+      title: "Das Haus",
+      text: "Bellavista Domus ist ein ganzes Haus für alle, die ihre Zeit in Apulien mit der Familie oder mit Freunden verbringen möchten, ohne auf Platz und Privatsphäre zu verzichten.",
+      items: {
+        living: "Wohnzimmer",
+        bedroom: "Schlafzimmer",
+        kitchen: "Voll ausgestattete Küche",
+        bathroom: "Badezimmer",
+        balcony: "Balkone",
+        outdoor: "Außenbereiche",
+        parking: "Privatparkplatz",
+      },
+    },
+    gallery: { eyebrow: "Fotos", title: "Galerie" },
+    testimonial: {
+      title: "Das sagen unsere Gäste",
+      translationLabel: "Deutsche Übersetzung lesen",
+      note: "Echte Bewertungen von Gästen, die hier übernachtet haben, vollständig von den Plattformen übernommen, auf denen sie gebucht haben. Jede verweist auf die Seite des Hauses bei Airbnb oder Booking.com, wo das Original zu lesen ist.",
+      reviews: [
+        { platform: "airbnb", author: "Renáta", when: "September 2026", iso: "2026-09", stars: 5, rating: "Bewertung 5 von 5", title: null, lang: "en",
+          quote: "A wonderful place to stay – everything was perfect! The rooms are huge and spacious, with a large communal area that creates a really warm and welcoming atmosphere. The house also has a beautiful garden and a large terrace, which was perfect for relaxing and enjoying the surroundings.\nThe kitchen is fully equipped, and the whole house is spotlessly clean and has such a lovely atmosphere. It is a charming seaside home.\nWe were also welcomed with a lovely welcome package upon arrival, which was such a thoughtful touch.\nFrancesco was incredibly kind, helpful, and attentive, and we could always count on him whenever we needed anything.\nWe had a fantastic stay and would wholeheartedly recommend this beautiful place! ❤️",
+          translation: "Ein wunderbarer Ort für einen Aufenthalt – alles war perfekt! Die Zimmer sind riesig und geräumig, mit einem großen Gemeinschaftsbereich, der eine wirklich warme und einladende Atmosphäre schafft. Das Haus hat außerdem einen schönen Garten und eine große Terrasse, perfekt zum Entspannen und um die Umgebung zu genießen.\nDie Küche ist voll ausgestattet, das ganze Haus ist blitzsauber und hat eine sehr angenehme Atmosphäre. Ein charmantes Haus am Meer.\nBei der Ankunft wurden wir außerdem mit einem schönen Willkommenspaket empfangen – eine wirklich aufmerksame Geste.\nFrancesco war unglaublich freundlich, hilfsbereit und aufmerksam, und wir konnten uns jederzeit auf ihn verlassen, wenn wir etwas brauchten.\nWir hatten einen fantastischen Aufenthalt und können diesen wunderschönen Ort von Herzen empfehlen! ❤️",
+          source: "Auf Airbnb lesen" },
+        { platform: "booking", author: "Angela", when: "September 2026", iso: "2026-09", score: "9/10", rating: "Bewertung 9 von 10", title: "Fantastic!", lang: "en",
+          quote: "The villa was a perfect location for my needs,, close to family and a few steps from the sea. The host Francesco was amazing, very attentive and prompt\nIt's a perfect villa for a family, beautiful garden and very comfortable interior with a full kitchen , with all the amenities needed I will definitely be back.",
+          translation: "Fantastisch!\nDie Villa lag perfekt für meine Bedürfnisse, nah bei der Familie und nur wenige Schritte vom Meer. Der Gastgeber Francesco war großartig, sehr aufmerksam und schnell.\nEine perfekte Villa für eine Familie, mit schönem Garten und sehr gemütlichen Innenräumen, einer voll ausgestatteten Küche und allem, was man braucht. Ich komme ganz sicher wieder.",
+          source: "Auf Booking.com lesen" },
+        { platform: "airbnb", author: "Gaetana", when: "August 2026", iso: "2026-08", stars: 5, rating: "Bewertung 5 von 5", title: null, lang: "it",
+          quote:
+            "Ci siamo trovati benissimo in 6, spazi ampi, casa completa di tutto e camere con aria condizionata, terrazzino esterno stupendo. Francesco è stato gentilissimo e disponibile per qualsiasi dubbio riguardo la casa e non solo. Ci è sembrato di essere a casa, con il vantaggio di essere a due passi dal mare. Consigliatissimo, spero di poterci tornare presto",
+          translation:
+            "Wir haben uns zu sechst sehr wohlgefühlt: viel Platz, ein Haus mit allem, was man braucht, klimatisierte Zimmer und eine wunderschöne kleine Terrasse. Francesco war äußerst freundlich und bei jeder Frage zum Haus und darüber hinaus hilfsbereit. Wir haben uns wie zu Hause gefühlt, mit dem Vorteil, nur zwei Schritte vom Meer entfernt zu sein. Sehr zu empfehlen, ich hoffe, bald wiederzukommen.",
+          source: "Auf Airbnb lesen" },
+      ],
+    },
+    amenities: {
+      eyebrow: "Ausstattung",
+      title: "Was Sie im Haus erwartet",
+      text: "Alles, was Sie für eine Woche mit Familie oder Freunden brauchen, ohne bei der Ankunft etwas kaufen zu müssen.",
+      bedsTitle: "Schlafmöglichkeiten",
+      beds: [
+        { room: "Schlafzimmer 1", detail: "Doppelbett", places: "2 Personen" },
+        { room: "Schlafzimmer 2", detail: "Doppelbett", places: "2 Personen" },
+        { room: "Schlafzimmer 3", detail: "Kleines Doppelbett und Etagenbett", places: "3 Personen" },
+      ],
+      groups: [
+        {
+          title: "Küche",
+          items: ["Backofen", "Heißluftfritteuse", "Geschirrspüler", "Kühlschrank mit Gefrierfach", "Kaffeemaschine", "Töpfe und Pfannen", "Teller, Gläser, Besteck und Tassen"],
+        },
+        {
+          title: "Klima",
+          items: ["Klimaanlage mit Heizfunktion in allen drei Schlafzimmern", "Klimaanlage mit Heizfunktion im Wohnzimmer"],
+        },
+        {
+          title: "Bäder und Wäsche",
+          items: ["Zwei Badezimmer, beide mit Dusche", "Bettwäsche und Handtücher inklusive", "Waschmaschine", "Wäscheständer", "Haartrockner", "Seife"],
+        },
+        {
+          title: "Internet",
+          items: ["Glasfaser-WLAN bis 500 Mbit/s", "Fernseher im Wohnzimmer mit Netflix und weiteren Streamingdiensten"],
+        },
+        {
+          title: "Außenbereiche",
+          items: ["Privater Garten", "Holzkohlegrill", "Über 12 Sitzplätze im Freien an mehreren Tischen", "Liegestühle"],
+        },
+        {
+          title: "Parken",
+          items: ["Zwei kostenlose Privatparkplätze", "Platz für Roller und Fahrräder", "Kostenloses Parken auch auf der Straße vor dem Grundstück"],
+        },
+      ],
+      familyTitle: "Für Familien",
+      familyText: "Hochstuhl, Babybett, Bettgitter und Wickelauflage stehen ohne Aufpreis zur Verfügung. Sagen Sie uns bei der Buchung Bescheid, dann ist bei Ihrer Ankunft alles vorbereitet.",
+      rulesTitle: "Praktische Informationen",
+      rules: [
+        { label: "Mindestaufenthalt", value: "2 Nächte in der Nebensaison, 4 in der Hochsaison" },
+        { label: "Endreinigung", value: "99 €, zusätzlich zum Aufenthalt" },
+        { label: "Check-in", value: "ab 15:00 Uhr" },
+        { label: "Check-out", value: "bis 11:00 Uhr" },
+        { label: "Rauchen", value: "nur im Freien" },
+        { label: "Haustiere", value: "kleine und mittelgroße, mit geringem Reinigungsaufschlag" },
+        { label: "Partys", value: "nicht erlaubt" },
+        { label: "Kaution", value: "500 €, vor Ort zu hinterlegen und am Ende des Aufenthalts zurückerstattet" },
+      ],
+    },
+    location: {
+      eyebrow: "Wo wir sind",
+      title: "Das Meer liegt direkt vor der Tür",
+      text: "Nur wenige Schritte von der Adria entfernt bietet Bellavista Domus einen authentischen Aufenthalt an der Küste von Torre a Mare, ganz in der Nähe von Bari und den schönsten Orten Apuliens.",
+      mapEyebrow: "Auf der Karte",
+      mapTitle: "So finden Sie uns",
+      mapShow: "Karte anzeigen",
+      mapPrivacy: "Beim Laden der Karte erhält Google Ihre IP-Adresse.",
+      mapOpen: "In Google Maps öffnen",
+      distances: [
+        { value: "10 m", label: "zum Strand" },
+        { value: "5 Min.", label: "zu Fuß zum kleinen Hafen" },
+        { value: "15 Min.", label: "mit dem Auto nach Bari" },
+        { value: "25 Min.", label: "vom Flughafen Bari" },
+      ],
+      exploreEyebrow: "In der Umgebung",
+      exploreTitle: "Apulien entdecken",
+      places: [
+        { key: "torreamare", name: "Torre a Mare", desc: "Das Fischerdorf, in dem Bellavista Domus liegt.", link: "/torre-a-mare-de.html", linkLabel: "Sehenswertes in Torre a Mare" },
+        { key: "bari", name: "Bari", desc: "Die Hauptstadt Apuliens, zwischen Altstadt und Uferpromenade.", link: "/bari-de.html", linkLabel: "Sehenswertes in Bari" },
+        { key: "polignano", name: "Polignano a Mare", desc: "Berühmt für seine steil ins Meer abfallenden Klippen.", link: "/polignano-a-mare-de.html", linkLabel: "Sehenswertes in Polignano a Mare" },
+        { key: "monopoli", name: "Monopoli", desc: "Historischer Hafen und Altstadt an der Adria.", link: "/monopoli-de.html", linkLabel: "Sehenswertes in Monopoli" },
+        { key: "alberobello", name: "Alberobello", desc: "UNESCO-Welterbe, berühmt für seine Trulli.", link: "/alberobello-de.html", linkLabel: "Sehenswertes in Alberobello" },
+        { key: "castellana", name: "Grotten von Castellana", desc: "Sechzig Meter unter der Erde, zwischen Stalaktiten und Alabaster.", link: "/grotte-di-castellana-de.html", linkLabel: "So besuchen Sie sie" },
+        { key: "valleditria", name: "Valle d'Itria", desc: "Locorotondo, Cisternino, Martina Franca und Ostuni.", link: "/valle-d-itria-de.html", linkLabel: "Die Tagestour" },
+        { key: "matera", name: "Matera", desc: "Die Sassi, UNESCO-Welterbe, gut eine Stunde entfernt.", link: "/matera-de.html", linkLabel: "Den Besuch planen" },
+      ],
+    },
+    faq: {
+      eyebrow: "Häufige Fragen",
+      title: "Antworten auf die häufigsten Fragen",
+      text: "Wenn Sie nicht finden, was Sie suchen, schreiben Sie uns: Wir antworten meist innerhalb weniger Stunden.",
+      items: [
+        { q: "Lohnt es sich, direkt zu buchen?",
+          a: "Ja: Wenn Sie direkt bei uns buchen, per E-Mail, WhatsApp oder über das Formular auf der Website, erhalten Sie bis zu 25 % Rabatt gegenüber den Preisen von Booking.com und Airbnb für dieselben Daten, weil Sie keine Provisionen der Plattformen zahlen. Der genaue Prozentsatz hängt von den Daten ab: Wir bestätigen ihn Ihnen im Angebot." },
+        { q: "Wie viele Personen finden im Haus Platz?",
+          a: "Bis zu 7 Gäste in 3 Schlafzimmern: zwei Schlafzimmer mit Doppelbett und ein drittes mit einem kleinen Doppelbett und einem Etagenbett. Es gibt zwei Badezimmer, beide mit Dusche." },
+        { q: "Wie weit ist das Meer wirklich entfernt?",
+          a: "Zehn Meter, mit einer kleinen Sandbucht direkt vor dem Haus. Man überquert die Straße und ist am freien Strand, wo sich Sand und Felsen abwechseln. Das Meer sieht man von zwei der drei Schlafzimmer aus, und abends hört man es bei offenem Fenster." },
+        { q: "Wie lange ist der Mindestaufenthalt?",
+          a: "Zwei Nächte in der Nebensaison und vier Nächte in der Hochsaison." },
+        { q: "Wann sind Check-in und Check-out?",
+          a: "Check-in ist ab 15:00 Uhr, Check-out bis 11:00 Uhr. Wenn Ihr Flug oder Zug zu ungünstigen Zeiten geht, schreiben Sie uns: Wir versuchen, Ihnen entgegenzukommen, wenn der Kalender es erlaubt." },
+        { q: "Ist die Endreinigung inbegriffen?",
+          a: "Nein, sie kommt zum Preis des Aufenthalts hinzu und kostet 99 €. Es ist ein einmaliger Betrag, unabhängig von der Dauer des Aufenthalts und der Zahl der Gäste." },
+        { q: "Ist eine Kaution vorgesehen?",
+          a: "Ja, 500 €, bei der Ankunft vor Ort zu hinterlegen. Sie wird am Ende des Aufenthalts vollständig zurückerstattet, sofern keine Schäden entstanden sind." },
+        { q: "Muss man Kurtaxe zahlen?",
+          a: "Ja, sie wird vor Ort bezahlt und steht der Gemeinde Bari zu, nicht uns. Die städtische Satzung sieht Befreiungen vor – für Minderjährige und ab einer bestimmten Zahl aufeinanderfolgender Nächte –, daher bestätigen wir Ihnen den genauen Betrag bei der Buchung, je nachdem, wie viele Sie sind und wie lange Sie bleiben." },
+        { q: "Sind Bettwäsche und Handtücher inklusive?",
+          a: "Ja, Bettwäsche und Handtücher sind inklusive und liegen bei Ihrer Ankunft bereit. Im Haus finden Sie außerdem Seife, einen Haartrockner, eine Waschmaschine und einen Wäscheständer." },
+        { q: "Gibt es einen Parkplatz?",
+          a: "Ja, zwei kostenlose Privatparkplätze auf dem Grundstück, mit Platz auch für Roller und Fahrräder. Außerhalb des Grundstücks ist das Parken frei und kostenlos." },
+        { q: "Sind Haustiere erlaubt?",
+          a: "Ja, kleine und mittelgroße Hunde und Katzen sind willkommen, gegen einen geringen Reinigungsaufschlag. Bitte geben Sie es bei der Buchung an." },
+        { q: "Darf man rauchen?",
+          a: "Nur im Freien. Der Garten und die Außenbereiche stehen Ihnen zur Verfügung; im Haus wird nicht geraucht." },
+        { q: "Gibt es eine Klimaanlage?",
+          a: "Ja, in allen drei Schlafzimmern und im Wohnzimmer, mit Kühl- und Heizfunktion. Das Haus ist daher auch außerhalb der Saison angenehm." },
+        { q: "Wie ist die Internetverbindung?",
+          a: "Glasfaser-WLAN mit bis zu 500 Mbit/s im ganzen Haus. Die Verbindung eignet sich auch, wenn Sie während des Aufenthalts arbeiten oder Videokonferenzen führen müssen." },
+        { q: "Gibt es Ausstattung für kleine Kinder?",
+          a: "Ja: Hochstuhl, Babybett, Bettgitter und Wickelauflage, ohne Aufpreis. Bitte fragen Sie bei der Buchung danach, damit bei Ihrer Ankunft alles bereitsteht." },
+        { q: "Kann man Partys oder Veranstaltungen organisieren?",
+          a: "Nein, Partys und Veranstaltungen sind nicht erlaubt. Das Haus ist für Familien und Gruppen gedacht, die Ruhe suchen, und uns liegt ein gutes Verhältnis zur Nachbarschaft am Herzen." },
+        { q: "Gibt es einen Pool?",
+          a: "Noch nicht: Ein Pool ist für den Sommer 2027 geplant. Heute setzt das Haus auf anderes – zehn Meter bis zum Meer, mit der Sandbucht direkt davor, und einen privaten Garten mit über 12 Sitzplätzen im Freien und Grill. Wenn Sie einen Aufenthalt im Sommer 2027 planen, schreiben Sie uns vor der Buchung: Wir sagen Ihnen, wie weit die Arbeiten sind, damit Sie nicht auf eine bloße Erwartung hin buchen." },
+        { q: "Wie kommt man nach Torre a Mare?",
+          a: "Mit dem Auto nimmt man die Ausfahrt Torre a Mare centro und ist in zwei Minuten am Haus; vom Flughafen Bari sind es etwa 20 Minuten, 25 bei Verkehr. Mit öffentlichen Verkehrsmitteln ist der Bus 12 (oder 12/) ab dem Hauptbahnhof Bari am einfachsten. Vor Ort braucht man für den Strand und den Ort kein Auto; für Einkäufe und Besorgungen schon, sie sind etwa fünf Minuten entfernt.",
+          href: "/come-arrivare-de.html", linkLabel: "Alle Details zur Anreise" },
+      ],
+    },
+    booking: {
+      eyebrow: "Buchen",
+      title: "Bereit, mit Blick aufs Meer aufzuwachen?",
+      text: "Buchen Sie direkt bei uns per E-Mail, WhatsApp oder über das Formular: Gegenüber den Preisen von Booking.com und Airbnb für dieselben Daten erhalten Sie bis zu 25 % Rabatt, weil Sie keine Provisionen der Plattformen zahlen.",
+      direct: "Schreiben Sie uns und buchen Sie direkt",
+      alt: "Oder buchen Sie, wo Sie möchten",
+      booking: "Booking.com",
+      airbnb: "Airbnb",
+    },
+    form: {
+      eyebrow: "Anfrage",
+      title: "Prüfen Sie Ihre Reisedaten",
+      text: "Schreiben Sie uns, wann Sie kommen möchten und wie viele Sie sind: Wir antworten mit Verfügbarkeit und Preis, meist innerhalb weniger Stunden. Wenn Ihre Daten noch nicht feststehen, lassen Sie die Felder leer und schreiben Sie es in die Nachricht.",
+      name: "Vor- und Nachname",
+      arrival: "Anreise (optional)",
+      departure: "Abreise (optional)",
+      email: "E-Mail",
+      guests: "Gäste",
+      message: "Nachricht (optional)",
+      consent: "Ich akzeptiere die",
+      consentLink: "Datenschutzerklärung",
+      submit: "Anfrage senden",
+      sending: "Wird gesendet…",
+      error: "Die Anfrage konnte nicht gesendet werden. Schreiben Sie uns bitte direkt an " + CONFIG.property.email + " oder per WhatsApp an " + CONFIG.property.phone + ".",
+      doneTitle: "Anfrage erhalten",
+      doneText: "Vielen Dank! Wir melden uns so schnell wie möglich mit Verfügbarkeit und Direktpreis, bis zu 25 % günstiger als bei Booking.com und Airbnb. Für eine noch schnellere Antwort schicken Sie uns auch eine WhatsApp-Nachricht: Der Text ist schon vorbereitet.",
+      honeypot: "Dieses Feld nicht ausfüllen",
+    },
+    footer: {
+      tagline: "Ferienhaus am Meer",
+      contactTitle: "Kontakt",
+      infoTitle: "Informationen",
+      cis: "CIS",
+      cin: "CIN",
+      rights: "Alle Rechte vorbehalten.",
+      top: "Nach oben",
+      privacyUrl: "/privacy-de.html",
+      ospiti: "Gästeinformationen",
+      ospitiUrl: "/ospiti-de.html",
+    },
+    calendario: {
+      eyebrow: "Verfügbarkeit",
+      title: "Sind Ihre Daten frei?",
+      text: "Der Kalender zeigt die bereits gebuchten Nächte. Er wird alle paar Stunden von den Plattformen aktualisiert, betrachten Sie ihn also als Orientierung: Die endgültige Bestätigung erhalten Sie von uns.",
+      caricamento: "Kalender wird geladen…",
+      errore: "Der Kalender kann gerade nicht geladen werden. Schicken Sie uns Ihre Daten, wir antworten Ihnen.",
+      libero: "Frei",
+      occupato: "Belegt",
+      precedente: "Vorheriger Monat",
+      successivo: "Nächster Monat",
+      mesi: ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],
+      giorni: ["M","D","M","D","F","S","S"],
+      giorniEstesi: ["Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag"],
+      esempio: "Beispieldaten – der echte Kalender ist lokal nicht verfügbar",
+      guidaArrivo: "Tippen Sie auf den Anreisetag und dann auf den Abreisetag: Die Daten werden automatisch ins Anfrageformular übernommen.",
+      guidaPartenza: "Anreise am {data}. Tippen Sie jetzt auf den Abreisetag.",
+      conflitto: "Zwischen diesen Daten ist bereits eine Nacht gebucht: Wählen Sie eine andere Abreise oder Anreise.",
+      dal: "Vom", al: "bis", notte: "Nacht", notti: "Nächte",
+      arrivoAria: "Anreise", partenzaAria: "Abreise",
+      richiedi: "Diese Daten anfragen",
+      annulla: "Daten löschen",
+      // Nelle date tedesche il giorno porta il punto: "12. Juni 2027".
+      puntoGiorno: ".",
+    },
+    stickyCta: "Verfügbarkeit prüfen",
+    whatsapp: {
+      aria: "Schreiben Sie uns auf WhatsApp: bis zu 25 % Rabatt bei Direktbuchung",
+      message: "Hallo! Ich möchte Bellavista Domus direkt mit dem Rabatt von bis zu 25 % buchen. Können Sie mir Verfügbarkeit und Preis für diese Daten nennen: ",
+    },
+    promo: {
+      cifra: "−25%",
+      chip: "bis zu −25%",
+      barraLunga: "Bis zu 25 % Rabatt bei Direktbuchung per E-Mail oder WhatsApp, gegenüber den Preisen von Booking.com und Airbnb",
+      barraMedia: "Bis zu 25 % Rabatt bei Direktbuchung gegenüber Booking.com und Airbnb",
+      barraBreve: "bei Direktbuchung",
+      hero: "Bis zu 25 % Rabatt, wenn Sie direkt buchen, gegenüber den Preisen von Booking.com und Airbnb.",
+      heroCta: "Schreiben Sie uns auf WhatsApp",
+      fino: "Bis zu",
+      percento: "25 %",
+      sconto: "Rabatt",
+      fasciaAlto: "Bis zu 25 % Rabatt, wenn Sie direkt bei uns buchen, gegenüber den Preisen von Booking.com und Airbnb.",
+      fasciaRecensioni: "Möchten Sie unsere nächsten Gäste sein? Buchen Sie direkt und zahlen Sie bis zu 25 % weniger als bei Booking.com und Airbnb.",
+      modulo: "Angebot anfragen",
+      moduloTesto: "Bis zu 25 % Rabatt gegenüber Booking.com und Airbnb. Möchten Sie uns lieber gleich schreiben?",
+      nota: "Der genaue Prozentsatz hängt von den Daten ab: Wir bestätigen ihn Ihnen im Angebot.",
+      calendario: "Bei Direktbuchung zahlen Sie bis zu 25 % weniger als bei Booking.com und Airbnb.",
+      footer: "Direkt buchen: bis zu 25 % Rabatt gegenüber Booking.com und Airbnb.",
+      whatsapp: "WhatsApp",
+      email: "E-Mail",
+      emailOggetto: "Direktbuchung Bellavista Domus",
+      emailTesto: "Hallo, ich möchte Bellavista Domus direkt mit dem Rabatt von bis zu 25 % buchen.\n\nAnreise:\nAbreise:\nAnzahl der Gäste:\n",
+      dopoModulo: "Weiter auf WhatsApp",
+      dopoModuloMessaggio: "Hallo, ich bin {nome}. Ich habe gerade über die Website eine Anfrage gesendet{date} (Gäste: {ospiti}). Ich möchte direkt mit dem Rabatt buchen: Können Sie mir Verfügbarkeit und Preis bestätigen?",
+      dopoModuloDate: ", vom {arrivo} bis {partenza}",
+      separatoreData: ".",
+    },
+    photoPlaceholder: "Foto folgt",
+    cookieBanner: {
+      ariaLabel: "Cookie-Einwilligung",
+      text: "Wir verwenden Google Analytics nur mit Ihrer Einwilligung, um zu verstehen, wie die Website genutzt wird. Keine Profiling-Cookies.",
+      linkLabel: "Mehr erfahren",
+      reject: "Ablehnen",
+      accept: "Akzeptieren",
     },
   },
 };
@@ -952,10 +1606,129 @@ function MapCard({ t }) {
 /* Indirizzo della homepage per ciascuna lingua. Usato dal selettore in alto
    e dai ritorni al sito: è l'unico punto da toccare se un giorno si
    aggiunge una terza lingua. */
-const HOME_LINGUE = { it: "/", en: "/en/" };
+const HOME_LINGUE = { it: "/", en: "/en/", fr: "/fr/", de: "/de/" };
 
 /* Icone della barra contatti: piccole, disegnate a mano, ereditano il colore
    dal testo. Meglio di una libreria di icone per tre sole forme. */
+/* ------------------------- PROMO PRENOTAZIONE DIRETTA ------------------------- */
+
+/* Link a WhatsApp e all'email con il testo già scritto. Sono link normali:
+   non caricano nulla da terzi finché il visitatore non li tocca, quindi non
+   servono né consenso né modifiche alla Content-Security-Policy.
+   encodeURIComponent esiste anche in Node: si possono usare nel render. */
+function linkWhatsApp(testo) {
+  const numero = CONFIG.property.phone.replace(/\D/g, ""); // solo cifre, per wa.me
+  return `https://wa.me/${numero}?text=${encodeURIComponent(testo)}`;
+}
+function linkEmail(p) {
+  return `mailto:${CONFIG.property.email}?subject=${encodeURIComponent(p.emailOggetto)}&body=${encodeURIComponent(p.emailTesto)}`;
+}
+
+function IconaWhatsApp({ size = 18 }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" aria-hidden="true" focusable="false">
+      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.1c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.8-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.82 2 .9 2.14.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.46.29.15.46.13.63-.08.17-.2.72-.84.91-1.13.19-.29.38-.24.65-.14.27.1 1.69.8 1.98.94.29.15.48.22.55.34.07.13.07.72-.17 1.4Z"/>
+    </svg>
+  );
+}
+
+function IconaEmail({ size = 18 }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true" focusable="false">
+      <rect x="3" y="5" width="18" height="14" rx="1.5" />
+      <path d="m3.5 6 8.5 7 8.5-7" />
+    </svg>
+  );
+}
+
+/* I pulsanti dei tre canali diretti. "posizione" finisce nell'evento di
+   Analytics (es. "whatsapp_hero", "email_barra"): così si vede quale banner
+   porta davvero contatti. Con modulo={false} il pulsante del modulo non
+   compare (serve dove il modulo è già lì sotto). */
+function PromoAzioni({ t, go, posizione, modulo = true }) {
+  const p = t.promo;
+  return (
+    <div className="bd-promo__azioni">
+      <a
+        className="bd-promo__btn bd-promo__btn--wa"
+        href={linkWhatsApp(t.whatsapp.message)}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={() => traccia("contatto", { metodo: "whatsapp_" + posizione })}
+      >
+        <IconaWhatsApp /> {p.whatsapp}
+      </a>
+      <a
+        className="bd-promo__btn bd-promo__btn--email"
+        href={linkEmail(p)}
+        onClick={() => traccia("contatto", { metodo: "email_" + posizione })}
+      >
+        <IconaEmail /> {p.email}
+      </a>
+      {modulo && go ? (
+        <a
+          className="bd-promo__btn bd-promo__btn--modulo"
+          href="#contact"
+          onClick={(e) => { e.preventDefault(); go("#contact"); traccia("contatto", { metodo: "modulo_" + posizione }); }}
+        >
+          {p.modulo}
+        </a>
+      ) : null}
+    </div>
+  );
+}
+
+/* Striscia in cima alla pagina, dentro l'intestazione fissa: resta sempre
+   visibile. Sostituisce la vecchia barra contatti blu (tolta a settembre
+   2026) ma con un compito diverso: vendere la prenotazione diretta. Tre
+   lunghezze di testo, una sola visibile per volta a seconda dello schermo. */
+function PromoBarra({ t }) {
+  const p = t.promo;
+  return (
+    <div className="bd-promobar">
+      <p className="bd-promobar__testo">
+        <span className="bd-chip">{p.cifra}</span>
+        <span className="bd-promobar__lunga">{p.barraLunga}</span>
+        <span className="bd-promobar__media">{p.barraMedia}</span>
+        <span className="bd-promobar__breve">{p.barraBreve}</span>
+      </p>
+      <span className="bd-promobar__link">
+        <a
+          href={linkWhatsApp(t.whatsapp.message)}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => traccia("contatto", { metodo: "whatsapp_barra" })}
+        >
+          <IconaWhatsApp size={15} /> {p.whatsapp}
+        </a>
+        <a
+          className="bd-promobar__email"
+          href={linkEmail(p)}
+          onClick={() => traccia("contatto", { metodo: "email_barra" })}
+        >
+          <IconaEmail size={15} /> {p.email}
+        </a>
+      </span>
+    </div>
+  );
+}
+
+/* Fascia a tutta larghezza fra una sezione e l'altra. */
+function PromoFascia({ t, go, testo, posizione }) {
+  const p = t.promo;
+  return (
+    <aside className="bd-promofascia" aria-label={p.hero}>
+      <div className="bd-promofascia__inner">
+        <p className="bd-promofascia__testo">
+          <span className="bd-promofascia__cifra">{p.cifra}</span>
+          <span>{testo}</span>
+        </p>
+        <PromoAzioni t={t} go={go} posizione={posizione} />
+      </div>
+    </aside>
+  );
+}
+
 function Header({ lang, t, go }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -983,6 +1756,7 @@ function Header({ lang, t, go }) {
 
   return (
     <header className={`bd-header ${scrolled ? "bd-header--solid" : ""}`}>
+      <PromoBarra t={t} />
       <div className="bd-header__inner">
         <a href="#home" className="bd-logo" onClick={(e) => { e.preventDefault(); handleGo("#home"); }}>
           {/* Due versioni dello stesso marchio: finché l'intestazione è
@@ -1022,7 +1796,7 @@ function Header({ lang, t, go }) {
               vedono. L'ancora corrente viene portata dietro, per non
               rispedire in cima chi stava leggendo a metà pagina. */}
           <nav className="bd-langswitch" aria-label="Language">
-            {["it", "en"].map((codice, i) => (
+            {Object.keys(HOME_LINGUE).map((codice, i) => (
               <React.Fragment key={codice}>
                 {i > 0 && <span aria-hidden="true">/</span>}
                 <a
@@ -1048,7 +1822,7 @@ function Header({ lang, t, go }) {
             className="bd-btn bd-btn--primary bd-btn--sm bd-nav--desktop-only"
             onClick={(e) => { e.preventDefault(); handleGo("#contact"); }}
           >
-            {t.nav.book}
+            {t.nav.book} <span className="bd-chip">{t.promo.cifra}</span>
           </a>
           <button className="bd-burger" aria-label="Menu" onClick={() => setMenuOpen((v) => !v)}>
             <span className={menuOpen ? "is-open" : ""} />
@@ -1063,7 +1837,7 @@ function Header({ lang, t, go }) {
           </a>
         ))}
         <a href="#contact" className="bd-btn bd-btn--primary" onClick={(e) => { e.preventDefault(); handleGo("#contact"); }}>
-          {t.nav.book}
+          {t.nav.book} <span className="bd-chip">{t.promo.cifra}</span>
         </a>
       </div>
     </header>
@@ -1089,7 +1863,7 @@ function Hero({ t, go }) {
       </div>
       <div className="bd-hero__scrim" />
       <div className="bd-hero__content">
-        <p className="bd-hero__kicker">{CONFIG.property.locationLine}</p>
+        <p className="bd-hero__kicker">{t.luogo || CONFIG.property.locationLine}</p>
         <h1 className="bd-hero__title">{t.hero.title}</h1>
         <p className="bd-hero__subtitle">{t.hero.subtitle}</p>
         <p className="bd-hero__info">{t.hero.info}</p>
@@ -1101,6 +1875,21 @@ function Hero({ t, go }) {
             {t.hero.ctaSecondary}
           </a>
         </div>
+        {/* Il pulsante pieno porta al modulo; questo riquadro offre la
+            strada più rapida, WhatsApp, e dice subito perché conviene. */}
+        <a
+          className="bd-hero__promo"
+          href={linkWhatsApp(t.whatsapp.message)}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => traccia("contatto", { metodo: "whatsapp_hero" })}
+        >
+          <span className="bd-hero__promo-cifra">{t.promo.cifra}</span>
+          <span className="bd-hero__promo-testo">
+            {t.promo.hero}
+            <span className="bd-hero__promo-cta"><IconaWhatsApp size={15} /> {t.promo.heroCta}</span>
+          </span>
+        </a>
       </div>
       <button className="bd-hero__scrolldown" onClick={() => go("#intro")} aria-label={t.hero.scroll}>
         <span className="bd-hero__scrolldown-line" />
@@ -1603,7 +2392,7 @@ function Calendario({ t, go, onScegli }) {
 
   const formatta = (k) => {
     const [a, m, g] = k.split("-").map(Number);
-    return `${g} ${v.mesi[m - 1]} ${a}`;
+    return `${g}${v.puntoGiorno || ""} ${v.mesi[m - 1]} ${a}`;
   };
   const comunica = (da, a) => { if (onScegli) onScegli({ arrivo: da, partenza: a }); };
   const scegli = (k) => {
@@ -1679,7 +2468,7 @@ function Calendario({ t, go, onScegli }) {
                       const cls = passata ? "bd-cal__g bd-cal__g--passata"
                         : presa ? "bd-cal__g bd-cal__g--occupata"
                         : "bd-cal__g";
-                      const etichetta = `${g} ${v.mesi[mese]} ${anno} — ${presa ? v.occupato : v.libero}`;
+                      const etichetta = `${g}${v.puntoGiorno || ""} ${v.mesi[mese]} ${anno} — ${presa ? v.occupato : v.libero}`;
                       const puoPartire = arrivo && !partenza && k > arrivo && notteLibere(arrivo, k, occupate);
                       const cliccabile = !passata && (!presa || puoPartire);
                       if (!cliccabile) {
@@ -1720,6 +2509,7 @@ function Calendario({ t, go, onScegli }) {
                   <p className="bd-cal__riepilogo">
                     {`${v.dal} ${formatta(arrivo)} ${v.al} ${formatta(partenza)}, ${contaNotti(arrivo, partenza)} ${contaNotti(arrivo, partenza) === 1 ? v.notte : v.notti}`}
                   </p>
+                  <p className="bd-cal__promo"><span className="bd-chip">{t.promo.cifra}</span> {t.promo.calendario}</p>
                   <div className="bd-cal__azioni">
                     <button type="button" className="bd-btn bd-btn--send" onClick={() => go("#contact")}>{v.richiedi}</button>
                     <button type="button" className="bd-cal__annulla" onClick={azzera}>{v.annulla}</button>
@@ -1737,6 +2527,9 @@ function Calendario({ t, go, onScegli }) {
 function ContactForm({ t, dateScelte }) {
   const [valori, setValori] = useState(VUOTO);
   const [stato, setStato] = useState("pronto"); // pronto | invio | inviato | errore
+  // Copia di ciò che è stato inviato: serve a scrivere il messaggio WhatsApp
+  // della schermata di conferma dopo che il modulo si è svuotato.
+  const [inviata, setInviata] = useState(null);
   const oggi = useOggi();
 
   /* Le date scelte toccando il calendario riempiono i campi, che restano
@@ -1769,6 +2562,7 @@ function ContactForm({ t, dateScelte }) {
       });
       if (!risposta.ok) throw new Error(risposta.status);
       setStato("inviato");
+      setInviata(valori);
       setValori(VUOTO);
       traccia("richiesta_inviata", { ospiti: valori.ospiti });
     } catch (err) {
@@ -1779,12 +2573,35 @@ function ContactForm({ t, dateScelte }) {
   };
 
   if (stato === "inviato") {
+    /* WhatsApp è il canale che converte di più: dopo il modulo si invita a
+       scrivere anche lì, con un messaggio già pronto che contiene nome e
+       date appena inseriti. Le date arrivano come AAAA-MM-GG dal campo
+       type="date": si girano in GG/MM/AAAA senza usare Date. */
+    const p = t.promo;
+    const giraData = (d) => d.split("-").reverse().join(p.separatoreData || "/");
+    const d = inviata || VUOTO;
+    const date = d.arrivo && d.partenza
+      ? p.dopoModuloDate.replace("{arrivo}", giraData(d.arrivo)).replace("{partenza}", giraData(d.partenza))
+      : "";
+    const messaggio = p.dopoModuloMessaggio
+      .replace("{nome}", d.nome.trim())
+      .replace("{ospiti}", d.ospiti)
+      .replace("{date}", date);
     return (
       <section id="contact" className="bd-form">
         <Reveal className="bd-form__inner">
           <div className="bd-form__done" role="status">
             <h2 className="bd-h3">{t.form.doneTitle}</h2>
             <p className="bd-body bd-body--narrow">{t.form.doneText}</p>
+            <a
+              className="bd-promo__btn bd-promo__btn--wa bd-promo__btn--grande"
+              href={linkWhatsApp(messaggio)}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => traccia("contatto", { metodo: "whatsapp_dopo_modulo" })}
+            >
+              <IconaWhatsApp size={20} /> {p.dopoModulo}
+            </a>
           </div>
         </Reveal>
       </section>
@@ -1797,6 +2614,11 @@ function ContactForm({ t, dateScelte }) {
         <div className="bd-section-head">
           <h2 className="bd-h3">{t.form.title}</h2>
           <p className="bd-body bd-body--narrow">{t.form.text}</p>
+        </div>
+
+        <div className="bd-form__promo">
+          <p><span className="bd-chip">{t.promo.cifra}</span> {t.promo.moduloTesto}</p>
+          <PromoAzioni t={t} posizione="modulo" modulo={false} />
         </div>
 
         <form className="bd-form__grid" name={NOME_MODULO} method="POST" onSubmit={invia} noValidate={false}>
@@ -1887,6 +2709,11 @@ function Booking({ t, go }) {
       <div className="bd-booking__glow" />
       <Reveal className="bd-booking__inner">
         <h2 className="bd-h2 bd-h2--light">{t.booking.title}</h2>
+        <p className="bd-booking__offerta">
+          <span className="bd-booking__fino">{t.promo.fino}</span>
+          <span className="bd-booking__cifra">{t.promo.percento}</span>
+          <span className="bd-booking__fino">{t.promo.sconto}</span>
+        </p>
         <p className="bd-body bd-body--light">{t.booking.text}</p>
         <div className="bd-booking__ctas">
           <a
@@ -1896,7 +2723,9 @@ function Booking({ t, go }) {
           >
             {t.booking.direct}
           </a>
+          <PromoAzioni t={t} go={go} posizione="prenota" modulo={false} />
         </div>
+        <p className="bd-booking__nota">{t.promo.nota}</p>
         <p className="bd-booking__alt">{t.booking.alt}</p>
         <div className="bd-booking__ota">
           <a href={CONFIG.links.booking} target="_blank" rel="noopener noreferrer" className="bd-booking__otalink" onClick={() => traccia("click_ota", { piattaforma: "booking" })}>
@@ -1925,14 +2754,23 @@ function Footer({ t, go }) {
           height="363"
           className="bd-logo--footer"
         />
-        <p className="bd-footer__tagline">{t.footer.tagline}. {CONFIG.property.locationLine}</p>
+        <p className="bd-footer__tagline">{t.footer.tagline}. {t.luogo || CONFIG.property.locationLine}</p>
+        <p className="bd-footer__promo">
+          <span className="bd-chip">{t.promo.cifra}</span> {t.promo.footer}
+          <span className="bd-footer__promolink">
+            <a href={linkWhatsApp(t.whatsapp.message)} target="_blank" rel="noopener noreferrer" onClick={() => traccia("contatto", { metodo: "whatsapp_footer" })}><IconaWhatsApp size={15} /> {t.promo.whatsapp}</a>
+            <a href={linkEmail(t.promo)} onClick={() => traccia("contatto", { metodo: "email_footer" })}><IconaEmail size={15} /> {t.promo.email}</a>
+          </span>
+        </p>
       </div>
 
       <div className="bd-footer__grid">
         <div>
           <p className="bd-footer__title">{t.footer.contactTitle}</p>
-          <p>{CONFIG.property.email}</p>
-          <p>{CONFIG.property.phone}</p>
+          {/* Recapiti cliccabili: su telefono un tocco apre la mail o la
+              chiamata, invece di dover copiare a mano. */}
+          <p><a className="bd-footer__contatto" href={linkEmail(t.promo)} onClick={() => traccia("contatto", { metodo: "email_footer_recapiti" })}>{CONFIG.property.email}</a></p>
+          <p><a className="bd-footer__contatto" href={"tel:+" + CONFIG.property.phone.replace(/\D/g, "")} onClick={() => traccia("contatto", { metodo: "telefono_footer" })}>{CONFIG.property.phone}</a></p>
         </div>
         <div>
           <p className="bd-footer__title">{t.footer.infoTitle}</p>
@@ -1947,6 +2785,7 @@ function Footer({ t, go }) {
             lunga, e chi arriva in fondo senza questo pulsante deve rifare
             tutta la strada all'indietro scorrendo. */}
         <span className="bd-footer__coda">
+          <a href={t.footer.ospitiUrl} className="bd-footer__privacy">{t.footer.ospiti}</a>
           <a href={t.footer.privacyUrl} className="bd-footer__privacy">Privacy</a>
           <button className="bd-footer__totop" onClick={() => go("#home")}>{t.footer.top} ↑</button>
         </span>
@@ -1999,20 +2838,30 @@ function CookieBanner({ t }) {
 /* ------------------------------- WHATSAPP -------------------------------- */
 
 function WhatsAppButton({ t }) {
-  const digits = CONFIG.property.phone.replace(/\D/g, ""); // solo numeri, per il link wa.me
-  const message = encodeURIComponent(t.whatsapp.message);
+  /* Sul telefono, finché si è nell'apertura, il pulsante coprirebbe il
+     riquadro promo, che porta già a WhatsApp: si fa da parte e ricompare
+     appena si scorre, insieme alla barra "Verifica disponibilità". Lo stato
+     parte da false, così l'HTML prerenderizzato mostra sempre il pulsante. */
+  const [inApertura, setInApertura] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setInApertura(window.scrollY < window.innerHeight * 0.6);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   return (
     <a
-      className="bd-whatsapp"
-      href={`https://wa.me/${digits}?text=${message}`}
+      className={`bd-whatsapp ${inApertura ? "bd-whatsapp--apertura" : ""}`}
+      href={linkWhatsApp(t.whatsapp.message)}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={t.whatsapp.aria}
       onClick={() => traccia("contatto", { metodo: "whatsapp" })}
     >
-      <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true">
-        <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.1c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.8-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.82 2 .9 2.14.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.46.29.15.46.13.63-.08.17-.2.72-.84.91-1.13.19-.29.38-.24.65-.14.27.1 1.69.8 1.98.94.29.15.48.22.55.34.07.13.07.72-.17 1.4Z"/>
-      </svg>
+      <IconaWhatsApp size={26} />
+      {/* L'etichetta ripete lo sconto sul pulsante che resta sempre a
+          vista. È decorativa: l'aria-label dice già tutto. */}
+      <span className="bd-whatsapp__badge" aria-hidden="true">{t.promo.cifra}</span>
     </a>
   );
 }
@@ -2030,7 +2879,9 @@ function StickyCta({ t, go }) {
     <div className={`bd-stickycta ${show ? "is-visible" : ""}`}>
       {/* Porta al modulo, non alla sezione Prenota: su telefono questo è il
           pulsante più cliccato di tutto il sito. */}
-      <button onClick={() => go("#contact")}>{t.stickyCta}</button>
+      <button onClick={() => go("#contact")}>
+        {t.stickyCta} <span className="bd-chip">{t.promo.chip}</span>
+      </button>
     </div>
   );
 }
@@ -2282,7 +3133,7 @@ const STYLES = `
 }
 @keyframes bd-fadeup{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 @media (prefers-reduced-motion: reduce){
-  .bd-hero__img, .bd-hero__kicker, .bd-hero__title, .bd-hero__subtitle, .bd-hero__info, .bd-hero__ctas{animation:none;}
+  .bd-hero__img, .bd-hero__kicker, .bd-hero__title, .bd-hero__subtitle, .bd-hero__info, .bd-hero__ctas, .bd-hero__promo{animation:none;}
 }
 .bd-hero__scrolldown{
   position:absolute;left:50%;bottom:34px;transform:translateX(-50%);z-index:2;
@@ -2895,6 +3746,167 @@ const STYLES = `
 @media (max-width:860px){
   .bd-whatsapp{right:16px;bottom:calc(86px + env(safe-area-inset-bottom));width:50px;height:50px;}
 }
+@media (max-width:760px){
+  .bd-whatsapp{transition:transform .3s ease, box-shadow .3s ease, opacity .3s ease;}
+  .bd-whatsapp.bd-whatsapp--apertura{opacity:0;pointer-events:none;transform:scale(0.8);}
+}
+
+/* ---------------- Promozione prenotazione diretta (settembre 2026) ----------------
+   Voluta insistente da Francesco: striscia in cima, riquadro nell'apertura,
+   due fasce a metà pagina, sezione Prenota, modulo, calendario, footer,
+   barra mobile e pulsante WhatsApp. Colore guida: la sabbia del marchio,
+   con testo blu scuro (contrasto 7,5:1). Il verde di WhatsApp porta testo
+   blu scuro, non bianco: il bianco su quel verde non si legge (2:1). */
+.bd-chip{
+  display:inline-block;padding:3px 7px;border-radius:2px;
+  background:var(--sand);color:var(--sea-deep);
+  font-weight:700;font-size:0.92em;letter-spacing:0.01em;line-height:1.2;
+  text-transform:none;white-space:nowrap;vertical-align:1px;
+}
+.bd-btn .bd-chip{margin-left:2px;}
+/* Le ancore dei menu non devono finire sotto l'intestazione, ora più alta. */
+.bd-root section[id]{scroll-margin-top:34px;}
+
+/* Striscia in cima (dentro l'intestazione fissa) */
+.bd-promobar{
+  position:relative;z-index:2;
+  display:flex;align-items:center;justify-content:center;gap:8px 22px;
+  padding:8px 22px;background:var(--sand);color:var(--sea-deep);
+  font-size:13px;line-height:1.35;text-align:center;
+}
+.bd-promobar__testo{margin:0;display:flex;align-items:center;gap:10px;font-weight:500;}
+.bd-promobar .bd-chip{background:var(--sea-deep);color:var(--ivory);}
+.bd-promobar__link{display:flex;align-items:center;gap:16px;flex:none;}
+.bd-root .bd-promobar__link a{
+  display:inline-flex;align-items:center;gap:5px;font-weight:700;
+  text-decoration:underline;text-underline-offset:3px;color:var(--sea-deep);
+}
+.bd-root .bd-promobar__link a:hover{opacity:0.75;}
+.bd-promobar__media,.bd-promobar__breve{display:none;}
+@media (max-width:1180px){
+  .bd-promobar__lunga{display:none;}
+  .bd-promobar__media{display:inline;}
+}
+@media (max-width:640px){
+  .bd-promobar{padding:7px 14px;gap:12px;font-size:12.5px;}
+  .bd-promobar__media{display:none;}
+  .bd-promobar__breve{display:inline;}
+  .bd-root .bd-promobar__link .bd-promobar__email{display:none;}
+}
+
+/* Riquadro nell'apertura */
+.bd-root .bd-hero__promo{
+  display:inline-flex;align-items:center;gap:16px;margin-top:30px;max-width:540px;
+  padding:12px 20px 12px 12px;border-radius:2px;
+  background:rgba(16,40,56,0.62);border:1px solid rgba(205,179,136,0.7);color:var(--white);
+  backdrop-filter:blur(6px);
+  animation:bd-fadeup 1s cubic-bezier(.16,.8,.24,1) 1.15s both;
+  transition:background .3s ease;
+}
+.bd-root .bd-hero__promo:hover{background:rgba(16,40,56,0.78);}
+.bd-hero__promo-cifra{
+  flex:none;font-family:'Fraunces',serif;font-weight:500;font-size:34px;line-height:1;
+  padding:10px 12px;border-radius:2px;background:var(--sand);color:var(--sea-deep);letter-spacing:-0.01em;
+}
+.bd-hero__promo-testo{font-size:14.5px;line-height:1.45;}
+.bd-hero__promo-cta{
+  display:flex;align-items:center;gap:6px;margin-top:6px;font-weight:600;color:var(--sand);
+  text-decoration:underline;text-underline-offset:3px;
+}
+@media (max-width:760px){
+  /* Sul telefono il riquadro promo prende il posto dell'invito a scorrere,
+     che finirebbe sopra al riquadro. */
+  .bd-hero__scrolldown{display:none;}
+  .bd-hero__content{padding-bottom:40px;}
+  .bd-hero__subtitle{margin-bottom:20px;}
+  .bd-hero__info{padding-top:18px;}
+  .bd-hero__info{margin-bottom:28px;}
+  .bd-hero__ctas{gap:18px 28px;}
+  .bd-root .bd-hero__promo{margin-top:22px;gap:12px;padding:10px 14px 10px 10px;}
+  .bd-hero__promo-cifra{font-size:26px;padding:8px 9px;}
+  .bd-hero__promo-testo{font-size:13.5px;}
+}
+
+/* Pulsanti dei tre canali */
+.bd-promo__azioni{display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+.bd-root .bd-promo__btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:14px 22px;border-radius:2px;border:1px solid transparent;
+  font-size:13px;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;white-space:nowrap;
+  transition:transform .3s ease, box-shadow .3s ease, background .3s ease;
+}
+.bd-root .bd-promo__btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(16,40,56,0.2);}
+.bd-root .bd-promo__btn--wa{background:#25D366;color:var(--sea-deep);}
+.bd-root .bd-promo__btn--email{background:var(--sea-deep);color:var(--ivory);}
+.bd-root .bd-promo__btn--modulo{background:transparent;color:var(--sea-deep);border-color:var(--sea-deep);}
+.bd-root .bd-promo__btn--grande{margin-top:26px;padding:17px 30px;font-size:14px;}
+@media (max-width:640px){
+  .bd-promo__azioni{width:100%;}
+  .bd-root .bd-promo__btn{flex:1 1 auto;}
+}
+
+/* Fasce a metà pagina */
+.bd-promofascia{background:var(--sand);color:var(--sea-deep);padding:40px 32px;}
+.bd-promofascia__inner{
+  max-width:1280px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;gap:24px 48px;flex-wrap:wrap;
+}
+.bd-promofascia__testo{
+  margin:0;display:flex;align-items:center;gap:20px;max-width:660px;
+  font-family:'Fraunces',serif;font-weight:400;font-size:clamp(19px,2.1vw,25px);line-height:1.3;
+}
+.bd-promofascia__cifra{flex:none;font-size:clamp(44px,5.4vw,66px);font-weight:500;line-height:1;letter-spacing:-0.02em;}
+@media (max-width:640px){
+  .bd-promofascia{padding:32px 22px;}
+  .bd-promofascia__testo{gap:14px;}
+}
+
+/* Sezione Prenota */
+.bd-booking__offerta{margin:8px 0 26px;display:flex;flex-direction:column;align-items:center;gap:8px;}
+.bd-booking__fino{font-family:'Fraunces',serif;font-style:italic;font-size:22px;color:rgba(255,255,255,0.86);}
+.bd-booking__cifra{
+  font-family:'Fraunces',serif;font-weight:400;font-size:clamp(88px,15vw,160px);
+  line-height:0.9;letter-spacing:-0.03em;color:var(--sand);
+}
+.bd-booking__ctas .bd-promo__azioni{justify-content:center;}
+.bd-booking .bd-promo__btn--email{background:transparent;color:var(--white);border-color:rgba(255,255,255,0.65);}
+.bd-booking__nota{margin:22px auto 0;font-size:13.5px;line-height:1.6;color:rgba(255,255,255,0.72);max-width:46ch;}
+
+/* Modulo */
+.bd-form__promo{
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px 24px;
+  margin:-18px 0 0;padding:20px 22px;background:var(--white);
+  border:1px solid rgba(205,179,136,0.8);border-left:4px solid var(--sand);border-radius:2px;
+}
+.bd-form__promo p{margin:0;font-size:15px;line-height:1.55;color:var(--sea-deep);max-width:34ch;}
+
+/* Calendario */
+.bd-cal__promo{margin:-6px 0 16px;font-size:14.5px;line-height:1.55;color:var(--sea-deep);}
+
+/* Footer */
+.bd-footer__promo{margin:16px 0 0;font-size:14px;line-height:1.7;color:var(--sea-deep);}
+.bd-footer__promolink{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:6px;}
+.bd-root .bd-footer__promolink a{display:inline-flex;align-items:center;gap:6px;font-weight:600;text-decoration:underline;text-underline-offset:3px;}
+.bd-root .bd-footer__contatto{text-decoration:underline;text-decoration-color:rgba(105,98,79,0.35);text-underline-offset:3px;}
+.bd-root .bd-footer__contatto:hover{color:var(--sea-deep);}
+
+/* Fra tablet e computer piccolo lo spazio dell'intestazione è poco: il menu
+   resta su una riga e l'etichetta del pulsante cede il posto (lo sconto è
+   comunque scritto nella striscia subito sopra). */
+.bd-nav--desktop a{white-space:nowrap;}
+@media (max-width:1100px){
+  .bd-nav--desktop{gap:22px;}
+  .bd-header__right .bd-chip{display:none;}
+}
+
+/* Barra mobile e pulsante WhatsApp */
+.bd-stickycta .bd-chip{margin-left:6px;}
+.bd-whatsapp__badge{
+  position:absolute;top:-7px;right:-14px;
+  padding:3px 6px;border-radius:10px;background:var(--sand);color:var(--sea-deep);
+  font-size:11px;font-weight:700;line-height:1;white-space:nowrap;
+  box-shadow:0 2px 6px rgba(16,40,56,0.25);
+}
 
 /* Cookie banner */
 .bd-cookiebanner{
@@ -2944,11 +3956,16 @@ export default function BellavistaDomus({ lang = "it" }) {
       <Hero t={t} go={go} />
       <Intro t={t} />
       <Features t={t} />
+      {/* Promozione della prenotazione diretta: prima fascia appena finiti
+          i punti forti, seconda dopo le recensioni (vedi "promo" nelle
+          traduzioni per le regole sulla cifra). */}
+      <PromoFascia t={t} go={go} testo={t.promo.fasciaAlto} posizione="fascia_alto" />
       <House t={t} />
       <Gallery t={t} />
       {/* Subito dopo le fotografie: si è appena finito di guardare la casa,
           ed è il momento in cui la parola di un ospite pesa di più. */}
       <Testimonial t={t} />
+      <PromoFascia t={t} go={go} testo={t.promo.fasciaRecensioni} posizione="fascia_recensioni" />
       {/* Dopo le fotografie e prima della posizione: si vede la casa, si
           legge cosa contiene, poi si scopre dov'è. */}
       <Amenities t={t} />

@@ -9,10 +9,11 @@ import BellavistaDomus from "./App.jsx";
 document.documentElement.classList.add("bd-js");
 
 /* La lingua non è uno stato interno all'applicazione: la decide la pagina
-   che la ospita. index.html dichiara lang="it", en/index.html dichiara
-   lang="en". Questo è ciò che rende l'inglese un indirizzo vero (/en/)
+   che la ospita. index.html dichiara lang="it", en/index.html lang="en",
+   fr/index.html lang="fr", de/index.html lang="de". Questo è ciò che rende l'inglese un indirizzo vero (/en/)
    invece di un interruttore che spariva al ricaricamento. */
-const lingua = document.documentElement.lang === "en" ? "en" : "it";
+const LINGUE = ["it", "en", "fr", "de"];
+const lingua = LINGUE.includes(document.documentElement.lang) ? document.documentElement.lang : "it";
 
 const contenitore = document.getElementById("root");
 const app = <BellavistaDomus lang={lingua} />;

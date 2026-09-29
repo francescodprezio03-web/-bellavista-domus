@@ -20,6 +20,8 @@ const radice = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const PAGINE = [
   { lang: "it", file: "dist/index.html" },
   { lang: "en", file: "dist/en/index.html" },
+  { lang: "fr", file: "dist/fr/index.html" },
+  { lang: "de", file: "dist/de/index.html" },
 ];
 
 const SEGNAPOSTO = '<div id="root"></div>';
