@@ -151,7 +151,7 @@ const CONFIG = {
 
 const translations = {
   it: {
-    nav: { home: "Home", house: "La Casa", gallery: "Galleria", location: "Posizione", explore: "Dintorni", contact: "Contatti", book: "Prenota ora" },
+    nav: { home: "Home", house: "La Casa", gallery: "Galleria", location: "Posizione", explore: "Dintorni", contact: "Contatti", ospiti: "Ospiti", book: "Prenota ora" },
     topbar: { address: "Apri la posizione su Google Maps", phone: "Chiama Bellavista Domus", email: "Scrivi a Bellavista Domus" },
     hero: {
       title: "Bellavista Domus",
@@ -268,7 +268,6 @@ const translations = {
         { label: "Fumo", value: "consentito solo all'esterno" },
         { label: "Animali", value: "taglia piccola e media, con un lieve supplemento sulle pulizie" },
         { label: "Feste", value: "non consentite" },
-        { label: "Cauzione", value: "500 €, da versare in struttura e restituita a fine soggiorno" },
       ],
     },
     location: {
@@ -320,8 +319,6 @@ const translations = {
           a: "Il check-in è dalle 15:00, il check-out entro le 11:00. Se hai un volo o un treno con orari difficili, scrivici: cerchiamo di venirti incontro quando il calendario lo permette." },
         { q: "Le pulizie finali sono incluse?",
           a: "No, si aggiungono al costo del soggiorno e costano 99 €. È un importo unico, indipendente dalla durata del soggiorno e dal numero di ospiti." },
-        { q: "È prevista una cauzione?",
-          a: "Sì, 500 €, da versare all'arrivo in struttura. Viene restituita per intero alla fine del soggiorno, salvo danni." },
         { q: "Si paga la tassa di soggiorno?",
           a: "Sì, si versa in struttura ed è dovuta al Comune di Bari, non a noi. Il regolamento comunale prevede esenzioni — per i minori e oltre un certo numero di notti consecutive — quindi l'importo esatto te lo confermiamo al momento della prenotazione, in base a quanti siete e quanto vi fermate." },
         { q: "Lenzuola e asciugamani sono inclusi?",
@@ -387,6 +384,13 @@ const translations = {
       doneTitle: "Richiesta ricevuta",
       doneText: "Grazie! Ti rispondiamo al più presto con disponibilità e prezzo diretto, fino al 25% in meno rispetto a Booking.com e Airbnb. Per una risposta ancora più rapida, mandaci anche un messaggio su WhatsApp: il testo è già pronto.",
       honeypot: "Non compilare questo campo",
+    },
+    /* Sezione della home che porta alla pagina per chi ha già prenotato
+       (ospiti.html nella stessa lingua, indirizzo in footer.ospitiUrl). */
+    ospitiSezione: {
+      title: "Sei già nostro ospite?",
+      text: "Nella pagina dedicata trovi le informazioni pratiche per il soggiorno, i nostri contatti e tutte le nostre guide ai dintorni.",
+      cta: "Vai alla pagina ospiti",
     },
     footer: {
       tagline: "Casa vacanze sul mare",
@@ -483,7 +487,7 @@ const translations = {
     },
   },
   en: {
-    nav: { home: "Home", house: "The House", gallery: "Gallery", location: "Location", explore: "Nearby", contact: "Contact", book: "Book now" },
+    nav: { home: "Home", house: "The House", gallery: "Gallery", location: "Location", explore: "Nearby", contact: "Contact", ospiti: "Guests", book: "Book now" },
     topbar: { address: "Open the location on Google Maps", phone: "Call Bellavista Domus", email: "Email Bellavista Domus" },
     hero: {
       title: "Bellavista Domus",
@@ -592,7 +596,6 @@ const translations = {
         { label: "Smoking", value: "outdoors only" },
         { label: "Pets", value: "small and medium sized, with a small cleaning surcharge" },
         { label: "Parties", value: "not allowed" },
-        { label: "Deposit", value: "€500, payable on arrival and returned at the end of your stay" },
       ],
     },
     location: {
@@ -640,8 +643,6 @@ const translations = {
           a: "Check-in is from 3:00 pm and check-out by 11:00 am. If your flight or train times are awkward, do write to us: we try to accommodate you whenever the calendar allows." },
         { q: "Is the final cleaning included?",
           a: "No, it is added to the cost of the stay and comes to €99. It is a single charge, regardless of how long you stay or how many of you there are." },
-        { q: "Is a deposit required?",
-          a: "Yes, €500, payable on arrival at the property. It is returned in full at the end of your stay, barring damage." },
         { q: "Is there a tourist tax?",
           a: "Yes. It is paid at the property and is owed to the Municipality of Bari, not to us. The municipal regulation provides exemptions — for children and beyond a certain number of consecutive nights — so we confirm the exact amount when you book, based on how many you are and how long you stay." },
         { q: "Are bed linen and towels included?",
@@ -694,6 +695,11 @@ const translations = {
       doneTitle: "Enquiry received",
       doneText: "Thank you! We will get back to you shortly with availability and your direct price, up to 25% less than on Booking.com and Airbnb. For an even faster reply, send us a WhatsApp message too: the text is ready to go.",
       honeypot: "Do not fill in this field",
+    },
+    ospitiSezione: {
+      title: "Already booked with us?",
+      text: "Our guest page has the practical information for your stay, how to reach us and all our guides to the area.",
+      cta: "Go to the guest page",
     },
     footer: {
       tagline: "Seafront holiday home",
@@ -775,7 +781,7 @@ const translations = {
      originale, con la traduzione sotto. */
   fr: {
     luogo: "Torre a Mare, Bari, Pouilles",
-    nav: { home: "Accueil", house: "La maison", gallery: "Galerie", location: "Emplacement", explore: "Alentours", contact: "Contact", book: "Réserver" },
+    nav: { home: "Accueil", house: "La maison", gallery: "Galerie", location: "Emplacement", explore: "Alentours", contact: "Contact", ospiti: "Voyageurs", book: "Réserver" },
     topbar: { address: "Ouvrir l'emplacement dans Google Maps", phone: "Appeler Bellavista Domus", email: "Écrire à Bellavista Domus" },
     hero: {
       title: "Bellavista Domus",
@@ -881,7 +887,6 @@ const translations = {
         { label: "Tabac", value: "uniquement à l'extérieur" },
         { label: "Animaux", value: "de petite et moyenne taille, avec un léger supplément pour le ménage" },
         { label: "Fêtes", value: "non autorisées" },
-        { label: "Caution", value: "500 €, à verser sur place et restituée en fin de séjour" },
       ],
     },
     location: {
@@ -929,8 +934,6 @@ const translations = {
           a: "L'arrivée se fait à partir de 15h00, le départ avant 11h00. Si votre vol ou votre train a des horaires compliqués, écrivez-nous : nous essayons de nous adapter quand le calendrier le permet." },
         { q: "Le ménage de fin de séjour est-il inclus ?",
           a: "Non, il s'ajoute au prix du séjour et coûte 99 €. C'est un montant unique, qui ne dépend ni de la durée du séjour ni du nombre de personnes." },
-        { q: "Une caution est-elle demandée ?",
-          a: "Oui, 500 €, à verser à l'arrivée sur place. Elle est restituée intégralement à la fin du séjour, sauf en cas de dommages." },
         { q: "Faut-il payer la taxe de séjour ?",
           a: "Oui, elle se paie sur place et elle est due à la commune de Bari, pas à nous. Le règlement municipal prévoit des exonérations — pour les mineurs et au-delà d'un certain nombre de nuits consécutives — nous vous confirmons donc le montant exact au moment de la réservation, selon le nombre de personnes et la durée du séjour." },
         { q: "Les draps et les serviettes sont-ils fournis ?",
@@ -983,6 +986,11 @@ const translations = {
       doneTitle: "Demande reçue",
       doneText: "Merci ! Nous vous répondons au plus vite avec les disponibilités et le prix direct, jusqu'à 25 % moins cher que sur Booking.com et Airbnb. Pour une réponse encore plus rapide, envoyez-nous aussi un message sur WhatsApp : le texte est déjà prêt.",
       honeypot: "Ne pas remplir ce champ",
+    },
+    ospitiSezione: {
+      title: "Vous avez déjà réservé ?",
+      text: "La page qui vous est dédiée réunit les informations pratiques pour votre séjour, nos coordonnées et tous nos guides des alentours.",
+      cta: "Accéder à la page voyageurs",
     },
     footer: {
       tagline: "Maison de vacances en bord de mer",
@@ -1060,7 +1068,7 @@ const translations = {
   },
   de: {
     luogo: "Torre a Mare, Bari, Apulien",
-    nav: { home: "Start", house: "Das Haus", gallery: "Galerie", location: "Lage", explore: "Umgebung", contact: "Kontakt", book: "Jetzt buchen" },
+    nav: { home: "Start", house: "Das Haus", gallery: "Galerie", location: "Lage", explore: "Umgebung", contact: "Kontakt", ospiti: "Gäste", book: "Jetzt buchen" },
     topbar: { address: "Lage in Google Maps öffnen", phone: "Bellavista Domus anrufen", email: "E-Mail an Bellavista Domus" },
     hero: {
       title: "Bellavista Domus",
@@ -1166,7 +1174,6 @@ const translations = {
         { label: "Rauchen", value: "nur im Freien" },
         { label: "Haustiere", value: "kleine und mittelgroße, mit geringem Reinigungsaufschlag" },
         { label: "Partys", value: "nicht erlaubt" },
-        { label: "Kaution", value: "500 €, vor Ort zu hinterlegen und am Ende des Aufenthalts zurückerstattet" },
       ],
     },
     location: {
@@ -1214,8 +1221,6 @@ const translations = {
           a: "Check-in ist ab 15:00 Uhr, Check-out bis 11:00 Uhr. Wenn Ihr Flug oder Zug zu ungünstigen Zeiten geht, schreiben Sie uns: Wir versuchen, Ihnen entgegenzukommen, wenn der Kalender es erlaubt." },
         { q: "Ist die Endreinigung inbegriffen?",
           a: "Nein, sie kommt zum Preis des Aufenthalts hinzu und kostet 99 €. Es ist ein einmaliger Betrag, unabhängig von der Dauer des Aufenthalts und der Zahl der Gäste." },
-        { q: "Ist eine Kaution vorgesehen?",
-          a: "Ja, 500 €, bei der Ankunft vor Ort zu hinterlegen. Sie wird am Ende des Aufenthalts vollständig zurückerstattet, sofern keine Schäden entstanden sind." },
         { q: "Muss man Kurtaxe zahlen?",
           a: "Ja, sie wird vor Ort bezahlt und steht der Gemeinde Bari zu, nicht uns. Die städtische Satzung sieht Befreiungen vor – für Minderjährige und ab einer bestimmten Zahl aufeinanderfolgender Nächte –, daher bestätigen wir Ihnen den genauen Betrag bei der Buchung, je nachdem, wie viele Sie sind und wie lange Sie bleiben." },
         { q: "Sind Bettwäsche und Handtücher inklusive?",
@@ -1268,6 +1273,11 @@ const translations = {
       doneTitle: "Anfrage erhalten",
       doneText: "Vielen Dank! Wir melden uns so schnell wie möglich mit Verfügbarkeit und Direktpreis, bis zu 25 % günstiger als bei Booking.com und Airbnb. Für eine noch schnellere Antwort schicken Sie uns auch eine WhatsApp-Nachricht: Der Text ist schon vorbereitet.",
       honeypot: "Dieses Feld nicht ausfüllen",
+    },
+    ospitiSezione: {
+      title: "Sie haben schon gebucht?",
+      text: "Auf unserer Gästeseite finden Sie die praktischen Informationen für Ihren Aufenthalt, unsere Kontaktdaten und alle unsere Reiseführer für die Umgebung.",
+      cta: "Zur Gästeseite",
     },
     footer: {
       tagline: "Ferienhaus am Meer",
@@ -1747,7 +1757,26 @@ function Header({ lang, t, go }) {
     { href: "#location", label: t.nav.location },
     { href: "#explore", label: t.nav.explore },
     { href: "#contact", label: t.nav.contact },
+    /* "Ospiti" non è un'ancora della home ma una pagina a sé (quella che
+       Francesco manda a chi ha già prenotato): link normale, nella stessa
+       lingua, senza lo scorrimento morbido delle altre voci. */
+    { href: t.footer.ospitiUrl, label: t.nav.ospiti, pagina: true },
   ];
+
+  const voceMenu = (item) => (
+    <a
+      key={item.href}
+      href={item.href}
+      className={item.pagina ? "bd-nav__pagina" : undefined}
+      onClick={(e) => {
+        if (item.pagina) { traccia("apre_pagina_ospiti", { posizione: "menu" }); return; }
+        e.preventDefault();
+        handleGo(item.href);
+      }}
+    >
+      {item.label}
+    </a>
+  );
 
   const handleGo = (href) => {
     setMenuOpen(false);
@@ -1783,11 +1812,7 @@ function Header({ lang, t, go }) {
         </a>
 
         <nav className="bd-nav bd-nav--desktop">
-          {navItems.map((item) => (
-            <a key={item.href} href={item.href} onClick={(e) => { e.preventDefault(); handleGo(item.href); }}>
-              {item.label}
-            </a>
-          ))}
+          {navItems.map(voceMenu)}
         </nav>
 
         <div className="bd-header__right">
@@ -1831,11 +1856,7 @@ function Header({ lang, t, go }) {
       </div>
 
       <div className={`bd-mobilemenu ${menuOpen ? "is-open" : ""}`}>
-        {navItems.map((item) => (
-          <a key={item.href} href={item.href} onClick={(e) => { e.preventDefault(); handleGo(item.href); }}>
-            {item.label}
-          </a>
-        ))}
+        {navItems.map(voceMenu)}
         <a href="#contact" className="bd-btn bd-btn--primary" onClick={(e) => { e.preventDefault(); handleGo("#contact"); }}>
           {t.nav.book} <span className="bd-chip">{t.promo.cifra}</span>
         </a>
@@ -2147,6 +2168,32 @@ function Location({ t }) {
             </Reveal>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------------------------- OSPITI ----------------------------------- */
+/* Rimanda alla pagina per chi ha già prenotato (ospiti.html nella lingua
+   della home). È anche nel menu e nel footer. */
+
+function OspitiSezione({ t }) {
+  const o = t.ospitiSezione;
+  return (
+    <section id="ospiti" className="bd-ospiti">
+      <div className="bd-ospiti__inner">
+        <div>
+          <p className="bd-ospiti__label">{t.nav.ospiti}</p>
+          <h2 className="bd-h3">{o.title}</h2>
+          <p className="bd-body">{o.text}</p>
+        </div>
+        <a
+          className="bd-btn bd-ospiti__btn"
+          href={t.footer.ospitiUrl}
+          onClick={() => traccia("apre_pagina_ospiti", { posizione: "sezione_home" })}
+        >
+          {o.cta} <span aria-hidden="true">→</span>
+        </a>
       </div>
     </section>
   );
@@ -3894,9 +3941,44 @@ const STYLES = `
    resta su una riga e l'etichetta del pulsante cede il posto (lo sconto è
    comunque scritto nella striscia subito sopra). */
 .bd-nav--desktop a{white-space:nowrap;}
-@media (max-width:1100px){
-  .bd-nav--desktop{gap:22px;}
+.bd-logo{flex:none;}
+@media (max-width:1440px){
+  .bd-nav--desktop{gap:26px;}
+}
+@media (max-width:1280px){
+  .bd-nav--desktop{gap:20px;}
   .bd-header__right .bd-chip{display:none;}
+}
+/* Con la voce "Ospiti" le voci sono sette: sotto i 1180px (tablet e
+   portatili piccoli) non stanno più accanto a marchio, lingue e pulsante
+   senza schiacciare il logo, quindi si passa al menu a tendina. Il
+   pulsante "Prenota" resta visibile finché c'è spazio (fino a 860px). */
+@media (max-width:1180px){
+  .bd-nav--desktop{display:none;}
+  .bd-burger{display:block;}
+  .bd-mobilemenu{display:block;}
+}
+
+/* Sezione e voce di menu "Ospiti" */
+.bd-ospiti{background:var(--ivory-2);border-top:1px solid var(--line);padding:72px 32px;}
+.bd-ospiti__inner{
+  max-width:1100px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;gap:28px 56px;flex-wrap:wrap;
+}
+.bd-ospiti__inner > div{flex:1 1 420px;}
+.bd-ospiti__label{margin:0 0 10px;font-size:11.5px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;color:var(--sea);}
+.bd-ospiti .bd-body{margin:0;max-width:56ch;}
+.bd-root .bd-ospiti__btn{background:var(--sea-deep);color:var(--ivory);}
+.bd-root .bd-ospiti__btn:hover{background:var(--sea);transform:translateY(-2px);}
+.bd-mobilemenu.is-open{max-height:520px;}
+/* Il menu a tendina sta sopra la velatura scura dell'intestazione
+   trasparente (.bd-header::before), che prima lo copriva a inizio pagina;
+   e il pulsante Prenota, chiaro su fondo chiaro, non sembrava un pulsante. */
+.bd-mobilemenu{position:relative;z-index:1;}
+.bd-root .bd-mobilemenu .bd-btn{background:var(--sea-deep);color:var(--ivory);border-bottom:none;}
+@media (max-width:640px){
+  .bd-ospiti{padding:56px 22px;}
+  .bd-ospiti__btn{width:100%;}
 }
 
 /* Barra mobile e pulsante WhatsApp */
@@ -3970,6 +4052,9 @@ export default function BellavistaDomus({ lang = "it" }) {
           legge cosa contiene, poi si scopre dov'è. */}
       <Amenities t={t} />
       <Location t={t} />
+      {/* Subito dopo le guide ai dintorni: chi ha già prenotato le ritrova
+          tutte, insieme alle informazioni pratiche, nella pagina ospiti. */}
+      <OspitiSezione t={t} />
       <Booking t={t} go={go} />
       {/* Le FAQ stanno subito prima del modulo: si tolgono gli ultimi dubbi,
           e chi ne ha ancora trova il modulo già lì sotto. */}
