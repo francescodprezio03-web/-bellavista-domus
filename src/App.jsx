@@ -397,6 +397,8 @@ const translations = {
       rights: "Tutti i diritti riservati.",
       top: "Torna su",
       privacyUrl: "/privacy.html",
+      ospiti: "Guida per gli ospiti",
+      ospitiUrl: "/ospiti.html",
     },
     /* Calendario: i testi dichiarano apertamente il limite della fonte.
        Promettere una disponibilità "certa" quando i portali si aggiornano
@@ -702,6 +704,8 @@ const translations = {
       rights: "All rights reserved.",
       top: "Back to top",
       privacyUrl: "/privacy-en.html",
+      ospiti: "Guest guide",
+      ospitiUrl: "/ospiti-en.html",
     },
     calendario: {
       eyebrow: "Availability",
@@ -763,6 +767,583 @@ const translations = {
       linkLabel: "Learn more",
       reject: "Decline",
       accept: "Accept",
+    },
+  },
+  /* Francese e tedesco (settembre 2026): stessa struttura a chiavi di it/en.
+     Nel testo "25 %" porta uno spazio che non va a capo ( ), come vuole
+     la tipografia francese e tedesca. Le recensioni restano nella lingua
+     originale, con la traduzione sotto. */
+  fr: {
+    luogo: "Torre a Mare, Bari, Pouilles",
+    nav: { home: "Accueil", house: "La maison", gallery: "Galerie", location: "Emplacement", explore: "Alentours", contact: "Contact", book: "Réserver" },
+    topbar: { address: "Ouvrir l'emplacement dans Google Maps", phone: "Appeler Bellavista Domus", email: "Écrire à Bellavista Domus" },
+    hero: {
+      title: "Bellavista Domus",
+      subtitle: "À quelques pas de la mer.",
+      info: `Jusqu'à ${CONFIG.property.guests} personnes, ${CONFIG.property.bedrooms} chambres, ${CONFIG.property.bathrooms} salles de bains`,
+      ctaPrimary: "Vérifier les disponibilités",
+      ctaSecondary: "Découvrir la maison",
+      scroll: "Défiler",
+    },
+    intro: {
+      eyebrow: "Bienvenue",
+      title: "Votre séjour au bord de l'Adriatique",
+      text: "Réveillez-vous face à la mer, ralentissez et vivez les Pouilles à votre rythme. Bellavista Domus est une maison de vacances privée, pensée pour les familles et les groupes qui recherchent de l'espace, du confort et la mer à deux pas.",
+    },
+    features: [
+      { title: "À 10 m de la mer", desc: "Plage publique gratuite à deux pas de la porte." },
+      { title: `Jusqu'à ${CONFIG.property.guests} personnes`, desc: "Des espaces pensés pour les familles et les groupes." },
+      { title: `${CONFIG.property.bedrooms} chambres`, desc: "Des pièces privées et confortables pour chacun." },
+      { title: `${CONFIG.property.bathrooms} salles de bains`, desc: "Confort et praticité pour tout le groupe." },
+      { title: "Parking privé", desc: "Une place réservée, sans souci." },
+      { title: "Espaces extérieurs", desc: "Balcons et coin barbecue pour vivre dehors." },
+    ],
+    house: {
+      eyebrow: "La propriété",
+      title: "La maison",
+      text: "Bellavista Domus est une maison entière, pensée pour ceux qui veulent partager leur séjour dans les Pouilles en famille ou entre amis, sans renoncer à l'espace ni à l'intimité.",
+      items: {
+        living: "Séjour",
+        bedroom: "Chambres",
+        kitchen: "Cuisine équipée",
+        bathroom: "Salles de bains",
+        balcony: "Balcons",
+        outdoor: "Espaces extérieurs",
+        parking: "Parking privé",
+      },
+    },
+    gallery: { eyebrow: "Photographies", title: "Galerie" },
+    testimonial: {
+      title: "Ce qu'en disent nos voyageurs",
+      translationLabel: "Lire la traduction en français",
+      note: "Avis authentiques de voyageurs qui ont séjourné ici, reproduits intégralement depuis les plateformes sur lesquelles ils ont réservé. Chacun renvoie à la page de la maison sur Airbnb ou Booking.com, où l'on peut lire l'original.",
+      reviews: [
+        { platform: "airbnb", author: "Renáta", when: "septembre 2026", iso: "2026-09", stars: 5, rating: "Note de 5 sur 5", title: null, lang: "en",
+          quote: "A wonderful place to stay – everything was perfect! The rooms are huge and spacious, with a large communal area that creates a really warm and welcoming atmosphere. The house also has a beautiful garden and a large terrace, which was perfect for relaxing and enjoying the surroundings.\nThe kitchen is fully equipped, and the whole house is spotlessly clean and has such a lovely atmosphere. It is a charming seaside home.\nWe were also welcomed with a lovely welcome package upon arrival, which was such a thoughtful touch.\nFrancesco was incredibly kind, helpful, and attentive, and we could always count on him whenever we needed anything.\nWe had a fantastic stay and would wholeheartedly recommend this beautiful place! ❤️",
+          translation: "Un endroit merveilleux où séjourner : tout était parfait ! Les chambres sont immenses et spacieuses, avec un grand espace commun qui crée une atmosphère vraiment chaleureuse et accueillante. La maison a aussi un beau jardin et une grande terrasse, parfaite pour se détendre et profiter des environs.\nLa cuisine est entièrement équipée, toute la maison est d'une propreté impeccable et l'ambiance y est très agréable. C'est une charmante maison au bord de la mer.\nÀ notre arrivée, nous avons aussi été accueillis avec un joli panier de bienvenue, une attention vraiment délicate.\nFrancesco a été incroyablement gentil, serviable et attentionné, et nous avons toujours pu compter sur lui en cas de besoin.\nNous avons passé un séjour fantastique et recommandons de tout cœur ce magnifique endroit ! ❤️",
+          source: "Lire sur Airbnb" },
+        { platform: "booking", author: "Angela", when: "septembre 2026", iso: "2026-09", score: "9/10", rating: "Note de 9 sur 10", title: "Fantastic!", lang: "en",
+          quote: "The villa was a perfect location for my needs,, close to family and a few steps from the sea. The host Francesco was amazing, very attentive and prompt\nIt's a perfect villa for a family, beautiful garden and very comfortable interior with a full kitchen , with all the amenities needed I will definitely be back.",
+          translation: "Fantastique !\nLa villa était idéalement située pour mes besoins, près de ma famille et à quelques pas de la mer. L'hôte, Francesco, a été formidable, très attentionné et réactif.\nC'est une villa parfaite pour une famille, avec un beau jardin et un intérieur très confortable, une cuisine complète et tous les équipements nécessaires. Je reviendrai sans aucun doute.",
+          source: "Lire sur Booking.com" },
+        { platform: "airbnb", author: "Gaetana", when: "août 2026", iso: "2026-08", stars: 5, rating: "Note de 5 sur 5", title: null, lang: "it",
+          quote:
+            "Ci siamo trovati benissimo in 6, spazi ampi, casa completa di tutto e camere con aria condizionata, terrazzino esterno stupendo. Francesco è stato gentilissimo e disponibile per qualsiasi dubbio riguardo la casa e non solo. Ci è sembrato di essere a casa, con il vantaggio di essere a due passi dal mare. Consigliatissimo, spero di poterci tornare presto",
+          translation:
+            "Nous nous sommes très bien sentis à six : de grands espaces, une maison équipée de tout, des chambres climatisées et une magnifique petite terrasse. Francesco a été très gentil et disponible pour toutes nos questions, sur la maison et au-delà. Nous nous sommes sentis comme chez nous, avec l'avantage d'être à deux pas de la mer. Vivement recommandé, j'espère pouvoir y revenir bientôt.",
+          source: "Lire sur Airbnb" },
+      ],
+    },
+    amenities: {
+      eyebrow: "Équipements",
+      title: "Ce que vous trouverez sur place",
+      text: "Tout le nécessaire pour une semaine en famille ou entre amis, sans rien devoir acheter en arrivant.",
+      bedsTitle: "Les couchages",
+      beds: [
+        { room: "Chambre 1", detail: "Lit double", places: "2 places" },
+        { room: "Chambre 2", detail: "Lit double", places: "2 places" },
+        { room: "Chambre 3", detail: "Petit lit double et lits superposés", places: "3 places" },
+      ],
+      groups: [
+        {
+          title: "Cuisine",
+          items: ["Four", "Friteuse à air", "Lave-vaisselle", "Réfrigérateur avec congélateur", "Machine à café", "Casseroles et poêles", "Assiettes, verres, couverts et tasses"],
+        },
+        {
+          title: "Climatisation",
+          items: ["Climatisation réversible (chaud/froid) dans les trois chambres", "Climatisation réversible (chaud/froid) dans le salon"],
+        },
+        {
+          title: "Salles de bains et linge",
+          items: ["Deux salles de bains, toutes deux avec douche", "Draps et serviettes inclus", "Lave-linge", "Étendoir", "Sèche-cheveux", "Savon"],
+        },
+        {
+          title: "Connexion",
+          items: ["Wi-Fi fibre jusqu'à 500 Mbit/s", "TV au salon avec Netflix et d'autres services de streaming"],
+        },
+        {
+          title: "Espaces extérieurs",
+          items: ["Jardin privé", "Barbecue au charbon de bois", "Plus de 12 places assises en plein air, sur plusieurs tables", "Chaises longues"],
+        },
+        {
+          title: "Parking",
+          items: ["Deux places de parking privées et gratuites", "De la place pour les scooters et les vélos", "Stationnement libre et gratuit également dans la rue"],
+        },
+      ],
+      familyTitle: "Pour les familles",
+      familyText: "Chaise haute, lit bébé, barrières de lit et table à langer sont disponibles sans frais supplémentaires. Signalez-le-nous au moment de la réservation, et tout sera prêt à votre arrivée.",
+      rulesTitle: "Informations pratiques",
+      rules: [
+        { label: "Séjour minimum", value: "2 nuits en basse saison, 4 en haute saison" },
+        { label: "Ménage de fin de séjour", value: "99 €, en supplément du séjour" },
+        { label: "Arrivée", value: "à partir de 15h00" },
+        { label: "Départ", value: "avant 11h00" },
+        { label: "Tabac", value: "uniquement à l'extérieur" },
+        { label: "Animaux", value: "de petite et moyenne taille, avec un léger supplément pour le ménage" },
+        { label: "Fêtes", value: "non autorisées" },
+        { label: "Caution", value: "500 €, à verser sur place et restituée en fin de séjour" },
+      ],
+    },
+    location: {
+      eyebrow: "Où nous sommes",
+      title: "La mer est juste devant",
+      text: "À quelques pas de l'Adriatique, Bellavista Domus offre un séjour authentique en bord de mer à Torre a Mare, tout près de Bari et du meilleur des Pouilles.",
+      mapEyebrow: "Sur la carte",
+      mapTitle: "Comment nous trouver",
+      mapShow: "Afficher la carte",
+      mapPrivacy: "En chargeant la carte, Google reçoit votre adresse IP.",
+      mapOpen: "Ouvrir dans Google Maps",
+      distances: [
+        { value: "10 m", label: "de la plage" },
+        { value: "5 min", label: "à pied du petit port" },
+        { value: "15 min", label: "en voiture de Bari" },
+        { value: "25 min", label: "de l'aéroport de Bari" },
+      ],
+      exploreEyebrow: "Aux alentours",
+      exploreTitle: "Découvrir les Pouilles",
+      places: [
+        { key: "torreamare", name: "Torre a Mare", desc: "Le village de pêcheurs où se trouve Bellavista Domus.", link: "/torre-a-mare-fr.html", linkLabel: "Que voir à Torre a Mare" },
+        { key: "bari", name: "Bari", desc: "La capitale des Pouilles, entre vieille ville et front de mer.", link: "/bari-fr.html", linkLabel: "Que voir à Bari" },
+        { key: "polignano", name: "Polignano a Mare", desc: "Célèbre pour ses falaises à pic sur la mer.", link: "/polignano-a-mare-fr.html", linkLabel: "Que voir à Polignano a Mare" },
+        { key: "monopoli", name: "Monopoli", desc: "Port historique et vieille ville face à l'Adriatique.", link: "/monopoli-fr.html", linkLabel: "Que voir à Monopoli" },
+        { key: "alberobello", name: "Alberobello", desc: "Patrimoine de l'UNESCO, célèbre pour ses trulli.", link: "/alberobello-fr.html", linkLabel: "Que voir à Alberobello" },
+        { key: "castellana", name: "Grottes de Castellana", desc: "Soixante mètres sous terre, entre stalactites et albâtre.", link: "/grotte-di-castellana-fr.html", linkLabel: "Comment les visiter" },
+        { key: "valleditria", name: "Vallée d'Itria", desc: "Locorotondo, Cisternino, Martina Franca et Ostuni.", link: "/valle-d-itria-fr.html", linkLabel: "Le circuit en une journée" },
+        { key: "matera", name: "Matera", desc: "Les Sassi, patrimoine de l'UNESCO, à un peu plus d'une heure.", link: "/matera-fr.html", linkLabel: "Organiser la visite" },
+      ],
+    },
+    faq: {
+      eyebrow: "Questions fréquentes",
+      title: "Les réponses aux questions les plus courantes",
+      text: "Si vous ne trouvez pas ce que vous cherchez, écrivez-nous : nous répondons généralement en quelques heures.",
+      items: [
+        { q: "Est-il plus avantageux de réserver en direct ?",
+          a: "Oui : si vous réservez directement auprès de nous, par e-mail, WhatsApp ou avec le formulaire du site, vous avez jusqu'à 25 % de réduction par rapport aux tarifs de Booking.com et Airbnb pour les mêmes dates, car vous ne payez pas les commissions des plateformes. Le pourcentage exact dépend des dates : nous vous le confirmons dans le devis." },
+        { q: "Combien de personnes la maison peut-elle accueillir ?",
+          a: "Jusqu'à 7 personnes dans 3 chambres : deux chambres avec lit double et une troisième avec un petit lit double et des lits superposés. Il y a deux salles de bains, toutes deux avec douche." },
+        { q: "À quelle distance se trouve vraiment la mer ?",
+          a: "Dix mètres, avec une petite anse de sable juste devant la maison. On traverse la route et on est sur la plage publique, où sable et rochers alternent. La mer se voit depuis deux des trois chambres, et on l'entend le soir, fenêtres ouvertes." },
+        { q: "Quelle est la durée minimale du séjour ?",
+          a: "Deux nuits en basse saison et quatre nuits en haute saison." },
+        { q: "À quelle heure se font l'arrivée et le départ ?",
+          a: "L'arrivée se fait à partir de 15h00, le départ avant 11h00. Si votre vol ou votre train a des horaires compliqués, écrivez-nous : nous essayons de nous adapter quand le calendrier le permet." },
+        { q: "Le ménage de fin de séjour est-il inclus ?",
+          a: "Non, il s'ajoute au prix du séjour et coûte 99 €. C'est un montant unique, qui ne dépend ni de la durée du séjour ni du nombre de personnes." },
+        { q: "Une caution est-elle demandée ?",
+          a: "Oui, 500 €, à verser à l'arrivée sur place. Elle est restituée intégralement à la fin du séjour, sauf en cas de dommages." },
+        { q: "Faut-il payer la taxe de séjour ?",
+          a: "Oui, elle se paie sur place et elle est due à la commune de Bari, pas à nous. Le règlement municipal prévoit des exonérations — pour les mineurs et au-delà d'un certain nombre de nuits consécutives — nous vous confirmons donc le montant exact au moment de la réservation, selon le nombre de personnes et la durée du séjour." },
+        { q: "Les draps et les serviettes sont-ils fournis ?",
+          a: "Oui, les draps et les serviettes sont inclus et prêts à votre arrivée. Vous trouverez aussi sur place du savon, un sèche-cheveux, un lave-linge et un étendoir." },
+        { q: "Y a-t-il un parking ?",
+          a: "Oui, deux places de parking privées et gratuites à l'intérieur de la propriété, avec de la place aussi pour les scooters et les vélos. À l'extérieur, le stationnement est libre et gratuit." },
+        { q: "Les animaux sont-ils acceptés ?",
+          a: "Oui, les chiens et les chats de petite et moyenne taille sont les bienvenus, avec un léger supplément pour le ménage. Merci de nous le signaler au moment de la réservation." },
+        { q: "Peut-on fumer ?",
+          a: "Uniquement à l'extérieur. Le jardin et les espaces extérieurs sont à votre disposition ; on ne fume pas à l'intérieur de la maison." },
+        { q: "Y a-t-il la climatisation ?",
+          a: "Oui, dans les trois chambres et au salon, avec une fonction rafraîchissement et chauffage. La maison est donc confortable aussi hors saison." },
+        { q: "Comment est la connexion internet ?",
+          a: "Wi-Fi fibre jusqu'à 500 Mbit/s dans toute la maison. La connexion convient aussi à ceux qui doivent travailler ou faire des visioconférences pendant le séjour." },
+        { q: "Avez-vous des équipements pour les jeunes enfants ?",
+          a: "Oui : chaise haute, lit bébé, barrières de lit et table à langer, sans frais supplémentaires. Il faut toutefois les demander au moment de la réservation, pour que tout soit prêt à votre arrivée." },
+        { q: "Peut-on organiser des fêtes ou des événements ?",
+          a: "Non, les fêtes et les événements ne sont pas autorisés. La maison est pensée pour les familles et les groupes en quête de tranquillité, et nous tenons à nos bonnes relations avec le voisinage." },
+        { q: "Y a-t-il une piscine ?",
+          a: "Pas encore : une piscine est prévue pour l'été 2027. Aujourd'hui, la maison mise sur autre chose — la mer à dix mètres, avec l'anse de sable juste devant, et un jardin privé avec plus de 12 places assises en plein air et le barbecue. Si vous envisagez un séjour à l'été 2027, écrivez-nous avant de réserver : nous vous dirons où en sont les travaux, pour que vous ne réserviez pas sur une simple promesse." },
+        { q: "Comment rejoindre Torre a Mare ?",
+          a: "En voiture, on prend la sortie Torre a Mare centro et on est à la maison en deux minutes ; depuis l'aéroport de Bari, il faut environ 20 minutes, 25 avec la circulation. En transports en commun, le plus simple est le bus 12 (ou 12/) depuis la gare centrale de Bari. Une fois sur place, la voiture n'est pas nécessaire pour la plage et le village ; elle l'est pour les courses et les services, à environ cinq minutes.",
+          href: "/come-arrivare-fr.html", linkLabel: "Tous les détails pour venir" },
+      ],
+    },
+    booking: {
+      eyebrow: "Réserver",
+      title: "Prêt à vous réveiller face à la mer ?",
+      text: "Réservez directement auprès de nous par e-mail, WhatsApp ou avec le formulaire : par rapport aux tarifs de Booking.com et Airbnb pour les mêmes dates, vous avez jusqu'à 25 % de réduction, car vous ne payez pas les commissions des plateformes.",
+      direct: "Écrivez-nous et réservez en direct",
+      alt: "Ou réservez où vous préférez",
+      booking: "Booking.com",
+      airbnb: "Airbnb",
+    },
+    form: {
+      eyebrow: "Demande",
+      title: "Vérifiez les dates de votre séjour",
+      text: "Dites-nous quand vous aimeriez venir et combien vous êtes : nous vous répondons avec les disponibilités et le prix, généralement en quelques heures. Si vos dates ne sont pas encore fixées, laissez-les vides et précisez-le dans le message.",
+      name: "Nom et prénom",
+      arrival: "Arrivée (facultatif)",
+      departure: "Départ (facultatif)",
+      email: "E-mail",
+      guests: "Personnes",
+      message: "Message (facultatif)",
+      consent: "J'ai lu et j'accepte la",
+      consentLink: "politique de confidentialité",
+      submit: "Envoyer la demande",
+      sending: "Envoi en cours…",
+      error: "Impossible d'envoyer la demande. Écrivez-nous directement à " + CONFIG.property.email + " ou sur WhatsApp au " + CONFIG.property.phone + ".",
+      doneTitle: "Demande reçue",
+      doneText: "Merci ! Nous vous répondons au plus vite avec les disponibilités et le prix direct, jusqu'à 25 % moins cher que sur Booking.com et Airbnb. Pour une réponse encore plus rapide, envoyez-nous aussi un message sur WhatsApp : le texte est déjà prêt.",
+      honeypot: "Ne pas remplir ce champ",
+    },
+    footer: {
+      tagline: "Maison de vacances en bord de mer",
+      contactTitle: "Contact",
+      infoTitle: "Informations",
+      cis: "CIS",
+      cin: "CIN",
+      rights: "Tous droits réservés.",
+      top: "Haut de page",
+      privacyUrl: "/privacy-fr.html",
+      ospiti: "Guide des voyageurs",
+      ospitiUrl: "/ospiti-fr.html",
+    },
+    calendario: {
+      eyebrow: "Disponibilités",
+      title: "Vos dates sont-elles libres ?",
+      text: "Le calendrier indique les nuits déjà réservées. Il est mis à jour depuis les plateformes toutes les quelques heures : considérez-le comme une indication, la confirmation définitive vient de nous.",
+      caricamento: "Lecture du calendrier…",
+      errore: "Impossible de lire le calendrier pour le moment. Envoyez-nous vos dates et nous vous répondrons.",
+      libero: "Libre",
+      occupato: "Réservé",
+      precedente: "Mois précédent",
+      successivo: "Mois suivant",
+      mesi: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"],
+      giorni: ["L","M","M","J","V","S","D"],
+      giorniEstesi: ["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"],
+      esempio: "Données d'exemple — le vrai calendrier n'est pas disponible en local",
+      guidaArrivo: "Touchez le jour d'arrivée, puis celui du départ : les dates passent directement dans le formulaire de demande.",
+      guidaPartenza: "Arrivée le {data}. Touchez maintenant le jour du départ.",
+      conflitto: "Une nuit est déjà réservée entre ces dates : choisissez un autre départ ou une autre arrivée.",
+      dal: "Du", al: "au", notte: "nuit", notti: "nuits",
+      arrivoAria: "arrivée", partenzaAria: "départ",
+      richiedi: "Demander ces dates",
+      annulla: "Effacer les dates",
+    },
+    stickyCta: "Vérifier les disponibilités",
+    whatsapp: {
+      aria: "Écrivez-nous sur WhatsApp : jusqu'à 25 % de réduction en réservant en direct",
+      message: "Bonjour ! Je souhaite réserver Bellavista Domus en direct avec la réduction allant jusqu'à 25 %. Pourriez-vous m'indiquer les disponibilités et le prix pour ces dates : ",
+    },
+    promo: {
+      cifra: "−25%",
+      chip: "jusqu'à −25%",
+      barraLunga: "Jusqu'à 25 % de réduction si vous réservez en direct, par e-mail ou WhatsApp, par rapport aux tarifs de Booking.com et Airbnb",
+      barraMedia: "Jusqu'à 25 % de réduction en réservant en direct, par rapport à Booking.com et Airbnb",
+      barraBreve: "en réservant en direct",
+      hero: "Jusqu'à 25 % de réduction si vous réservez en direct, par rapport aux tarifs de Booking.com et Airbnb.",
+      heroCta: "Écrivez-nous sur WhatsApp",
+      fino: "Jusqu'à",
+      percento: "25 %",
+      sconto: "de réduction",
+      fasciaAlto: "Jusqu'à 25 % de réduction si vous réservez directement auprès de nous, par rapport aux tarifs de Booking.com et Airbnb.",
+      fasciaRecensioni: "Envie d'être nos prochains voyageurs ? Réservez en direct et payez jusqu'à 25 % de moins que sur Booking.com et Airbnb.",
+      modulo: "Demander un devis",
+      moduloTesto: "Jusqu'à 25 % de réduction par rapport à Booking.com et Airbnb. Vous préférez nous écrire tout de suite ?",
+      nota: "Le pourcentage exact dépend des dates : nous vous le confirmons dans le devis.",
+      calendario: "En réservant en direct, vous payez jusqu'à 25 % de moins que sur Booking.com et Airbnb.",
+      footer: "Réservez en direct : jusqu'à 25 % de réduction par rapport à Booking.com et Airbnb.",
+      whatsapp: "WhatsApp",
+      email: "E-mail",
+      emailOggetto: "Réservation directe Bellavista Domus",
+      emailTesto: "Bonjour, je souhaite réserver Bellavista Domus en direct avec la réduction allant jusqu'à 25 %.\n\nArrivée :\nDépart :\nNombre de personnes :\n",
+      dopoModulo: "Continuer sur WhatsApp",
+      dopoModuloMessaggio: "Bonjour, je suis {nome}. Je viens d'envoyer une demande depuis le site{date} (personnes : {ospiti}). Je souhaite réserver en direct avec la réduction : pourriez-vous me confirmer les disponibilités et le prix ?",
+      dopoModuloDate: ", du {arrivo} au {partenza}",
+    },
+    photoPlaceholder: "Photo à venir",
+    cookieBanner: {
+      ariaLabel: "Consentement aux cookies",
+      text: "Nous utilisons Google Analytics uniquement si vous y consentez, pour comprendre comment le site est utilisé. Aucun cookie de profilage.",
+      linkLabel: "En savoir plus",
+      reject: "Refuser",
+      accept: "Accepter",
+    },
+  },
+  de: {
+    luogo: "Torre a Mare, Bari, Apulien",
+    nav: { home: "Start", house: "Das Haus", gallery: "Galerie", location: "Lage", explore: "Umgebung", contact: "Kontakt", book: "Jetzt buchen" },
+    topbar: { address: "Lage in Google Maps öffnen", phone: "Bellavista Domus anrufen", email: "E-Mail an Bellavista Domus" },
+    hero: {
+      title: "Bellavista Domus",
+      subtitle: "Nur wenige Schritte vom Meer.",
+      info: `Bis zu ${CONFIG.property.guests} Gäste, ${CONFIG.property.bedrooms} Schlafzimmer, ${CONFIG.property.bathrooms} Badezimmer`,
+      ctaPrimary: "Verfügbarkeit prüfen",
+      ctaSecondary: "Das Haus entdecken",
+      scroll: "Scrollen",
+    },
+    intro: {
+      eyebrow: "Willkommen",
+      title: "Ihr Aufenthalt an der Adria",
+      text: "Mit Blick aufs Meer aufwachen, einen Gang zurückschalten und Apulien in Ihrem eigenen Tempo erleben. Bellavista Domus ist ein privates Ferienhaus für Familien und Gruppen, die Platz, Komfort und das Meer direkt vor der Tür suchen.",
+    },
+    features: [
+      { title: "10 m vom Meer", desc: "Freier Strand direkt vor der Haustür." },
+      { title: `Bis zu ${CONFIG.property.guests} Gäste`, desc: "Platz für Familien und größere Gruppen." },
+      { title: `${CONFIG.property.bedrooms} Schlafzimmer`, desc: "Private, komfortable Zimmer für alle." },
+      { title: `${CONFIG.property.bathrooms} Badezimmer`, desc: "Bequem und praktisch für die ganze Gruppe." },
+      { title: "Privatparkplatz", desc: "Ein reservierter Stellplatz, ganz ohne Sorgen." },
+      { title: "Außenbereiche", desc: "Balkone und Grillplatz für das Leben im Freien." },
+    ],
+    house: {
+      eyebrow: "Die Unterkunft",
+      title: "Das Haus",
+      text: "Bellavista Domus ist ein ganzes Haus für alle, die ihre Zeit in Apulien mit der Familie oder mit Freunden verbringen möchten, ohne auf Platz und Privatsphäre zu verzichten.",
+      items: {
+        living: "Wohnzimmer",
+        bedroom: "Schlafzimmer",
+        kitchen: "Voll ausgestattete Küche",
+        bathroom: "Badezimmer",
+        balcony: "Balkone",
+        outdoor: "Außenbereiche",
+        parking: "Privatparkplatz",
+      },
+    },
+    gallery: { eyebrow: "Fotos", title: "Galerie" },
+    testimonial: {
+      title: "Das sagen unsere Gäste",
+      translationLabel: "Deutsche Übersetzung lesen",
+      note: "Echte Bewertungen von Gästen, die hier übernachtet haben, vollständig von den Plattformen übernommen, auf denen sie gebucht haben. Jede verweist auf die Seite des Hauses bei Airbnb oder Booking.com, wo das Original zu lesen ist.",
+      reviews: [
+        { platform: "airbnb", author: "Renáta", when: "September 2026", iso: "2026-09", stars: 5, rating: "Bewertung 5 von 5", title: null, lang: "en",
+          quote: "A wonderful place to stay – everything was perfect! The rooms are huge and spacious, with a large communal area that creates a really warm and welcoming atmosphere. The house also has a beautiful garden and a large terrace, which was perfect for relaxing and enjoying the surroundings.\nThe kitchen is fully equipped, and the whole house is spotlessly clean and has such a lovely atmosphere. It is a charming seaside home.\nWe were also welcomed with a lovely welcome package upon arrival, which was such a thoughtful touch.\nFrancesco was incredibly kind, helpful, and attentive, and we could always count on him whenever we needed anything.\nWe had a fantastic stay and would wholeheartedly recommend this beautiful place! ❤️",
+          translation: "Ein wunderbarer Ort für einen Aufenthalt – alles war perfekt! Die Zimmer sind riesig und geräumig, mit einem großen Gemeinschaftsbereich, der eine wirklich warme und einladende Atmosphäre schafft. Das Haus hat außerdem einen schönen Garten und eine große Terrasse, perfekt zum Entspannen und um die Umgebung zu genießen.\nDie Küche ist voll ausgestattet, das ganze Haus ist blitzsauber und hat eine sehr angenehme Atmosphäre. Ein charmantes Haus am Meer.\nBei der Ankunft wurden wir außerdem mit einem schönen Willkommenspaket empfangen – eine wirklich aufmerksame Geste.\nFrancesco war unglaublich freundlich, hilfsbereit und aufmerksam, und wir konnten uns jederzeit auf ihn verlassen, wenn wir etwas brauchten.\nWir hatten einen fantastischen Aufenthalt und können diesen wunderschönen Ort von Herzen empfehlen! ❤️",
+          source: "Auf Airbnb lesen" },
+        { platform: "booking", author: "Angela", when: "September 2026", iso: "2026-09", score: "9/10", rating: "Bewertung 9 von 10", title: "Fantastic!", lang: "en",
+          quote: "The villa was a perfect location for my needs,, close to family and a few steps from the sea. The host Francesco was amazing, very attentive and prompt\nIt's a perfect villa for a family, beautiful garden and very comfortable interior with a full kitchen , with all the amenities needed I will definitely be back.",
+          translation: "Fantastisch!\nDie Villa lag perfekt für meine Bedürfnisse, nah bei der Familie und nur wenige Schritte vom Meer. Der Gastgeber Francesco war großartig, sehr aufmerksam und schnell.\nEine perfekte Villa für eine Familie, mit schönem Garten und sehr gemütlichen Innenräumen, einer voll ausgestatteten Küche und allem, was man braucht. Ich komme ganz sicher wieder.",
+          source: "Auf Booking.com lesen" },
+        { platform: "airbnb", author: "Gaetana", when: "August 2026", iso: "2026-08", stars: 5, rating: "Bewertung 5 von 5", title: null, lang: "it",
+          quote:
+            "Ci siamo trovati benissimo in 6, spazi ampi, casa completa di tutto e camere con aria condizionata, terrazzino esterno stupendo. Francesco è stato gentilissimo e disponibile per qualsiasi dubbio riguardo la casa e non solo. Ci è sembrato di essere a casa, con il vantaggio di essere a due passi dal mare. Consigliatissimo, spero di poterci tornare presto",
+          translation:
+            "Wir haben uns zu sechst sehr wohlgefühlt: viel Platz, ein Haus mit allem, was man braucht, klimatisierte Zimmer und eine wunderschöne kleine Terrasse. Francesco war äußerst freundlich und bei jeder Frage zum Haus und darüber hinaus hilfsbereit. Wir haben uns wie zu Hause gefühlt, mit dem Vorteil, nur zwei Schritte vom Meer entfernt zu sein. Sehr zu empfehlen, ich hoffe, bald wiederzukommen.",
+          source: "Auf Airbnb lesen" },
+      ],
+    },
+    amenities: {
+      eyebrow: "Ausstattung",
+      title: "Was Sie im Haus erwartet",
+      text: "Alles, was Sie für eine Woche mit Familie oder Freunden brauchen, ohne bei der Ankunft etwas kaufen zu müssen.",
+      bedsTitle: "Schlafmöglichkeiten",
+      beds: [
+        { room: "Schlafzimmer 1", detail: "Doppelbett", places: "2 Personen" },
+        { room: "Schlafzimmer 2", detail: "Doppelbett", places: "2 Personen" },
+        { room: "Schlafzimmer 3", detail: "Kleines Doppelbett und Etagenbett", places: "3 Personen" },
+      ],
+      groups: [
+        {
+          title: "Küche",
+          items: ["Backofen", "Heißluftfritteuse", "Geschirrspüler", "Kühlschrank mit Gefrierfach", "Kaffeemaschine", "Töpfe und Pfannen", "Teller, Gläser, Besteck und Tassen"],
+        },
+        {
+          title: "Klima",
+          items: ["Klimaanlage mit Heizfunktion in allen drei Schlafzimmern", "Klimaanlage mit Heizfunktion im Wohnzimmer"],
+        },
+        {
+          title: "Bäder und Wäsche",
+          items: ["Zwei Badezimmer, beide mit Dusche", "Bettwäsche und Handtücher inklusive", "Waschmaschine", "Wäscheständer", "Haartrockner", "Seife"],
+        },
+        {
+          title: "Internet",
+          items: ["Glasfaser-WLAN bis 500 Mbit/s", "Fernseher im Wohnzimmer mit Netflix und weiteren Streamingdiensten"],
+        },
+        {
+          title: "Außenbereiche",
+          items: ["Privater Garten", "Holzkohlegrill", "Über 12 Sitzplätze im Freien an mehreren Tischen", "Liegestühle"],
+        },
+        {
+          title: "Parken",
+          items: ["Zwei kostenlose Privatparkplätze", "Platz für Roller und Fahrräder", "Kostenloses Parken auch auf der Straße vor dem Grundstück"],
+        },
+      ],
+      familyTitle: "Für Familien",
+      familyText: "Hochstuhl, Babybett, Bettgitter und Wickelauflage stehen ohne Aufpreis zur Verfügung. Sagen Sie uns bei der Buchung Bescheid, dann ist bei Ihrer Ankunft alles vorbereitet.",
+      rulesTitle: "Praktische Informationen",
+      rules: [
+        { label: "Mindestaufenthalt", value: "2 Nächte in der Nebensaison, 4 in der Hochsaison" },
+        { label: "Endreinigung", value: "99 €, zusätzlich zum Aufenthalt" },
+        { label: "Check-in", value: "ab 15:00 Uhr" },
+        { label: "Check-out", value: "bis 11:00 Uhr" },
+        { label: "Rauchen", value: "nur im Freien" },
+        { label: "Haustiere", value: "kleine und mittelgroße, mit geringem Reinigungsaufschlag" },
+        { label: "Partys", value: "nicht erlaubt" },
+        { label: "Kaution", value: "500 €, vor Ort zu hinterlegen und am Ende des Aufenthalts zurückerstattet" },
+      ],
+    },
+    location: {
+      eyebrow: "Wo wir sind",
+      title: "Das Meer liegt direkt vor der Tür",
+      text: "Nur wenige Schritte von der Adria entfernt bietet Bellavista Domus einen authentischen Aufenthalt an der Küste von Torre a Mare, ganz in der Nähe von Bari und den schönsten Orten Apuliens.",
+      mapEyebrow: "Auf der Karte",
+      mapTitle: "So finden Sie uns",
+      mapShow: "Karte anzeigen",
+      mapPrivacy: "Beim Laden der Karte erhält Google Ihre IP-Adresse.",
+      mapOpen: "In Google Maps öffnen",
+      distances: [
+        { value: "10 m", label: "zum Strand" },
+        { value: "5 Min.", label: "zu Fuß zum kleinen Hafen" },
+        { value: "15 Min.", label: "mit dem Auto nach Bari" },
+        { value: "25 Min.", label: "vom Flughafen Bari" },
+      ],
+      exploreEyebrow: "In der Umgebung",
+      exploreTitle: "Apulien entdecken",
+      places: [
+        { key: "torreamare", name: "Torre a Mare", desc: "Das Fischerdorf, in dem Bellavista Domus liegt.", link: "/torre-a-mare-de.html", linkLabel: "Sehenswertes in Torre a Mare" },
+        { key: "bari", name: "Bari", desc: "Die Hauptstadt Apuliens, zwischen Altstadt und Uferpromenade.", link: "/bari-de.html", linkLabel: "Sehenswertes in Bari" },
+        { key: "polignano", name: "Polignano a Mare", desc: "Berühmt für seine steil ins Meer abfallenden Klippen.", link: "/polignano-a-mare-de.html", linkLabel: "Sehenswertes in Polignano a Mare" },
+        { key: "monopoli", name: "Monopoli", desc: "Historischer Hafen und Altstadt an der Adria.", link: "/monopoli-de.html", linkLabel: "Sehenswertes in Monopoli" },
+        { key: "alberobello", name: "Alberobello", desc: "UNESCO-Welterbe, berühmt für seine Trulli.", link: "/alberobello-de.html", linkLabel: "Sehenswertes in Alberobello" },
+        { key: "castellana", name: "Grotten von Castellana", desc: "Sechzig Meter unter der Erde, zwischen Stalaktiten und Alabaster.", link: "/grotte-di-castellana-de.html", linkLabel: "So besuchen Sie sie" },
+        { key: "valleditria", name: "Valle d'Itria", desc: "Locorotondo, Cisternino, Martina Franca und Ostuni.", link: "/valle-d-itria-de.html", linkLabel: "Die Tagestour" },
+        { key: "matera", name: "Matera", desc: "Die Sassi, UNESCO-Welterbe, gut eine Stunde entfernt.", link: "/matera-de.html", linkLabel: "Den Besuch planen" },
+      ],
+    },
+    faq: {
+      eyebrow: "Häufige Fragen",
+      title: "Antworten auf die häufigsten Fragen",
+      text: "Wenn Sie nicht finden, was Sie suchen, schreiben Sie uns: Wir antworten meist innerhalb weniger Stunden.",
+      items: [
+        { q: "Lohnt es sich, direkt zu buchen?",
+          a: "Ja: Wenn Sie direkt bei uns buchen, per E-Mail, WhatsApp oder über das Formular auf der Website, erhalten Sie bis zu 25 % Rabatt gegenüber den Preisen von Booking.com und Airbnb für dieselben Daten, weil Sie keine Provisionen der Plattformen zahlen. Der genaue Prozentsatz hängt von den Daten ab: Wir bestätigen ihn Ihnen im Angebot." },
+        { q: "Wie viele Personen finden im Haus Platz?",
+          a: "Bis zu 7 Gäste in 3 Schlafzimmern: zwei Schlafzimmer mit Doppelbett und ein drittes mit einem kleinen Doppelbett und einem Etagenbett. Es gibt zwei Badezimmer, beide mit Dusche." },
+        { q: "Wie weit ist das Meer wirklich entfernt?",
+          a: "Zehn Meter, mit einer kleinen Sandbucht direkt vor dem Haus. Man überquert die Straße und ist am freien Strand, wo sich Sand und Felsen abwechseln. Das Meer sieht man von zwei der drei Schlafzimmer aus, und abends hört man es bei offenem Fenster." },
+        { q: "Wie lange ist der Mindestaufenthalt?",
+          a: "Zwei Nächte in der Nebensaison und vier Nächte in der Hochsaison." },
+        { q: "Wann sind Check-in und Check-out?",
+          a: "Check-in ist ab 15:00 Uhr, Check-out bis 11:00 Uhr. Wenn Ihr Flug oder Zug zu ungünstigen Zeiten geht, schreiben Sie uns: Wir versuchen, Ihnen entgegenzukommen, wenn der Kalender es erlaubt." },
+        { q: "Ist die Endreinigung inbegriffen?",
+          a: "Nein, sie kommt zum Preis des Aufenthalts hinzu und kostet 99 €. Es ist ein einmaliger Betrag, unabhängig von der Dauer des Aufenthalts und der Zahl der Gäste." },
+        { q: "Ist eine Kaution vorgesehen?",
+          a: "Ja, 500 €, bei der Ankunft vor Ort zu hinterlegen. Sie wird am Ende des Aufenthalts vollständig zurückerstattet, sofern keine Schäden entstanden sind." },
+        { q: "Muss man Kurtaxe zahlen?",
+          a: "Ja, sie wird vor Ort bezahlt und steht der Gemeinde Bari zu, nicht uns. Die städtische Satzung sieht Befreiungen vor – für Minderjährige und ab einer bestimmten Zahl aufeinanderfolgender Nächte –, daher bestätigen wir Ihnen den genauen Betrag bei der Buchung, je nachdem, wie viele Sie sind und wie lange Sie bleiben." },
+        { q: "Sind Bettwäsche und Handtücher inklusive?",
+          a: "Ja, Bettwäsche und Handtücher sind inklusive und liegen bei Ihrer Ankunft bereit. Im Haus finden Sie außerdem Seife, einen Haartrockner, eine Waschmaschine und einen Wäscheständer." },
+        { q: "Gibt es einen Parkplatz?",
+          a: "Ja, zwei kostenlose Privatparkplätze auf dem Grundstück, mit Platz auch für Roller und Fahrräder. Außerhalb des Grundstücks ist das Parken frei und kostenlos." },
+        { q: "Sind Haustiere erlaubt?",
+          a: "Ja, kleine und mittelgroße Hunde und Katzen sind willkommen, gegen einen geringen Reinigungsaufschlag. Bitte geben Sie es bei der Buchung an." },
+        { q: "Darf man rauchen?",
+          a: "Nur im Freien. Der Garten und die Außenbereiche stehen Ihnen zur Verfügung; im Haus wird nicht geraucht." },
+        { q: "Gibt es eine Klimaanlage?",
+          a: "Ja, in allen drei Schlafzimmern und im Wohnzimmer, mit Kühl- und Heizfunktion. Das Haus ist daher auch außerhalb der Saison angenehm." },
+        { q: "Wie ist die Internetverbindung?",
+          a: "Glasfaser-WLAN mit bis zu 500 Mbit/s im ganzen Haus. Die Verbindung eignet sich auch, wenn Sie während des Aufenthalts arbeiten oder Videokonferenzen führen müssen." },
+        { q: "Gibt es Ausstattung für kleine Kinder?",
+          a: "Ja: Hochstuhl, Babybett, Bettgitter und Wickelauflage, ohne Aufpreis. Bitte fragen Sie bei der Buchung danach, damit bei Ihrer Ankunft alles bereitsteht." },
+        { q: "Kann man Partys oder Veranstaltungen organisieren?",
+          a: "Nein, Partys und Veranstaltungen sind nicht erlaubt. Das Haus ist für Familien und Gruppen gedacht, die Ruhe suchen, und uns liegt ein gutes Verhältnis zur Nachbarschaft am Herzen." },
+        { q: "Gibt es einen Pool?",
+          a: "Noch nicht: Ein Pool ist für den Sommer 2027 geplant. Heute setzt das Haus auf anderes – zehn Meter bis zum Meer, mit der Sandbucht direkt davor, und einen privaten Garten mit über 12 Sitzplätzen im Freien und Grill. Wenn Sie einen Aufenthalt im Sommer 2027 planen, schreiben Sie uns vor der Buchung: Wir sagen Ihnen, wie weit die Arbeiten sind, damit Sie nicht auf eine bloße Erwartung hin buchen." },
+        { q: "Wie kommt man nach Torre a Mare?",
+          a: "Mit dem Auto nimmt man die Ausfahrt Torre a Mare centro und ist in zwei Minuten am Haus; vom Flughafen Bari sind es etwa 20 Minuten, 25 bei Verkehr. Mit öffentlichen Verkehrsmitteln ist der Bus 12 (oder 12/) ab dem Hauptbahnhof Bari am einfachsten. Vor Ort braucht man für den Strand und den Ort kein Auto; für Einkäufe und Besorgungen schon, sie sind etwa fünf Minuten entfernt.",
+          href: "/come-arrivare-de.html", linkLabel: "Alle Details zur Anreise" },
+      ],
+    },
+    booking: {
+      eyebrow: "Buchen",
+      title: "Bereit, mit Blick aufs Meer aufzuwachen?",
+      text: "Buchen Sie direkt bei uns per E-Mail, WhatsApp oder über das Formular: Gegenüber den Preisen von Booking.com und Airbnb für dieselben Daten erhalten Sie bis zu 25 % Rabatt, weil Sie keine Provisionen der Plattformen zahlen.",
+      direct: "Schreiben Sie uns und buchen Sie direkt",
+      alt: "Oder buchen Sie, wo Sie möchten",
+      booking: "Booking.com",
+      airbnb: "Airbnb",
+    },
+    form: {
+      eyebrow: "Anfrage",
+      title: "Prüfen Sie Ihre Reisedaten",
+      text: "Schreiben Sie uns, wann Sie kommen möchten und wie viele Sie sind: Wir antworten mit Verfügbarkeit und Preis, meist innerhalb weniger Stunden. Wenn Ihre Daten noch nicht feststehen, lassen Sie die Felder leer und schreiben Sie es in die Nachricht.",
+      name: "Vor- und Nachname",
+      arrival: "Anreise (optional)",
+      departure: "Abreise (optional)",
+      email: "E-Mail",
+      guests: "Gäste",
+      message: "Nachricht (optional)",
+      consent: "Ich akzeptiere die",
+      consentLink: "Datenschutzerklärung",
+      submit: "Anfrage senden",
+      sending: "Wird gesendet…",
+      error: "Die Anfrage konnte nicht gesendet werden. Schreiben Sie uns bitte direkt an " + CONFIG.property.email + " oder per WhatsApp an " + CONFIG.property.phone + ".",
+      doneTitle: "Anfrage erhalten",
+      doneText: "Vielen Dank! Wir melden uns so schnell wie möglich mit Verfügbarkeit und Direktpreis, bis zu 25 % günstiger als bei Booking.com und Airbnb. Für eine noch schnellere Antwort schicken Sie uns auch eine WhatsApp-Nachricht: Der Text ist schon vorbereitet.",
+      honeypot: "Dieses Feld nicht ausfüllen",
+    },
+    footer: {
+      tagline: "Ferienhaus am Meer",
+      contactTitle: "Kontakt",
+      infoTitle: "Informationen",
+      cis: "CIS",
+      cin: "CIN",
+      rights: "Alle Rechte vorbehalten.",
+      top: "Nach oben",
+      privacyUrl: "/privacy-de.html",
+      ospiti: "Gästeinformationen",
+      ospitiUrl: "/ospiti-de.html",
+    },
+    calendario: {
+      eyebrow: "Verfügbarkeit",
+      title: "Sind Ihre Daten frei?",
+      text: "Der Kalender zeigt die bereits gebuchten Nächte. Er wird alle paar Stunden von den Plattformen aktualisiert, betrachten Sie ihn also als Orientierung: Die endgültige Bestätigung erhalten Sie von uns.",
+      caricamento: "Kalender wird geladen…",
+      errore: "Der Kalender kann gerade nicht geladen werden. Schicken Sie uns Ihre Daten, wir antworten Ihnen.",
+      libero: "Frei",
+      occupato: "Belegt",
+      precedente: "Vorheriger Monat",
+      successivo: "Nächster Monat",
+      mesi: ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],
+      giorni: ["M","D","M","D","F","S","S"],
+      giorniEstesi: ["Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag"],
+      esempio: "Beispieldaten – der echte Kalender ist lokal nicht verfügbar",
+      guidaArrivo: "Tippen Sie auf den Anreisetag und dann auf den Abreisetag: Die Daten werden automatisch ins Anfrageformular übernommen.",
+      guidaPartenza: "Anreise am {data}. Tippen Sie jetzt auf den Abreisetag.",
+      conflitto: "Zwischen diesen Daten ist bereits eine Nacht gebucht: Wählen Sie eine andere Abreise oder Anreise.",
+      dal: "Vom", al: "bis", notte: "Nacht", notti: "Nächte",
+      arrivoAria: "Anreise", partenzaAria: "Abreise",
+      richiedi: "Diese Daten anfragen",
+      annulla: "Daten löschen",
+      // Nelle date tedesche il giorno porta il punto: "12. Juni 2027".
+      puntoGiorno: ".",
+    },
+    stickyCta: "Verfügbarkeit prüfen",
+    whatsapp: {
+      aria: "Schreiben Sie uns auf WhatsApp: bis zu 25 % Rabatt bei Direktbuchung",
+      message: "Hallo! Ich möchte Bellavista Domus direkt mit dem Rabatt von bis zu 25 % buchen. Können Sie mir Verfügbarkeit und Preis für diese Daten nennen: ",
+    },
+    promo: {
+      cifra: "−25%",
+      chip: "bis zu −25%",
+      barraLunga: "Bis zu 25 % Rabatt bei Direktbuchung per E-Mail oder WhatsApp, gegenüber den Preisen von Booking.com und Airbnb",
+      barraMedia: "Bis zu 25 % Rabatt bei Direktbuchung gegenüber Booking.com und Airbnb",
+      barraBreve: "bei Direktbuchung",
+      hero: "Bis zu 25 % Rabatt, wenn Sie direkt buchen, gegenüber den Preisen von Booking.com und Airbnb.",
+      heroCta: "Schreiben Sie uns auf WhatsApp",
+      fino: "Bis zu",
+      percento: "25 %",
+      sconto: "Rabatt",
+      fasciaAlto: "Bis zu 25 % Rabatt, wenn Sie direkt bei uns buchen, gegenüber den Preisen von Booking.com und Airbnb.",
+      fasciaRecensioni: "Möchten Sie unsere nächsten Gäste sein? Buchen Sie direkt und zahlen Sie bis zu 25 % weniger als bei Booking.com und Airbnb.",
+      modulo: "Angebot anfragen",
+      moduloTesto: "Bis zu 25 % Rabatt gegenüber Booking.com und Airbnb. Möchten Sie uns lieber gleich schreiben?",
+      nota: "Der genaue Prozentsatz hängt von den Daten ab: Wir bestätigen ihn Ihnen im Angebot.",
+      calendario: "Bei Direktbuchung zahlen Sie bis zu 25 % weniger als bei Booking.com und Airbnb.",
+      footer: "Direkt buchen: bis zu 25 % Rabatt gegenüber Booking.com und Airbnb.",
+      whatsapp: "WhatsApp",
+      email: "E-Mail",
+      emailOggetto: "Direktbuchung Bellavista Domus",
+      emailTesto: "Hallo, ich möchte Bellavista Domus direkt mit dem Rabatt von bis zu 25 % buchen.\n\nAnreise:\nAbreise:\nAnzahl der Gäste:\n",
+      dopoModulo: "Weiter auf WhatsApp",
+      dopoModuloMessaggio: "Hallo, ich bin {nome}. Ich habe gerade über die Website eine Anfrage gesendet{date} (Gäste: {ospiti}). Ich möchte direkt mit dem Rabatt buchen: Können Sie mir Verfügbarkeit und Preis bestätigen?",
+      dopoModuloDate: ", vom {arrivo} bis {partenza}",
+      separatoreData: ".",
+    },
+    photoPlaceholder: "Foto folgt",
+    cookieBanner: {
+      ariaLabel: "Cookie-Einwilligung",
+      text: "Wir verwenden Google Analytics nur mit Ihrer Einwilligung, um zu verstehen, wie die Website genutzt wird. Keine Profiling-Cookies.",
+      linkLabel: "Mehr erfahren",
+      reject: "Ablehnen",
+      accept: "Akzeptieren",
     },
   },
 };
@@ -1025,7 +1606,7 @@ function MapCard({ t }) {
 /* Indirizzo della homepage per ciascuna lingua. Usato dal selettore in alto
    e dai ritorni al sito: è l'unico punto da toccare se un giorno si
    aggiunge una terza lingua. */
-const HOME_LINGUE = { it: "/", en: "/en/" };
+const HOME_LINGUE = { it: "/", en: "/en/", fr: "/fr/", de: "/de/" };
 
 /* Icone della barra contatti: piccole, disegnate a mano, ereditano il colore
    dal testo. Meglio di una libreria di icone per tre sole forme. */
@@ -1215,7 +1796,7 @@ function Header({ lang, t, go }) {
               vedono. L'ancora corrente viene portata dietro, per non
               rispedire in cima chi stava leggendo a metà pagina. */}
           <nav className="bd-langswitch" aria-label="Language">
-            {["it", "en"].map((codice, i) => (
+            {Object.keys(HOME_LINGUE).map((codice, i) => (
               <React.Fragment key={codice}>
                 {i > 0 && <span aria-hidden="true">/</span>}
                 <a
@@ -1282,7 +1863,7 @@ function Hero({ t, go }) {
       </div>
       <div className="bd-hero__scrim" />
       <div className="bd-hero__content">
-        <p className="bd-hero__kicker">{CONFIG.property.locationLine}</p>
+        <p className="bd-hero__kicker">{t.luogo || CONFIG.property.locationLine}</p>
         <h1 className="bd-hero__title">{t.hero.title}</h1>
         <p className="bd-hero__subtitle">{t.hero.subtitle}</p>
         <p className="bd-hero__info">{t.hero.info}</p>
@@ -1811,7 +2392,7 @@ function Calendario({ t, go, onScegli }) {
 
   const formatta = (k) => {
     const [a, m, g] = k.split("-").map(Number);
-    return `${g} ${v.mesi[m - 1]} ${a}`;
+    return `${g}${v.puntoGiorno || ""} ${v.mesi[m - 1]} ${a}`;
   };
   const comunica = (da, a) => { if (onScegli) onScegli({ arrivo: da, partenza: a }); };
   const scegli = (k) => {
@@ -1887,7 +2468,7 @@ function Calendario({ t, go, onScegli }) {
                       const cls = passata ? "bd-cal__g bd-cal__g--passata"
                         : presa ? "bd-cal__g bd-cal__g--occupata"
                         : "bd-cal__g";
-                      const etichetta = `${g} ${v.mesi[mese]} ${anno} — ${presa ? v.occupato : v.libero}`;
+                      const etichetta = `${g}${v.puntoGiorno || ""} ${v.mesi[mese]} ${anno} — ${presa ? v.occupato : v.libero}`;
                       const puoPartire = arrivo && !partenza && k > arrivo && notteLibere(arrivo, k, occupate);
                       const cliccabile = !passata && (!presa || puoPartire);
                       if (!cliccabile) {
@@ -1997,7 +2578,7 @@ function ContactForm({ t, dateScelte }) {
        date appena inseriti. Le date arrivano come AAAA-MM-GG dal campo
        type="date": si girano in GG/MM/AAAA senza usare Date. */
     const p = t.promo;
-    const giraData = (d) => d.split("-").reverse().join("/");
+    const giraData = (d) => d.split("-").reverse().join(p.separatoreData || "/");
     const d = inviata || VUOTO;
     const date = d.arrivo && d.partenza
       ? p.dopoModuloDate.replace("{arrivo}", giraData(d.arrivo)).replace("{partenza}", giraData(d.partenza))
@@ -2173,7 +2754,7 @@ function Footer({ t, go }) {
           height="363"
           className="bd-logo--footer"
         />
-        <p className="bd-footer__tagline">{t.footer.tagline}. {CONFIG.property.locationLine}</p>
+        <p className="bd-footer__tagline">{t.footer.tagline}. {t.luogo || CONFIG.property.locationLine}</p>
         <p className="bd-footer__promo">
           <span className="bd-chip">{t.promo.cifra}</span> {t.promo.footer}
           <span className="bd-footer__promolink">
@@ -2204,6 +2785,7 @@ function Footer({ t, go }) {
             lunga, e chi arriva in fondo senza questo pulsante deve rifare
             tutta la strada all'indietro scorrendo. */}
         <span className="bd-footer__coda">
+          <a href={t.footer.ospitiUrl} className="bd-footer__privacy">{t.footer.ospiti}</a>
           <a href={t.footer.privacyUrl} className="bd-footer__privacy">Privacy</a>
           <button className="bd-footer__totop" onClick={() => go("#home")}>{t.footer.top} ↑</button>
         </span>

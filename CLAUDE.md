@@ -1,6 +1,6 @@
 # Bellavista Domus — contesto del progetto
 
-Sito vetrina (one-page, IT/EN) per una casa vacanze a Torre a Mare (Bari),
+Sito vetrina (one-page, IT/EN/FR/DE) per una casa vacanze a Torre a Mare (Bari),
 Puglia. React + Vite: contenuti e SEO sono dati statici dentro il repo,
 pubblicato come sito statico (build in `dist/`).
 
@@ -25,8 +25,9 @@ messaggio di errore invece delle date.
 
 ## Dove si modifica cosa
 
-- **`index.html`** (home italiana, `/`) e **`en/index.html`** (home
-  inglese, `/en/`) — due pagine HTML che servono **la stessa applicazione
+- **`index.html`** (home italiana, `/`), **`en/index.html`** (`/en/`),
+  **`fr/index.html`** (`/fr/`) e **`de/index.html`** (`/de/`) — quattro
+  pagine HTML che servono **la stessa applicazione
   React**: è l'attributo `lang` dell'`<html>` a decidere quale lingua
   mostrare (`src/main.jsx` lo legge e lo passa ad `App` come prop `lang`).
   Ognuna contiene i propri tag per motori di ricerca e anteprime social:
@@ -36,14 +37,19 @@ messaggio di errore invece delle date.
   preload dell'hero, favicon. **Sono deliberatamente duplicate**: è ciò che
   dà all'inglese un indirizzo indicizzabile invece di un interruttore che
   spariva al ricaricamento. Se si modifica un tag SEO in una, va aggiornato
-  anche nell'altra.
-  Le due pagine si dichiarano a vicenda con `<link rel="alternate"
-  hreflang>` (it, en, x-default), e le stesse coppie sono ripetute in
-  `public/sitemap.xml`. Aggiungere una lingua significa toccare quattro
-  punti: la nuova cartella con il suo `index.html`, gli hreflang nelle
-  pagine esistenti, la sitemap, e `HOME_LINGUE` in `App.jsx`.
-  `en/index.html` va dichiarata in `vite.config.js` come entry point
-  (`mainEn`), altrimenti non finisce nella build.
+  anche nelle altre tre.
+  Ogni pagina del sito dichiara le sue versioni con `<link rel="alternate"
+  hreflang>` (it, en, fr, de, x-default verso l'italiano), e le stesse
+  coppie sono ripetute in `public/sitemap.xml`. **Aggiungere una lingua**
+  significa toccare: la nuova cartella con il suo `index.html` (e la voce
+  `mainXx` in `vite.config.js`), `translations.<lang>` e `HOME_LINGUE` in
+  `App.jsx`, `LINGUE` in `src/main.jsx`, `PAGINE` in
+  `scripts/prerender.mjs`, le versioni delle 9 guide, della privacy e della
+  pagina ospiti, gli hreflang di **tutte** le pagine esistenti e la sitemap.
+  Francese e tedesco (settembre 2026) sono stati generati con script:
+  i testi sono traduzioni fatte a mano, la struttura è copiata
+  dall'inglese. Nel testo francese e tedesco "25 %" ha uno spazio che non va
+  a capo (`\u00a0` in `App.jsx`, `&nbsp;` nelle pagine statiche).
 - **`src/App.jsx`** — un unico file che contiene tutto il sito:
   - `CONFIG` in cima al file: link di prenotazione (Booking.com/Airbnb),
     dati della struttura (nome, località, ospiti/camere/bagni, CIS/CIN,
@@ -112,9 +118,10 @@ messaggio di errore invece delle date.
        ingannevole (Codice del Consumo, art. 21 c. 1 lett. d). Se la cifra
        cambia, va cambiata **ovunque insieme**: `translations.*.promo`,
        `booking.text`, `form.doneText`, `whatsapp.message`/`aria`, la FAQ in
-       pagina **e** nel JSON-LD delle due home, le meta/og/twitter
-       description delle due home, e le 18 guide (barra, due riquadri,
-       pulsante WhatsApp: cercare "25%").
+       pagina **e** nel JSON-LD delle quattro home, le meta/og/twitter
+       description delle quattro home, le 36 guide e le 4 pagine ospiti (barra, riquadri,
+       pulsante WhatsApp: cercare "25%", e in francese e tedesco anche
+       "25&nbsp;%" e "25\u00a0%").
     2. Nessun testo invita a mandare dati di pagamento o documenti via
        email o WhatsApp.
     3. I link WhatsApp (`linkWhatsApp`) ed email (`linkEmail`) sono link
@@ -194,7 +201,7 @@ messaggio di errore invece delle date.
     niente JavaScript, accessibili da tastiera, e il testo resta nell'HTML
     anche a fisarmonica chiusa, quindi leggibile da motori di ricerca e
     assistenti AI. **Le risposte in `translations.<lang>.faq.items` devono
-    restare identiche al blocco JSON-LD `FAQPage` nelle due home**: sono
+    restare identiche al blocco JSON-LD `FAQPage` nelle quattro home**: sono
     due copie dello stesso testo, e dichiarare a Google qualcosa di diverso
     da quanto mostri in pagina è una violazione delle sue linee guida.
     (Nota: dal 7 maggio 2026 Google non mostra più i risultati arricchiti
@@ -255,7 +262,7 @@ messaggio di errore invece delle date.
   1. i file in `public/images/`
   2. l'elenco `VARIANTI_IMMAGINI` in `src/App.jsx` (non tutte le foto hanno
      le stesse larghezze: quelle già piccole non vengono ingrandite)
-  3. il `<link rel="preload">` dell'hero nelle due home, che deve elencare
+  3. il `<link rel="preload">` dell'hero nelle quattro home, che deve elencare
      le stesse varianti — se puntasse al JPEG, il browser scaricherebbe
      quello **e poi** la variante WebP, cioè il doppio
   Il valore di `sizes` passato a ogni `PhotoSlot` dice al browser quanto
@@ -315,11 +322,18 @@ messaggio di errore invece delle date.
   Se in futuro arriva un logo nuovo, **va controllato lo stesso**: apri il
   file e guarda quanta tela vuota ha attorno prima di metterlo in pagina.
   Le icone (`favicon.ico` con 16/32/48, i due PNG, `apple-touch-icon`, i due
-  `android-chrome`) sono dichiarate in tutte e ventidue le pagine e in
+  `android-chrome`) sono dichiarate in tutte le pagine e in
   `public/site.webmanifest`. Il vecchio `public/favicon.svg` non è più
   citato da nessuna pagina.
-- **`public/privacy.html`**, **`public/privacy-en.html`** — pagina privacy
-  statica IT/EN, con hreflang reciproci. Il footer (`Footer` in `App.jsx`)
+- **`public/privacy.html`**, **`privacy-en.html`**, **`privacy-fr.html`**,
+  **`privacy-de.html`** — informativa privacy statica nelle quattro lingue,
+  con hreflang reciproci e `noindex` (per questo non sono in sitemap). Il
+  29 settembre 2026 il testo è stato aggiornato per la prenotazione diretta
+  (finalità "gestire la prenotazione e il soggiorno", WhatsApp Ireland come
+  titolare autonomo del servizio di messaggistica) e il codice regionale
+  corretto da un inesistente "CIR" al **CIS**: le quattro versioni vanno
+  tenute allineate, e un cambio di strumenti o di finalità va riportato in
+  tutte. Il footer (`Footer` in `App.jsx`)
   sceglie l'URL giusto tramite `t.footer.privacyUrl` — non aggiungere mai
   un `href="/privacy.html"` hardcoded, altrimenti l'utente EN finisce sulla
   pagina italiana. Vivendo in `public/`, non servono entry in
@@ -341,7 +355,8 @@ messaggio di errore invece delle date.
   Tutte e dieci sono linkate dalle rispettive card nella sezione "Scopri
   la Puglia" (`Location` in `App.jsx`, tramite `link`/`linkLabel` su ogni
   voce di `translations.<lang>.location.places` — le voci in `it` puntano
-  alle pagine italiane, quelle in `en` alle pagine `-en.html`). A
+  alle pagine italiane, quelle in `en` alle pagine `-en.html`, e così
+  `fr` → `-fr.html`, `de` → `-de.html`). A
   differenza di `public/privacy.html`, queste pagine vivono in root
   perché sono registrate come entry point separati in `vite.config.js`
   (`build.rollupOptions.input`) — ogni nuova pagina guida (e la sua
@@ -351,9 +366,16 @@ messaggio di errore invece delle date.
   località nel testo sono link con classe `.placelink`, e in fondo a ogni
   pagina c'è un blocco `<nav class="morelinks">` con le altre quattro guide.
   Regola ferrea: **una pagina italiana linka solo pagine italiane, una
-  inglese solo pagine `-en.html`** — mai incroci di lingua. Lo stesso vale
-  per i ritorni alla homepage: le guide italiane puntano a `/`, quelle
-  inglesi a `/en/`.
+  inglese solo pagine `-en.html`, una francese solo `-fr.html`, una tedesca
+  solo `-de.html`** — mai incroci di lingua (le uniche eccezioni sono gli
+  hreflang e i selettori di lingua). Lo stesso vale per i ritorni alla
+  homepage: `/`, `/en/`, `/fr/`, `/de/`. Nei link `.maplink` l'`aria-label`
+  finisce con "su Google Maps", "on Google Maps", "sur Google Maps" o "auf
+  Google Maps" secondo la lingua.
+  **Versioni francese e tedesca delle guide** (`<slug>-fr.html`,
+  `<slug>-de.html`, settembre 2026): stessa struttura della versione
+  inglese, testi tradotti dall'italiano. Una modifica di contenuto a una
+  guida va riportata nelle quattro lingue.
   **I due ritorni alla homepage non sono equivalenti.** Il logo
   (`class="logo"`) punta alla cima (`/` o `/en/`), come ci si aspetta da un
   logo. Il link "Torna al sito" (`class="back"`, presente due volte per
@@ -414,7 +436,20 @@ messaggio di errore invece delle date.
   FAQ, tramite i campi facoltativi `href`/`linkLabel` di una voce di
   `faq.items` — il link sta fuori dal testo della risposta perché quel
   testo finisce identico nel JSON-LD, dove un tag HTML non avrebbe senso.
-- **`public/robots.txt`**, **`public/sitemap.xml`** — SEO tecnico.
+- **`ospiti.html`**, **`ospiti-en.html`**, **`ospiti-fr.html`**,
+  **`ospiti-de.html`** (root) — la **pagina per chi ha già prenotato**: il
+  link che Francesco manda agli ospiti. Benvenuto, informazioni pratiche
+  (check-in/out, parcheggio, fumo, feste, cauzione, imposta di soggiorno),
+  contatti (WhatsApp con un messaggio "sono un ospite", telefono, email), le
+  9 guide nella stessa lingua, e la promozione della prenotazione diretta
+  (voluta da Francesco anche qui). È collegata dal footer della home e delle
+  guide, ha un selettore di lingua ed è in sitemap. **Mai dati privati**:
+  niente password del Wi-Fi, codici di porte o cassette, indirizzo non
+  pubblicato — il repository è pubblico e la pagina è online per tutti.
+  Solo informazioni già presenti nel resto del sito.
+- **`public/robots.txt`**, **`public/sitemap.xml`** — SEO tecnico. La
+  sitemap elenca 44 indirizzi (11 pagine × 4 lingue) con i rispettivi
+  hreflang.
 - **`netlify.toml`** (root) — non tocca build/publish (quelli restano
   nelle impostazioni del sito su Netlify o nel drag&drop manuale di
   `dist/`, vedi README.md). Contiene: il `Content-Type` di `sitemap.xml` e
@@ -433,7 +468,7 @@ messaggio di errore invece delle date.
   2. **Nessuno script scritto dentro le pagine** (`<script>...codice...</script>`):
      la CSP li blocca. Il codice va in un file in `public/js/` e si carica
      con `src=`. Oggi ce ne sono due: `public/js/consenso.js` (Consent Mode
-     e caricamento di gtag.js dopo il consenso, nelle due home, senza
+     e caricamento di gtag.js dopo il consenso, nelle quattro home, senza
      `async`) e `public/js/anno.js` (l'anno nel footer di guide e privacy). I blocchi JSON-LD (`type="application/ld+json"`) non
      sono script eseguibili e restano nelle pagine.
   `style-src` contiene `'unsafe-inline'` perché tutto il CSS vive in
@@ -448,7 +483,7 @@ messaggio di errore invece delle date.
   file copre tutti gli spessori e, per Fraunces, la dimensione ottica.
   `fonts.css` li dichiara e ogni pagina lo richiama con
   `@import url('/fonts/fonts.css');` in cima al proprio CSS (nelle home, in
-  cima a `STYLES`). Le due home precaricano `inter-latin.woff2` e
+  cima a `STYLES`). Le quattro home precaricano `inter-latin.woff2` e
   `fraunces-latin.woff2` con `<link rel="preload">`: **se cambiano i nomi
   dei file, vanno aggiornati anche quei preload**. Non tornare mai a
   `fonts.googleapis.com`.
@@ -472,9 +507,12 @@ messaggio di errore invece delle date.
 
 ## Convenzioni
 
-- Contenuti bilingue: ogni testo visibile vive in `translations.it` e
-  `translations.en` con la stessa struttura a chiavi — se si aggiunge un
-  testo, va aggiunto in entrambe le lingue. Questo include `CookieBanner`
+- Contenuti in quattro lingue: ogni testo visibile vive in
+  `translations.it`, `.en`, `.fr` e `.de` con la stessa struttura a chiavi —
+  se si aggiunge un testo, va aggiunto in tutte e quattro. (Chiavi
+  facoltative solo di alcune lingue: `luogo` in fr/de per "Pouilles" e
+  "Apulien"; `calendario.puntoGiorno` e `promo.separatoreData` in de per le
+  date "12. Juni" e "12.06.2027".) Questo include `CookieBanner`
   (testo/pulsanti in `translations.<lang>.cookieBanner`, link privacy in
   `translations.<lang>.footer.privacyUrl`): il componente riceve `t` come
   prop, non deve mai avere testo o `href` hardcoded al suo interno.
@@ -530,7 +568,7 @@ silenzioso:
   la pagina.
 
 Aggiungendo una lingua va aggiornato anche l'elenco `PAGINE` in
-`scripts/prerender.mjs`.
+`scripts/prerender.mjs` (oggi it, en, fr, de).
 
 ## Comandi utili
 
