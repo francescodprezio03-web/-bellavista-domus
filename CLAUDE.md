@@ -87,7 +87,47 @@ messaggio di errore invece delle date.
     arriva scorrendo. La frase di `booking.text` promette un prezzo più
     basso di quello delle piattaforme — è una promessa da mantenere davvero,
     e in Italia è lecita perché le clausole di parity rate sono nulle per
-    legge dal 2017 (L. 124/2017, art. 1 c. 166).
+    legge dal 2017 (L. 124/2017, art. 1 c. 166); nell'UE il Digital Markets
+    Act vieta inoltre a Booking.com di impedire o penalizzare prezzi diretti
+    più bassi (scheda della Commissione, settembre 2026). Accanto al modulo,
+    dal settembre 2026 WhatsApp ed email sono **canali diretti di pari
+    rango**: compaiono come pulsanti nei riquadri della promozione (vedi
+    sotto). Le due OTA restano comunque solo link testuali.
+  - **Promozione "fino al 25%" della prenotazione diretta (settembre
+    2026).** Voluta da Francesco deliberatamente insistente. Testi in
+    `translations.<lang>.promo`; componenti `PromoBarra` (striscia color
+    sabbia in cima, dentro l'intestazione fissa), `PromoFascia` (due fasce a
+    metà pagina: dopo `Features` e dopo `Testimonial`), `PromoAzioni` (i
+    pulsanti WhatsApp / Email / modulo), più il riquadro nell'apertura,
+    l'etichetta "−25%" su "Prenota ora", la cifra grande nella sezione
+    `Booking`, la striscia sopra il modulo, la riga nel calendario quando si
+    scelgono le date, la riga nel footer, l'etichetta sulla barra mobile e
+    sul pulsante WhatsApp, la prima domanda delle FAQ. Dopo l'invio del
+    modulo la conferma propone "Continua su WhatsApp" con nome e date già
+    scritti nel messaggio (WhatsApp è il canale che converte di più).
+    Regole:
+    1. **"Fino al" deve restare vero**: in alcune date lo sconto rispetto
+       alle tariffe di Booking.com e Airbnb deve arrivare davvero al 25%.
+       Un vantaggio di prezzo annunciato e non reale è pubblicità
+       ingannevole (Codice del Consumo, art. 21 c. 1 lett. d). Se la cifra
+       cambia, va cambiata **ovunque insieme**: `translations.*.promo`,
+       `booking.text`, `form.doneText`, `whatsapp.message`/`aria`, la FAQ in
+       pagina **e** nel JSON-LD delle due home, le meta/og/twitter
+       description delle due home, e le 18 guide (barra, due riquadri,
+       pulsante WhatsApp: cercare "25%").
+    2. Nessun testo invita a mandare dati di pagamento o documenti via
+       email o WhatsApp.
+    3. I link WhatsApp (`linkWhatsApp`) ed email (`linkEmail`) sono link
+       normali con il testo già scritto: non caricano nulla da terzi, non
+       richiedono consenso né modifiche alla CSP.
+    4. Niente finestre che coprono la pagina (pop-up a tutto schermo):
+       Google penalizza gli interstitial invadenti; le strisce e i riquadri
+       sì (https://developers.google.com/search/docs/appearance/avoid-intrusive-interstitials).
+    5. Niente animazioni lampeggianti: l'unico movimento resta l'entrata
+       dell'apertura, di cui il riquadro promo fa parte.
+    Sul telefono, finché si è nell'apertura, il pulsante WhatsApp fisso si
+    nasconde (coprirebbe il riquadro promo, che porta già a WhatsApp) e
+    l'invito "Scorri" non compare.
   - **Modulo: date facoltative.** `arrivo` e `partenza` non hanno `required`
     e non devono riacquistarlo. Chi cerca a gennaio per agosto non ha date
     certe, e un campo obbligatorio che non si può compilare fa chiudere la
@@ -165,7 +205,11 @@ messaggio di errore invece delle date.
     blocchi pubblicitari), così il sito non può rompersi per il tracciamento.
     Eventi attivi: `contatto` (metodo), `click_ota` (piattaforma),
     `apre_mappa`, `apre_galleria`, `apre_guida` (meta), `richiesta_inviata`,
-    `scroll_75`.
+    `scroll_75`. I pulsanti della promozione inviano `contatto` con metodo
+    `<canale>_<posizione>` (es. `whatsapp_hero`, `email_barra`,
+    `modulo_fascia_alto`, `whatsapp_dopo_modulo`, `telefono_footer`):
+    così si vede quale banner porta davvero contatti. Le guide non hanno
+    Analytics.
   - **Le schede di "Scopri la Puglia" sono link per intero.** In `Location`
     ogni scheda è un `Reveal as="a"` che avvolge fotografia, titolo,
     descrizione ed etichetta: è sulla foto che la gente clicca per istinto, e
@@ -188,7 +232,10 @@ messaggio di errore invece delle date.
     sezione (le vecchie classi `bd-eyebrow` e `bd-hairline` non esistono
     più), niente puntini separatori "A · B · C" nei testi, niente freccia
     "→" aggiunta ai link (resta solo come icona dei pulsanti del
-    calendario), niente barra contatti blu sopra il menu. `Reveal` non anima
+    calendario), niente barra contatti blu sopra il menu (la striscia color
+    sabbia che oggi sta lì è la promozione della prenotazione diretta,
+    voluta esplicitamente da Francesco a fine settembre 2026: non è un
+    ritorno della vecchia barra). `Reveal` non anima
     più nulla: l'unico movimento automatico è l'entrata dell'apertura (hero).
     Sono dettagli tipici dei modelli pronti e tolgono l'aria "premium".
   - La **Galleria** da computer è una griglia a 4 colonne con la prima foto
@@ -314,6 +361,14 @@ messaggio di errore invece delle date.
   otto guide sulle mete, `#faq` per `come-arrivare`, che si raggiunge dalle
   domande frequenti e non dalle schede. Senza l'ancora la homepage si
   ricarica dall'inizio e l'ospite perde il punto in cui era.
+  **Promozione nelle guide (settembre 2026).** Ogni guida ha la striscia
+  `.promo-barra` in cima, un riquadro `.promo` subito dopo l'introduzione
+  (`.lede`) e un secondo subito dopo il riquadro `.cta`, il pulsante
+  WhatsApp fisso `.wa-float` con l'etichetta "−25%", e CIN e CIS nel
+  footer. Il pulsante "Richiedi un preventivo" porta a `/#contact` nelle
+  guide italiane e a `/en/#contact` in quelle inglesi (stessa regola sugli
+  incroci di lingua). Messaggio WhatsApp, oggetto e testo dell'email sono
+  gli stessi della home, nella lingua della pagina.
   Le guide mantengono il suffisso `-en.html` invece di spostarsi sotto
   `/en/` perché sono già indicizzate da Google: rinominarle costerebbe
   redirect e posizionamento, senza guadagno.

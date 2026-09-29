@@ -308,6 +308,8 @@ const translations = {
       title: "Le risposte alle domande più comuni",
       text: "Se non trovi quello che cerchi, scrivici: rispondiamo di solito entro poche ore.",
       items: [
+        { q: "Conviene prenotare direttamente?",
+          a: "Sì: se prenoti direttamente con noi, via email, WhatsApp o con il modulo del sito, hai fino al 25% di sconto rispetto alle tariffe di Booking.com e Airbnb per le stesse date, perché non paghi le commissioni delle piattaforme. La percentuale esatta dipende dalle date: te la confermiamo nel preventivo." },
         { q: "Quante persone può ospitare la casa?",
           a: "Fino a 7 ospiti in 3 camere da letto: due camere con letto matrimoniale e una terza con un letto a una piazza e mezza più un letto a castello. I bagni sono due, entrambi con doccia." },
         { q: "Quanto dista davvero il mare?",
@@ -351,9 +353,12 @@ const translations = {
       /* La ragione dello sconto è scritta, non promessa: prenotando qui non
          c'è la commissione della piattaforma. È una frase da mantenere
          davvero — se il prezzo diretto non è più basso, è pubblicità
-         ingannevole. In Italia le clausole di parity rate sono nulle per
-         legge dal 2017 (L. 124/2017, art. 1 c. 166), quindi si può fare. */
-      text: "Scrivici direttamente: non paghi le commissioni della piattaforma, e a parità di date il prezzo che ti facciamo è più basso.",
+         ingannevole (vedi il commento su "promo"). Prezzi diversi sul sito
+         si possono fare: in Italia le clausole di parity rate sono nulle per
+         legge dal 2017 (L. 124/2017, art. 1 c. 166), e nell'UE il Digital
+         Markets Act vieta a Booking.com di impedirli o di penalizzarli nel
+         posizionamento. */
+      text: "Prenota direttamente con noi via email, WhatsApp o con il modulo: rispetto alle tariffe di Booking.com e Airbnb per le stesse date hai fino al 25% di sconto, perché non paghi le commissioni delle piattaforme.",
       direct: "Scrivici e prenota diretto",
       alt: "Oppure prenota dove preferisci",
       booking: "Booking.com",
@@ -380,7 +385,7 @@ const translations = {
          sono entrambi i recapiti, non solo l'email. */
       error: "Non è stato possibile inviare la richiesta. Scrivici direttamente a " + CONFIG.property.email + " oppure su WhatsApp al " + CONFIG.property.phone + ".",
       doneTitle: "Richiesta ricevuta",
-      doneText: "Grazie, ti rispondiamo al più presto con disponibilità e prezzo. Se hai fretta, puoi scriverci anche su WhatsApp.",
+      doneText: "Grazie! Ti rispondiamo al più presto con disponibilità e prezzo diretto, fino al 25% in meno rispetto a Booking.com e Airbnb. Per una risposta ancora più rapida, mandaci anche un messaggio su WhatsApp: il testo è già pronto.",
       honeypot: "Non compilare questo campo",
     },
     footer: {
@@ -423,8 +428,48 @@ const translations = {
        reader vivono qui e non nel componente: un ospite inglese che tocca il
        pulsante non deve ritrovarsi a scrivere in italiano. */
     whatsapp: {
-      aria: "Scrivici su WhatsApp",
-      message: "Ciao! Vorrei avere informazioni sulla disponibilità di Bellavista Domus.",
+      aria: "Scrivici su WhatsApp: fino al 25% di sconto prenotando diretto",
+      message: "Ciao! Vorrei prenotare direttamente Bellavista Domus con lo sconto fino al 25%. Mi dici disponibilità e prezzo per queste date: ",
+    },
+    /* Promozione della prenotazione diretta (settembre 2026). Francesco l'ha
+       voluta deliberatamente insistente: compare in molti punti della home e
+       in tutte le guide. Due regole da non perdere:
+       1. "Fino al" deve restare vero: in alcune date lo sconto rispetto alle
+          tariffe di Booking.com e Airbnb arriva davvero al 25%. Se non è più
+          così, la cifra si abbassa qui, nelle FAQ (anche nel JSON-LD delle due
+          home), nelle meta description e nelle 18 guide. Un vantaggio di
+          prezzo annunciato e non reale è pubblicità ingannevole (Codice del
+          Consumo, art. 21 c. 1 lett. d).
+       2. Nessun testo invita a mandare dati di pagamento o documenti via
+          email o WhatsApp. */
+    promo: {
+      cifra: "−25%",
+      chip: "fino a −25%",
+      barraLunga: "Fino al 25% di sconto se prenoti direttamente, via email o WhatsApp, rispetto alle tariffe di Booking.com e Airbnb",
+      barraMedia: "Fino al 25% di sconto prenotando diretto rispetto a Booking.com e Airbnb",
+      barraBreve: "prenotando diretto",
+      hero: "Fino al 25% di sconto se prenoti direttamente, rispetto alle tariffe di Booking.com e Airbnb.",
+      heroCta: "Scrivici su WhatsApp",
+      fino: "Fino al",
+      percento: "25%",
+      sconto: "di sconto",
+      fasciaAlto: "Fino al 25% di sconto se prenoti direttamente con noi, rispetto alle tariffe di Booking.com e Airbnb.",
+      fasciaRecensioni: "Vuoi essere il prossimo ospite? Prenota diretto e paghi fino al 25% in meno rispetto a Booking.com e Airbnb.",
+      modulo: "Richiedi un preventivo",
+      moduloTesto: "Fino al 25% di sconto rispetto a Booking.com e Airbnb. Preferisci scriverci subito?",
+      nota: "La percentuale esatta dipende dalle date: te la confermiamo nel preventivo.",
+      calendario: "Prenotando diretto paghi fino al 25% in meno rispetto a Booking.com e Airbnb.",
+      footer: "Prenota diretto: fino al 25% di sconto rispetto a Booking.com e Airbnb.",
+      whatsapp: "WhatsApp",
+      email: "Email",
+      emailOggetto: "Prenotazione diretta Bellavista Domus",
+      emailTesto: "Ciao, vorrei prenotare direttamente Bellavista Domus con lo sconto fino al 25%.\n\nArrivo:\nPartenza:\nNumero di ospiti:\n",
+      /* Dopo l'invio del modulo: il messaggio WhatsApp arriva già scritto,
+         con il nome e le date appena inseriti, così Francesco lo collega
+         subito alla richiesta. */
+      dopoModulo: "Continua su WhatsApp",
+      dopoModuloMessaggio: "Ciao, sono {nome}. Ho appena inviato una richiesta dal sito{date} (ospiti: {ospiti}). Vorrei prenotare diretto con lo sconto: mi confermi disponibilità e prezzo?",
+      dopoModuloDate: ", dal {arrivo} al {partenza}",
     },
     photoPlaceholder: "Fotografia in arrivo",
     cookieBanner: {
@@ -581,6 +626,8 @@ const translations = {
       title: "Answers to the most common questions",
       text: "If you cannot find what you are looking for, write to us: we usually reply within a few hours.",
       items: [
+        { q: "Is it cheaper to book direct?",
+          a: "Yes: if you book directly with us, by email, WhatsApp or the form on this site, you get up to 25% off the Booking.com and Airbnb rates for the same dates, because you pay no platform commission. The exact percentage depends on your dates: we confirm it in your quote." },
         { q: "How many guests can the house sleep?",
           a: "Up to 7 guests in 3 bedrooms: two bedrooms with a double bed, and a third with a small double bed plus a bunk bed. There are two bathrooms, both with a shower." },
         { q: "How far is the sea, really?",
@@ -621,7 +668,7 @@ const translations = {
     booking: {
       eyebrow: "Book",
       title: "Ready to wake up by the sea?",
-      text: "Write to us directly: you pay no platform commission, and for the same dates the price we quote you is lower.",
+      text: "Book directly with us by email, WhatsApp or the form: compared with the Booking.com and Airbnb rates for the same dates you get up to 25% off, because you pay no platform commission.",
       direct: "Write to us and book direct",
       alt: "Or book wherever you prefer",
       booking: "Booking.com",
@@ -643,7 +690,7 @@ const translations = {
       sending: "Sending…",
       error: "We could not send your enquiry. Please write to us directly at " + CONFIG.property.email + " or on WhatsApp at " + CONFIG.property.phone + ".",
       doneTitle: "Enquiry received",
-      doneText: "Thank you. We will get back to you shortly with availability and price. If you are in a hurry, you can also reach us on WhatsApp.",
+      doneText: "Thank you! We will get back to you shortly with availability and your direct price, up to 25% less than on Booking.com and Airbnb. For an even faster reply, send us a WhatsApp message too: the text is ready to go.",
       honeypot: "Do not fill in this field",
     },
     footer: {
@@ -680,8 +727,34 @@ const translations = {
     },
     stickyCta: "Check availability",
     whatsapp: {
-      aria: "Message us on WhatsApp",
-      message: "Hello! I would like some information about availability at Bellavista Domus.",
+      aria: "Message us on WhatsApp: up to 25% off when you book direct",
+      message: "Hello! I would like to book Bellavista Domus directly with the discount of up to 25%. Could you tell me availability and price for these dates: ",
+    },
+    promo: {
+      cifra: "−25%",
+      chip: "up to −25%",
+      barraLunga: "Up to 25% off when you book direct, by email or WhatsApp, compared with Booking.com and Airbnb rates",
+      barraMedia: "Up to 25% off when you book direct, compared with Booking.com and Airbnb",
+      barraBreve: "when you book direct",
+      hero: "Up to 25% off when you book direct, compared with Booking.com and Airbnb rates.",
+      heroCta: "Message us on WhatsApp",
+      fino: "Up to",
+      percento: "25%",
+      sconto: "off",
+      fasciaAlto: "Up to 25% off when you book directly with us, compared with Booking.com and Airbnb rates.",
+      fasciaRecensioni: "Want to be our next guest? Book direct and pay up to 25% less than on Booking.com and Airbnb.",
+      modulo: "Request a quote",
+      moduloTesto: "Up to 25% off compared with Booking.com and Airbnb. Prefer to message us right away?",
+      nota: "The exact percentage depends on your dates: we confirm it in your quote.",
+      calendario: "Book direct and pay up to 25% less than on Booking.com and Airbnb.",
+      footer: "Book direct: up to 25% off compared with Booking.com and Airbnb.",
+      whatsapp: "WhatsApp",
+      email: "Email",
+      emailOggetto: "Direct booking Bellavista Domus",
+      emailTesto: "Hello, I would like to book Bellavista Domus directly with the discount of up to 25%.\n\nArrival:\nDeparture:\nNumber of guests:\n",
+      dopoModulo: "Continue on WhatsApp",
+      dopoModuloMessaggio: "Hello, I am {nome}. I have just sent an enquiry from the website{date} (guests: {ospiti}). I would like to book direct with the discount: could you confirm availability and price?",
+      dopoModuloDate: ", from {arrivo} to {partenza}",
     },
     photoPlaceholder: "Photo coming soon",
     cookieBanner: {
@@ -956,6 +1029,125 @@ const HOME_LINGUE = { it: "/", en: "/en/" };
 
 /* Icone della barra contatti: piccole, disegnate a mano, ereditano il colore
    dal testo. Meglio di una libreria di icone per tre sole forme. */
+/* ------------------------- PROMO PRENOTAZIONE DIRETTA ------------------------- */
+
+/* Link a WhatsApp e all'email con il testo già scritto. Sono link normali:
+   non caricano nulla da terzi finché il visitatore non li tocca, quindi non
+   servono né consenso né modifiche alla Content-Security-Policy.
+   encodeURIComponent esiste anche in Node: si possono usare nel render. */
+function linkWhatsApp(testo) {
+  const numero = CONFIG.property.phone.replace(/\D/g, ""); // solo cifre, per wa.me
+  return `https://wa.me/${numero}?text=${encodeURIComponent(testo)}`;
+}
+function linkEmail(p) {
+  return `mailto:${CONFIG.property.email}?subject=${encodeURIComponent(p.emailOggetto)}&body=${encodeURIComponent(p.emailTesto)}`;
+}
+
+function IconaWhatsApp({ size = 18 }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" aria-hidden="true" focusable="false">
+      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.1c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.8-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.82 2 .9 2.14.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.46.29.15.46.13.63-.08.17-.2.72-.84.91-1.13.19-.29.38-.24.65-.14.27.1 1.69.8 1.98.94.29.15.48.22.55.34.07.13.07.72-.17 1.4Z"/>
+    </svg>
+  );
+}
+
+function IconaEmail({ size = 18 }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true" focusable="false">
+      <rect x="3" y="5" width="18" height="14" rx="1.5" />
+      <path d="m3.5 6 8.5 7 8.5-7" />
+    </svg>
+  );
+}
+
+/* I pulsanti dei tre canali diretti. "posizione" finisce nell'evento di
+   Analytics (es. "whatsapp_hero", "email_barra"): così si vede quale banner
+   porta davvero contatti. Con modulo={false} il pulsante del modulo non
+   compare (serve dove il modulo è già lì sotto). */
+function PromoAzioni({ t, go, posizione, modulo = true }) {
+  const p = t.promo;
+  return (
+    <div className="bd-promo__azioni">
+      <a
+        className="bd-promo__btn bd-promo__btn--wa"
+        href={linkWhatsApp(t.whatsapp.message)}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={() => traccia("contatto", { metodo: "whatsapp_" + posizione })}
+      >
+        <IconaWhatsApp /> {p.whatsapp}
+      </a>
+      <a
+        className="bd-promo__btn bd-promo__btn--email"
+        href={linkEmail(p)}
+        onClick={() => traccia("contatto", { metodo: "email_" + posizione })}
+      >
+        <IconaEmail /> {p.email}
+      </a>
+      {modulo && go ? (
+        <a
+          className="bd-promo__btn bd-promo__btn--modulo"
+          href="#contact"
+          onClick={(e) => { e.preventDefault(); go("#contact"); traccia("contatto", { metodo: "modulo_" + posizione }); }}
+        >
+          {p.modulo}
+        </a>
+      ) : null}
+    </div>
+  );
+}
+
+/* Striscia in cima alla pagina, dentro l'intestazione fissa: resta sempre
+   visibile. Sostituisce la vecchia barra contatti blu (tolta a settembre
+   2026) ma con un compito diverso: vendere la prenotazione diretta. Tre
+   lunghezze di testo, una sola visibile per volta a seconda dello schermo. */
+function PromoBarra({ t }) {
+  const p = t.promo;
+  return (
+    <div className="bd-promobar">
+      <p className="bd-promobar__testo">
+        <span className="bd-chip">{p.cifra}</span>
+        <span className="bd-promobar__lunga">{p.barraLunga}</span>
+        <span className="bd-promobar__media">{p.barraMedia}</span>
+        <span className="bd-promobar__breve">{p.barraBreve}</span>
+      </p>
+      <span className="bd-promobar__link">
+        <a
+          href={linkWhatsApp(t.whatsapp.message)}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => traccia("contatto", { metodo: "whatsapp_barra" })}
+        >
+          <IconaWhatsApp size={15} /> {p.whatsapp}
+        </a>
+        <a
+          className="bd-promobar__email"
+          href={linkEmail(p)}
+          onClick={() => traccia("contatto", { metodo: "email_barra" })}
+        >
+          <IconaEmail size={15} /> {p.email}
+        </a>
+      </span>
+    </div>
+  );
+}
+
+/* Fascia a tutta larghezza fra una sezione e l'altra. */
+function PromoFascia({ t, go, testo, posizione }) {
+  const p = t.promo;
+  return (
+    <aside className="bd-promofascia" aria-label={p.hero}>
+      <div className="bd-promofascia__inner">
+        <p className="bd-promofascia__testo">
+          <span className="bd-promofascia__cifra">{p.cifra}</span>
+          <span>{testo}</span>
+        </p>
+        <PromoAzioni t={t} go={go} posizione={posizione} />
+      </div>
+    </aside>
+  );
+}
+
 function Header({ lang, t, go }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -983,6 +1175,7 @@ function Header({ lang, t, go }) {
 
   return (
     <header className={`bd-header ${scrolled ? "bd-header--solid" : ""}`}>
+      <PromoBarra t={t} />
       <div className="bd-header__inner">
         <a href="#home" className="bd-logo" onClick={(e) => { e.preventDefault(); handleGo("#home"); }}>
           {/* Due versioni dello stesso marchio: finché l'intestazione è
@@ -1048,7 +1241,7 @@ function Header({ lang, t, go }) {
             className="bd-btn bd-btn--primary bd-btn--sm bd-nav--desktop-only"
             onClick={(e) => { e.preventDefault(); handleGo("#contact"); }}
           >
-            {t.nav.book}
+            {t.nav.book} <span className="bd-chip">{t.promo.cifra}</span>
           </a>
           <button className="bd-burger" aria-label="Menu" onClick={() => setMenuOpen((v) => !v)}>
             <span className={menuOpen ? "is-open" : ""} />
@@ -1063,7 +1256,7 @@ function Header({ lang, t, go }) {
           </a>
         ))}
         <a href="#contact" className="bd-btn bd-btn--primary" onClick={(e) => { e.preventDefault(); handleGo("#contact"); }}>
-          {t.nav.book}
+          {t.nav.book} <span className="bd-chip">{t.promo.cifra}</span>
         </a>
       </div>
     </header>
@@ -1101,6 +1294,21 @@ function Hero({ t, go }) {
             {t.hero.ctaSecondary}
           </a>
         </div>
+        {/* Il pulsante pieno porta al modulo; questo riquadro offre la
+            strada più rapida, WhatsApp, e dice subito perché conviene. */}
+        <a
+          className="bd-hero__promo"
+          href={linkWhatsApp(t.whatsapp.message)}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => traccia("contatto", { metodo: "whatsapp_hero" })}
+        >
+          <span className="bd-hero__promo-cifra">{t.promo.cifra}</span>
+          <span className="bd-hero__promo-testo">
+            {t.promo.hero}
+            <span className="bd-hero__promo-cta"><IconaWhatsApp size={15} /> {t.promo.heroCta}</span>
+          </span>
+        </a>
       </div>
       <button className="bd-hero__scrolldown" onClick={() => go("#intro")} aria-label={t.hero.scroll}>
         <span className="bd-hero__scrolldown-line" />
@@ -1720,6 +1928,7 @@ function Calendario({ t, go, onScegli }) {
                   <p className="bd-cal__riepilogo">
                     {`${v.dal} ${formatta(arrivo)} ${v.al} ${formatta(partenza)}, ${contaNotti(arrivo, partenza)} ${contaNotti(arrivo, partenza) === 1 ? v.notte : v.notti}`}
                   </p>
+                  <p className="bd-cal__promo"><span className="bd-chip">{t.promo.cifra}</span> {t.promo.calendario}</p>
                   <div className="bd-cal__azioni">
                     <button type="button" className="bd-btn bd-btn--send" onClick={() => go("#contact")}>{v.richiedi}</button>
                     <button type="button" className="bd-cal__annulla" onClick={azzera}>{v.annulla}</button>
@@ -1737,6 +1946,9 @@ function Calendario({ t, go, onScegli }) {
 function ContactForm({ t, dateScelte }) {
   const [valori, setValori] = useState(VUOTO);
   const [stato, setStato] = useState("pronto"); // pronto | invio | inviato | errore
+  // Copia di ciò che è stato inviato: serve a scrivere il messaggio WhatsApp
+  // della schermata di conferma dopo che il modulo si è svuotato.
+  const [inviata, setInviata] = useState(null);
   const oggi = useOggi();
 
   /* Le date scelte toccando il calendario riempiono i campi, che restano
@@ -1769,6 +1981,7 @@ function ContactForm({ t, dateScelte }) {
       });
       if (!risposta.ok) throw new Error(risposta.status);
       setStato("inviato");
+      setInviata(valori);
       setValori(VUOTO);
       traccia("richiesta_inviata", { ospiti: valori.ospiti });
     } catch (err) {
@@ -1779,12 +1992,35 @@ function ContactForm({ t, dateScelte }) {
   };
 
   if (stato === "inviato") {
+    /* WhatsApp è il canale che converte di più: dopo il modulo si invita a
+       scrivere anche lì, con un messaggio già pronto che contiene nome e
+       date appena inseriti. Le date arrivano come AAAA-MM-GG dal campo
+       type="date": si girano in GG/MM/AAAA senza usare Date. */
+    const p = t.promo;
+    const giraData = (d) => d.split("-").reverse().join("/");
+    const d = inviata || VUOTO;
+    const date = d.arrivo && d.partenza
+      ? p.dopoModuloDate.replace("{arrivo}", giraData(d.arrivo)).replace("{partenza}", giraData(d.partenza))
+      : "";
+    const messaggio = p.dopoModuloMessaggio
+      .replace("{nome}", d.nome.trim())
+      .replace("{ospiti}", d.ospiti)
+      .replace("{date}", date);
     return (
       <section id="contact" className="bd-form">
         <Reveal className="bd-form__inner">
           <div className="bd-form__done" role="status">
             <h2 className="bd-h3">{t.form.doneTitle}</h2>
             <p className="bd-body bd-body--narrow">{t.form.doneText}</p>
+            <a
+              className="bd-promo__btn bd-promo__btn--wa bd-promo__btn--grande"
+              href={linkWhatsApp(messaggio)}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => traccia("contatto", { metodo: "whatsapp_dopo_modulo" })}
+            >
+              <IconaWhatsApp size={20} /> {p.dopoModulo}
+            </a>
           </div>
         </Reveal>
       </section>
@@ -1797,6 +2033,11 @@ function ContactForm({ t, dateScelte }) {
         <div className="bd-section-head">
           <h2 className="bd-h3">{t.form.title}</h2>
           <p className="bd-body bd-body--narrow">{t.form.text}</p>
+        </div>
+
+        <div className="bd-form__promo">
+          <p><span className="bd-chip">{t.promo.cifra}</span> {t.promo.moduloTesto}</p>
+          <PromoAzioni t={t} posizione="modulo" modulo={false} />
         </div>
 
         <form className="bd-form__grid" name={NOME_MODULO} method="POST" onSubmit={invia} noValidate={false}>
@@ -1887,6 +2128,11 @@ function Booking({ t, go }) {
       <div className="bd-booking__glow" />
       <Reveal className="bd-booking__inner">
         <h2 className="bd-h2 bd-h2--light">{t.booking.title}</h2>
+        <p className="bd-booking__offerta">
+          <span className="bd-booking__fino">{t.promo.fino}</span>
+          <span className="bd-booking__cifra">{t.promo.percento}</span>
+          <span className="bd-booking__fino">{t.promo.sconto}</span>
+        </p>
         <p className="bd-body bd-body--light">{t.booking.text}</p>
         <div className="bd-booking__ctas">
           <a
@@ -1896,7 +2142,9 @@ function Booking({ t, go }) {
           >
             {t.booking.direct}
           </a>
+          <PromoAzioni t={t} go={go} posizione="prenota" modulo={false} />
         </div>
+        <p className="bd-booking__nota">{t.promo.nota}</p>
         <p className="bd-booking__alt">{t.booking.alt}</p>
         <div className="bd-booking__ota">
           <a href={CONFIG.links.booking} target="_blank" rel="noopener noreferrer" className="bd-booking__otalink" onClick={() => traccia("click_ota", { piattaforma: "booking" })}>
@@ -1926,13 +2174,22 @@ function Footer({ t, go }) {
           className="bd-logo--footer"
         />
         <p className="bd-footer__tagline">{t.footer.tagline}. {CONFIG.property.locationLine}</p>
+        <p className="bd-footer__promo">
+          <span className="bd-chip">{t.promo.cifra}</span> {t.promo.footer}
+          <span className="bd-footer__promolink">
+            <a href={linkWhatsApp(t.whatsapp.message)} target="_blank" rel="noopener noreferrer" onClick={() => traccia("contatto", { metodo: "whatsapp_footer" })}><IconaWhatsApp size={15} /> {t.promo.whatsapp}</a>
+            <a href={linkEmail(t.promo)} onClick={() => traccia("contatto", { metodo: "email_footer" })}><IconaEmail size={15} /> {t.promo.email}</a>
+          </span>
+        </p>
       </div>
 
       <div className="bd-footer__grid">
         <div>
           <p className="bd-footer__title">{t.footer.contactTitle}</p>
-          <p>{CONFIG.property.email}</p>
-          <p>{CONFIG.property.phone}</p>
+          {/* Recapiti cliccabili: su telefono un tocco apre la mail o la
+              chiamata, invece di dover copiare a mano. */}
+          <p><a className="bd-footer__contatto" href={linkEmail(t.promo)} onClick={() => traccia("contatto", { metodo: "email_footer_recapiti" })}>{CONFIG.property.email}</a></p>
+          <p><a className="bd-footer__contatto" href={"tel:+" + CONFIG.property.phone.replace(/\D/g, "")} onClick={() => traccia("contatto", { metodo: "telefono_footer" })}>{CONFIG.property.phone}</a></p>
         </div>
         <div>
           <p className="bd-footer__title">{t.footer.infoTitle}</p>
@@ -1999,20 +2256,30 @@ function CookieBanner({ t }) {
 /* ------------------------------- WHATSAPP -------------------------------- */
 
 function WhatsAppButton({ t }) {
-  const digits = CONFIG.property.phone.replace(/\D/g, ""); // solo numeri, per il link wa.me
-  const message = encodeURIComponent(t.whatsapp.message);
+  /* Sul telefono, finché si è nell'apertura, il pulsante coprirebbe il
+     riquadro promo, che porta già a WhatsApp: si fa da parte e ricompare
+     appena si scorre, insieme alla barra "Verifica disponibilità". Lo stato
+     parte da false, così l'HTML prerenderizzato mostra sempre il pulsante. */
+  const [inApertura, setInApertura] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setInApertura(window.scrollY < window.innerHeight * 0.6);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   return (
     <a
-      className="bd-whatsapp"
-      href={`https://wa.me/${digits}?text=${message}`}
+      className={`bd-whatsapp ${inApertura ? "bd-whatsapp--apertura" : ""}`}
+      href={linkWhatsApp(t.whatsapp.message)}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={t.whatsapp.aria}
       onClick={() => traccia("contatto", { metodo: "whatsapp" })}
     >
-      <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true">
-        <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.1c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.8-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.82 2 .9 2.14.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.46.29.15.46.13.63-.08.17-.2.72-.84.91-1.13.19-.29.38-.24.65-.14.27.1 1.69.8 1.98.94.29.15.48.22.55.34.07.13.07.72-.17 1.4Z"/>
-      </svg>
+      <IconaWhatsApp size={26} />
+      {/* L'etichetta ripete lo sconto sul pulsante che resta sempre a
+          vista. È decorativa: l'aria-label dice già tutto. */}
+      <span className="bd-whatsapp__badge" aria-hidden="true">{t.promo.cifra}</span>
     </a>
   );
 }
@@ -2030,7 +2297,9 @@ function StickyCta({ t, go }) {
     <div className={`bd-stickycta ${show ? "is-visible" : ""}`}>
       {/* Porta al modulo, non alla sezione Prenota: su telefono questo è il
           pulsante più cliccato di tutto il sito. */}
-      <button onClick={() => go("#contact")}>{t.stickyCta}</button>
+      <button onClick={() => go("#contact")}>
+        {t.stickyCta} <span className="bd-chip">{t.promo.chip}</span>
+      </button>
     </div>
   );
 }
@@ -2282,7 +2551,7 @@ const STYLES = `
 }
 @keyframes bd-fadeup{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 @media (prefers-reduced-motion: reduce){
-  .bd-hero__img, .bd-hero__kicker, .bd-hero__title, .bd-hero__subtitle, .bd-hero__info, .bd-hero__ctas{animation:none;}
+  .bd-hero__img, .bd-hero__kicker, .bd-hero__title, .bd-hero__subtitle, .bd-hero__info, .bd-hero__ctas, .bd-hero__promo{animation:none;}
 }
 .bd-hero__scrolldown{
   position:absolute;left:50%;bottom:34px;transform:translateX(-50%);z-index:2;
@@ -2895,6 +3164,167 @@ const STYLES = `
 @media (max-width:860px){
   .bd-whatsapp{right:16px;bottom:calc(86px + env(safe-area-inset-bottom));width:50px;height:50px;}
 }
+@media (max-width:760px){
+  .bd-whatsapp{transition:transform .3s ease, box-shadow .3s ease, opacity .3s ease;}
+  .bd-whatsapp.bd-whatsapp--apertura{opacity:0;pointer-events:none;transform:scale(0.8);}
+}
+
+/* ---------------- Promozione prenotazione diretta (settembre 2026) ----------------
+   Voluta insistente da Francesco: striscia in cima, riquadro nell'apertura,
+   due fasce a metà pagina, sezione Prenota, modulo, calendario, footer,
+   barra mobile e pulsante WhatsApp. Colore guida: la sabbia del marchio,
+   con testo blu scuro (contrasto 7,5:1). Il verde di WhatsApp porta testo
+   blu scuro, non bianco: il bianco su quel verde non si legge (2:1). */
+.bd-chip{
+  display:inline-block;padding:3px 7px;border-radius:2px;
+  background:var(--sand);color:var(--sea-deep);
+  font-weight:700;font-size:0.92em;letter-spacing:0.01em;line-height:1.2;
+  text-transform:none;white-space:nowrap;vertical-align:1px;
+}
+.bd-btn .bd-chip{margin-left:2px;}
+/* Le ancore dei menu non devono finire sotto l'intestazione, ora più alta. */
+.bd-root section[id]{scroll-margin-top:34px;}
+
+/* Striscia in cima (dentro l'intestazione fissa) */
+.bd-promobar{
+  position:relative;z-index:2;
+  display:flex;align-items:center;justify-content:center;gap:8px 22px;
+  padding:8px 22px;background:var(--sand);color:var(--sea-deep);
+  font-size:13px;line-height:1.35;text-align:center;
+}
+.bd-promobar__testo{margin:0;display:flex;align-items:center;gap:10px;font-weight:500;}
+.bd-promobar .bd-chip{background:var(--sea-deep);color:var(--ivory);}
+.bd-promobar__link{display:flex;align-items:center;gap:16px;flex:none;}
+.bd-root .bd-promobar__link a{
+  display:inline-flex;align-items:center;gap:5px;font-weight:700;
+  text-decoration:underline;text-underline-offset:3px;color:var(--sea-deep);
+}
+.bd-root .bd-promobar__link a:hover{opacity:0.75;}
+.bd-promobar__media,.bd-promobar__breve{display:none;}
+@media (max-width:1180px){
+  .bd-promobar__lunga{display:none;}
+  .bd-promobar__media{display:inline;}
+}
+@media (max-width:640px){
+  .bd-promobar{padding:7px 14px;gap:12px;font-size:12.5px;}
+  .bd-promobar__media{display:none;}
+  .bd-promobar__breve{display:inline;}
+  .bd-root .bd-promobar__link .bd-promobar__email{display:none;}
+}
+
+/* Riquadro nell'apertura */
+.bd-root .bd-hero__promo{
+  display:inline-flex;align-items:center;gap:16px;margin-top:30px;max-width:540px;
+  padding:12px 20px 12px 12px;border-radius:2px;
+  background:rgba(16,40,56,0.62);border:1px solid rgba(205,179,136,0.7);color:var(--white);
+  backdrop-filter:blur(6px);
+  animation:bd-fadeup 1s cubic-bezier(.16,.8,.24,1) 1.15s both;
+  transition:background .3s ease;
+}
+.bd-root .bd-hero__promo:hover{background:rgba(16,40,56,0.78);}
+.bd-hero__promo-cifra{
+  flex:none;font-family:'Fraunces',serif;font-weight:500;font-size:34px;line-height:1;
+  padding:10px 12px;border-radius:2px;background:var(--sand);color:var(--sea-deep);letter-spacing:-0.01em;
+}
+.bd-hero__promo-testo{font-size:14.5px;line-height:1.45;}
+.bd-hero__promo-cta{
+  display:flex;align-items:center;gap:6px;margin-top:6px;font-weight:600;color:var(--sand);
+  text-decoration:underline;text-underline-offset:3px;
+}
+@media (max-width:760px){
+  /* Sul telefono il riquadro promo prende il posto dell'invito a scorrere,
+     che finirebbe sopra al riquadro. */
+  .bd-hero__scrolldown{display:none;}
+  .bd-hero__content{padding-bottom:40px;}
+  .bd-hero__subtitle{margin-bottom:20px;}
+  .bd-hero__info{padding-top:18px;}
+  .bd-hero__info{margin-bottom:28px;}
+  .bd-hero__ctas{gap:18px 28px;}
+  .bd-root .bd-hero__promo{margin-top:22px;gap:12px;padding:10px 14px 10px 10px;}
+  .bd-hero__promo-cifra{font-size:26px;padding:8px 9px;}
+  .bd-hero__promo-testo{font-size:13.5px;}
+}
+
+/* Pulsanti dei tre canali */
+.bd-promo__azioni{display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+.bd-root .bd-promo__btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:14px 22px;border-radius:2px;border:1px solid transparent;
+  font-size:13px;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;white-space:nowrap;
+  transition:transform .3s ease, box-shadow .3s ease, background .3s ease;
+}
+.bd-root .bd-promo__btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(16,40,56,0.2);}
+.bd-root .bd-promo__btn--wa{background:#25D366;color:var(--sea-deep);}
+.bd-root .bd-promo__btn--email{background:var(--sea-deep);color:var(--ivory);}
+.bd-root .bd-promo__btn--modulo{background:transparent;color:var(--sea-deep);border-color:var(--sea-deep);}
+.bd-root .bd-promo__btn--grande{margin-top:26px;padding:17px 30px;font-size:14px;}
+@media (max-width:640px){
+  .bd-promo__azioni{width:100%;}
+  .bd-root .bd-promo__btn{flex:1 1 auto;}
+}
+
+/* Fasce a metà pagina */
+.bd-promofascia{background:var(--sand);color:var(--sea-deep);padding:40px 32px;}
+.bd-promofascia__inner{
+  max-width:1280px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;gap:24px 48px;flex-wrap:wrap;
+}
+.bd-promofascia__testo{
+  margin:0;display:flex;align-items:center;gap:20px;max-width:660px;
+  font-family:'Fraunces',serif;font-weight:400;font-size:clamp(19px,2.1vw,25px);line-height:1.3;
+}
+.bd-promofascia__cifra{flex:none;font-size:clamp(44px,5.4vw,66px);font-weight:500;line-height:1;letter-spacing:-0.02em;}
+@media (max-width:640px){
+  .bd-promofascia{padding:32px 22px;}
+  .bd-promofascia__testo{gap:14px;}
+}
+
+/* Sezione Prenota */
+.bd-booking__offerta{margin:8px 0 26px;display:flex;flex-direction:column;align-items:center;gap:8px;}
+.bd-booking__fino{font-family:'Fraunces',serif;font-style:italic;font-size:22px;color:rgba(255,255,255,0.86);}
+.bd-booking__cifra{
+  font-family:'Fraunces',serif;font-weight:400;font-size:clamp(88px,15vw,160px);
+  line-height:0.9;letter-spacing:-0.03em;color:var(--sand);
+}
+.bd-booking__ctas .bd-promo__azioni{justify-content:center;}
+.bd-booking .bd-promo__btn--email{background:transparent;color:var(--white);border-color:rgba(255,255,255,0.65);}
+.bd-booking__nota{margin:22px auto 0;font-size:13.5px;line-height:1.6;color:rgba(255,255,255,0.72);max-width:46ch;}
+
+/* Modulo */
+.bd-form__promo{
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px 24px;
+  margin:-18px 0 0;padding:20px 22px;background:var(--white);
+  border:1px solid rgba(205,179,136,0.8);border-left:4px solid var(--sand);border-radius:2px;
+}
+.bd-form__promo p{margin:0;font-size:15px;line-height:1.55;color:var(--sea-deep);max-width:34ch;}
+
+/* Calendario */
+.bd-cal__promo{margin:-6px 0 16px;font-size:14.5px;line-height:1.55;color:var(--sea-deep);}
+
+/* Footer */
+.bd-footer__promo{margin:16px 0 0;font-size:14px;line-height:1.7;color:var(--sea-deep);}
+.bd-footer__promolink{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:6px;}
+.bd-root .bd-footer__promolink a{display:inline-flex;align-items:center;gap:6px;font-weight:600;text-decoration:underline;text-underline-offset:3px;}
+.bd-root .bd-footer__contatto{text-decoration:underline;text-decoration-color:rgba(105,98,79,0.35);text-underline-offset:3px;}
+.bd-root .bd-footer__contatto:hover{color:var(--sea-deep);}
+
+/* Fra tablet e computer piccolo lo spazio dell'intestazione è poco: il menu
+   resta su una riga e l'etichetta del pulsante cede il posto (lo sconto è
+   comunque scritto nella striscia subito sopra). */
+.bd-nav--desktop a{white-space:nowrap;}
+@media (max-width:1100px){
+  .bd-nav--desktop{gap:22px;}
+  .bd-header__right .bd-chip{display:none;}
+}
+
+/* Barra mobile e pulsante WhatsApp */
+.bd-stickycta .bd-chip{margin-left:6px;}
+.bd-whatsapp__badge{
+  position:absolute;top:-7px;right:-14px;
+  padding:3px 6px;border-radius:10px;background:var(--sand);color:var(--sea-deep);
+  font-size:11px;font-weight:700;line-height:1;white-space:nowrap;
+  box-shadow:0 2px 6px rgba(16,40,56,0.25);
+}
 
 /* Cookie banner */
 .bd-cookiebanner{
@@ -2944,11 +3374,16 @@ export default function BellavistaDomus({ lang = "it" }) {
       <Hero t={t} go={go} />
       <Intro t={t} />
       <Features t={t} />
+      {/* Promozione della prenotazione diretta: prima fascia appena finiti
+          i punti forti, seconda dopo le recensioni (vedi "promo" nelle
+          traduzioni per le regole sulla cifra). */}
+      <PromoFascia t={t} go={go} testo={t.promo.fasciaAlto} posizione="fascia_alto" />
       <House t={t} />
       <Gallery t={t} />
       {/* Subito dopo le fotografie: si è appena finito di guardare la casa,
           ed è il momento in cui la parola di un ospite pesa di più. */}
       <Testimonial t={t} />
+      <PromoFascia t={t} go={go} testo={t.promo.fasciaRecensioni} posizione="fascia_recensioni" />
       {/* Dopo le fotografie e prima della posizione: si vede la casa, si
           legge cosa contiene, poi si scopre dov'è. */}
       <Amenities t={t} />
