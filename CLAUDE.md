@@ -439,7 +439,8 @@ messaggio di errore invece delle date.
 - **`ospiti.html`**, **`ospiti-en.html`**, **`ospiti-fr.html`**,
   **`ospiti-de.html`** (root) — la **pagina per chi ha già prenotato**: il
   link che Francesco manda agli ospiti. Benvenuto, informazioni pratiche
-  (check-in/out, parcheggio, fumo, feste, cauzione, imposta di soggiorno),
+  (check-in/out, parcheggio, fumo, feste, imposta di soggiorno; la cauzione
+  non si chiede più, da settembre 2026),
   contatti (WhatsApp con un messaggio "sono un ospite", telefono, email), le
   9 guide nella stessa lingua, e la promozione della prenotazione diretta
   (voluta da Francesco anche qui). È collegata dal footer della home e delle
