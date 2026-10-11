@@ -23,6 +23,8 @@ export default defineConfig({
         // Francese e tedesco (settembre 2026): stesso schema dell'inglese.
         mainFr: resolve(__dirname, "fr/index.html"),
         mainDe: resolve(__dirname, "de/index.html"),
+        // Spagnolo (ottobre 2026): stesso schema.
+        mainEs: resolve(__dirname, "es/index.html"),
         torreAMare: resolve(__dirname, "torre-a-mare.html"),
         torreAMareEn: resolve(__dirname, "torre-a-mare-en.html"),
         polignanoAMare: resolve(__dirname, "polignano-a-mare.html"),
@@ -60,11 +62,22 @@ export default defineConfig({
         materaDe: resolve(__dirname, "matera-de.html"),
         valleDItriaFr: resolve(__dirname, "valle-d-itria-fr.html"),
         valleDItriaDe: resolve(__dirname, "valle-d-itria-de.html"),
-        // Pagina per gli ospiti che hanno già prenotato, in quattro lingue.
+        // Guide in spagnolo (ottobre 2026): stesso schema -en.
+        torreAMareEs: resolve(__dirname, "torre-a-mare-es.html"),
+        polignanoAMareEs: resolve(__dirname, "polignano-a-mare-es.html"),
+        monopoliEs: resolve(__dirname, "monopoli-es.html"),
+        bariEs: resolve(__dirname, "bari-es.html"),
+        alberobelloEs: resolve(__dirname, "alberobello-es.html"),
+        comeArrivareEs: resolve(__dirname, "come-arrivare-es.html"),
+        castellanaEs: resolve(__dirname, "grotte-di-castellana-es.html"),
+        materaEs: resolve(__dirname, "matera-es.html"),
+        valleDItriaEs: resolve(__dirname, "valle-d-itria-es.html"),
+        // Pagina per gli ospiti che hanno già prenotato, in cinque lingue.
         ospiti: resolve(__dirname, "ospiti.html"),
         ospitiEn: resolve(__dirname, "ospiti-en.html"),
         ospitiFr: resolve(__dirname, "ospiti-fr.html"),
         ospitiDe: resolve(__dirname, "ospiti-de.html"),
+        ospitiEs: resolve(__dirname, "ospiti-es.html"),
       },
     },
   },

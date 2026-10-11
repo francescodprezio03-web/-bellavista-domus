@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Pagina per chi ha già prenotato (il link si manda agli ospiti), collegata
+       dal menu e da una sezione della home e dal footer di home e guide;
+       a sua volta porta al sito (pulsante in testata e sezione "Il sito").
+       Solo informazioni già pubbliche: niente
+       password del Wi-Fi, codici o dati privati, perché il repository è
+       pubblico. Stessa struttura delle altre lingue (spagnolo: ottobre 2026). -->
+  <title>Guía para huéspedes — Bellavista Domus, Torre a Mare</title>
+  <meta name="description" content="Para quien se aloja en Bellavista Domus en Torre a Mare (Bari): check-in y check-out, aparcamiento, contactos y nuestras guías de los lugares que visitar cerca." />
+  <link rel="canonical" href="https://bellavistadomus.netlify.app/ospiti-es.html" />
+  <link rel="alternate" hreflang="it" href="https://bellavistadomus.netlify.app/ospiti.html" />
+  <link rel="alternate" hreflang="en" href="https://bellavistadomus.netlify.app/ospiti-en.html" />
+  <link rel="alternate" hreflang="fr" href="https://bellavistadomus.netlify.app/ospiti-fr.html" />
+  <link rel="alternate" hreflang="de" href="https://bellavistadomus.netlify.app/ospiti-de.html" />
+  <link rel="alternate" hreflang="es" href="https://bellavistadomus.netlify.app/ospiti-es.html" />
+  <link rel="alternate" hreflang="x-default" href="https://bellavistadomus.netlify.app/ospiti.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Bellavista Domus" />
+  <meta property="og:title" content="Guía para huéspedes — Bellavista Domus, Torre a Mare" />
+  <meta property="og:description" content="Para quien se aloja en Bellavista Domus en Torre a Mare (Bari): check-in y check-out, aparcamiento, contactos y nuestras guías de los lugares que visitar cerca." />
+  <meta property="og:image" content="https://bellavistadomus.netlify.app/images/og/home.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://bellavistadomus.netlify.app/ospiti-es.html" />
+  <meta property="og:locale" content="es_ES" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Guía para huéspedes — Bellavista Domus, Torre a Mare" />
+  <meta name="twitter:description" content="Para quien se aloja en Bellavista Domus en Torre a Mare (Bari): check-in y check-out, aparcamiento, contactos y nuestras guías de los lugares que visitar cerca." />
+  <meta name="twitter:image" content="https://bellavistadomus.netlify.app/images/og/home.jpg" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Guía para huéspedes — Bellavista Domus, Torre a Mare",
+      "description": "Para quien se aloja en Bellavista Domus en Torre a Mare (Bari): check-in y check-out, aparcamiento, contactos y nuestras guías de los lugares que visitar cerca.",
+      "url": "https://bellavistadomus.netlify.app/ospiti-es.html",
+      "inLanguage": "es",
+      "about": {
+        "@type": "LodgingBusiness",
+        "name": "Bellavista Domus",
+        "url": "https://bellavistadomus.netlify.app/es/"
+      }
+    }
+  </script>
+  <link rel="icon" href="/branding/favicon.ico" sizes="32x32" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/branding/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/branding/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/branding/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#102838" />
+  <style>
+    @import url('/fonts/fonts.css');
+
+    :root{
+      --ivory:#FAF7F1;
+      --ivory-2:#F1EBDF;
+      --sea-deep:#102838;
+      --sea:#38667C;
+      --sand:#CDB388;
+      --stone:#69624F;
+      --white:#FFFFFF;
+      --line: rgba(16,40,56,0.13);
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      background:var(--ivory);
+      color:var(--sea-deep);
+      font-family:'Inter',-apple-system,sans-serif;
+      -webkit-font-smoothing:antialiased;
+    }
+    img{max-width:100%;display:block;}
+    a{color:var(--sea);}
+
+    header{
+      padding:22px 32px;border-bottom:1px solid var(--line);
+      display:flex;align-items:center;justify-content:space-between;
+      max-width:1000px;margin:0 auto;
+    }
+    .logo{display:block;line-height:0;}
+    /* Stesso marchio della homepage: sopra un fondo chiaro serve
+       la versione a colori, non quella chiara. */
+    .logo img{height:38px;width:auto;}
+    @media (max-width:700px){.logo img{height:32px;}}
+    .back{font-size:13px;letter-spacing:0.04em;text-transform:uppercase;text-decoration:none;color:var(--sea-deep);border-bottom:1px solid currentColor;padding-bottom:2px;}
+
+    .hero{position:relative;height:46vh;min-height:320px;max-height:520px;overflow:hidden;background:var(--sea-deep);}
+    .hero img{width:100%;height:100%;object-fit:cover;}
+    .hero__scrim{
+      position:absolute;inset:0;
+      background:linear-gradient(180deg, rgba(16,40,56,0.12) 0%, rgba(16,40,56,0.10) 40%, rgba(16,40,56,0.72) 100%);
+    }
+    .hero__content{
+      position:absolute;left:0;right:0;bottom:0;padding:0 32px 40px;max-width:1000px;margin:0 auto;width:100%;
+    }
+    .eyebrow{
+      font-size:11.5px;letter-spacing:0.24em;text-transform:uppercase;color:rgba(255,255,255,0.86);
+      margin:0 0 12px;font-weight:500;
+    }
+    .hero h1{
+      font-family:'Fraunces',serif;font-weight:340;color:var(--white);
+      font-size:clamp(30px,5vw,52px);line-height:1.08;margin:0;letter-spacing:-0.015em;
+      max-width:16ch;
+    }
+
+    main{max-width:720px;margin:0 auto;padding:64px 32px 40px;}
+    .lede{
+      font-family:'Fraunces',serif;font-style:italic;font-weight:400;
+      font-size:clamp(19px,2.4vw,23px);line-height:1.5;color:var(--sea-deep);
+      margin:0 0 48px;
+    }
+    h2{
+      font-family:'Fraunces',serif;font-weight:500;font-size:24px;
+      margin:52px 0 16px;letter-spacing:-0.005em;
+    }
+    p, li{font-size:16.5px;line-height:1.8;color:var(--stone);font-weight:300;}
+    ul{padding-left:20px;margin:0;}
+    li{margin-bottom:8px;}
+    strong{color:var(--sea-deep);font-weight:500;}
+
+    .cta{
+      background:var(--sea-deep);border-radius:2px;padding:44px 40px;margin:64px 0 20px;text-align:center;
+    }
+    .cta p{color:rgba(255,255,255,0.82);margin:0 0 22px;}
+    .cta h3{font-family:'Fraunces',serif;font-weight:400;color:var(--white);font-size:24px;margin:0 0 10px;}
+    .cta a{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:15px 30px;background:var(--ivory);color:var(--sea-deep);
+      font-size:13px;letter-spacing:0.07em;text-transform:uppercase;font-weight:500;
+      border-radius:2px;text-decoration:none;
+    }
+
+    hr{border:none;border-top:1px solid var(--line);margin:56px 0 24px;}
+    footer{
+      max-width:720px;margin:0 auto;padding:0 32px 60px;
+      font-size:13px;color:var(--stone);
+    }
+
+    @media (max-width:700px){
+      main{padding:48px 22px 30px;}
+      header{padding:18px 22px;}
+      .hero__content{padding:0 22px 30px;}
+    }
+
+    /* --- collegamenti tra le guide ------------------------------------- */
+    .placelink{
+      color:var(--sea);font-weight:500;text-decoration:none;
+      border-bottom:1px solid rgba(56,102,124,0.35);
+      transition:border-color .15s;
+    }
+    .placelink:hover,.placelink:focus-visible{border-bottom-color:var(--sea);}
+    .maplink{
+      color:var(--sea);text-decoration:none;
+      border-bottom:1px solid rgba(56,102,124,0.35);
+      transition:border-color .15s;
+    }
+    .maplink:hover,.maplink:focus-visible{border-bottom-color:var(--sea);}
+
+    .morelinks{margin:64px 0 0;}
+    .morelinks h2{font-size:20px;margin:0 0 20px;}
+    .morelinks__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+    .morelinks__card{
+      display:flex;gap:14px;align-items:center;text-decoration:none;color:inherit;
+      border:1px solid var(--line);border-radius:2px;padding:10px;background:var(--white);
+      transition:border-color .15s;
+    }
+    .morelinks__card:hover,.morelinks__card:focus-visible{border-color:var(--sand);}
+    .morelinks__card img{width:76px;height:64px;object-fit:cover;border-radius:2px;flex:none;}
+    .morelinks__card b{
+      display:block;font-family:'Fraunces',serif;font-weight:500;font-size:16px;
+      color:var(--sea-deep);margin-bottom:3px;
+    }
+    .morelinks__card span{font-size:13.5px;line-height:1.45;color:var(--stone);font-weight:300;}
+    @media (max-width:560px){.morelinks__grid{grid-template-columns:1fr;}}
+
+    .morelinks--testo{margin-top:34px;}
+    .morelinks--testo ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:11px;}
+    .morelinks--testo li{font-size:15px;line-height:1.55;color:var(--stone);font-weight:300;}
+    .morelinks--testo a{color:var(--sea-deep);font-weight:500;border-bottom:1px solid var(--line);}
+    .morelinks--testo a:hover{border-bottom-color:var(--sea);}
+
+    /* --- promozione prenotazione diretta (settembre 2026) ----------------
+       Stessi testi e stessa cifra della home (translations.*.promo in
+       src/App.jsx): se lo sconto massimo cambia, va cambiato anche qui, in
+       tutte e diciotto le guide. I link a WhatsApp ed email sono link
+       normali: nessuno script, niente da aggiungere alla CSP. */
+    .promo-barra{
+      display:flex;align-items:center;justify-content:center;gap:8px 20px;
+      padding:8px 20px;background:var(--sand);color:var(--sea-deep);text-align:center;
+    }
+    .promo-barra p{margin:0;display:flex;align-items:center;gap:10px;font-size:13px;line-height:1.35;color:var(--sea-deep);font-weight:500;}
+    .promo-barra__link{display:flex;align-items:center;gap:16px;flex:none;}
+    .promo-barra__link a{display:inline-flex;align-items:center;gap:5px;font-size:13px;color:var(--sea-deep);font-weight:700;text-underline-offset:3px;}
+    .promo-chip{display:inline-block;padding:3px 7px;border-radius:2px;background:var(--sea-deep);color:var(--ivory);font-weight:700;font-size:12px;line-height:1.2;white-space:nowrap;}
+    .promo-barra__breve{display:none;}
+    @media (max-width:640px){
+      .promo-barra{padding:7px 14px;gap:12px;}
+      .promo-barra__lunga{display:none;}
+      .promo-barra__breve{display:inline;}
+      .promo-barra__link .promo-barra__email{display:none;}
+      .promo-barra p{white-space:nowrap;}
+    }
+    .promo{
+      display:flex;gap:24px;align-items:flex-start;margin:0 0 48px;padding:26px 26px 24px;
+      background:var(--ivory-2);border:1px solid rgba(205,179,136,0.8);border-left:4px solid var(--sand);border-radius:2px;
+    }
+    .cta + .promo{margin:20px 0 0;}
+    .promo__cifra{
+      flex:none;margin:0;padding:12px 14px;border-radius:2px;background:var(--sand);color:var(--sea-deep);
+      font-family:'Fraunces',serif;font-weight:500;font-size:40px;line-height:1;
+    }
+    .promo__titolo{margin:0 0 8px;font-family:'Fraunces',serif;font-weight:500;font-size:21px;line-height:1.3;color:var(--sea-deep);}
+    .promo p.promo__testo{margin:0 0 6px;font-size:15.5px;line-height:1.65;color:var(--sea-deep);}
+    .promo p.promo__nota{margin:0 0 16px;font-size:13px;line-height:1.5;color:var(--stone);}
+    .promo__azioni{display:flex;flex-wrap:wrap;gap:10px;}
+    .promo__btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;
+      border:1px solid transparent;border-radius:2px;text-decoration:none;white-space:nowrap;
+      font-size:12.5px;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;
+    }
+    .promo__btn--wa{background:#25D366;color:var(--sea-deep);}
+    .promo__btn--email{background:var(--sea-deep);color:var(--ivory);}
+    .promo__btn--modulo{background:transparent;color:var(--sea-deep);border-color:var(--sea-deep);}
+    @media (max-width:560px){
+      .promo{flex-direction:column;gap:16px;padding:22px 20px;}
+      .promo__cifra{font-size:32px;}
+      .promo__btn{flex:1 1 auto;}
+    }
+    /* Pulsante WhatsApp sempre a vista, come nella home. Il verde con
+       l'icona bianca è quello di WhatsApp; l'etichetta ripete lo sconto. */
+    .wa-float{
+      position:fixed;right:20px;bottom:22px;z-index:50;width:54px;height:54px;border-radius:50%;
+      background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;
+      box-shadow:0 8px 20px rgba(16,40,56,0.28);
+    }
+    .wa-float__badge{
+      position:absolute;top:-7px;right:-12px;padding:3px 6px;border-radius:10px;
+      background:var(--sand);color:var(--sea-deep);font-size:11px;font-weight:700;line-height:1;
+      box-shadow:0 2px 6px rgba(16,40,56,0.25);
+    }
+    .footer-codici{display:block;margin-top:6px;}
+    .footer-ospiti{display:inline-block;margin-top:8px;color:var(--sea-deep);font-weight:500;}
+    @media (max-width:700px){footer{padding-bottom:96px;}}
+
+    /* --- pagina ospiti --------------------------------------------------- */
+    .lingue{display:flex;gap:6px;font-size:12.5px;letter-spacing:0.05em;}
+    .lingue a{color:var(--stone);text-decoration:none;}
+    .lingue a[aria-current]{color:var(--sea-deep);font-weight:600;text-decoration:underline;text-underline-offset:3px;}
+    .testata-destra{display:flex;align-items:center;gap:22px;}
+    .info{list-style:none;padding:0;margin:0;border-top:1px solid var(--line);}
+    .info li{margin:0;padding:12px 0;border-bottom:1px solid var(--line);font-size:16px;line-height:1.6;}
+    .contatti{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
+    .ospiti-guide{margin-top:56px;scroll-margin-top:60px;}
+    .ospiti-guide h2{font-size:24px;}
+    .ospiti-guide + .promo{margin-top:44px;}
+    @media (max-width:560px){.testata-destra{gap:14px;}}
+
+    /* Collegamento al sito principale: pulsante in testata e sezione
+       dedicata, perché chi arriva qui da un messaggio non è passato dalla
+       home e "Torna al sito" non basterebbe a fargliela scoprire. */
+    .sito-btn{
+      display:inline-flex;align-items:center;gap:6px;padding:9px 14px;white-space:nowrap;
+      border:1px solid var(--sea-deep);border-radius:2px;text-decoration:none;
+      font-size:12px;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;color:var(--sea-deep);
+    }
+    .sito-btn:hover,.sito-btn:focus-visible{background:var(--sea-deep);color:var(--ivory);}
+    .promo__btn--scuro{background:var(--sea-deep);color:var(--ivory);}
+    .sito{margin-top:56px;}
+    .sito p{margin:0;}
+    .sito + .promo{margin-top:44px;}
+    main > .back{margin-top:4px;display:inline-block;}
+
+    /* Promozione più presente che nelle guide (voluta da Francesco): barra
+       che resta in cima, invito sulla foto, riquadro subito dopo il
+       benvenuto, fascia scura a metà, scheda fra le guide, riquadro finale. */
+    .promo-barra{position:sticky;top:0;z-index:40;box-shadow:0 1px 0 rgba(16,40,56,0.12);}
+    .hero-promo{
+      display:inline-flex;align-items:center;gap:10px;margin:0 0 16px;padding:6px 12px 6px 6px;max-width:100%;
+      border-radius:2px;background:rgba(250,247,241,0.95);color:var(--sea-deep);text-decoration:none;
+      font-size:13.5px;font-weight:500;line-height:1.3;
+    }
+    .hero-promo:hover,.hero-promo:focus-visible{background:var(--white);}
+    .hero-promo .promo-chip{font-size:13px;}
+    .lede + .promo{margin-top:-8px;}
+    .cta.cta--promo{margin:56px 0 0;padding:40px 36px;}
+    .cta .cta__cifra{font-family:'Fraunces',serif;font-weight:500;font-size:56px;line-height:1;color:var(--sand);margin:0 0 12px;}
+    .cta a.promo__btn--wa{background:#25D366;color:var(--sea-deep);padding:14px 22px;font-size:12.5px;letter-spacing:0.06em;font-weight:600;}
+    .morelinks .morelinks__card--promo{background:var(--sea-deep);border-color:var(--sea-deep);}
+    .morelinks .morelinks__card--promo:hover,.morelinks .morelinks__card--promo:focus-visible{border-color:var(--sand);}
+    .morelinks__card .card-cifra{
+      width:76px;height:64px;flex:none;display:flex;align-items:center;justify-content:center;border-radius:2px;
+      background:var(--sand);color:var(--sea-deep);font-family:'Fraunces',serif;font-size:23px;font-weight:500;line-height:1;
+    }
+    .morelinks__card--promo b{color:var(--ivory);}
+    .morelinks__card--promo span{color:rgba(255,255,255,0.82);}
+    @media (max-width:560px){
+      header{flex-wrap:wrap;gap:12px;padding:16px 18px;}
+      .logo img{height:28px;}
+      .testata-destra{gap:10px;}
+      .lingue{gap:4px;font-size:11.5px;}
+      .sito-btn{padding:8px 10px;font-size:11px;letter-spacing:0.04em;}
+      .hero-promo{font-size:12.5px;}
+      .cta.cta--promo{padding:34px 22px;}
+      .cta .cta__cifra{font-size:46px;}
+    }
+  </style>
+</head>
+<body>
+  <!-- Promozione prenotazione diretta: vedi il commento nel CSS -->
+  <div class="promo-barra">
+    <p><span class="promo-chip">−25%</span> <span class="promo-barra__lunga">Hasta un 25&nbsp;% de descuento si reservas directamente, por email o WhatsApp, respecto a las tarifas de Booking.com y Airbnb</span><span class="promo-barra__breve">reservando directamente</span></p>
+    <span class="promo-barra__link">
+      <a href="https://wa.me/393318228563?text=%C2%A1Hola%21%20Me%20gustar%C3%ADa%20reservar%20Bellavista%20Domus%20directamente%20con%20el%20descuento%20de%20hasta%20el%2025%C2%A0%25.%20Quisiera%20saber%20la%20disponibilidad%20y%20el%20precio%20para%20estas%20fechas%3A%20" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.1c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.8-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.82 2 .9 2.14.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.46.29.15.46.13.63-.08.17-.2.72-.84.91-1.13.19-.29.38-.24.65-.14.27.1 1.69.8 1.98.94.29.15.48.22.55.34.07.13.07.72-.17 1.4Z"/></svg> WhatsApp</a>
+      <a class="promo-barra__email" href="mailto:francescod.prezio03@icloud.com?subject=Reserva%20directa%20Bellavista%20Domus&amp;body=Hola%2C%20me%20gustar%C3%ADa%20reservar%20Bellavista%20Domus%20directamente%20con%20el%20descuento%20de%20hasta%20el%2025%C2%A0%25.%0A%0ALlegada%3A%0ASalida%3A%0AN%C3%BAmero%20de%20hu%C3%A9spedes%3A%0A"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m3.5 6 8.5 7 8.5-7"/></svg> Email</a>
+    </span>
+  </div>
+
+  <header>
+    <a href="/es/" class="logo">
+      <img src="/branding/logo-header.png" alt="Bellavista Domus" width="300" height="106" />
+    </a>
+    <span class="testata-destra">
+      <nav class="lingue" aria-label="Idioma"><a href="/ospiti.html" hreflang="it">IT</a> <span aria-hidden="true">/</span> <a href="/ospiti-en.html" hreflang="en">EN</a> <span aria-hidden="true">/</span> <a href="/ospiti-fr.html" hreflang="fr">FR</a> <span aria-hidden="true">/</span> <a href="/ospiti-de.html" hreflang="de">DE</a> <span aria-hidden="true">/</span> <a href="/ospiti-es.html" hreflang="es" aria-current="page">ES</a></nav>
+      <a href="/es/" class="sito-btn">Ir a la web <span aria-hidden="true">→</span></a>
+    </span>
+  </header>
+
+  <div class="hero">
+    <picture>
+      <source type="image/webp" srcset="/images/hero-480.webp 480w, /images/hero-900.webp 900w, /images/hero-1400.webp 1400w, /images/hero.webp 1900w" sizes="100vw">
+      <img src="/images/hero.jpg" alt="Bellavista Domus, la casa de vacaciones junto al mar en Torre a Mare" width="1900" height="2533" loading="eager" fetchpriority="high" />
+    </picture>
+    <div class="hero__scrim"></div>
+    <div class="hero__content">
+      <a class="hero-promo" href="https://wa.me/393318228563?text=%C2%A1Hola%21%20Me%20gustar%C3%ADa%20reservar%20Bellavista%20Domus%20directamente%20con%20el%20descuento%20de%20hasta%20el%2025%C2%A0%25.%20Quisiera%20saber%20la%20disponibilidad%20y%20el%20precio%20para%20estas%20fechas%3A%20" target="_blank" rel="noopener noreferrer"><span class="promo-chip">−25%</span> Hasta un 25&nbsp;% de descuento si reservas directamente</a>
+      <p class="eyebrow">Para nuestros huéspedes</p>
+      <h1>Bienvenidos a Bellavista Domus</h1>
+    </div>
+  </div>
+
+  <main>
+    <p class="lede">
+      ¡Bienvenidos! En esta página tienes lo que necesitas durante la estancia: la información práctica, nuestros contactos y las guías de los lugares que visitar en los alrededores, escritas por nosotros.
+    </p>
+
+    <aside class="promo" aria-label="Reserva directa">
+      <p class="promo__cifra">−25%</p>
+      <div>
+        <p class="promo__titolo">Reserva directamente y ahorra hasta un 25&nbsp;%</p>
+        <p class="promo__testo">Escríbenos por email o WhatsApp, o usa el formulario de la web: respecto a las tarifas de Booking.com y Airbnb para las mismas fechas pagas hasta un 25&nbsp;% menos, porque no hay comisiones de las plataformas.</p>
+        <p class="promo__nota">El porcentaje exacto depende de las fechas: te lo confirmamos en el presupuesto.</p>
+        <div class="promo__azioni">
+          <a class="promo__btn promo__btn--wa" href="https://wa.me/393318228563?text=%C2%A1Hola%21%20Me%20gustar%C3%ADa%20reservar%20Bellavista%20Domus%20directamente%20con%20el%20descuento%20de%20hasta%20el%2025%C2%A0%25.%20Quisiera%20saber%20la%20disponibilidad%20y%20el%20precio%20para%20estas%20fechas%3A%20" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.1c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.8-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.82 2 .9 2.14.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.46.29.15.46.13.63-.08.17-.2.72-.84.91-1.13.19-.29.38-.24.65-.14.27.1 1.69.8 1.98.94.29.15.48.22.55.34.07.13.07.72-.17 1.4Z"/></svg> WhatsApp</a>
+          <a class="promo__btn promo__btn--email" href="mailto:francescod.prezio03@icloud.com?subject=Reserva%20directa%20Bellavista%20Domus&amp;body=Hola%2C%20me%20gustar%C3%ADa%20reservar%20Bellavista%20Domus%20directamente%20con%20el%20descuento%20de%20hasta%20el%2025%C2%A0%25.%0A%0ALlegada%3A%0ASalida%3A%0AN%C3%BAmero%20de%20hu%C3%A9spedes%3A%0A"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m3.5 6 8.5 7 8.5-7"/></svg> Email</a>
+          <a class="promo__btn promo__btn--modulo" href="https://wa.me/?text=Te%20recomiendo%20Bellavista%20Domus%2C%20una%20casa%20de%20vacaciones%20junto%20al%20mar%20en%20Torre%20a%20Mare%20%28Bari%29.%20Reservando%20directamente%2C%20hasta%20un%2025%C2%A0%25%20de%20descuento%20respecto%20a%20Booking.com%20y%20Airbnb%3A%20https%3A%2F%2Fbellavistadomus.netlify.app%2Fes%2F" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.1c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.8-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.82 2 .9 2.14.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.46.29.15.46.13.63-.08.17-.2.72-.84.91-1.13.19-.29.38-.24.65-.14.27.1 1.69.8 1.98.94.29.15.48.22.55.34.07.13.07.72-.17 1.4Z"/></svg> Compartir con un amigo</a>
+        </div>
+      </div>
+    </aside>
+
+    <h2>Información práctica</h2>
+    <ul class="info">
+      <li><strong>Check-in</strong>: a partir de las 15:00, en persona. La hora la acordamos antes por WhatsApp.</li>
+      <li><strong>Check-out</strong>: antes de las 11:00.</li>
+      <li><strong>Aparcamiento</strong>: dos plazas privadas y gratuitas dentro de la propiedad; fuera, el aparcamiento en la calle es libre y gratuito.</li>
+      <li><strong>Fumar</strong>: solo en el exterior.</li>
+      <li><strong>Fiestas</strong>: no permitidas.</li>
+      <li><strong>Tasa turística</strong>: se paga en el alojamiento y corresponde al Ayuntamiento de Bari.</li>
+      <li><strong>Cómo llegar</strong>: todos los detalles sobre coche, aeropuerto, autobús y aparcamiento en nuestra <a class="placelink" href="/come-arrivare-es.html#da-ospiti">guía</a>.</li>
+    </ul>
+
+    <h2>¿Nos necesitas?</h2>
+    <p>Para cualquier cosa, antes y durante la estancia, escríbenos por WhatsApp: es la forma más rápida de contactarnos.</p>
+    <div class="contatti">
+      <a class="promo__btn promo__btn--wa" href="https://wa.me/393318228563?text=%C2%A1Hola%21%20Soy%20hu%C3%A9sped%20de%20Bellavista%20Domus%3A%20" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.1c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.8-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.82 2 .9 2.14.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.46.29.15.46.13.63-.08.17-.2.72-.84.91-1.13.19-.29.38-.24.65-.14.27.1 1.69.8 1.98.94.29.15.48.22.55.34.07.13.07.72-.17 1.4Z"/></svg> WhatsApp</a>
+      <a class="promo__btn promo__btn--modulo" href="tel:+393318228563">Llamar</a>
+      <a class="promo__btn promo__btn--email" href="mailto:francescod.prezio03@icloud.com"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m3.5 6 8.5 7 8.5-7"/></svg> Email</a>
+    </div>
+
+    <aside class="cta cta--promo" aria-label="Reserva directa">
+      <p class="cta__cifra">−25%</p>
+      <h3>Reserva sin comisiones</h3>
+      <p>Pídenos el precio directo por WhatsApp: hasta un 25&nbsp;% menos que las tarifas de Booking.com y Airbnb para las mismas fechas.</p>
+      <a class="promo__btn promo__btn--wa" href="https://wa.me/393318228563?text=%C2%A1Hola%21%20Me%20gustar%C3%ADa%20reservar%20Bellavista%20Domus%20directamente%20con%20el%20descuento%20de%20hasta%20el%2025%C2%A0%25.%20Quisiera%20saber%20la%20disponibilidad%20y%20el%20precio%20para%20estas%20fechas%3A%20" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.1c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.8-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.82 2 .9 2.14.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.46.29.15.46.13.63-.08.17-.2.72-.84.91-1.13.19-.29.38-.24.65-.14.27.1 1.69.8 1.98.94.29.15.48.22.55.34.07.13.07.72-.17 1.4Z"/></svg> Escríbenos por WhatsApp</a>
+    </aside>
+
+    <nav class="morelinks ospiti-guide" id="guide" aria-label="Nuestras guías de los alrededores">
+      <h2>Nuestras guías de los alrededores</h2>
+      <div class="morelinks__grid">
+        <a class="morelinks__card" href="/torre-a-mare-es.html#da-ospiti">
+          <img src="/images/puglia-torre-a-mare-480.webp" alt="" width="76" height="64" loading="lazy">
+          <span><b>Torre a Mare</b>El pueblo marinero donde se encuentra Bellavista Domus.</span>
+        </a>
+        <a class="morelinks__card" href="/bari-es.html#da-ospiti">
+          <img src="/images/puglia-bari-scheda-480.webp" alt="" width="76" height="64" loading="lazy">
+          <span><b>Bari</b>La capital de Apulia, entre casco antiguo y paseo marítimo.</span>
+        </a>
+        <a class="morelinks__card" href="/polignano-a-mare-es.html#da-ospiti">
+          <img src="/images/puglia-polignano-scheda-480.webp" alt="" width="76" height="64" loading="lazy">
+          <span><b>Polignano a Mare</b>Famosa por sus acantilados sobre el mar.</span>
+        </a>
+        <a class="morelinks__card" href="/monopoli-es.html#da-ospiti">
+          <img src="/images/puglia-monopoli-scheda-480.webp" alt="" width="76" height="64" loading="lazy">
+          <span><b>Monopoli</b>Puerto histórico y casco antiguo asomados al Adriático.</span>
+        </a>
+        <a class="morelinks__card" href="/alberobello-es.html#da-ospiti">
+          <img src="/images/puglia-alberobello-scheda-480.webp" alt="" width="76" height="64" loading="lazy">
+          <span><b>Alberobello</b>Patrimonio de la UNESCO, famosa por sus trulli.</span>
+        </a>
+        <a class="morelinks__card" href="/grotte-di-castellana-es.html#da-ospiti">
+          <img src="/images/puglia-castellana-scheda-480.webp" alt="" width="76" height="64" loading="lazy">
+          <span><b>Grutas de Castellana</b>Sesenta metros bajo tierra, entre estalactitas y alabastro.</span>
+        </a>
+        <a class="morelinks__card" href="/valle-d-itria-es.html#da-ospiti">
+          <img src="/images/puglia-valle-d-itria-scheda-480.webp" alt="" width="76" height="64" loading="lazy">
+          <span><b>Valle de Itria</b>Locorotondo, Cisternino, Martina Franca y Ostuni.</span>
+        </a>
+        <a class="morelinks__card" href="/matera-es.html#da-ospiti">
+          <img src="/images/puglia-matera-scheda-480.webp" alt="" width="76" height="64" loading="lazy">
+          <span><b>Matera</b>Los Sassi, patrimonio de la UNESCO, a poco más de una hora.</span>
+        </a>
+        <a class="morelinks__card" href="/come-arrivare-es.html#da-ospiti">
+          <img src="/images/posizione-mare-480.webp" alt="" width="76" height="64" loading="lazy">
+          <span><b>Cómo llegar</b>Coche, aeropuerto, autobús y aparcamiento</span>
+        </a>
+        <a class="morelinks__card morelinks__card--promo" href="https://wa.me/393318228563?text=%C2%A1Hola%21%20Me%20gustar%C3%ADa%20reservar%20Bellavista%20Domus%20directamente%20con%20el%20descuento%20de%20hasta%20el%2025%C2%A0%25.%20Quisiera%20saber%20la%20disponibilidad%20y%20el%20precio%20para%20estas%20fechas%3A%20" target="_blank" rel="noopener noreferrer">
+          <span class="card-cifra" aria-hidden="true">−25%</span>
+          <span><b>Hasta un 25&nbsp;% menos</b>Reservando directamente por WhatsApp, respecto a Booking.com y Airbnb.</span>
+        </a>
+      </div>
+    </nav>
+
+    <section class="sito" aria-labelledby="sito-titolo">
+      <h2 id="sito-titolo">La web de Bellavista Domus</h2>
+      <p>Fotos, dormitorios, equipamiento, reseñas y calendario de disponibilidad: en la web encontrarás toda la casa, y desde allí puedes pedirnos un presupuesto.</p>
+      <div class="contatti">
+        <a class="promo__btn promo__btn--scuro" href="/es/">Ir a la web →</a>
+        <a class="promo__btn promo__btn--modulo" href="/es/#house">La casa</a>
+        <a class="promo__btn promo__btn--modulo" href="/es/#gallery">Galería</a>
+        <a class="promo__btn promo__btn--modulo" href="/es/#calendario">Disponibilidad</a>
+      </div>
+    </section>
+
+    <aside class="promo" aria-label="Reserva directa">
+      <p class="promo__cifra">−25%</p>
+      <div>
+        <p class="promo__titolo">Alójate en Bellavista Domus y ahorra hasta un 25&nbsp;%</p>
+        <p class="promo__testo">Reservando directamente con nosotros, por email o WhatsApp, pagas hasta un 25&nbsp;% menos que con las tarifas de Booking.com y Airbnb para las mismas fechas.</p>
+        <p class="promo__nota">El porcentaje exacto depende de las fechas: te lo confirmamos en el presupuesto.</p>
+        <div class="promo__azioni">
+          <a class="promo__btn promo__btn--wa" href="https://wa.me/393318228563?text=%C2%A1Hola%21%20Me%20gustar%C3%ADa%20reservar%20Bellavista%20Domus%20directamente%20con%20el%20descuento%20de%20hasta%20el%2025%C2%A0%25.%20Quisiera%20saber%20la%20disponibilidad%20y%20el%20precio%20para%20estas%20fechas%3A%20" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.1c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.8-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.82 2 .9 2.14.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.46.29.15.46.13.63-.08.17-.2.72-.84.91-1.13.19-.29.38-.24.65-.14.27.1 1.69.8 1.98.94.29.15.48.22.55.34.07.13.07.72-.17 1.4Z"/></svg> WhatsApp</a>
+          <a class="promo__btn promo__btn--email" href="mailto:francescod.prezio03@icloud.com?subject=Reserva%20directa%20Bellavista%20Domus&amp;body=Hola%2C%20me%20gustar%C3%ADa%20reservar%20Bellavista%20Domus%20directamente%20con%20el%20descuento%20de%20hasta%20el%2025%C2%A0%25.%0A%0ALlegada%3A%0ASalida%3A%0AN%C3%BAmero%20de%20hu%C3%A9spedes%3A%0A"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m3.5 6 8.5 7 8.5-7"/></svg> Email</a>
+          <a class="promo__btn promo__btn--modulo" href="/es/#contact">Pedir presupuesto</a>
+        </div>
+      </div>
+    </aside>
+
+    <hr>
+    <a href="/es/" class="back">Ir a la web de Bellavista Domus →</a>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Bellavista Domus.
+    <span class="footer-codici">CIN IT072006C200127710, CIS BA07200691000078417</span>
+    <a class="footer-ospiti" href="/ospiti-es.html">Guía para huéspedes</a>
+  </footer>
+  <a class="wa-float" href="https://wa.me/393318228563?text=%C2%A1Hola%21%20Me%20gustar%C3%ADa%20reservar%20Bellavista%20Domus%20directamente%20con%20el%20descuento%20de%20hasta%20el%2025%C2%A0%25.%20Quisiera%20saber%20la%20disponibilidad%20y%20el%20precio%20para%20estas%20fechas%3A%20" target="_blank" rel="noopener noreferrer" aria-label="Escríbenos por WhatsApp: hasta un 25&nbsp;% de descuento reservando directamente">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.1c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.8-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.82 2 .9 2.14.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.46.29.15.46.13.63-.08.17-.2.72-.84.91-1.13.19-.29.38-.24.65-.14.27.1 1.69.8 1.98.94.29.15.48.22.55.34.07.13.07.72-.17 1.4Z"/></svg>
+    <span class="wa-float__badge" aria-hidden="true">−25%</span>
+  </a>
+  <script src="/js/anno.js"></script>
+</body>
+</html>

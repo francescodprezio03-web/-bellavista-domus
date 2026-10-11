@@ -15,7 +15,8 @@
     it: ['/ospiti.html#guide', '← Torna alla pagina ospiti'],
     en: ['/ospiti-en.html#guide', '← Back to the guest page'],
     fr: ['/ospiti-fr.html#guide', '← Retour à la page voyageurs'],
-    de: ['/ospiti-de.html#guide', '← Zurück zur Gästeseite']
+    de: ['/ospiti-de.html#guide', '← Zurück zur Gästeseite'],
+    es: ['/ospiti-es.html#guide', '← Volver a la página de huéspedes']
   };
   var r = RITORNO[document.documentElement.lang] || RITORNO.it;
 
