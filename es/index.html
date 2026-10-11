@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Versione spagnola della homepage (ottobre 2026). Serve la stessa
+         applicazione React di index.html: è l'attributo lang qui sopra a dire
+         ad App quale lingua mostrare (vedi src/main.jsx). Se si modifica un
+         tag SEO in una home, va aggiornato anche nelle altre quattro. -->
+
+    <!-- Google Analytics (GA4) — identico a index.html: Consent Mode v2 e
+         caricamento SOLO dopo il consenso. È public/js/consenso.js ad
+         aggiungere gtag.js alla pagina quando l'utente accetta i cookie: non
+         rimettere qui un <script src="https://www.googletagmanager.com/..."> fisso. -->
+    <script src="/js/consenso.js"></script>
+
+    <title>Bellavista Domus — Casa de vacaciones en Torre a Mare, Bari</title>
+    <meta
+      name="description"
+      content="Casa de vacaciones a 10 metros del mar en Torre a Mare (Bari), Apulia. 7 huéspedes, 3 dormitorios, 2 baños. Reserva directamente: hasta un 25 % menos."
+    />
+    <link rel="canonical" href="https://bellavistadomus.netlify.app/es/" />
+
+    <!-- hreflang: la stessa pagina in cinque lingue (it, en, fr, de, es). Le
+         stesse coppie sono in tutte e cinque le home e in public/sitemap.xml:
+         se si aggiunge una lingua, va aggiunta ovunque. x-default indica la
+         versione per chi non rientra in nessuna delle lingue. -->
+    <link rel="alternate" hreflang="it" href="https://bellavistadomus.netlify.app/" />
+    <link rel="alternate" hreflang="en" href="https://bellavistadomus.netlify.app/en/" />
+    <link rel="alternate" hreflang="fr" href="https://bellavistadomus.netlify.app/fr/" />
+    <link rel="alternate" hreflang="de" href="https://bellavistadomus.netlify.app/de/" />
+    <link rel="alternate" hreflang="es" href="https://bellavistadomus.netlify.app/es/" />
+    <link rel="alternate" hreflang="x-default" href="https://bellavistadomus.netlify.app/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Bellavista Domus" />
+    <meta property="og:title" content="Bellavista Domus — Casa de vacaciones en Torre a Mare, Bari" />
+    <meta
+      property="og:description"
+      content="Casa de vacaciones premium a 10 metros del mar en Torre a Mare (Bari), Apulia. Hasta 7 huéspedes, 3 dormitorios, 2 baños. Reserva directamente: hasta un 25 % de descuento respecto a Booking.com y Airbnb."
+    />
+    <meta property="og:image" content="https://bellavistadomus.netlify.app/images/og/home.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://bellavistadomus.netlify.app/es/" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:locale:alternate" content="it_IT" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+    <meta property="og:locale:alternate" content="de_DE" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Bellavista Domus — Casa de vacaciones en Torre a Mare, Bari" />
+    <meta
+      name="twitter:description"
+      content="Casa de vacaciones premium a 10 metros del mar en Torre a Mare (Bari). Reserva directamente: hasta un 25 % de descuento respecto a Booking.com y Airbnb."
+    />
+    <meta name="twitter:image" content="https://bellavistadomus.netlify.app/images/og/home.jpg" />
+
+    <!-- Dati strutturati: stessa struttura ricettiva di index.html, descritta
+         in spagnolo e con url/inLanguage di questa pagina. Le coordinate vanno
+         tenute allineate a CONFIG.maps in src/App.jsx e al JSON-LD italiano. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LodgingBusiness",
+        "name": "Bellavista Domus",
+        "description": "Casa de vacaciones premium a 10 metros del mar en Torre a Mare (Bari), Apulia. Hasta 7 huéspedes, 3 dormitorios, 2 baños.",
+        "url": "https://bellavistadomus.netlify.app/es/",
+        "inLanguage": "es",
+        "telephone": "+39 331 822 8563",
+        "email": "francescod.prezio03@icloud.com",
+        "address": {
+          "@type": "PostalAddress",
+          "postalCode": "70126",
+          "addressLocality": "Torre a Mare",
+          "addressRegion": "BA",
+          "addressCountry": "IT"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 41.0929646,
+          "longitude": 16.9849044
+        },
+        "hasMap": "https://maps.app.goo.gl/jLEXjAeG8ijbvvFf6",
+        "logo": "https://bellavistadomus.netlify.app/branding/logo-orizzontale.png",
+        "image": [
+          "https://bellavistadomus.netlify.app/images/hero.jpg",
+          "https://bellavistadomus.netlify.app/images/intro.jpg",
+          "https://bellavistadomus.netlify.app/images/casa-soggiorno.jpg"
+        ],
+        "sameAs": [
+          "https://www.booking.com/Share-UkSF6kA",
+          "https://www.airbnb.it/rooms/1741483445487016562"
+        ],
+        "petsAllowed": true,
+        "numberOfRooms": 3,
+        "amenityFeature": [
+          { "@type": "LocationFeatureSpecification", "name": "Cerca del mar", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Aparcamiento privado", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Cocina equipada", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Balcones", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Aire acondicionado", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Calefacción", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Wi-Fi", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Lavavajillas", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Lavadora", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Jardín privado", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Barbecue", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Televisión", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Sábanas y toallas incluidas", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Apto para familias", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Piscina", "value": false }
+        ],
+        "checkinTime": "15:00",
+        "checkoutTime": "11:00",
+        "smokingAllowed": false,
+        "containsPlace": {
+          "@type": "Accommodation",
+          "name": "Bellavista Domus",
+          "numberOfBedrooms": 3,
+          "numberOfBathroomsTotal": 2,
+          "occupancy": {
+            "@type": "QuantitativeValue",
+            "maxValue": 7
+          }
+        }
+      }
+    </script>
+
+    <!-- La fotografia dell'hero è l'immagine che Google cronometra come LCP.
+         Senza questo preload il browser la scopre solo dopo aver scaricato ed
+         eseguito il bundle React: il preload la fa partire subito, in parallelo.
+
+         Deve elencare le stesse varianti WebP dell'elemento <picture> in
+         PhotoSlot, con lo stesso "sizes": se preloadassimo il JPEG, il
+         browser scaricherebbe quello E POI la variante WebP scelta, cioè
+         il doppio. Se cambia CONFIG.images.hero o l'elenco delle varianti
+         in src/App.jsx, va aggiornato anche qui. -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="/images/hero.webp"
+      imagesrcset="/images/hero-480.webp 480w, /images/hero-900.webp 900w, /images/hero-1400.webp 1400w, /images/hero.webp 1900w"
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
+
+    <!-- I due font principali (testo e titoli) sono ospitati sul sito, in
+         public/fonts/. Il preload li fa partire subito invece che dopo la
+         lettura del CSS. Se cambiano i file dei font, va aggiornato anche qui. -->
+    <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="icon" href="/branding/favicon.ico" sizes="32x32" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/branding/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/branding/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="/branding/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#102838" />
+    <link rel="apple-touch-icon" href="/branding/apple-touch-icon.png" />
+
+    <!-- FAQ: generato dal contenuto di translations.<lang>.faq in src/App.jsx -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Sale más barato reservar directamente?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí: si reservas directamente con nosotros, por email, WhatsApp o con el formulario de la web, tienes hasta un 25 % de descuento respecto a las tarifas de Booking.com y Airbnb para las mismas fechas, porque no pagas las comisiones de las plataformas. El porcentaje exacto depende de las fechas: te lo confirmamos en el presupuesto."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuántas personas caben en la casa?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hasta 7 huéspedes en 3 dormitorios: dos con cama de matrimonio y un tercero con una cama doble pequeña y una litera. Hay dos baños, ambos con ducha."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿A qué distancia está realmente el mar?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A diez metros, con una pequeña cala de arena justo delante de la casa. Se cruza la calle y ya estás en la playa pública, donde se alternan arena y rocas. El mar se ve desde dos de los tres dormitorios, y por la noche se oye con las ventanas abiertas."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuál es la estancia mínima?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Dos noches en temporada baja y cuatro noches en temporada alta."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿A qué hora son el check-in y el check-out?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "El check-in es a partir de las 15:00 y el check-out antes de las 11:00. Si tienes un vuelo o un tren con horarios complicados, escríbenos: intentamos adaptarnos cuando el calendario lo permite."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Está incluida la limpieza final?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No, se suma al precio de la estancia y cuesta 99 €. Es un importe único, que no depende de la duración de la estancia ni del número de huéspedes."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Hay que pagar la tasa turística?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí, se paga en el alojamiento y corresponde al Ayuntamiento de Bari, no a nosotros. El reglamento municipal prevé exenciones —para los menores y a partir de cierto número de noches seguidas—, así que te confirmamos el importe exacto al reservar, según cuántos seáis y cuántas noches os quedéis."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Están incluidas las sábanas y las toallas?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí, las sábanas y las toallas están incluidas y listas a tu llegada. En la casa también encontrarás jabón, secador de pelo, lavadora y tendedero."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Hay aparcamiento?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí, dos plazas de aparcamiento privadas y gratuitas dentro de la propiedad, con espacio también para motos y bicicletas. Fuera, en la calle, el aparcamiento es libre y gratuito."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Se admiten mascotas?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí, los perros y gatos de tamaño pequeño y mediano son bienvenidos, con un pequeño suplemento de limpieza. Avísanos al hacer la reserva."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Se puede fumar?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Solo en el exterior. El jardín y los espacios al aire libre están a tu disposición; dentro de la casa no se fuma."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Hay aire acondicionado?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí, en los tres dormitorios y en el salón, con función de frío y de calor. Por eso la casa es cómoda también fuera de temporada."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo es la conexión a internet?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Wi-Fi de fibra hasta 500 Mbps en toda la casa. Es una conexión adecuada también para quien tenga que trabajar o hacer videollamadas durante la estancia."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Tenéis equipamiento para niños pequeños?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí: trona, cuna, barreras de cama y cambiador, sin coste adicional. Eso sí, hay que pedirlos al reservar, para tenerlo todo listo a tu llegada."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Se pueden organizar fiestas o eventos?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No, no se permiten fiestas ni eventos. La casa está pensada para familias y grupos que buscan tranquilidad, y cuidamos mucho la relación con los vecinos."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Hay piscina?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Todavía no: hay una piscina prevista para el verano de 2027. Hoy la casa apuesta por otra cosa —el mar a diez metros, con la cala de arena delante, y un jardín privado con más de 12 asientos al aire libre y barbacoa—. Si estás pensando en una estancia en el verano de 2027, escríbenos antes de reservar: te diremos cómo van las obras, para que no reserves basándote en una expectativa."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo se llega a Torre a Mare?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "En coche, se sale en Torre a Mare centro y en dos minutos estás en casa; desde el aeropuerto de Bari se tarda unos 20 minutos, 25 con tráfico. En transporte público, lo más sencillo es el autobús 12 (o 12/) desde la estación central de Bari. Una vez aquí, para la playa y el pueblo no hace falta el coche; para la compra y los servicios sí, que están a unos cinco minutos."
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

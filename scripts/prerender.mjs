@@ -22,6 +22,7 @@ const PAGINE = [
   { lang: "en", file: "dist/en/index.html" },
   { lang: "fr", file: "dist/fr/index.html" },
   { lang: "de", file: "dist/de/index.html" },
+  { lang: "es", file: "dist/es/index.html" },
 ];
 
 const SEGNAPOSTO = '<div id="root"></div>';

@@ -10,9 +10,10 @@ document.documentElement.classList.add("bd-js");
 
 /* La lingua non è uno stato interno all'applicazione: la decide la pagina
    che la ospita. index.html dichiara lang="it", en/index.html lang="en",
-   fr/index.html lang="fr", de/index.html lang="de". Questo è ciò che rende l'inglese un indirizzo vero (/en/)
+   fr/index.html lang="fr", de/index.html lang="de",
+   es/index.html lang="es". Questo è ciò che rende l'inglese un indirizzo vero (/en/)
    invece di un interruttore che spariva al ricaricamento. */
-const LINGUE = ["it", "en", "fr", "de"];
+const LINGUE = ["it", "en", "fr", "de", "es"];
 const lingua = LINGUE.includes(document.documentElement.lang) ? document.documentElement.lang : "it";
 
 const contenitore = document.getElementById("root");
